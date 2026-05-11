@@ -198,6 +198,33 @@
     .form-card { padding:24px; }
   }
 
+/* Page transition overlay — always present, invisible by default */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 8000;
+  background: var(--primary);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.38s cubic-bezier(0.4,0,1,1);
+}
+
+
+  /* Secondary page nav — starts scrolled (white) */
+  nav { background: rgba(255,255,255,0.97) !important; backdrop-filter: blur(20px); }
+  .nav-logo img { filter: none !important; height: 48px !important; }
+  .nav-links a { color: var(--text) !important; }
+  .nav-links a:hover { color: var(--primary) !important; }
+  .nav-cta { background: var(--primary) !important; border-color: var(--primary) !important; color: var(--white) !important; }
+
+  /* Scroll bar on secondary pages */
+  #scroll-bar {
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+    background: linear-gradient(90deg, var(--mint), var(--blue-light));
+    width: 0%; box-shadow: 0 0 8px rgba(143,240,210,0.5);
+    transition: width 0.1s linear;
+  }
+
 </style>
 </head>
 <body>
@@ -215,6 +242,7 @@
   </ul>
   <a href="tel:0240354343" class="nav-cta">📞 02 40 35 43 43</a>
 </nav>
+<div id="scroll-bar" aria-hidden="true"></div>
 
 <!-- HERO -->
 <section class="page-hero" aria-labelledby="contact-hero-title">
@@ -492,6 +520,76 @@
       }, 3000);
     });
   }
+</script>
+<script>
+
+// ─── NAV SCROLL STATE ─────────────────────────────────────────
+var nav = document.getElementById('main-nav');
+if (nav) {
+  // Secondary pages: nav starts white, not transparent
+  nav.classList.add('scrolled');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+}
+
+// ─── SCROLL PROGRESS BAR ──────────────────────────────────────
+var scrollBar = document.getElementById('scroll-bar');
+if (scrollBar) {
+  scrollBar.style.opacity = '1';
+  window.addEventListener('scroll', function() {
+    var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    scrollBar.style.width = pct + '%';
+  }, { passive: true });
+}
+
+// ─── SCROLL REVEAL ────────────────────────────────────────────
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.10, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
+
+// ─── MAGNETIC BUTTONS ─────────────────────────────────────────
+document.querySelectorAll('.nav-cta, .btn-primary, .btn-dark').forEach(function(btn) {
+  btn.addEventListener('mousemove', function(e) {
+    var rect = this.getBoundingClientRect();
+    var x = e.clientX - rect.left - rect.width / 2;
+    var y = e.clientY - rect.top - rect.height / 2;
+    this.style.transform = 'translate(' + (x * 0.28) + 'px, ' + (y * 0.28) + 'px) scale(1.04)';
+  });
+  btn.addEventListener('mouseleave', function() {
+    this.style.transform = '';
+    this.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1), background 0.25s, box-shadow 0.25s';
+  });
+  btn.addEventListener('mouseenter', function() {
+    this.style.transition = 'transform 0.1s linear, background 0.25s, box-shadow 0.25s';
+  });
+});
+
+// ─── FAQ ACCORDION ────────────────────────────────────────────
+document.querySelectorAll('details').forEach(function(detail) {
+  detail.addEventListener('toggle', function() {
+    if (detail.open) {
+      document.querySelectorAll('details[open]').forEach(function(other) {
+        if (other !== detail) other.removeAttribute('open');
+      });
+    }
+  });
+});
+
+// ─── SMOOTH SCROLL ────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
 </script>
 </body>
 </html>
