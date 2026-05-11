@@ -706,7 +706,6 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
-    <li><a href="nos-services.html">Nos services</a></li>
     <li><a href="https://nantes-soins-a-domicile.fr/offres-emploi/" target="_blank" rel="noopener noreferrer">Offres d'emploi</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="nos-partenaires.html">Nos partenaires</a></li>
@@ -984,80 +983,107 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
 
 <!-- ══════════ JAVASCRIPT ══════════ -->
 <script>
-// ─── LOADER ORCHESTRATION ───────────────────────────────────────
+// ─── LOADER : s'affiche uniquement à la première arrivée sur le site ──────────
+// Si on vient d'une page interne (sessionStorage 'navigating' = '1'),
+// on saute le loader et on révèle directement la page.
 (function() {
-  const fill = document.getElementById('loader-fill');
-  const label = document.getElementById('loader-label');
-  const loader = document.getElementById('loader');
-  const curtainTop = document.getElementById('curtain-top');
-  const curtainBottom = document.getElementById('curtain-bottom');
-  const scrollBar = document.getElementById('scroll-bar');
-  const words = [
+  var fill    = document.getElementById('loader-fill');
+  var label   = document.getElementById('loader-label');
+  var loader  = document.getElementById('loader');
+  var curtainTop    = document.getElementById('curtain-top');
+  var curtainBottom = document.getElementById('curtain-bottom');
+  var scrollBar     = document.getElementById('scroll-bar');
+  var words = [
     document.getElementById('lw-0'),
     document.getElementById('lw-1'),
     document.getElementById('lw-2'),
     document.getElementById('lw-3')
   ];
 
-  const steps = [
-    { pct: 15,  label: 'Initialisation\u2026',           word: 0, delay: 420 },
-    { pct: 38,  label: 'Chargement des donn\u00e9es\u2026', word: 1, delay: 360 },
-    { pct: 62,  label: 'Pr\u00e9paration de l\u2019interface\u2026', word: 2, delay: 300 },
-    { pct: 84,  label: 'Finalisation\u2026',             word: 3, delay: 240 },
-    { pct: 100, label: 'Pr\u00eat\u00a0!',               word: -1, delay: 180 },
-  ];
+  // ── Vient-on d'une navigation interne ? ──────────────────────────────────
+  var fromInternal = sessionStorage.getItem('navigating') === '1';
+  if (fromInternal) {
+    sessionStorage.removeItem('navigating');
+    // Cacher le loader immédiatement sans animation
+    loader.style.display = 'none';
+    curtainTop.style.display    = 'none';
+    curtainBottom.style.display = 'none';
+    // Révéler directement la page
+    revealPageDirect();
+    return;
+  }
 
-  let stepIndex = 0;
+  // ── Première arrivée : loader complet ────────────────────────────────────
+  var steps = [
+    { pct: 15,  label: 'Initialisation\u2026',                   word: 0, delay: 420 },
+    { pct: 38,  label: 'Chargement des donn\u00e9es\u2026',       word: 1, delay: 360 },
+    { pct: 62,  label: 'Pr\u00e9paration de l\u2019interface\u2026', word: 2, delay: 300 },
+    { pct: 84,  label: 'Finalisation\u2026',                      word: 3, delay: 240 },
+    { pct: 100, label: 'Pr\u00eat\u00a0!',                        word: -1, delay: 180 }
+  ];
+  var stepIndex = 0;
 
   function runStep() {
-    if (stepIndex >= steps.length) {
-      setTimeout(revealPage, 220);
-      return;
-    }
-    const s = steps[stepIndex++];
+    if (stepIndex >= steps.length) { setTimeout(revealPageFull, 220); return; }
+    var s = steps[stepIndex++];
     fill.style.width = s.pct + '%';
     label.textContent = s.label;
     words.forEach(function(w, i) { if (w) w.classList.toggle('active', i === s.word); });
     setTimeout(runStep, s.delay);
   }
-
-  // Start after logo pop animation settles
   setTimeout(runStep, 1200);
 
-  function revealPage() {
-    // 1. Fade out loader
+  // ── Révélation complète (avec rideaux) ───────────────────────────────────
+  function revealPageFull() {
     loader.classList.add('hide');
-
-    // 2. Open curtains
     setTimeout(function() {
       loader.style.display = 'none';
       curtainTop.classList.add('open');
       curtainBottom.classList.add('open');
-
-      // 3. Show scroll bar & nav, then animate hero
       setTimeout(function() {
         scrollBar.style.opacity = '1';
         document.getElementById('main-nav').classList.add('visible');
         animateHero();
         setTimeout(function() {
-          curtainTop.style.display = 'none';
+          curtainTop.style.display    = 'none';
           curtainBottom.style.display = 'none';
         }, 1200);
       }, 600);
     }, 700);
   }
 
+  // ── Révélation directe (sans loader, navigation interne) ─────────────────
+  function revealPageDirect() {
+    scrollBar.style.opacity = '1';
+    var nav = document.getElementById('main-nav');
+    if (nav) nav.classList.add('visible');
+    // Transition d'entrée : fondu depuis le overlay de transition de page
+    var overlay = document.getElementById('page-transition');
+    if (overlay) {
+      overlay.style.opacity = '1';
+      overlay.style.pointerEvents = 'all';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          overlay.style.transition = 'opacity 0.45s cubic-bezier(0,0,0.2,1)';
+          overlay.style.opacity = '0';
+          setTimeout(function() { overlay.style.pointerEvents = 'none'; }, 460);
+        });
+      });
+    }
+    animateHero();
+  }
+
+  // ── Animation hero (commune) ──────────────────────────────────────────────
   function animateHero() {
     var seq = [
-      { id: 'hero-badge',    delay: 0   },
+      { id: 'hero-badge',   delay: 0   },
       { sel: '.hero h1 .line:nth-child(1) span', delay: 120 },
       { sel: '.hero h1 .line:nth-child(2) span', delay: 280 },
-      { id: 'hero-desc',     delay: 440 },
-      { id: 'hero-actions',  delay: 580 },
-      { id: 'hero-badge2',   delay: 700 },
-      { id: 'hero-stats',    delay: 820 },
+      { id: 'hero-desc',    delay: 440 },
+      { id: 'hero-actions', delay: 580 },
+      { id: 'hero-badge2',  delay: 700 },
+      { id: 'hero-stats',   delay: 820 }
     ];
-
     seq.forEach(function(item) {
       var el = item.id ? document.getElementById(item.id) : document.querySelector(item.sel);
       if (!el) return;
@@ -1067,8 +1093,6 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
         el.style.transform = 'translateY(0)';
       }, item.delay);
     });
-
-    // Hero visual cards
     var visual = document.getElementById('hero-visual');
     if (visual) {
       setTimeout(function() { visual.style.opacity = '1'; }, 300);
@@ -1080,8 +1104,6 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
         }, 500 + i * 160);
       });
     }
-
-    // Counters
     setTimeout(function() {
       document.querySelectorAll('[data-count]').forEach(function(el) {
         animateCount(el, parseInt(el.dataset.count), 1600);
@@ -1094,9 +1116,9 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
 function animateCount(el, target, duration) {
   var startTime = performance.now();
   function tick(now) {
-    var elapsed = now - startTime;
+    var elapsed  = now - startTime;
     var progress = Math.min(elapsed / duration, 1);
-    var eased = 1 - Math.pow(1 - progress, 4);
+    var eased    = 1 - Math.pow(1 - progress, 4);
     el.textContent = Math.floor(eased * target);
     if (progress < 1) requestAnimationFrame(tick);
     else el.textContent = target;
@@ -1174,6 +1196,35 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
+// ─── PAGE TRANSITIONS (liens internes) ──────────────────────────
+(function() {
+  var overlay = document.createElement('div');
+  overlay.id = 'page-transition';
+  overlay.style.cssText = [
+    'position:fixed', 'inset:0', 'z-index:8000',
+    'background:var(--primary)', 'opacity:0',
+    'pointer-events:none',
+    'transition:opacity 0.38s cubic-bezier(0.4,0,1,1)'
+  ].join(';');
+  document.body.appendChild(overlay);
+
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
+    if (a.target === '_blank') return;
+    e.preventDefault();
+    sessionStorage.setItem('navigating', '1');
+    overlay.style.pointerEvents = 'all';
+    overlay.style.transition = 'opacity 0.38s cubic-bezier(0.4,0,1,1)';
+    overlay.style.opacity = '1';
+    setTimeout(function() { window.location.href = href; }, 400);
+  });
+})();
 
 </script>
 </body>
