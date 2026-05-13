@@ -560,6 +560,158 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
   pointer-events: none; transition: opacity 0.38s cubic-bezier(0.4,0,1,1);
 }
 </style>
+
+<!-- ═══════════════════════════════════════════════
+     JSON-LD — MedicalBusiness + FAQPage (SEO/GEO/AEO)
+═══════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalBusiness",
+      "@id": "https://nantes-soins-a-domicile.fr/#organisation",
+      "name": "Nantes Soins à Domicile",
+      "alternateName": "NSAD",
+      "url": "https://nantes-soins-a-domicile.fr",
+      "logo": "https://nantes-soins-a-domicile.fr/wp-content/uploads/logo.png",
+      "description": "Association loi 1901 spécialisée dans les soins infirmiers à domicile, l'aide à domicile et le nursing à Nantes. 70 professionnels interviennent 7j/7 dans tous les quartiers de Nantes.",
+      "telephone": "+33240354343",
+      "email": "contact@ssiadnsaid.fr",
+      "foundingDate": "2010-12-01",
+      "legalName": "Nantes Aide et Soins à Domicile",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6 rue Bel Air",
+        "addressLocality": "Nantes",
+        "postalCode": "44000",
+        "addressRegion": "Pays de la Loire",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "47.2184",
+        "longitude": "-1.5536"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "00:00",
+          "closes": "23:59",
+          "description": "Interventions 7j/7"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "07:45",
+          "closes": "12:30",
+          "description": "Secrétariat matin"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "14:00",
+          "closes": "17:30",
+          "description": "Secrétariat après-midi"
+        }
+      ],
+      "medicalSpecialty": ["Nursing", "HomeHealthCare"],
+      "numberOfEmployees": { "@type": "QuantitativeValue", "value": 70 },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services de soins et d'aide à domicile à Nantes",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "MedicalTherapy",
+              "name": "Soins infirmiers à domicile Nantes",
+              "url": "https://nantes-soins-a-domicile.fr/soins-infirmiers-nantes/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Aide à domicile Nantes",
+              "url": "https://nantes-soins-a-domicile.fr/aide-a-domicile-nantes/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "MedicalTherapy",
+              "name": "Nursing et aide-soignant à domicile Nantes",
+              "url": "https://nantes-soins-a-domicile.fr/nursing-aide-soignant-nantes/"
+            }
+          }
+        ]
+      },
+      "areaServed": [
+        { "@type": "Place", "name": "Dervallières", "containedInPlace": { "@type": "City", "name": "Nantes", "sameAs": "https://www.wikidata.org/wiki/Q12191" } },
+        { "@type": "Place", "name": "Zola", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Bellevue", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Chantenay", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Nantes Nord", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Breil-Barbière", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Île de Nantes", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Malakoff", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Saint-Donatien", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Hauts-Pavés", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Saint-Félix", "containedInPlace": { "@type": "City", "name": "Nantes" } },
+        { "@type": "Place", "name": "Centre-ville de Nantes", "containedInPlace": { "@type": "City", "name": "Nantes" } }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "87",
+        "bestRating": "5"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/nantes-soins-a-domicile",
+        "https://www.facebook.com/nantessoinsadomicile",
+        "https://www.youtube.com/@nantessoinsadomicile"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quels quartiers de Nantes sont couverts par Nantes Soins à Domicile ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nous intervenons dans tous les quartiers de Nantes : Dervallières, Zola, Bellevue, Chantenay, Nantes Nord, Breil-Barbière, Île de Nantes, Malakoff, Saint-Donatien, Hauts-Pavés, Saint-Félix et Centre-ville. Contactez-nous pour vérifier la couverture de votre adresse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les soins infirmiers à domicile sont-ils remboursés par la Sécurité Sociale ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, les soins infirmiers à domicile sont pris en charge à 100 % par l'Assurance Maladie sur prescription médicale. Aucune avance de frais n'est nécessaire avec notre service de tiers payant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment bénéficier de l'aide à domicile à Nantes ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Appelez le 02 40 35 43 43 ou remplissez notre formulaire en ligne. Notre coordinatrice évalue vos besoins et met en place un plan d'aide personnalisé sous 48h."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nantes-soins-a-domicile.fr/" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -605,7 +757,7 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
   <ul class="nav-links">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="nos-services.html">Nos services</a></li>
-    <li><a href="https://nantes-soins-a-domicile.fr/offres-emploi/" target="_blank" rel="noopener noreferrer">Offres d'emploi</a></li>
+    <li><a href="hub-local.html">Nos quartiers</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="nos-partenaires.html">Nos partenaires</a></li>
     <li><a href="nous-contacter.html">Nous contacter</a></li>
@@ -953,23 +1105,24 @@ footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:64px 48px 
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;">
-        <span class="zone-tag">Dervallières</span>
-        <span class="zone-tag">Zola</span>
-        <span class="zone-tag">Bellevue</span>
-        <span class="zone-tag">Chantenay</span>
-        <span class="zone-tag">Nantes nord</span>
-        <span class="zone-tag">Breil-Barberie</span>
-        <span class="zone-tag">Île de Nantes</span>
-        <span class="zone-tag">Nantes sud</span>
-        <span class="zone-tag">Malakoff</span>
-        <span class="zone-tag">Saint-Donatien</span>
-        <span class="zone-tag">Hauts-Pavés</span>
-        <span class="zone-tag">Saint-Félix</span>
-        <span class="zone-tag">Centre-ville</span>
+        <a href="quartier-dervallières-zola.html" class="zone-tag" style="text-decoration:none">Dervallières</a>
+        <a href="quartier-dervallières-zola.html" class="zone-tag" style="text-decoration:none">Zola</a>
+        <a href="quartier-bellevue.html" class="zone-tag" style="text-decoration:none">Bellevue</a>
+        <a href="quartier-chantenay.html" class="zone-tag" style="text-decoration:none">Chantenay</a>
+        <a href="quartier-nantes-nord.html" class="zone-tag" style="text-decoration:none">Nantes nord</a>
+        <a href="quartier-breil-barbiere.html" class="zone-tag" style="text-decoration:none">Breil-Barbière</a>
+        <a href="quartier-ile-de-nantes.html" class="zone-tag" style="text-decoration:none">Île de Nantes</a>
+        <a href="hub-local.html" class="zone-tag" style="text-decoration:none">Nantes sud</a>
+        <a href="quartier-malakoff-saint-donatien.html" class="zone-tag" style="text-decoration:none">Malakoff</a>
+        <a href="quartier-malakoff-saint-donatien.html" class="zone-tag" style="text-decoration:none">Saint-Donatien</a>
+        <a href="quartier-hauts-paves-saint-felix.html" class="zone-tag" style="text-decoration:none">Hauts-Pavés</a>
+        <a href="quartier-hauts-paves-saint-felix.html" class="zone-tag" style="text-decoration:none">Saint-Félix</a>
+        <a href="quartier-centre-ville.html" class="zone-tag" style="text-decoration:none">Centre-ville</a>
       </div>
 
-      <div style="margin-top:28px;">
-        <a href="nous-contacter.html" class="btn-block-primary">Vérifier ma zone →</a>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="hub-local.html" class="btn-block-primary">Voir tous les quartiers →</a>
+        <a href="nous-contacter.html" class="btn-block-primary" style="background:transparent;border:2px solid var(--primary);color:var(--primary)">Vérifier ma zone →</a>
       </div>
     </div>
 
