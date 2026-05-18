@@ -310,9 +310,15 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
   position:relative; z-index:1;
   padding-left:48px; opacity:0;
 }
+/* Photo wrapper — gère la position des chips sans overflow:hidden */
+.hero-photo-wrap {
+  position: relative;
+  width: 100%;
+  padding: 20px 24px; /* espace pour que les chips ne soient pas rogées */
+}
 /* Photo placeholder */
 .hero-photo {
-  width:100%; aspect-ratio:4/3; max-height:460px;
+  width:100%; aspect-ratio:4/3; max-height:420px;
   border-radius:var(--radius-lg); overflow:hidden;
   background: linear-gradient(135deg, rgba(143,240,210,0.18) 0%, rgba(125,162,250,0.14) 100%);
   border:1px solid rgba(255,255,255,0.14);
@@ -325,17 +331,18 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 }
 .hero-photo-inner .photo-icon { font-size:48px; opacity:0.6; }
 .hero-photo-inner span { font-size:13px; font-family:'Poppins',sans-serif; letter-spacing:1px; text-transform:uppercase; }
-/* Floating stat chips on the photo */
+/* Floating stat chips — positionnées par rapport au wrapper */
 .hero-float-chip {
-  position:absolute; background:rgba(255,255,255,0.92);
+  position:absolute; background:rgba(255,255,255,0.95);
   backdrop-filter:blur(12px); border-radius:14px;
   padding:10px 16px; display:flex; align-items:center; gap:10px;
   box-shadow: var(--shadow);
   animation: chip-float 4s ease-in-out infinite;
+  z-index: 2;
 }
-.hero-float-chip:nth-child(2) { top:18px; left:-20px; animation-delay:-1.3s; }
-.hero-float-chip:nth-child(3) { bottom:32px; right:-16px; animation-delay:-2.7s; }
-.hero-float-chip:nth-child(4) { bottom:100px; left:-16px; animation-delay:-0.6s; }
+.hero-float-chip:nth-child(1) { top:0px; left:0px; animation-delay:-1.3s; }
+.hero-float-chip:nth-child(2) { bottom:8px; right:0px; animation-delay:-2.7s; }
+.hero-float-chip:nth-child(3) { bottom:90px; left:0px; animation-delay:-0.6s; }
 @keyframes chip-float {
   0%,100% { transform:translateY(0); }
   50% { transform:translateY(-6px); }
@@ -608,6 +615,13 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 ═══════════════════════════ */
 .floating-call {
   position: fixed; bottom: 28px; right: 28px; z-index: 500;
+  opacity: 0; transform: translateY(16px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-quart), transform 0.4s var(--ease-quart);
+}
+.floating-call.visible {
+  opacity: 1; transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 .floating-call-btn {
   display: flex; align-items: center; gap: 10px;
@@ -670,6 +684,7 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
   .trust-band-item { padding:12px 20px; }
   .trust-num { font-size:26px; }
   .cta-section-inner { padding:40px 28px; border-radius:var(--radius); }
+  .hero-photo-wrap { padding: 12px; }
   .hero-float-chip { display:none; }
   .hero-photo { aspect-ratio:16/9; }
 }
@@ -926,8 +941,8 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
   </div>
 
   <div class="hero-visual" id="hero-visual">
-    <div class="hero-photo">
-      <!-- Floating stat chips -->
+    <div class="hero-photo-wrap">
+      <!-- Floating stat chips (positionnées par rapport au wrap, pas à la photo) -->
       <div class="hero-float-chip">
         <span class="chip-icon">⭐</span>
         <div class="chip-text">
@@ -950,9 +965,11 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
         </div>
       </div>
       <!-- Photo placeholder -->
-      <div class="hero-photo-inner">
-        <span class="photo-icon">👩‍⚕️</span>
-        <span>Votre photo ici</span>
+      <div class="hero-photo">
+        <div class="hero-photo-inner">
+          <span class="photo-icon">👩‍⚕️</span>
+          <span>Votre photo ici</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1585,6 +1602,19 @@ var nav = document.getElementById('main-nav');
 window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
+
+/* Floating call button — visible only after hero */
+(function() {
+  var floatBtn = document.querySelector('.floating-call');
+  if (!floatBtn) return;
+  var heroSection = document.querySelector('.hero');
+  function updateFloat() {
+    var heroBottom = heroSection ? heroSection.getBoundingClientRect().bottom : 0;
+    floatBtn.classList.toggle('visible', heroBottom < 0);
+  }
+  window.addEventListener('scroll', updateFloat, { passive: true });
+  updateFloat();
+})();
 
 /* Scroll reveal */
 var revealObs = new IntersectionObserver(function(entries) {
