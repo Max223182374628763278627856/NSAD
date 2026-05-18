@@ -540,12 +540,11 @@ details[open] .summary-plus { background:var(--mint); transform:rotate(45deg); }
 .temoignages-section .section-label::before { background:var(--mint); }
 .temoignages-section .section-title { color:var(--ink); }
 .temoignages-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; max-width:1200px; margin-left:auto; margin-right:auto; }
-.temoignage-card { background:var(--white); border:1px solid var(--line); border-radius:var(--radius-lg); padding:30px; transition:all 0.4s var(--ease-quart); position:relative; box-shadow:var(--shadow-sm); }
+.temoignage-card { background:var(--white); border:1px solid var(--line); border-radius:var(--radius-lg); padding:36px 30px 30px; transition:all 0.4s var(--ease-quart); position:relative; box-shadow:var(--shadow-sm); }
 /* Quote mark circle */
 .temoignage-card::before { content:''; position:absolute; top:24px; right:24px; width:36px; height:36px; border-radius:50%; background:rgba(143,240,210,0.25); }
 .temoignage-quote-icon { position:absolute; top:31px; right:31px; font-size:14px; color:var(--primary); font-weight:700; z-index:1; }
 .temoignage-card:hover { transform:translateY(-7px); box-shadow:var(--shadow-lg); border-color:var(--mint); }
-.stars { color:#FFD166; font-size:14px; margin-bottom:12px; letter-spacing:2px; }
 .temoignage-card blockquote { font-size:1rem; line-height:1.8; color:var(--ink-soft); font-style:italic; margin-bottom:20px; position:relative; }
 .temoignage-author strong { font-family:'Poppins',sans-serif; font-size:15px; color:var(--ink); display:block; }
 .temoignage-author span { font-size:13px; color:var(--primary); }
@@ -596,7 +595,7 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 ═══════════════════════════ */
 .trust-band {
   background: var(--primary); padding: 32px 48px;
-  display: flex; justify-content: center; gap: 0;
+  display: flex; justify-content: space-evenly; gap: 0;
   flex-wrap: wrap;
 }
 .trust-band-item {
@@ -807,12 +806,6 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
         { "@type": "Place", "name": "Saint-Félix", "containedInPlace": { "@type": "City", "name": "Nantes" } },
         { "@type": "Place", "name": "Centre-ville de Nantes", "containedInPlace": { "@type": "City", "name": "Nantes" } }
       ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "87",
-        "bestRating": "5"
-      },
       "sameAs": [
         "https://www.linkedin.com/company/nantes-soins-a-domicile",
         "https://www.facebook.com/nantessoinsadomicile",
@@ -953,13 +946,6 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
     <div class="hero-photo-wrap">
       <!-- Floating stat chips (positionnées par rapport au wrap, pas à la photo) -->
       <div class="hero-float-chip">
-        <span class="chip-icon">⭐</span>
-        <div class="chip-text">
-          <strong>4,9 / 5</strong>
-          <span>Note patients</span>
-        </div>
-      </div>
-      <div class="hero-float-chip">
         <span class="chip-icon">✅</span>
         <div class="chip-text">
           <strong>Remboursé</strong>
@@ -1005,13 +991,6 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
     <div class="trust-text">
       <strong>Remboursé</strong>
       <span>soins infirmiers sur prescription</span>
-    </div>
-  </div>
-  <div class="trust-band-item">
-    <span class="trust-num">4,9★</span>
-    <div class="trust-text">
-      <strong>Note patients</strong>
-      <span>sur 87 avis vérifiés</span>
     </div>
   </div>
 </div>
@@ -1223,19 +1202,16 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
   <div class="temoignages-grid">
     <article class="temoignage-card" data-reveal="up">
       <span class="temoignage-quote-icon">"</span>
-      <div class="stars">★★★★★</div>
       <blockquote>« Cela fait 7 ans que les aides-soignantes viennent tous les matins. Je suis très contente, ça se passe très bien. »</blockquote>
       <div class="temoignage-author"><strong>Madame Jeanne V.</strong><span>Patiente</span></div>
     </article>
     <article class="temoignage-card" data-reveal="up" data-delay="1">
       <span class="temoignage-quote-icon">"</span>
-      <div class="stars">★★★★★</div>
       <blockquote>« Le suivi personnalisé et la coordination entre les intervenants nous ont beaucoup rassurés. Équipe professionnelle et humaine. »</blockquote>
       <div class="temoignage-author"><strong>Famille Martin</strong><span>Nantes nord</span></div>
     </article>
     <article class="temoignage-card" data-reveal="up" data-delay="2">
       <span class="temoignage-quote-icon">"</span>
-      <div class="stars">★★★★★</div>
       <blockquote>« Grâce à l'aide à domicile, ma mère peut rester chez elle. Des intervenants toujours à l'écoute et ponctuels. »</blockquote>
       <div class="temoignage-author"><strong>Sophie L.</strong><span>Île de Nantes</span></div>
     </article>
