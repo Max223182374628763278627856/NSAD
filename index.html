@@ -387,64 +387,108 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 .block-eyebrow { font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:13px; color:var(--accent-deep); margin-bottom:10px; display:block; }
 
 /* ═══════════════════════════
-   BLOCS SERVICES (3 catégories)
+   NOS SOINS — 3 CARDS
 ═══════════════════════════ */
-
-/* — Bloc générique service — */
-.service-block {
-  padding: 96px 48px;
+.soins-section { background: var(--white); padding: 96px 48px; }
+.soins-inner { max-width: 1200px; margin: 0 auto; }
+.soins-header { text-align: center; max-width: 680px; margin: 0 auto 56px; }
+.soins-header .section-title { margin-bottom: 14px; }
+.soins-header .section-sub { margin: 0 auto; }
+.soins-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.soin-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 36px 32px;
+  box-shadow: var(--shadow-sm); transition: all 0.35s var(--ease-quart);
+  display: flex; flex-direction: column; gap: 12px;
 }
-.service-block:nth-child(odd) { background: var(--white); }
-.service-block:nth-child(even) { background: var(--bg); }
-
-.service-block-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
-}
-.service-block-inner.reverse { direction: rtl; }
-.service-block-inner.reverse > * { direction: ltr; }
-
-.service-block-content {}
-.service-block-visual {}
-
-/* Pastille catégorie */
-.cat-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--primary); color: var(--white);
-  padding: 5px 14px; border-radius: 50px;
-  font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.cat-pill.green  { background: #d4f5eb; color: #1a6b50; }
-.cat-pill.blue   { background: #dbe7ff; color: #2a4fa0; }
-.cat-pill.teal   { background: #d1ecf4; color: #1d5a6e; }
-
-/* Chapeau explicatif */
-.service-what {
-  background: var(--bg); border-left: 3px solid var(--mint);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 16px 20px; margin-bottom: 28px;
-  font-size: 1rem; line-height: 1.8; color: var(--ink-soft);
-}
-.service-block:nth-child(even) .service-what { background: var(--white); }
-
-/* Liste des prestations */
-.service-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-.service-list li {
-  display: flex; align-items: flex-start; gap: 12px;
-  font-size: 1rem; color: var(--ink-soft); line-height: 1.7;
-}
-.service-list li .icon {
-  width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+.soin-card:hover { box-shadow: var(--shadow-lg); border-color: var(--mint); transform: translateY(-6px); }
+.soin-icon {
+  width: 68px; height: 68px; border-radius: 20px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
+  font-size: 30px; flex-shrink: 0; margin-bottom: 6px;
 }
-.icon-green { background: #d4f5eb; }
-.icon-blue  { background: #dbe7ff; }
-.icon-teal  { background: #d1ecf4; }
+.soin-icon-lavender { background: rgba(200,213,252,0.40); }
+.soin-icon-mint     { background: rgba(143,240,210,0.35); }
+.soin-icon-coral    { background: rgba(255,158,142,0.28); }
+.soin-card h3 { font-family:'Poppins',sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.soin-card p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; flex: 1; }
+.soin-link {
+  font-family:'Poppins',sans-serif; font-size: 14px; font-weight: 600;
+  color: var(--primary); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  border-bottom: 2px solid var(--mint); padding-bottom: 2px;
+  width: fit-content; transition: gap 0.2s; margin-top: 4px;
+}
+.soin-link:hover { gap: 10px; }
 
+/* ═══════════════════════════
+   COMMENT ÇA SE PASSE — 4 ÉTAPES
+═══════════════════════════ */
+.steps-section { background: var(--bg); padding: 96px 48px; }
+.steps-inner { max-width: 1100px; margin: 0 auto; }
+.steps-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
+.steps-row {
+  display: grid;
+  grid-template-columns: 1fr 64px 1fr 64px 1fr 64px 1fr;
+  align-items: start;
+}
+.step-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+.step-circle {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: var(--white); border: 3px solid var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 800;
+  color: var(--primary); flex-shrink: 0;
+  box-shadow: var(--shadow-sm); position: relative; z-index: 1;
+  transition: all 0.3s var(--ease-quart);
+}
+.step-item:hover .step-circle { background: var(--primary); color: var(--white); box-shadow: var(--shadow); transform: scale(1.08); }
+.step-connector {
+  height: 3px; margin-top: 36px;
+  border-top: 2px dashed rgba(143,240,210,0.8);
+}
+.step-item h3 { font-family: 'Poppins',sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); }
+.step-item p { font-size: 14px; color: var(--ink-soft); line-height: 1.75; max-width: 170px; }
+
+/* ═══════════════════════════
+   SÉLECTEUR QUARTIERS
+═══════════════════════════ */
+.quartier-select-section { background: var(--white); padding: 96px 48px; }
+.quartier-select-inner { max-width: 1100px; margin: 0 auto; }
+.quartier-select-header { margin-bottom: 48px; }
+.quartier-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.quartier-list { display: flex; flex-direction: column; gap: 10px; }
+.quartier-list-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 20px; border-radius: var(--radius-pill);
+  background: var(--bg); border: 1.5px solid transparent;
+  cursor: pointer; transition: all 0.25s var(--ease-quart);
+  font-family: 'Poppins',sans-serif; font-size: 16px; font-weight: 500; color: var(--ink);
+  text-decoration: none; user-select: none;
+}
+.quartier-list-item:hover { background: rgba(60,105,127,0.07); border-color: var(--line); }
+.quartier-list-item.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+.quartier-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(60,105,127,0.35); flex-shrink: 0; transition: background 0.2s;
+}
+.quartier-list-item.active .quartier-dot { background: var(--mint); }
+.quartier-check { margin-left: auto; font-size: 16px; opacity: 0; transition: opacity 0.2s; }
+.quartier-list-item.active .quartier-check { opacity: 1; }
+/* Map container */
+.quartier-map-wrap { position: relative; max-width: 400px; margin: 0 auto; }
+.quartier-map-svg { width: 100%; height: auto; }
+/* Dot animation for active quartier */
+@keyframes q-pulse { 0%,100%{r:7;opacity:1;} 50%{r:11;opacity:0.4;} }
+.q-dot-pulse { animation: q-pulse 2s ease-in-out infinite; }
+/* Zone note */
+.zone-note {
+  margin-top: 20px; background: #fff8f0; border: 1px solid #ffd6b0;
+  border-radius: var(--radius-sm); padding: 14px 18px;
+  font-size: 13px; color: #8a5a2a; display: flex; align-items: flex-start; gap: 10px;
+}
 /* CTA bloc */
-.block-cta-group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.block-cta-group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
 .btn-block-primary {
   background: var(--primary); color: var(--white);
   padding: 14px 28px; border-radius: var(--radius-pill); min-height: 48px;
@@ -456,60 +500,9 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 .btn-block-secondary {
   color: var(--primary); font-family:'Poppins',sans-serif; font-size: 14px; font-weight: 600;
   text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-  border-bottom: 2px solid var(--mint); padding-bottom: 2px;
-  transition: gap 0.2s;
+  border-bottom: 2px solid var(--mint); padding-bottom: 2px; transition: gap 0.2s;
 }
 .btn-block-secondary:hover { gap: 10px; }
-
-/* Carte visuelle du bloc */
-.service-visual-card {
-  background: var(--white); border-radius: var(--radius-lg);
-  padding: 32px; border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  transition: box-shadow 0.3s, border-color 0.3s;
-}
-.service-visual-card:hover { border-color: var(--mint); box-shadow: var(--shadow-lg); }
-.service-block:nth-child(even) .service-visual-card { background: var(--white); }
-
-.visual-card-title {
-  font-family:'Poppins',sans-serif; font-size: 13px; font-weight: 700;
-  color: var(--primary); letter-spacing: 1px; text-transform: uppercase;
-  margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
-}
-.visual-card-title::before { content:''; width: 20px; height: 2px; background: var(--mint); }
-
-.info-row {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 14px 0; border-bottom: 1px solid #f0f5f7;
-}
-.info-row:last-child { border-bottom: none; }
-.info-row-icon { font-size: 22px; flex-shrink: 0; width: 36px; text-align: center; }
-.info-row-text strong { font-family:'Poppins',sans-serif; font-size: 15px; color: var(--ink); display: block; margin-bottom: 2px; }
-.info-row-text span { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
-
-/* Badge "bon à savoir" */
-.bon-a-savoir {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  border-radius: var(--radius-sm); padding: 20px 22px; margin-top: 18px;
-  color: rgba(255,255,255,0.85); font-size: 13px; line-height: 1.7;
-}
-.bon-a-savoir strong { color: var(--mint); font-family:'Poppins',sans-serif; display: block; margin-bottom: 6px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
-
-/* ═══════════════════════════
-   ZONE SECTION
-═══════════════════════════ */
-.zone-section { background: var(--bg); padding: 96px 48px; }
-.zone-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; max-width:1200px; margin:0 auto; }
-.zone-visual { background:linear-gradient(135deg,var(--lavender) 0%,#dde8fd 100%); border-radius:var(--radius); padding:40px; text-align:center; }
-.zone-map-placeholder { width:100%; aspect-ratio:1; background:rgba(60,105,127,0.07); border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:64px; margin-bottom:20px; }
-.zone-tags { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
-.zone-tag { background:var(--white); color:var(--primary); padding:6px 14px; border-radius:50px; font-size:12px; font-weight:600; border:1px solid rgba(60,105,127,0.18); transition:all 0.25s; cursor:default; }
-.zone-tag:hover { background:var(--primary); color:var(--white); transform:scale(1.06); }
-.zone-note {
-  margin-top: 20px; background: #fff8f0; border: 1px solid #ffd6b0;
-  border-radius: var(--radius-sm); padding: 14px 18px;
-  font-size: 13px; color: #8a5a2a; display: flex; align-items: flex-start; gap: 10px;
-}
 
 /* ═══════════════════════════
    FAQ
@@ -657,7 +650,8 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 ═══════════════════════════ */
 @media (max-width:1024px) {
   .footer-grid { grid-template-columns:1fr 1fr; }
-  .temoignages-grid { grid-template-columns:1fr; }
+  .temoignages-grid { grid-template-columns:1fr 1fr; }
+  .soins-grid { grid-template-columns:1fr 1fr; }
 }
 @media (max-width:900px) {
   nav { padding:10px 20px; }
@@ -665,12 +659,17 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
   .nav-links { display:none; }
   .hero { grid-template-columns:1fr; padding:100px 24px 60px; }
   .hero-visual { padding-left:0; margin-top:32px; }
-  .section, .zone-section, .faq-section, .temoignages-section, .cta-section { padding:64px 24px; }
-  .service-block { padding:64px 24px; }
-  .service-block-inner, .zone-grid, .faq-grid { grid-template-columns:1fr; gap:40px; }
-  .service-block-inner.reverse { direction: ltr; }
+  .section, .faq-section, .temoignages-section, .cta-section { padding:64px 24px; }
+  .soins-section, .steps-section, .quartier-select-section { padding:64px 24px; }
+  .soins-grid { grid-template-columns:1fr; }
+  .steps-row { grid-template-columns:1fr 1fr; gap:32px; }
+  .step-connector { display:none; }
+  .quartier-select-grid, .faq-grid { grid-template-columns:1fr; gap:40px; }
   .footer-grid { grid-template-columns:1fr; }
   .hero-stats { gap:16px; flex-wrap:wrap; }
+  .trust-band { flex-direction:column; gap:0; }
+  .trust-band-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.12); }
+  .trust-band-item:last-child { border-bottom:none; }
 }
 @media (max-width:480px) {
   .hero h1 { font-size:26px; }
@@ -1007,315 +1006,152 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     BLOC 1 — AIDE À DOMICILE
-══════════════════════════════════════════════════════ -->
-<article class="service-block" id="aide-domicile" aria-labelledby="aide-title">
-  <div class="service-block-inner">
-
-    <div class="service-block-content" data-reveal="left">
-      <span class="cat-pill green">🏠 Aide à domicile</span>
-      <h2 class="section-title" id="aide-title">Qu'est-ce que<br>l'<em>aide à domicile</em> ?</h2>
-
-      <div class="service-what">
-        L'aide à domicile, c'est un accompagnement humain et pratique pour vous aider dans les gestes
-        et tâches de la vie de tous les jours. Nos auxiliaires de vie vous soutiennent pour rester
-        <strong>chez vous en toute sérénité</strong>, quel que soit votre niveau d'autonomie.
-      </div>
-
-      <ul class="service-list">
-        <li>
-          <div class="icon icon-green">🧹</div>
-          <div><strong>Aide au ménage</strong><br>Entretien du logement, du linge, rangement.</div>
-        </li>
-        <li>
-          <div class="icon icon-green">🍽️</div>
-          <div><strong>Aide aux repas</strong><br>Préparation des repas, aide à la prise des repas, courses alimentaires.</div>
-        </li>
-        <li>
-          <div class="icon icon-green">🤸</div>
-          <div><strong>Aide à l'autonomie</strong><br>Aide à l'hygiène, au lever, au coucher, à l'habillage.</div>
-        </li>
-        <li>
-          <div class="icon icon-green">🤝</div>
-          <div><strong>Lien social &amp; loisirs</strong><br>Sorties, activités, présence et compagnie.</div>
-        </li>
-        <li>
-          <div class="icon icon-green">💛</div>
-          <div><strong>Répit pour les aidants</strong><br>Relais auprès de vos proches pour vous permettre de souffler.</div>
-        </li>
-        <li>
-          <div class="icon icon-green">📋</div>
-          <div><strong>Aide administrative légère</strong><br>Tri du courrier, accompagnement dans les démarches simples.</div>
-        </li>
-      </ul>
-
-      <div class="block-cta-group">
-        <a href="nous-contacter.html" class="btn-block-primary">📞 Prendre contact</a>
-        <a href="aide-domicile.html" class="btn-block-secondary">En savoir plus →</a>
-      </div>
+<!-- ══════════ NOS SOINS — 3 CARDS ══════════ -->
+<section class="soins-section" id="nos-soins" aria-labelledby="soins-title">
+  <div class="soins-inner">
+    <div class="soins-header" data-reveal="up">
+      <span class="block-eyebrow">Nos soins</span>
+      <h2 class="section-title" id="soins-title">Tout ce qu'il faut pour<br>rester <em>chez soi, en confiance</em></h2>
+      <p class="section-sub">Nos professionnels interviennent sur prescription médicale, pour les personnes âgées et les personnes en situation de handicap.</p>
     </div>
-
-    <div class="service-block-visual" data-reveal="right">
-      <div class="service-visual-card">
-        <p class="visual-card-title">Ce que vous gagnez</p>
-        <div class="info-row">
-          <div class="info-row-icon">🏡</div>
-          <div class="info-row-text">
-            <strong>Rester chez vous</strong>
-            <span>Maintien à domicile dans un cadre confortable et familier.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">📅</div>
-          <div class="info-row-text">
-            <strong>Des interventions régulières</strong>
-            <span>Planification adaptée à votre rythme, 7 jours sur 7.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">💶</div>
-          <div class="info-row-text">
-            <strong>Des aides financières possibles</strong>
-            <span>APA, PCH, CARSAT, crédit d'impôt de 50 %.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">🎓</div>
-          <div class="info-row-text">
-            <strong>Des professionnels formés</strong>
-            <span>Auxiliaires de vie qualifiés et bienveillants.</span>
-          </div>
-        </div>
-        <div class="bon-a-savoir">
-          <strong>💡 Bon à savoir</strong>
-          50 % de vos dépenses d'aide à domicile ouvrent droit à un crédit d'impôt, quel que soit votre revenu.
-        </div>
-      </div>
+    <div class="soins-grid">
+      <article class="soin-card" data-reveal="up">
+        <div class="soin-icon soin-icon-lavender">🩺</div>
+        <h3>Soins infirmiers</h3>
+        <p>Pansements, injections, perfusions, prélèvements — réalisés par nos infirmiers diplômés d'État, remboursés à 100 % sur prescription.</p>
+        <a href="soins-infirmiers-nantes.html" class="soin-link">En savoir plus →</a>
+      </article>
+      <article class="soin-card" data-reveal="up" data-delay="1">
+        <div class="soin-icon soin-icon-mint">🚿</div>
+        <h3>Soins d'hygiène</h3>
+        <p>Toilette, aide au lever et au coucher, soins de confort. Nos aides-soignant(e)s interviennent chaque matin sous supervision infirmière.</p>
+        <a href="nursing-aide-soignant-nantes.html" class="soin-link">En savoir plus →</a>
+      </article>
+      <article class="soin-card" data-reveal="up" data-delay="2">
+        <div class="soin-icon soin-icon-coral">👥</div>
+        <h3>Aide à domicile</h3>
+        <p>Ménage, repas, accompagnement et lien social. Nos auxiliaires de vie vous aident à rester autonome chez vous, 7j/7.</p>
+        <a href="aide-a-domicile-nantes.html" class="soin-link">En savoir plus →</a>
+      </article>
     </div>
-
   </div>
-</article>
+</section>
 
-<!-- ══════════════════════════════════════════════════════
-     BLOC 2 — AIDES-SOIGNANT(E)S
-══════════════════════════════════════════════════════ -->
-<article class="service-block" id="aides-soignantes" aria-labelledby="as-title">
-  <div class="service-block-inner reverse">
-
-    <div class="service-block-content" data-reveal="right">
-      <span class="cat-pill blue">🩺 Aides-soignant(e)s</span>
-      <h2 class="section-title" id="as-title">Qu'est-ce qu'une<br><em>aide-soignante</em> ?</h2>
-
-      <div class="service-what">
-        L'aide-soignant(e) est un(e) professionnel(le) de santé diplômé(e) qui réalise des
-        <strong>soins d'hygiène et de confort</strong> auprès de personnes malades ou dépendantes,
-        toujours sous la supervision d'un(e) infirmier(ère). Son rôle est essentiel pour préserver votre bien-être au quotidien.
+<!-- ══════════ COMMENT ÇA SE PASSE ══════════ -->
+<section class="steps-section" aria-labelledby="steps-title">
+  <div class="steps-inner">
+    <div class="steps-header" data-reveal="up">
+      <span class="block-eyebrow">Comment ça se passe</span>
+      <h2 class="section-title" id="steps-title">De votre appel à notre première visite,<br><em>4 étapes simples</em></h2>
+    </div>
+    <div class="steps-row">
+      <div class="step-item" data-reveal="up">
+        <div class="step-circle">1</div>
+        <h3>Vous nous appelez</h3>
+        <p>Un échange téléphonique pour comprendre votre situation et vos besoins.</p>
       </div>
-
-      <ul class="service-list">
-        <li>
-          <div class="icon icon-blue">🚿</div>
-          <div><strong>Soins d'hygiène</strong><br>Soins d'hygiène corporelle adaptés à votre situation.</div>
-        </li>
-        <li>
-          <div class="icon icon-blue">👕</div>
-          <div><strong>Habillage et déshabillage</strong><br>Aide respectueuse pour s'habiller et se déshabiller.</div>
-        </li>
-        <li>
-          <div class="icon icon-blue">🛏️</div>
-          <div><strong>Lever, coucher et transferts</strong><br>Aide sécurisée pour se lever, se coucher et se déplacer.</div>
-        </li>
-        <li>
-          <div class="icon icon-blue">🩹</div>
-          <div><strong>Prévention des escarres</strong><br>Soins préventifs pour les personnes alitées.</div>
-        </li>
-        <li>
-          <div class="icon icon-blue">💊</div>
-          <div><strong>Aide à la prise des médicaments</strong><br>Soutien et rappel pour ne pas oublier les traitements.</div>
-        </li>
-        <li>
-          <div class="icon icon-blue">📊</div>
-          <div><strong>Surveillance médicale</strong><br>Observation de l'état général, signalement à l'infirmière.</div>
-        </li>
-      </ul>
-
-      <div class="block-cta-group">
-        <a href="nous-contacter.html" class="btn-block-primary">📞 Prendre contact</a>
-        <a href="aides-soignantes.html" class="btn-block-secondary">En savoir plus →</a>
+      <div class="step-connector" data-reveal="fade" data-delay="1"></div>
+      <div class="step-item" data-reveal="up" data-delay="1">
+        <div class="step-circle">2</div>
+        <h3>Visite d'évaluation</h3>
+        <p>Notre infirmier coordinateur se déplace chez vous pour évaluer vos besoins.</p>
+      </div>
+      <div class="step-connector" data-reveal="fade" data-delay="2"></div>
+      <div class="step-item" data-reveal="up" data-delay="2">
+        <div class="step-circle">3</div>
+        <h3>Plan personnalisé</h3>
+        <p>Nous co-construisons un plan de soins adapté à votre quotidien.</p>
+      </div>
+      <div class="step-connector" data-reveal="fade" data-delay="3"></div>
+      <div class="step-item" data-reveal="up" data-delay="3">
+        <div class="step-circle">4</div>
+        <h3>Démarrage des soins</h3>
+        <p>Une équipe dédiée intervient à votre domicile, 7j/7.</p>
       </div>
     </div>
-
-    <div class="service-block-visual" data-reveal="left">
-      <div class="service-visual-card">
-        <p class="visual-card-title">Comment ça fonctionne</p>
-        <div class="info-row">
-          <div class="info-row-icon">📋</div>
-          <div class="info-row-text">
-            <strong>Sur prescription médicale</strong>
-            <span>Votre médecin traitant prescrit les soins nécessaires.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">👩‍⚕️</div>
-          <div class="info-row-text">
-            <strong>Sous supervision infirmière</strong>
-            <span>Chaque aide-soignant(e) travaille sous la responsabilité d'un(e) infirmier(ère).</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">📒</div>
-          <div class="info-row-text">
-            <strong>Un cahier de suivi chez vous</strong>
-            <span>Toutes les interventions sont consignées pour assurer la continuité des soins.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">💶</div>
-          <div class="info-row-text">
-            <strong>Prise en charge par la CPAM</strong>
-            <span>Les soins d'aides-soignant(e)s sont remboursés sur prescription médicale.</span>
-          </div>
-        </div>
-      </div>
+    <div class="block-cta-group" style="justify-content:center;margin-top:52px" data-reveal="up" data-delay="4">
+      <a href="tel:0240354343" class="btn-block-primary">📞 Nous appeler — 02 40 35 43 43</a>
+      <a href="nous-contacter.html" class="btn-block-secondary">Formulaire de contact →</a>
     </div>
-
   </div>
-</article>
+</section>
 
-<!-- ══════════════════════════════════════════════════════
-     BLOC 3 — SOINS INFIRMIERS
-══════════════════════════════════════════════════════ -->
-<article class="service-block" id="soins-infirmiers" aria-labelledby="si-title">
-  <div class="service-block-inner">
-
-    <div class="service-block-content" data-reveal="left">
-      <span class="cat-pill teal">👩‍⚕️ Soins infirmiers</span>
-      <h2 class="section-title" id="si-title">Qu'est-ce que les<br><em>soins infirmiers</em> ?</h2>
-
-      <div class="service-what">
-        Les soins infirmiers à domicile sont des actes médicaux techniques réalisés par des
-        <strong>infirmier(ère)s diplômé(e)s d'État</strong>. Ils permettent de recevoir chez soi
-        des soins qui nécessitaient auparavant une hospitalisation ou une visite en cabinet médical.
-      </div>
-
-      <ul class="service-list">
-        <li>
-          <div class="icon icon-teal">🩹</div>
-          <div><strong>Pansements et soins de plaies</strong><br>Réfection de pansements simples ou complexes, soins d'escarres.</div>
-        </li>
-        <li>
-          <div class="icon icon-teal">💉</div>
-          <div><strong>Injections et perfusions</strong><br>Injections sous-cutanées, intramusculaires, perfusions à domicile.</div>
-        </li>
-        <li>
-          <div class="icon icon-teal">🫀</div>
-          <div><strong>Surveillance des constantes</strong><br>Tension artérielle, glycémie, saturation en oxygène, poids.</div>
-        </li>
-        <li>
-          <div class="icon icon-teal">💊</div>
-          <div><strong>Préparation des médicaments</strong><br>Remplissage des piluliers et vérification des traitements.</div>
-        </li>
-        <li>
-          <div class="icon icon-teal">📝</div>
-          <div><strong>Plan de soins personnalisé</strong><br>Élaboré avec votre médecin traitant et adapté à votre état de santé.</div>
-        </li>
-      </ul>
-
-      <div class="block-cta-group">
-        <a href="nous-contacter.html" class="btn-block-primary">📞 Prendre contact</a>
-        <a href="soins-infirmiers.html" class="btn-block-secondary">En savoir plus →</a>
-      </div>
-    </div>
-
-    <div class="service-block-visual" data-reveal="right">
-      <div class="service-visual-card">
-        <p class="visual-card-title">Ce qu'il faut savoir</p>
-        <div class="info-row">
-          <div class="info-row-icon">📋</div>
-          <div class="info-row-text">
-            <strong>Ordonnance obligatoire</strong>
-            <span>Les soins infirmiers nécessitent une prescription de votre médecin.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">💶</div>
-          <div class="info-row-text">
-            <strong>Prise en charge à 100 %</strong>
-            <span>Intégralement remboursés par l'Assurance Maladie sur prescription.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">🏥</div>
-          <div class="info-row-text">
-            <strong>Lien avec votre médecin</strong>
-            <span>Nos infirmier(ère)s communiquent régulièrement avec votre équipe médicale.</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <div class="info-row-icon">📒</div>
-          <div class="info-row-text">
-            <strong>Cahier de suivi partagé</strong>
-            <span>Toutes les interventions sont notées pour assurer une continuité parfaite des soins.</span>
-          </div>
-        </div>
-        <div class="bon-a-savoir">
-          <strong>💡 Bon à savoir</strong>
-          Les soins infirmiers sont dispensés sous condition de place disponible dans notre service.
-        </div>
-      </div>
-    </div>
-
-  </div>
-</article>
-
-<!-- ══════════ ZONE D'INTERVENTION ══════════ -->
-<section class="zone-section" id="zone" aria-labelledby="zone-title">
-  <div class="zone-grid">
-
-    <div data-reveal="left">
+<!-- ══════════ SÉLECTEUR QUARTIERS ══════════ -->
+<section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title">
+  <div class="quartier-select-inner">
+    <div class="quartier-select-header" data-reveal="left">
       <span class="section-label">Zone d'intervention</span>
-      <h2 class="section-title" id="zone-title">Nous intervenons<br>dans <em>plusieurs quartiers</em> de Nantes</h2>
-      <p class="section-sub" style="margin-bottom:20px">
-        Nos équipes se déplacent dans les quartiers suivants, 7 jours sur 7.
-      </p>
-
-      <div class="zone-note">
-        <span>⚠️</span>
-        <span>Notre zone d'intervention est limitée à ces secteurs. Nous vous invitons à nous contacter pour vérifier si votre adresse est couverte.</span>
+      <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2>
+      <p class="section-sub">Sélectionnez votre quartier pour découvrir nos services près de chez vous.</p>
+    </div>
+    <div class="quartier-select-grid">
+      <!-- Liste -->
+      <div class="quartier-list" data-reveal="left" role="list">
+        <a href="quartier-centre-ville.html"              class="quartier-list-item active" data-q="centre"    role="listitem"><span class="quartier-dot"></span>Centre-ville<span class="quartier-check">✓</span></a>
+        <a href="quartier-dervallières-zola.html"         class="quartier-list-item"        data-q="derv"      role="listitem"><span class="quartier-dot"></span>Dervallières – Zola<span class="quartier-check">✓</span></a>
+        <a href="quartier-bellevue.html"                  class="quartier-list-item"        data-q="bellevue"  role="listitem"><span class="quartier-dot"></span>Bellevue<span class="quartier-check">✓</span></a>
+        <a href="quartier-chantenay.html"                 class="quartier-list-item"        data-q="chantenay" role="listitem"><span class="quartier-dot"></span>Chantenay<span class="quartier-check">✓</span></a>
+        <a href="quartier-hauts-paves-saint-felix.html"   class="quartier-list-item"        data-q="hauts"     role="listitem"><span class="quartier-dot"></span>Hauts-Pavés – Saint-Félix<span class="quartier-check">✓</span></a>
+        <a href="quartier-nantes-nord.html"               class="quartier-list-item"        data-q="nord"      role="listitem"><span class="quartier-dot"></span>Nantes Nord<span class="quartier-check">✓</span></a>
+        <a href="quartier-ile-de-nantes.html"             class="quartier-list-item"        data-q="ile"       role="listitem"><span class="quartier-dot"></span>Île de Nantes<span class="quartier-check">✓</span></a>
+        <a href="quartier-malakoff-saint-donatien.html"   class="quartier-list-item"        data-q="malakoff"  role="listitem"><span class="quartier-dot"></span>Malakoff – Saint-Donatien<span class="quartier-check">✓</span></a>
+        <a href="quartier-breil-barbiere.html"            class="quartier-list-item"        data-q="breil"     role="listitem"><span class="quartier-dot"></span>Breil-Barbière<span class="quartier-check">✓</span></a>
+        <p style="font-size:13px;color:var(--ink-soft);padding:8px 20px 0;margin-top:4px">Hors quartiers Nantes-Erdre et Doulon-Bottière (<a href="hub-local.html" style="color:var(--primary)">voir la carte complète</a>)</p>
       </div>
-
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;">
-        <a href="quartier-dervallières-zola.html" class="zone-tag" style="text-decoration:none">Dervallières</a>
-        <a href="quartier-dervallières-zola.html" class="zone-tag" style="text-decoration:none">Zola</a>
-        <a href="quartier-bellevue.html" class="zone-tag" style="text-decoration:none">Bellevue</a>
-        <a href="quartier-chantenay.html" class="zone-tag" style="text-decoration:none">Chantenay</a>
-        <a href="quartier-nantes-nord.html" class="zone-tag" style="text-decoration:none">Nantes nord</a>
-        <a href="quartier-breil-barbiere.html" class="zone-tag" style="text-decoration:none">Breil-Barbière</a>
-        <a href="quartier-ile-de-nantes.html" class="zone-tag" style="text-decoration:none">Île de Nantes</a>
-        <a href="hub-local.html" class="zone-tag" style="text-decoration:none">Nantes sud</a>
-        <a href="quartier-malakoff-saint-donatien.html" class="zone-tag" style="text-decoration:none">Malakoff</a>
-        <a href="quartier-malakoff-saint-donatien.html" class="zone-tag" style="text-decoration:none">Saint-Donatien</a>
-        <a href="quartier-hauts-paves-saint-felix.html" class="zone-tag" style="text-decoration:none">Hauts-Pavés</a>
-        <a href="quartier-hauts-paves-saint-felix.html" class="zone-tag" style="text-decoration:none">Saint-Félix</a>
-        <a href="quartier-centre-ville.html" class="zone-tag" style="text-decoration:none">Centre-ville</a>
-      </div>
-
-      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="hub-local.html" class="btn-block-primary">Voir tous les quartiers →</a>
-        <a href="nous-contacter.html" class="btn-block-primary" style="background:transparent;border:2px solid var(--primary);color:var(--primary)">Vérifier ma zone →</a>
+      <!-- Carte SVG interactive -->
+      <div class="quartier-map-wrap" data-reveal="right">
+        <svg class="quartier-map-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Zone couverte (cercle hachuré) -->
+          <defs>
+            <pattern id="hatch" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(60,105,127,0.12)" stroke-width="1.5"/>
+            </pattern>
+            <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FF9E8E" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#FF9E8E" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- Cercle de zone -->
+          <ellipse cx="205" cy="185" rx="155" ry="148" fill="url(#hatch)" stroke="rgba(60,105,127,0.35)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <!-- Loire -->
+          <path d="M20,290 Q100,278 200,282 Q300,286 390,272" fill="none" stroke="rgba(125,162,250,0.55)" stroke-width="8" stroke-linecap="round"/>
+          <text x="300" y="268" font-size="10" fill="rgba(125,162,250,0.7)" font-family="Hind,sans-serif">la Loire</text>
+          <!-- Dots quartiers: cx,cy = position sur la carte -->
+          <!-- Centre-ville -->
+          <circle cx="205" cy="195" r="14" fill="rgba(255,158,142,0.2)" class="q-dot-pulse" data-q="centre"/>
+          <circle cx="205" cy="195" r="7" fill="#FF9E8E" data-q="centre" class="q-main-dot"/>
+          <text x="220" y="200" font-size="10.5" fill="#3C697F" font-weight="600" font-family="Poppins,sans-serif">Centre-ville</text>
+          <!-- Dervallières -->
+          <circle cx="148" cy="210" r="6" fill="#3C697F" data-q="derv" class="q-main-dot"/>
+          <text x="82" y="205" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Dervallières</text>
+          <!-- Bellevue -->
+          <circle cx="115" cy="252" r="6" fill="#3C697F" data-q="bellevue" class="q-main-dot"/>
+          <text x="50" y="248" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Bellevue</text>
+          <!-- Chantenay -->
+          <circle cx="95" cy="220" r="6" fill="#3C697F" data-q="chantenay" class="q-main-dot"/>
+          <text x="28" y="216" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Chantenay</text>
+          <!-- Hauts-Pavés -->
+          <circle cx="235" cy="108" r="6" fill="#3C697F" data-q="hauts" class="q-main-dot"/>
+          <text x="246" y="113" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Hauts-Pavés</text>
+          <!-- Nantes Nord -->
+          <circle cx="185" cy="72" r="6" fill="#3C697F" data-q="nord" class="q-main-dot"/>
+          <text x="130" y="68" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Nantes Nord</text>
+          <!-- Île de Nantes -->
+          <circle cx="220" cy="268" r="6" fill="#3C697F" data-q="ile" class="q-main-dot"/>
+          <text x="228" y="272" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Île de Nantes</text>
+          <!-- Malakoff -->
+          <circle cx="290" cy="188" r="6" fill="#3C697F" data-q="malakoff" class="q-main-dot"/>
+          <text x="298" y="193" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Malakoff</text>
+          <!-- Breil -->
+          <circle cx="148" cy="150" r="6" fill="#3C697F" data-q="breil" class="q-main-dot"/>
+          <text x="76" y="146" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Breil-Barbière</text>
+        </svg>
+        <div class="zone-note">
+          <span>⚠️</span>
+          <span>Zone limitée. <a href="nous-contacter.html" style="color:#8a5a2a;font-weight:600">Contactez-nous</a> pour vérifier votre adresse.</span>
+        </div>
       </div>
     </div>
-
-    <div class="zone-visual" data-reveal="right">
-      <div class="zone-map-placeholder" role="img" aria-label="Carte de Nantes">🗺️</div>
-      <div class="zone-tags">
-        <p style="font-family:'Poppins',sans-serif;font-weight:600;color:var(--primary);margin-bottom:14px">Nantes · 44000</p>
-        <span class="zone-tag">7j/7</span>
-        <span class="zone-tag">346 places</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1602,6 +1438,37 @@ var nav = document.getElementById('main-nav');
 window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
+
+/* Quartier selector — highlight dot on hover/click */
+(function() {
+  var items = document.querySelectorAll('.quartier-list-item');
+  var dots  = document.querySelectorAll('.q-main-dot');
+  var pulses = document.querySelectorAll('.q-dot-pulse');
+
+  function setActive(q) {
+    // list items
+    items.forEach(function(el) { el.classList.toggle('active', el.dataset.q === q); });
+    // pulse ring
+    pulses.forEach(function(el) { el.style.display = el.dataset.q === q ? '' : 'none'; });
+    // main dot colors
+    dots.forEach(function(el) {
+      el.setAttribute('fill', el.dataset.q === q ? '#FF9E8E' : '#3C697F');
+    });
+  }
+
+  // init: set to first active
+  var firstActive = document.querySelector('.quartier-list-item.active');
+  if (firstActive) setActive(firstActive.dataset.q);
+
+  items.forEach(function(item) {
+    item.addEventListener('mouseenter', function() { setActive(this.dataset.q); });
+    item.addEventListener('focus',      function() { setActive(this.dataset.q); });
+    item.addEventListener('click',      function(e) {
+      // let normal navigation happen if href is real; just update visuals
+      setActive(this.dataset.q);
+    });
+  });
+})();
 
 /* Floating call button — visible only after hero */
 (function() {
