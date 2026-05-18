@@ -468,13 +468,23 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 }
 .quartier-list-item:hover { background: rgba(60,105,127,0.07); border-color: var(--line); }
 .quartier-list-item.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+.quartier-list-item.uncovered {
+  opacity: 0.55; cursor: default; pointer-events: none;
+  background: var(--bg);
+}
 .quartier-dot {
   width: 10px; height: 10px; border-radius: 50%;
   background: rgba(60,105,127,0.35); flex-shrink: 0; transition: background 0.2s;
 }
 .quartier-list-item.active .quartier-dot { background: var(--mint); }
+.quartier-list-item.uncovered .quartier-dot { background: rgba(180,180,180,0.6); }
 .quartier-check { margin-left: auto; font-size: 16px; opacity: 0; transition: opacity 0.2s; }
 .quartier-list-item.active .quartier-check { opacity: 1; }
+.quartier-badge-hors {
+  margin-left: auto; font-size: 11px; font-weight: 600; font-family:'Poppins',sans-serif;
+  background: rgba(180,160,120,0.15); color: #8a7040;
+  padding: 2px 8px; border-radius: 20px; white-space: nowrap;
+}
 /* Map container */
 .quartier-map-wrap { position: relative; max-width: 400px; margin: 0 auto; }
 .quartier-map-svg { width: 100%; height: auto; }
@@ -1087,20 +1097,21 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
     <div class="quartier-select-grid">
       <!-- Liste -->
       <div class="quartier-list" data-reveal="left" role="list">
-        <a href="quartier-centre-ville.html"              class="quartier-list-item active" data-q="centre"    role="listitem"><span class="quartier-dot"></span>Centre-ville<span class="quartier-check">✓</span></a>
-        <a href="quartier-dervallières-zola.html"         class="quartier-list-item"        data-q="derv"      role="listitem"><span class="quartier-dot"></span>Dervallières – Zola<span class="quartier-check">✓</span></a>
-        <a href="quartier-bellevue.html"                  class="quartier-list-item"        data-q="bellevue"  role="listitem"><span class="quartier-dot"></span>Bellevue<span class="quartier-check">✓</span></a>
-        <a href="quartier-chantenay.html"                 class="quartier-list-item"        data-q="chantenay" role="listitem"><span class="quartier-dot"></span>Chantenay<span class="quartier-check">✓</span></a>
-        <a href="quartier-hauts-paves-saint-felix.html"   class="quartier-list-item"        data-q="hauts"     role="listitem"><span class="quartier-dot"></span>Hauts-Pavés – Saint-Félix<span class="quartier-check">✓</span></a>
-        <a href="quartier-nantes-nord.html"               class="quartier-list-item"        data-q="nord"      role="listitem"><span class="quartier-dot"></span>Nantes Nord<span class="quartier-check">✓</span></a>
-        <a href="quartier-ile-de-nantes.html"             class="quartier-list-item"        data-q="ile"       role="listitem"><span class="quartier-dot"></span>Île de Nantes<span class="quartier-check">✓</span></a>
-        <a href="quartier-malakoff-saint-donatien.html"   class="quartier-list-item"        data-q="malakoff"  role="listitem"><span class="quartier-dot"></span>Malakoff – Saint-Donatien<span class="quartier-check">✓</span></a>
-        <a href="quartier-breil-barbiere.html"            class="quartier-list-item"        data-q="breil"     role="listitem"><span class="quartier-dot"></span>Breil-Barbière<span class="quartier-check">✓</span></a>
-        <p style="font-size:13px;color:var(--ink-soft);padding:8px 20px 0;margin-top:4px">Hors quartiers Nantes-Erdre et Doulon-Bottière (<a href="hub-local.html" style="color:var(--primary)">voir la carte complète</a>)</p>
+        <a href="quartier-centre-ville.html"              class="quartier-list-item active" data-q="centre"       role="listitem"><span class="quartier-dot"></span>Centre-ville<span class="quartier-check">✓</span></a>
+        <a href="quartier-dervallières-zola.html"         class="quartier-list-item"        data-q="derv"         role="listitem"><span class="quartier-dot"></span>Dervallières – Zola<span class="quartier-check">✓</span></a>
+        <a href="quartier-bellevue.html"                  class="quartier-list-item"        data-q="bellevue"     role="listitem"><span class="quartier-dot"></span>Bellevue – Chantenay<span class="quartier-check">✓</span></a>
+        <a href="quartier-hauts-paves-saint-felix.html"   class="quartier-list-item"        data-q="hauts"        role="listitem"><span class="quartier-dot"></span>Hauts-Pavés – Saint-Félix<span class="quartier-check">✓</span></a>
+        <a href="quartier-nantes-nord.html"               class="quartier-list-item"        data-q="nord"         role="listitem"><span class="quartier-dot"></span>Nantes Nord<span class="quartier-check">✓</span></a>
+        <a href="quartier-ile-de-nantes.html"             class="quartier-list-item"        data-q="ile"          role="listitem"><span class="quartier-dot"></span>Île de Nantes<span class="quartier-check">✓</span></a>
+        <a href="quartier-malakoff-saint-donatien.html"   class="quartier-list-item"        data-q="malakoff"     role="listitem"><span class="quartier-dot"></span>Malakoff – Saint-Donatien<span class="quartier-check">✓</span></a>
+        <a href="quartier-breil-barbiere.html"            class="quartier-list-item"        data-q="breil"        role="listitem"><span class="quartier-dot"></span>Breil-Barbière<span class="quartier-check">✓</span></a>
+        <a href="hub-local.html"                          class="quartier-list-item"        data-q="nantes-sud"   role="listitem"><span class="quartier-dot"></span>Nantes Sud<span class="quartier-check">✓</span></a>
+        <span                                             class="quartier-list-item uncovered"                    role="listitem"><span class="quartier-dot"></span>Nantes Erdre<span class="quartier-badge-hors">Hors zone</span></span>
+        <span                                             class="quartier-list-item uncovered"                    role="listitem"><span class="quartier-dot"></span>Doulon-Bottière<span class="quartier-badge-hors">Hors zone</span></span>
       </div>
       <!-- Carte SVG interactive -->
       <div class="quartier-map-wrap" data-reveal="right">
-        <svg class="quartier-map-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg class="quartier-map-svg" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <!-- Zone couverte (cercle hachuré) -->
           <defs>
             <pattern id="hatch" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
@@ -1116,35 +1127,43 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
           <!-- Loire -->
           <path d="M20,290 Q100,278 200,282 Q300,286 390,272" fill="none" stroke="rgba(125,162,250,0.55)" stroke-width="8" stroke-linecap="round"/>
           <text x="300" y="268" font-size="10" fill="rgba(125,162,250,0.7)" font-family="Hind,sans-serif">la Loire</text>
-          <!-- Dots quartiers: cx,cy = position sur la carte -->
-          <!-- Centre-ville -->
-          <circle cx="205" cy="195" r="14" fill="rgba(255,158,142,0.2)" class="q-dot-pulse" data-q="centre"/>
-          <circle cx="205" cy="195" r="7" fill="#FF9E8E" data-q="centre" class="q-main-dot"/>
-          <text x="220" y="200" font-size="10.5" fill="#3C697F" font-weight="600" font-family="Poppins,sans-serif">Centre-ville</text>
-          <!-- Dervallières -->
-          <circle cx="148" cy="210" r="6" fill="#3C697F" data-q="derv" class="q-main-dot"/>
-          <text x="82" y="205" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Dervallières</text>
-          <!-- Bellevue -->
-          <circle cx="115" cy="252" r="6" fill="#3C697F" data-q="bellevue" class="q-main-dot"/>
-          <text x="50" y="248" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Bellevue</text>
-          <!-- Chantenay -->
-          <circle cx="95" cy="220" r="6" fill="#3C697F" data-q="chantenay" class="q-main-dot"/>
-          <text x="28" y="216" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Chantenay</text>
-          <!-- Hauts-Pavés -->
-          <circle cx="235" cy="108" r="6" fill="#3C697F" data-q="hauts" class="q-main-dot"/>
-          <text x="246" y="113" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Hauts-Pavés</text>
+          <!-- ── ZONES COUVERTES ── -->
+          <!-- Centre-ville (actif par défaut) -->
+          <circle cx="205" cy="198" r="15" fill="rgba(255,158,142,0.2)" class="q-dot-pulse" data-q="centre"/>
+          <circle cx="205" cy="198" r="7"  fill="#FF9E8E" data-q="centre" class="q-main-dot"/>
+          <text x="216" y="203" font-size="10.5" fill="#3C697F" font-weight="600" font-family="Poppins,sans-serif">Centre-ville</text>
+          <!-- Dervallières – Zola -->
+          <circle cx="150" cy="215" r="6" fill="#3C697F" data-q="derv" class="q-main-dot"/>
+          <text x="72" y="210" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Dervallières</text>
+          <!-- Bellevue – Chantenay (fusionné) -->
+          <circle cx="100" cy="238" r="6" fill="#3C697F" data-q="bellevue" class="q-main-dot"/>
+          <text x="18" y="234" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Bellevue –</text>
+          <text x="18" y="245" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Chantenay</text>
+          <!-- Hauts-Pavés – Saint-Félix -->
+          <circle cx="240" cy="112" r="6" fill="#3C697F" data-q="hauts" class="q-main-dot"/>
+          <text x="250" y="117" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Hauts-Pavés</text>
           <!-- Nantes Nord -->
-          <circle cx="185" cy="72" r="6" fill="#3C697F" data-q="nord" class="q-main-dot"/>
-          <text x="130" y="68" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Nantes Nord</text>
+          <circle cx="185" cy="68" r="6" fill="#3C697F" data-q="nord" class="q-main-dot"/>
+          <text x="130" y="64" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Nantes Nord</text>
           <!-- Île de Nantes -->
-          <circle cx="220" cy="268" r="6" fill="#3C697F" data-q="ile" class="q-main-dot"/>
-          <text x="228" y="272" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Île de Nantes</text>
-          <!-- Malakoff -->
-          <circle cx="290" cy="188" r="6" fill="#3C697F" data-q="malakoff" class="q-main-dot"/>
-          <text x="298" y="193" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Malakoff</text>
-          <!-- Breil -->
-          <circle cx="148" cy="150" r="6" fill="#3C697F" data-q="breil" class="q-main-dot"/>
-          <text x="76" y="146" font-size="10" fill="#3C697F" font-family="Poppins,sans-serif">Breil-Barbière</text>
+          <circle cx="215" cy="268" r="6" fill="#3C697F" data-q="ile" class="q-main-dot"/>
+          <text x="222" y="272" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Île de Nantes</text>
+          <!-- Malakoff – Saint-Donatien -->
+          <circle cx="286" cy="185" r="6" fill="#3C697F" data-q="malakoff" class="q-main-dot"/>
+          <text x="294" y="190" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Malakoff</text>
+          <!-- Breil-Barbière -->
+          <circle cx="145" cy="148" r="6" fill="#3C697F" data-q="breil" class="q-main-dot"/>
+          <text x="66" y="144" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Breil-Barbière</text>
+          <!-- Nantes Sud (sous la Loire) -->
+          <circle cx="195" cy="338" r="6" fill="#3C697F" data-q="nantes-sud" class="q-main-dot"/>
+          <text x="140" y="355" font-size="9.5" fill="#3C697F" font-family="Poppins,sans-serif">Nantes Sud</text>
+          <!-- ── ZONES HORS COUVERTURE ── -->
+          <!-- Nantes Erdre (nord-est, hors ellipse) -->
+          <circle cx="318" cy="82" r="6" fill="rgba(180,160,100,0.55)" stroke="rgba(180,160,100,0.4)" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <text x="326" y="87" font-size="9.5" fill="rgba(100,90,60,0.7)" font-family="Poppins,sans-serif">Nantes Erdre</text>
+          <!-- Doulon-Bottière (est, hors ellipse) -->
+          <circle cx="358" cy="170" r="6" fill="rgba(180,160,100,0.55)" stroke="rgba(180,160,100,0.4)" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <text x="314" y="186" font-size="9.5" fill="rgba(100,90,60,0.7)" font-family="Poppins,sans-serif">Doulon-Bottière</text>
         </svg>
         <div class="zone-note">
           <span>⚠️</span>
