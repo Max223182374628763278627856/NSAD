@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ – Questions fréquentes | Nantes Soins à Domicile</title>
-  <meta name="description" content="Toutes les réponses à vos questions sur les soins à domicile à Nantes : remboursements, zones d'intervention, services, prise en charge APA, PCH, CPAM.">
+  <title>FAQ Soins à Domicile Nantes – Médical, Finances & Pratique | Nantes Soins à Domicile</title>
+  <meta name="description" content="Toutes vos questions sur les soins à domicile à Nantes : soins médicaux, remboursements APA/PCH, fonctionnement pratique. 3 sections pour trouver votre réponse en 30 secondes.">
+  <link rel="canonical" href="https://nantes-soins-a-domicile.fr/faq/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -135,7 +136,20 @@
   .faq-contact-card a.mail { font-size:13px; color:rgba(255,255,255,0.6); text-decoration:none; }
   .faq-contact-card a.mail:hover { color:var(--mint); }
 
-  .faq-group { margin-bottom:48px; }
+  .faq-section { margin-bottom:56px; }
+  .faq-section-header { display:flex; align-items:center; gap:14px; margin-bottom:28px; padding:18px 22px; border-radius:12px; }
+  .faq-section-header.medicale { background:linear-gradient(135deg,#EBF1FE,#dbe9fb); border-left:4px solid #7DA2FA; }
+  .faq-section-header.finances { background:linear-gradient(135deg,#FFF4E0,#fdeacc); border-left:4px solid #FF9E8E; }
+  .faq-section-header.pratique { background:linear-gradient(135deg,#E8FAF4,#d4f5ea); border-left:4px solid #8FF0D2; }
+  .faq-section-header-icon { font-size:1.8rem; flex-shrink:0; }
+  .faq-section-header-text h3 { font-family:'Poppins',sans-serif; font-size:1rem; font-weight:800; color:var(--dark); margin-bottom:3px; }
+  .faq-section-header-text p { font-size:13px; color:#6a7d85; margin:0; line-height:1.5; }
+  .faq-section-services { background:var(--bg-light); border-radius:10px; padding:18px 20px; margin-top:20px; margin-bottom:8px; }
+  .faq-section-services p { font-family:'Poppins',sans-serif; font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:1.5px; margin:0 0 12px; }
+  .faq-section-services-links { display:flex; flex-wrap:wrap; gap:8px; }
+  .faq-section-services-link { display:inline-flex; align-items:center; gap:5px; padding:7px 14px; background:#fff; border-radius:20px; border:1.5px solid #C8D5FC; text-decoration:none; font-family:'Hind',sans-serif; font-size:13px; font-weight:600; color:var(--primary); transition:border-color .2s,background .2s; }
+  .faq-section-services-link:hover { border-color:#8FF0D2; background:#F7FFFE; text-decoration:none; }
+  .faq-group { margin-bottom:28px; }
   .faq-group-title { font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--primary); margin-bottom:16px; display:flex; align-items:center; gap:8px; }
   .faq-group-title::after { content:''; flex:1; height:1px; background:#e0ecf0; }
 
@@ -193,9 +207,9 @@
     <li><a href="index.html">Accueil</a></li>
     <li><a href="nos-quartiers.html">Nos Quartiers</a></li>
     <li><a href="nos-services.html">Nos Services</a></li>
-    <li><a href="mag-expert.html">Le Mag</a></li>
+    <li><a href="nos-actualites.html">Nos Actualit&eacute;s</a></li>
     <li><a href="qui-sommes-nous.html">L'Association</a></li>
-    <li><a href="faq.html">FAQ</a></li>
+    
     <li><a href="recrutement.html">Recrutement</a></li>
     <li><a href="nous-contacter.html">Contact</a></li>
   </ul>
@@ -206,9 +220,10 @@
 <!-- HERO -->
 <section class="page-hero" aria-labelledby="faq-hero-title">
   <div class="page-hero-inner">
-    <div class="page-hero-badge">❓ Foire aux questions</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:16px;"><a href="nos-actualites.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Nos Actualités</a> › FAQ</div>
+    <div class="page-hero-badge">❓ Cocon FAQ — 3 sections</div>
     <h1 id="faq-hero-title">Vos questions sur nos <em>soins à domicile</em></h1>
-    <p>Tout ce que vous devez savoir avant de faire appel à Nantes Soins à Domicile. Remboursements, zones, services, équipe — on répond à tout.</p>
+    <p>Médical, finances ou logistique — trouvez votre réponse en 30 secondes. 3 sections organisées pour vous guider vers le bon service.</p>
   </div>
 </section>
 
@@ -221,12 +236,13 @@
       <div class="faq-sidebar-card">
         <h3>Parcourir les thèmes</h3>
         <ul class="faq-sidebar-nav">
-          <li><a href="#services">🏠 Nos services</a></li>
-          <li><a href="#financement">💶 Financement &amp; remboursements</a></li>
-          <li><a href="#fonctionnement">⚙️ Fonctionnement</a></li>
-          <li><a href="#zone">📍 Zone d'intervention</a></li>
-          <li><a href="#admission">📋 Admission &amp; démarches</a></li>
+          <li><a href="#section-medicale">🩺 Soins médicaux</a></li>
+          <li><a href="#section-finances">💶 Finances &amp; aides</a></li>
+          <li><a href="#section-pratique">⚙️ Pratique &amp; logistique</a></li>
         </ul>
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid #e0ecf0;">
+          <a href="nos-actualites.html" style="font-size:12px;color:var(--primary);text-decoration:none;font-weight:600;display:flex;align-items:center;gap:5px;">📰 Retour à Nos Actualités</a>
+        </div>
       </div>
       <div class="faq-contact-card">
         <h3>Vous n'avez pas trouvé ?</h3>
@@ -238,6 +254,16 @@
 
     <!-- QUESTIONS -->
     <div>
+
+      <!-- ══ SECTION MÉDICALE ══ -->
+      <div class="faq-section" id="section-medicale">
+        <div class="faq-section-header medicale">
+          <div class="faq-section-header-icon">🩺</div>
+          <div class="faq-section-header-text">
+            <h3>Soins médicaux</h3>
+            <p>Soins infirmiers, nursing, hygiène, fin de vie — tout ce que nos professionnels de santé réalisent à votre domicile.</p>
+          </div>
+        </div>
 
       <!-- NOS SERVICES -->
       <div class="faq-group fade-in" id="services">
@@ -264,6 +290,27 @@
         </details>
       </div>
 
+        <div class="faq-section-services">
+          <p>Pour aller plus loin →</p>
+          <div class="faq-section-services-links">
+            <a href="soins-infirmiers-nantes.html" class="faq-section-services-link">🩺 Soins infirmiers</a>
+            <a href="nursing-aide-soignant-nantes.html" class="faq-section-services-link">🛏️ Nursing</a>
+            <a href="soin-hygiene-domicile-nantes.html" class="faq-section-services-link">🚿 Soins d'hygiène</a>
+            <a href="accompagnement-fin-de-vie-nantes.html" class="faq-section-services-link">🕊️ Fin de vie</a>
+          </div>
+        </div>
+      </div><!-- /section-medicale -->
+
+      <!-- ══ SECTION FINANCES ══ -->
+      <div class="faq-section" id="section-finances">
+        <div class="faq-section-header finances">
+          <div class="faq-section-header-icon">💶</div>
+          <div class="faq-section-header-text">
+            <h3>Finances &amp; aides</h3>
+            <p>APA, PCH, remboursements CPAM, crédit d'impôt — comment financer votre prise en charge à domicile à Nantes.</p>
+          </div>
+        </div>
+
       <!-- FINANCEMENT -->
       <div class="faq-group fade-in fade-in-delay-1" id="financement">
         <div class="faq-group-title">💶 Financement &amp; remboursements</div>
@@ -288,6 +335,26 @@
           <div class="faq-answer">Pour les soins infirmiers pris en charge à 100 % par la CPAM, il n'y a aucune avance de frais. Pour l'aide à domicile, la facturation s'effectue mensuellement. Selon votre situation et les aides mobilisées, le reste à charge peut être très faible, voire nul. Notre équipe administrative vous accompagne pour optimiser votre prise en charge.</div>
         </details>
       </div>
+
+        <div class="faq-section-services">
+          <p>Pour aller plus loin →</p>
+          <div class="faq-section-services-links">
+            <a href="dossiers-apa-pch-nantes.html" class="faq-section-services-link">📋 Monter son dossier APA / PCH</a>
+            <a href="lien-famille-corps-medical-nantes.html" class="faq-section-services-link">🤝 Coordination &amp; démarches</a>
+            <a href="guide-aidant-nantais.html" class="faq-section-services-link">📖 Guide de l'aidant nantais</a>
+          </div>
+        </div>
+      </div><!-- /section-finances -->
+
+      <!-- ══ SECTION PRATIQUE ══ -->
+      <div class="faq-section" id="section-pratique">
+        <div class="faq-section-header pratique">
+          <div class="faq-section-header-icon">⚙️</div>
+          <div class="faq-section-header-text">
+            <h3>Pratique &amp; logistique</h3>
+            <p>Première prise en charge, horaires, zone d'intervention, intervenants — comment ça se passe concrètement.</p>
+          </div>
+        </div>
 
       <!-- FONCTIONNEMENT -->
       <div class="faq-group fade-in fade-in-delay-2" id="fonctionnement">
@@ -348,6 +415,17 @@
           <div class="faq-answer">Après votre appel, l'évaluation à domicile est planifiée dans les meilleurs délais (généralement sous 48-72h). Les interventions peuvent démarrer très rapidement, notamment dans les situations urgentes comme les sorties d'hôpital. La disponibilité des places est soumise à notre capacité d'accueil (346 places au total).</div>
         </details>
       </div>
+
+        <div class="faq-section-services">
+          <p>Pour aller plus loin →</p>
+          <div class="faq-section-services-links">
+            <a href="aide-a-domicile-nantes.html" class="faq-section-services-link">🏠 Aide à domicile</a>
+            <a href="nutrition-repas-domicile-nantes.html" class="faq-section-services-link">🍽️ Nutrition &amp; repas</a>
+            <a href="mobilite-vie-sociale-nantes.html" class="faq-section-services-link">🚶 Mobilité &amp; lien social</a>
+            <a href="nos-quartiers.html" class="faq-section-services-link">📍 Nos quartiers d'intervention</a>
+          </div>
+        </div>
+      </div><!-- /section-pratique -->
 
     </div>
   </div>
@@ -461,7 +539,7 @@ footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
       </div>
 
       <div class="ft-col">
-        <h3>Le Mag Expert</h3>
+        <h3>Nos Actualit&eacute;s</h3>
         <ul>
           <li><a href="comprendre-alzheimer-parkinson-nantes.html">Alzheimer &amp; Parkinson</a></li>
           <li><a href="guide-aidant-nantais.html">Guide de l'aidant nantais</a></li>
@@ -472,7 +550,7 @@ footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
           <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
           <li><a href="nos-valeurs-engagements.html">Nos valeurs</a></li>
           <li><a href="nos-partenaires.html">Nos partenaires</a></li>
-          <li><a href="faq.html" class="ft-faq-badge">FAQ</a></li>
+          
           <li><a href="recrutement.html">Recrutement</a></li>
           <li><a href="nous-contacter.html">Contact</a></li>
         </ul>
