@@ -265,84 +265,194 @@
     </div>
   </section>
 
-  <!-- POSTES -->
-  <section class="postes-section" aria-labelledby="postes-title">
+  <!-- FORMULAIRE DE CANDIDATURE -->
+  <section class="postulez-section" id="postulez" aria-labelledby="postulez-title">
+    <style>
+      .postulez-section{background:#f4f9fb;padding:80px 0;}
+      .postulez-section .ps-overline{display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;color:#3C697F;text-transform:uppercase;letter-spacing:2px;justify-content:center;margin-bottom:10px;}
+      .postulez-section .ps-overline::before,.postulez-section .ps-overline::after{content:'';width:20px;height:2px;background:#8FF0D2;border-radius:2px;}
+      .postulez-section h2{font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#1B2A33;text-align:center;margin-bottom:10px;}
+      .postulez-section h2 em{color:#3C697F;font-style:normal;}
+      .postulez-section .ps-sub{font-size:1rem;color:#4a5d66;text-align:center;max-width:520px;margin:0 auto 40px;line-height:1.8;}
+      .recruit-form-wrap{max-width:540px;margin:0 auto;background:#fff;border-radius:20px;padding:40px 36px;box-shadow:0 8px 40px rgba(60,105,127,0.12);}
+      .rform-progress{height:6px;background:#E1E8EE;border-radius:10px;margin-bottom:16px;overflow:hidden;}
+      .rform-progress-bar{height:100%;background:linear-gradient(90deg,#8FF0D2,#3C697F);border-radius:10px;transition:width 0.4s ease;}
+      .rform-steps-indicator{display:flex;align-items:center;margin-bottom:28px;}
+      .rform-step-dot{width:28px;height:28px;background:#E1E8EE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:#4a5d66;transition:all 0.3s;flex-shrink:0;}
+      .rform-step-dot.active{background:#3C697F;color:#fff;}
+      .rform-step-dot.done{background:#8FF0D2;color:#1B2A33;}
+      .rform-step-line{flex:1;height:2px;background:#E1E8EE;transition:background 0.3s;}
+      .rform-step-line.done{background:#8FF0D2;}
+      .rform-step{display:none;}
+      .rform-step.active{display:block;animation:rfadeIn 0.35s ease;}
+      @keyframes rfadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+      .rform-step-title{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:700;color:#1B2A33;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+      .rform-step-num{width:30px;height:30px;background:#3C697F;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+      .rform-field{margin-bottom:20px;}
+      .rform-label{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#3a4a52;margin-bottom:10px;}
+      .rform-required{color:#FF9E8E;}
+      .rform-chips{display:flex;flex-wrap:wrap;gap:8px;}
+      .rform-chip{cursor:pointer;position:relative;}
+      .rform-chip input{position:absolute;opacity:0;width:0;height:0;}
+      .rform-chip span{display:inline-flex;align-items:center;gap:5px;padding:9px 16px;background:#f4f9fb;border:1.5px solid #E1E8EE;border-radius:50px;font-family:'Hind',sans-serif;font-size:14px;color:#3a4a52;transition:all 0.2s;}
+      .rform-chip:hover span{border-color:#8FF0D2;background:#fff;}
+      .rform-chip input:checked + span{background:#3C697F;color:#fff;border-color:#3C697F;}
+      .rform-radios{display:flex;gap:12px;}
+      .rform-radio{cursor:pointer;flex:1;position:relative;}
+      .rform-radio input{position:absolute;opacity:0;width:0;height:0;}
+      .rform-radio span{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 16px;background:#f4f9fb;border:1.5px solid #E1E8EE;border-radius:12px;font-family:'Hind',sans-serif;font-size:14px;color:#3a4a52;transition:all 0.2s;text-align:center;width:100%;box-sizing:border-box;}
+      .rform-radio:hover span{border-color:#8FF0D2;}
+      .rform-radio input:checked + span{border-color:#3C697F;color:#3C697F;font-weight:700;background:#EEF5F7;}
+      .rform-input{width:100%;padding:13px 16px;border:1.5px solid #E1E8EE;border-radius:12px;font-family:'Hind',sans-serif;font-size:15px;color:#1B2A33;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;box-sizing:border-box;outline:none;}
+      .rform-input:focus{border-color:#3C697F;box-shadow:0 0 0 3px rgba(60,105,127,0.10);}
+      .rform-textarea{resize:vertical;min-height:88px;}
+      .rform-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+      .rform-btn-next,.rform-btn-submit{background:#3C697F;color:#fff;border:none;padding:14px 28px;border-radius:50px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;width:100%;margin-top:8px;}
+      .rform-btn-next:hover,.rform-btn-submit:hover{background:#2d5163;transform:translateY(-1px);box-shadow:0 4px 16px rgba(60,105,127,0.22);}
+      .rform-btn-submit:disabled{opacity:0.7;cursor:not-allowed;transform:none;}
+      .rform-btn-prev{background:transparent;color:#3a4a52;border:1.5px solid #E1E8EE;padding:14px 20px;border-radius:50px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.2s;min-height:48px;white-space:nowrap;}
+      .rform-btn-prev:hover{border-color:#3C697F;color:#3C697F;}
+      .rform-btn-group{display:flex;gap:12px;margin-top:4px;}
+      .rform-btn-group .rform-btn-next{flex:1;width:auto;margin-top:0;}
+      .rform-success{text-align:center;padding:24px 8px;}
+      .rform-success-icon{font-size:3rem;margin-bottom:14px;}
+      .rform-success h3{font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;color:#1B2A33;margin-bottom:10px;}
+      .rform-success p{color:#4a5d66;font-size:1rem;line-height:1.8;margin-bottom:20px;}
+      .rform-phone-link{display:inline-flex;align-items:center;gap:8px;background:#f4f9fb;border:1.5px solid #C8D5FC;color:#3C697F;padding:12px 24px;border-radius:50px;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:all 0.2s;}
+      .rform-phone-link:hover{background:#3C697F;color:#fff;border-color:#3C697F;text-decoration:none;}
+      @media(max-width:600px){.recruit-form-wrap{padding:28px 20px;}.rform-row{grid-template-columns:1fr;}}
+    </style>
     <div class="container">
-      <h2 id="postes-title">Nos postes ouverts</h2>
-      <p class="subtitle">Des métiers du soin, exercés avec cœur, dans les domiciles nantais.</p>
-      <div class="postes-grid">
-
-        <article class="poste-card">
-          <div class="poste-header">
-            <div class="poste-type">Soin infirmier</div>
-            <h3>Infirmier(ière) diplômé(e) d'état</h3>
+      <p class="ps-overline">Rejoignez l&apos;&#233;quipe</p>
+      <h2 id="postulez-title">Postulez en <em>3 minutes</em></h2>
+      <p class="ps-sub">S&#233;lectionnez votre profil et envoyez votre candidature directement &#224; notre coordinatrice RH.</p>
+      <div class="recruit-form-wrap">
+        <form id="nsad-recruit-form" novalidate>
+          <div class="rform-progress">
+            <div class="rform-progress-bar" id="rform-bar" style="width:33%"></div>
           </div>
-          <div class="poste-body">
-            <div class="poste-tags">
-              <span class="tag">CDI</span>
-              <span class="tag">Temps plein / partiel</span>
-              <span class="tag">Nantes 44</span>
+          <div class="rform-steps-indicator">
+            <span class="rform-step-dot active">1</span>
+            <span class="rform-step-line"></span>
+            <span class="rform-step-dot">2</span>
+            <span class="rform-step-line"></span>
+            <span class="rform-step-dot">3</span>
+          </div>
+
+          <!-- &#201;tape 1 : Votre recherche -->
+          <div class="rform-step active">
+            <h3 class="rform-step-title"><span class="rform-step-num">1</span> Votre recherche</h3>
+            <div class="rform-field">
+              <label class="rform-label">Poste(s) souhait&#233;(s) <span class="rform-required">*</span></label>
+              <div class="rform-chips">
+                <label class="rform-chip"><input type="checkbox" name="poste[]" value="Infirmier(e)"><span>&#129654; Infirmier(e)</span></label>
+                <label class="rform-chip"><input type="checkbox" name="poste[]" value="Aide-soignant(e)"><span>&#128138; Aide-soignant(e)</span></label>
+                <label class="rform-chip"><input type="checkbox" name="poste[]" value="Auxiliaire de vie (AES)"><span>&#127968; Auxiliaire de vie</span></label>
+                <label class="rform-chip"><input type="checkbox" name="poste[]" value="AMP"><span>&#129309; AMP</span></label>
+              </div>
             </div>
-            <p>Vous intervenez au domicile de patients pour assurer les soins infirmiers prescrits, dans une relation de confiance construite sur la durée.</p>
-            <ul class="poste-missions">
-              <li>Soins techniques (injections, pansements, perfusions, sondes)</li>
-              <li>Surveillance clinique et évaluation de l'état général</li>
-              <li>Coordination avec le médecin traitant et les spécialistes</li>
-              <li>Accompagnement et éducation thérapeutique des patients</li>
-              <li>Transmissions à l'équipe soignante via carnet de liaison</li>
-            </ul>
-            <a href="nous-contacter.html" class="btn-postuler">✉️ Postuler</a>
-          </div>
-        </article>
-
-        <article class="poste-card">
-          <div class="poste-header">
-            <div class="poste-type">Aide soignant</div>
-            <h3>Aide-soignant(e) diplômé(e)</h3>
-          </div>
-          <div class="poste-body">
-            <div class="poste-tags">
-              <span class="tag">CDI</span>
-              <span class="tag">Temps partiel bienvenu</span>
-              <span class="tag">Nantes 44</span>
+            <div class="rform-field">
+              <label class="rform-label">Type de contrat</label>
+              <div class="rform-chips">
+                <label class="rform-chip"><input type="checkbox" name="contrat[]" value="CDI"><span>CDI</span></label>
+                <label class="rform-chip"><input type="checkbox" name="contrat[]" value="CDD"><span>CDD</span></label>
+                <label class="rform-chip"><input type="checkbox" name="contrat[]" value="Stage / &#201;tudiant"><span>Stage / &#201;tudiant</span></label>
+              </div>
             </div>
-            <p>Pilier de notre équipe, vous assurez les soins d'hygiène et de confort au quotidien, en créant une vraie relation de proximité avec les personnes accompagnées.</p>
-            <ul class="poste-missions">
-              <li>Aide à la toilette, habillage, soins de confort</li>
-              <li>Aide à la mobilisation et prévention des escarres</li>
-              <li>Accompagnement lors des repas</li>
-              <li>Observation et remontée d'informations cliniques</li>
-              <li>Soutien moral et lien avec les familles</li>
-            </ul>
-            <a href="nous-contacter.html" class="btn-postuler">✉️ Postuler</a>
+            <button type="button" class="rform-btn-next">Suivant &#8594;</button>
           </div>
-        </article>
 
-        <article class="poste-card">
-          <div class="poste-header">
-            <div class="poste-type">Vie quotidienne</div>
-            <h3>Auxiliaire de vie sociale</h3>
-          </div>
-          <div class="poste-body">
-            <div class="poste-tags">
-              <span class="tag">CDI / CDD</span>
-              <span class="tag">Temps partiel possible</span>
-              <span class="tag">Nantes 44</span>
+          <!-- &#201;tape 2 : Mobilit&#233; -->
+          <div class="rform-step">
+            <h3 class="rform-step-title"><span class="rform-step-num">2</span> Mobilit&#233;</h3>
+            <div class="rform-field">
+              <label class="rform-label">&#202;tes-vous v&#233;hicul&#233;(e)&nbsp;?</label>
+              <div class="rform-radios">
+                <label class="rform-radio"><input type="radio" name="vehicule" value="Oui"><span>&#9989; Oui</span></label>
+                <label class="rform-radio"><input type="radio" name="vehicule" value="Non"><span>&#128651; Non</span></label>
+              </div>
             </div>
-            <p>Vous êtes souvent le premier visage de la journée pour nos bénéficiaires. Votre rôle est essentiel pour maintenir leur autonomie et leur qualité de vie à domicile.</p>
-            <ul class="poste-missions">
-              <li>Aide aux actes de la vie quotidienne (courses, repas, ménage)</li>
-              <li>Maintien et stimulation de l'autonomie</li>
-              <li>Accompagnements extérieurs (médecin, pharmacie, activités)</li>
-              <li>Prévention de l'isolement social</li>
-              <li>Lien avec la famille et l'équipe soignante</li>
-            </ul>
-            <a href="nous-contacter.html" class="btn-postuler">✉️ Postuler</a>
+            <div class="rform-field">
+              <label class="rform-label">Avez-vous le permis B&nbsp;?</label>
+              <div class="rform-radios">
+                <label class="rform-radio"><input type="radio" name="permis" value="Oui"><span>&#9989; Oui</span></label>
+                <label class="rform-radio"><input type="radio" name="permis" value="Non"><span>&#10060; Non</span></label>
+              </div>
+            </div>
+            <div class="rform-btn-group">
+              <button type="button" class="rform-btn-prev">&#8592; Retour</button>
+              <button type="button" class="rform-btn-next">Suivant &#8594;</button>
+            </div>
           </div>
-        </article>
 
+          <!-- &#201;tape 3 : Coordonn&#233;es -->
+          <div class="rform-step">
+            <h3 class="rform-step-title"><span class="rform-step-num">3</span> Vos coordonn&#233;es</h3>
+            <div class="rform-row">
+              <input type="text" name="prenom" placeholder="Pr&#233;nom *" class="rform-input" required>
+              <input type="text" name="nom" placeholder="Nom *" class="rform-input" required>
+            </div>
+            <input type="email" name="email" placeholder="Adresse e-mail *" class="rform-input" required>
+            <input type="tel" name="telephone" placeholder="T&#233;l&#233;phone" class="rform-input">
+            <textarea name="message" placeholder="Quelques mots sur vous (optionnel)" rows="3" class="rform-input rform-textarea"></textarea>
+            <div class="rform-btn-group">
+              <button type="button" class="rform-btn-prev">&#8592; Retour</button>
+              <button type="submit" class="rform-btn-submit" id="rform-submit"><span>Envoyer ma candidature &#128140;</span></button>
+            </div>
+          </div>
+
+          <!-- &#201;tat succ&#232;s -->
+          <div class="rform-success" id="rform-success" style="display:none">
+            <div class="rform-success-icon">&#9989;</div>
+            <h3>Candidature re&#231;ue !</h3>
+            <p>Merci pour votre int&#233;r&#234;t. Notre coordinatrice RH vous recontacte sous <strong>48h</strong>.</p>
+            <a href="tel:0240354343" class="rform-phone-link">&#128222; 02 40 35 43 43</a>
+          </div>
+        </form>
       </div>
     </div>
+    <script>
+    (function(){
+      var form = document.getElementById('nsad-recruit-form');
+      if(!form) return;
+      var steps = form.querySelectorAll('.rform-step');
+      var dots  = form.querySelectorAll('.rform-step-dot');
+      var lines = form.querySelectorAll('.rform-step-line');
+      var bar   = document.getElementById('rform-bar');
+      var cur   = 0;
+      function goTo(n){
+        steps[cur].classList.remove('active');
+        dots[cur].classList.remove('active');
+        cur = n;
+        steps[cur].classList.add('active');
+        dots[cur].classList.add('active');
+        for(var i=0;i<dots.length;i++) dots[i].classList.toggle('done', i<cur);
+        for(var i=0;i<lines.length;i++) lines[i].classList.toggle('done', i<cur);
+        bar.style.width = Math.round((cur+1)/steps.length*100)+'%';
+        var sec = form.closest('section');
+        if(sec) window.scrollTo({top:sec.getBoundingClientRect().top+window.scrollY-100,behavior:'smooth'});
+      }
+      form.querySelectorAll('.rform-btn-next').forEach(function(b){
+        b.addEventListener('click',function(){ if(cur<steps.length-1) goTo(cur+1); });
+      });
+      form.querySelectorAll('.rform-btn-prev').forEach(function(b){
+        b.addEventListener('click',function(){ if(cur>0) goTo(cur-1); });
+      });
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        var btn = document.getElementById('rform-submit');
+        btn.innerHTML = '<span>Envoi en cours...</span>';
+        btn.disabled = true;
+        /* TODO: Connecter a votre endpoint reel
+           fetch('https://formspree.io/f/VOTRE_ID', {method:'POST',body:new FormData(form)})
+             .then(function(r){return r.json();}).then(function(d){ showSuccess(); }); */
+        setTimeout(function(){
+          form.querySelectorAll('.rform-step,.rform-progress,.rform-steps-indicator').forEach(function(el){el.style.display='none';});
+          document.getElementById('rform-success').style.display='block';
+        }, 1500);
+      });
+    })();
+    </script>
   </section>
 
   <!-- POURQUOI NOUS -->
