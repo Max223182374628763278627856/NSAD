@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recrutement – Rejoignez l'équipe NSAD à Nantes</title>
+  <meta name="description" content="Nantes Soins à Domicile recrute infirmiers, aides-soignants et auxiliaires de vie à Nantes. Rejoignez une association humaine, stable et engagée. CDI, temps partiel, formation continue." />
+  <link rel="canonical" href="https://nantes-soins-a-domicile.fr/recrutement/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": "Aide-soignant / Infirmier / Auxiliaire de vie – Nantes Soins à Domicile",
+    "description": "Nantes Soins à Domicile recrute des professionnels du soin pour intervenir au domicile de personnes âgées, dépendantes ou en situation de handicap à Nantes.",
+    "datePosted": "2026-01-01",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "Nantes Soins à Domicile",
+      "url": "https://nantes-soins-a-domicile.fr/",
+      "address": { "@type": "PostalAddress", "streetAddress": "6 rue Bel Air", "addressLocality": "Nantes", "postalCode": "44000", "addressCountry": "FR" }
+    },
+    "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "postalCode": "44000", "addressCountry": "FR" } },
+    "employmentType": ["FULL_TIME", "PART_TIME"],
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nantes-soins-a-domicile.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "Recrutement", "item": "https://nantes-soins-a-domicile.fr/recrutement/" }
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #3C697F;
+      --primary-dark: #2a4f63;
+      --accent: #8FF0D2;
+      --blue-light: #7DA2FA;
+      --blue-pale: #C8D5FC;
+      --coral: #FF9E8E;
+      --recru: #2e7d32;
+      --recru-dark: #1b5e20;
+      --recru-light: #e8f5e9;
+      --text: #1a1a2e;
+      --text-soft: #4a5568;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --radius: 14px;
+      --radius-pill: 50px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+    }
+    body { font-family: 'Hind', sans-serif; font-size: 18px; line-height: 1.8; color: var(--text); background: var(--bg); }
+    h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; line-height: 1.3; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; }
+    h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    #main-nav { position: sticky; top: 0; z-index: 100; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 68px; }
+    .nav-logo img { height: 44px; }
+    .nav-links { display: flex; gap: 18px; list-style: none; }
+    .nav-links a { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; color: var(--text); transition: color .2s; }
+    .nav-links a:hover { color: var(--primary); text-decoration: none; }
+    .nav-cta { background: var(--primary); color: #fff !important; padding: 11px 22px; min-height: 48px; border-radius: var(--radius-pill); font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; white-space: nowrap; transition: background .2s; }
+    .nav-cta:hover { background: var(--primary-dark); text-decoration: none; }
+
+    /* BREADCRUMB */
+    .breadcrumb { background: var(--recru-light); padding: 14px 0; font-size: 14px; color: var(--text-soft); }
+    .breadcrumb a { color: var(--recru); }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--recru) 0%, var(--recru-dark) 100%); color: #fff; padding: 80px 0 70px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 340px; height: 340px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+    .hero::after { content: ''; position: absolute; bottom: -80px; left: 10%; width: 200px; height: 200px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: var(--radius-pill); padding: 6px 18px; font-size: 14px; font-weight: 600; margin-bottom: 22px; letter-spacing: .5px; }
+    .hero h1 { margin-bottom: 20px; max-width: 720px; }
+    .hero .hero-intro { font-size: 1.2rem; max-width: 680px; opacity: .92; margin-bottom: 36px; line-height: 1.7; }
+    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Poppins', sans-serif; font-size: 2.2rem; font-weight: 800; display: block; }
+    .stat-label { font-size: 13px; opacity: .85; }
+
+    /* POSTES */
+    .postes-section { padding: 72px 0; background: var(--bg-soft); }
+    .postes-section h2 { text-align: center; margin-bottom: 12px; }
+    .postes-section .subtitle { text-align: center; color: var(--text-soft); margin-bottom: 48px; font-size: 1.1rem; }
+    .postes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+    .poste-card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: transform .25s, box-shadow .25s; }
+    .poste-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .poste-header { background: linear-gradient(135deg, var(--recru) 0%, #43a047 100%); color: #fff; padding: 24px 28px 20px; }
+    .poste-header .poste-type { font-size: 13px; font-weight: 600; opacity: .85; margin-bottom: 6px; letter-spacing: .5px; text-transform: uppercase; }
+    .poste-header h3 { font-size: 1.3rem; margin: 0; }
+    .poste-body { padding: 24px 28px; }
+    .poste-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .tag { background: var(--recru-light); color: var(--recru-dark); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: var(--radius-pill); }
+    .poste-body p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px; }
+    .poste-missions { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .poste-missions li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--text); }
+    .poste-missions li::before { content: '→'; color: var(--recru); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .btn-postuler { display: inline-flex; align-items: center; gap: 8px; background: var(--recru); color: #fff !important; padding: 12px 24px; border-radius: var(--radius-pill); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.95rem; min-height: 48px; transition: background .2s; }
+    .btn-postuler:hover { background: var(--recru-dark); text-decoration: none; }
+
+    /* POURQUOI NOUS */
+    .pourquoi-section { padding: 72px 0; background: #fff; }
+    .pourquoi-section h2 { text-align: center; margin-bottom: 12px; }
+    .pourquoi-section .subtitle { text-align: center; color: var(--text-soft); margin-bottom: 52px; }
+    .pourquoi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .pourquoi-card { background: var(--bg-soft); border-radius: var(--radius); padding: 32px 24px; text-align: center; border-bottom: 3px solid var(--recru); }
+    .pourquoi-icon { font-size: 2.6rem; margin-bottom: 14px; }
+    .pourquoi-card h3 { font-size: 1.1rem; color: var(--recru-dark); margin-bottom: 10px; }
+    .pourquoi-card p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.7; }
+
+    /* TEMOIGNAGES */
+    .temoignages-section { padding: 72px 0; background: var(--recru-light); }
+    .temoignages-section h2 { text-align: center; margin-bottom: 48px; }
+    .temoignages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+    .temoignage-card { background: #fff; border-radius: var(--radius); padding: 32px 28px; box-shadow: var(--shadow); }
+    .temoignage-card blockquote { font-style: italic; color: var(--text); line-height: 1.75; font-size: 1rem; margin-bottom: 18px; }
+    .temoignage-meta { display: flex; align-items: center; gap: 14px; }
+    .temoignage-avatar { width: 48px; height: 48px; background: linear-gradient(135deg, var(--recru) 0%, #43a047 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .temoignage-meta .name { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+    .temoignage-meta .role { font-size: 0.85rem; color: var(--text-soft); }
+
+    /* PROCESS CANDIDATURE */
+    .process-section { padding: 72px 0; background: #fff; }
+    .process-section h2 { text-align: center; margin-bottom: 12px; }
+    .process-section .subtitle { text-align: center; color: var(--text-soft); margin-bottom: 52px; }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+    .process-step { text-align: center; padding: 24px 16px; }
+    .step-num { background: var(--recru); color: #fff; border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.2rem; margin: 0 auto 16px; }
+    .process-step h3 { font-size: 1rem; color: var(--text); margin-bottom: 8px; }
+    .process-step p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; }
+    .process-connector { display: none; }
+
+    /* SPONTANEE */
+    .spontanee-section { padding: 64px 0; background: var(--bg-soft); }
+    .spontanee-inner { background: #fff; border-radius: var(--radius); padding: 48px 40px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: center; }
+    .spontanee-inner h2 { margin-bottom: 16px; }
+    .spontanee-inner p { color: var(--text-soft); margin-bottom: 16px; line-height: 1.85; }
+    .spontanee-inner address { font-style: normal; color: var(--text); font-weight: 500; margin-bottom: 24px; }
+    .spontanee-inner address span { display: block; margin-bottom: 6px; }
+    .contact-card { background: linear-gradient(135deg, var(--recru) 0%, #43a047 100%); border-radius: var(--radius); padding: 32px 28px; color: #fff; text-align: center; }
+    .contact-card .big-icon { font-size: 3rem; margin-bottom: 14px; }
+    .contact-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .contact-card p { opacity: .9; font-size: 0.95rem; margin-bottom: 20px; }
+    .contact-card a.phone { display: block; font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 800; color: #fff; text-decoration: none; margin-bottom: 14px; }
+    .contact-card a.email-link { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: #fff; padding: 10px 24px; border-radius: var(--radius-pill); font-size: 0.95rem; font-weight: 600; }
+
+    /* CTA BAND */
+    .cta-band { background: linear-gradient(135deg, var(--recru) 0%, var(--recru-dark) 100%); color: #fff; padding: 64px 0; text-align: center; }
+    .cta-band h2 { margin-bottom: 14px; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+    .cta-band p { opacity: .9; max-width: 600px; margin: 0 auto 32px; font-size: 1.05rem; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: #fff; color: var(--recru) !important; padding: 16px 36px; border-radius: var(--radius-pill); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; min-height: 54px; display: inline-flex; align-items: center; transition: transform .2s; }
+    .btn-primary:hover { transform: translateY(-2px); text-decoration: none; }
+    .btn-outline { border: 2px solid #fff; color: #fff !important; padding: 16px 36px; border-radius: var(--radius-pill); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; min-height: 54px; display: inline-flex; align-items: center; transition: background .2s; }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); text-decoration: none; }
+
+    /* FOOTER */
+    footer { background: var(--text); color: rgba(255,255,255,0.85); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-brand h2 { font-size: 1.2rem; color: #fff; margin-bottom: 12px; }
+    .footer-brand p, .footer-brand address { font-size: 0.9rem; line-height: 1.7; font-style: normal; }
+    .footer-col h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 14px; letter-spacing: .5px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a { color: rgba(255,255,255,0.75); font-size: 0.9rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--accent); text-decoration: none; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 24px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      #main-nav { padding: 0 18px; }
+      .nav-links { display: none; }
+      .spontanee-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .spontanee-inner { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav" role="navigation" aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Nantes Soins à Domicile" /></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="nos-quartiers.html">Nos Quartiers</a></li>
+      <li><a href="nos-services.html">Nos Services</a></li>
+      <li><a href="mag-expert.html">Le Mag</a></li>
+      <li><a href="qui-sommes-nous.html">L'Association</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="recrutement.html">Recrutement</a></li>
+      <li><a href="nous-contacter.html">Contact</a></li>
+    </ul>
+    <a href="tel:0240354343" class="nav-cta">📞 02 40 35 43 43</a>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb" aria-label="Fil d'Ariane">
+    <div class="container">
+      <a href="index.html">Accueil</a>
+      <span>›</span>
+      <span>Recrutement</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <span class="hero-badge">💚 On recrute</span>
+      <h1 id="hero-title">Rejoignez une équipe qui prend soin des siens</h1>
+      <p class="hero-intro">
+        Travailler à Nantes Soins à Domicile, c'est exercer son métier dans une association où l'humain
+        compte vraiment — pour les patients comme pour les soignants. Ici, vous avez un encadrement
+        proche, une équipe solidaire et un sens du travail qui donne envie de se lever chaque matin.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">70+</span>
+          <span class="stat-label">professionnels dans l'équipe</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">30+</span>
+          <span class="stat-label">ans d'existence</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">CDI</span>
+          <span class="stat-label">contrats stables en priorité</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">Nantes</span>
+          <span class="stat-label">et ses quartiers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTES -->
+  <section class="postes-section" aria-labelledby="postes-title">
+    <div class="container">
+      <h2 id="postes-title">Nos postes ouverts</h2>
+      <p class="subtitle">Des métiers du soin, exercés avec cœur, dans les domiciles nantais.</p>
+      <div class="postes-grid">
+
+        <article class="poste-card">
+          <div class="poste-header">
+            <div class="poste-type">Soin infirmier</div>
+            <h3>Infirmier(ière) diplômé(e) d'état</h3>
+          </div>
+          <div class="poste-body">
+            <div class="poste-tags">
+              <span class="tag">CDI</span>
+              <span class="tag">Temps plein / partiel</span>
+              <span class="tag">Nantes 44</span>
+            </div>
+            <p>Vous intervenez au domicile de patients pour assurer les soins infirmiers prescrits, dans une relation de confiance construite sur la durée.</p>
+            <ul class="poste-missions">
+              <li>Soins techniques (injections, pansements, perfusions, sondes)</li>
+              <li>Surveillance clinique et évaluation de l'état général</li>
+              <li>Coordination avec le médecin traitant et les spécialistes</li>
+              <li>Accompagnement et éducation thérapeutique des patients</li>
+              <li>Transmissions à l'équipe soignante via carnet de liaison</li>
+            </ul>
+            <a href="nous-contacter.html" class="btn-postuler">✉️ Postuler</a>
+          </div>
+        </article>
+
+        <article class="poste-card">
+          <div class="poste-header">
+            <div class="poste-type">Aide soignant</div>
+            <h3>Aide-soignant(e) diplômé(e)</h3>
+          </div>
+          <div class="poste-body">
+            <div class="poste-tags">
+              <span class="tag">CDI</span>
+              <span class="tag">Temps partiel bienvenu</span>
+              <span class="tag">Nantes 44</span>
+            </div>
+            <p>Pilier de notre équipe, vous assurez les soins d'hygiène et de confort au quotidien, en créant une vraie relation de proximité avec les personnes accompagnées.</p>
+            <ul class="poste-missions">
+              <li>Aide à la toilette, habillage, soins de confort</li>
+              <li>Aide à la mobilisation et prévention des escarres</li>
+              <li>Accompagnement lors des repas</li>
+              <li>Observation et remontée d'informations cliniques</li>
+              <li>Soutien moral et lien avec les familles</li>
+            </ul>
+            <a href="nous-contacter.html" class="btn-postuler">✉️ Postuler</a>
+          </div>
+        </article>
+
+        <article class="poste-card">
+          <div class="poste-header">
+            <div class="poste-type">Vie quotidienne</div>
+            <h3>Auxiliaire de vie sociale</h3>
+          </div>
+          <div class="poste-body">
+            <div class="poste-tags">
+              <span class="tag">CDI / CDD</span>
+              <span class="tag">Temps partiel possible</span>
+              <span class="tag">Nantes 44</span>
+            </div>
+            <p>Vous êtes souvent le premier visage de la journée pour nos bénéficiaires. Votre rôle est essentiel pour maintenir leur autonomie et leur qualité de vie à domicile.</p>
+            <ul class="poste-missions">
+              <li>Aide aux actes de la vie quotidienne (courses, repas, ménage)</li>
+              <li>Maintien et stimulation de l'autonomie</li>
+              <li>Accompagnements extérieurs (médecin, pharmacie, activités)</li>
+              <li>Prévention de l'isolement social</li>
+              <li>Lien avec la famille et l'équipe soignante</li>
+            </ul>
+            <a href="nous-contacter.html" class="btn-postuler">✉️ Postuler</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI NOUS -->
+  <section class="pourquoi-section" aria-labelledby="pourquoi-title">
+    <div class="container">
+      <h2 id="pourquoi-title">Pourquoi choisir NSAD&nbsp;?</h2>
+      <p class="subtitle">Des conditions de travail pensées pour que vous puissiez faire votre métier dans les meilleures conditions.</p>
+      <div class="pourquoi-grid">
+        <article class="pourquoi-card">
+          <div class="pourquoi-icon">🏠</div>
+          <h3>Association à taille humaine</h3>
+          <p>Vous n'êtes pas un numéro. Votre encadrante vous connaît, connaît votre tournée, vous appelle par votre prénom.</p>
+        </article>
+        <article class="pourquoi-card">
+          <div class="pourquoi-icon">📅</div>
+          <h3>Plannings stables</h3>
+          <p>Nous construisons vos plannings en tenant compte de vos contraintes personnelles, autant que possible. Votre vie compte aussi.</p>
+        </article>
+        <article class="pourquoi-card">
+          <div class="pourquoi-icon">📚</div>
+          <h3>Formation continue</h3>
+          <p>Soins palliatifs, nouvelles pathologies, bientraitance : nous investissons régulièrement dans la montée en compétences de nos équipes.</p>
+        </article>
+        <article class="pourquoi-card">
+          <div class="pourquoi-icon">🚗</div>
+          <h3>Frais pris en charge</h3>
+          <p>Remboursement kilométrique, prise en charge des temps de trajet entre deux patients. On ne vous laisse pas seul avec les frais.</p>
+        </article>
+        <article class="pourquoi-card">
+          <div class="pourquoi-icon">🤝</div>
+          <h3>Équipe solidaire</h3>
+          <p>Les réunions d'équipe sont régulières. Les situations difficiles se partagent. On ne laisse personne seul face à une situation complexe.</p>
+        </article>
+        <article class="pourquoi-card">
+          <div class="pourquoi-icon">💚</div>
+          <h3>Sens du travail</h3>
+          <p>Chaque jour, vous faites une différence dans la vie des personnes que vous accompagnez. C'est une richesse qui ne s'achète pas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="temoignages-section" aria-labelledby="temoignages-title">
+    <div class="container">
+      <h2 id="temoignages-title">Ce que disent nos collègues</h2>
+      <div class="temoignages-grid">
+        <article class="temoignage-card">
+          <blockquote>
+            « J'ai travaillé dans de grosses structures avant NSAD. Ici, c'est différent : je connais mes patients vraiment.
+            Je sais ce qu'ils aiment, ce qui les inquiète. C'est pour ça que je fais ce métier. »
+          </blockquote>
+          <div class="temoignage-meta">
+            <div class="temoignage-avatar">🌿</div>
+            <div>
+              <div class="name">Nathalie</div>
+              <div class="role">Aide-soignante, NSAD depuis 8 ans</div>
+            </div>
+          </div>
+        </article>
+        <article class="temoignage-card">
+          <blockquote>
+            « L'organisation est sérieuse, les plannings respectés. Et quand j'ai eu un souci personnel,
+            l'équipe s'est organisée pour m'aider. Ça, ça ne se trouve pas partout. »
+          </blockquote>
+          <div class="temoignage-meta">
+            <div class="temoignage-avatar">🌱</div>
+            <div>
+              <div class="name">Karim</div>
+              <div class="role">Infirmier, NSAD depuis 5 ans</div>
+            </div>
+          </div>
+        </article>
+        <article class="temoignage-card">
+          <blockquote>
+            « Au début j'avais peur de me sentir isolée dans mes tournées. Mais les réunions d'équipe,
+            les appels de la coordinatrice, ça crée un vrai lien. On n'est jamais seul. »
+          </blockquote>
+          <div class="temoignage-meta">
+            <div class="temoignage-avatar">🌻</div>
+            <div>
+              <div class="name">Amandine</div>
+              <div class="role">Auxiliaire de vie, NSAD depuis 3 ans</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSUS DE CANDIDATURE -->
+  <section class="process-section" aria-labelledby="process-title">
+    <div class="container">
+      <h2 id="process-title">Comment candidater&nbsp;?</h2>
+      <p class="subtitle">Un processus simple et rapide, parce que votre temps est précieux.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h3>Envoyez votre CV</h3>
+          <p>Par email à contact@ssiadnsaid.fr ou via le formulaire de contact. Un message de motivation est apprécié mais non obligatoire.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h3>Entretien téléphonique</h3>
+          <p>Notre infirmière coordinatrice vous rappelle sous 48h pour un premier échange de 15 minutes, sans pression.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h3>Rencontre en présentiel</h3>
+          <p>Une visite de nos locaux à Nantes, une rencontre avec l'équipe, et on vous parle des tournées concrètes.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h3>Intégration accompagnée</h3>
+          <p>Vous débutez en binôme avec un collègue expérimenté. Pas question de vous lancer seul(e) le premier jour.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CANDIDATURE SPONTANÉE -->
+  <section class="spontanee-section" aria-labelledby="spontanee-title">
+    <div class="container">
+      <div class="spontanee-inner">
+        <div>
+          <h2 id="spontanee-title">Candidature spontanée toujours bienvenue</h2>
+          <p>
+            Vous n'avez pas vu de poste correspondant exactement à votre profil, mais notre façon de travailler vous correspond ?
+            Envoyez-nous votre candidature spontanée. Nous gardons les dossiers et vous contactons dès qu'une ouverture correspond.
+          </p>
+          <p>
+            Profils particulièrement recherchés : infirmiers coordinateurs, aides-soignants spécialisés soins palliatifs,
+            auxiliaires de vie DEAVS, professionnels maîtrisant le turc, le russe, le portugais ou d'autres langues.
+          </p>
+          <address>
+            <span>📧 contact@ssiadnsaid.fr</span>
+            <span>📞 02 40 35 43 43</span>
+            <span>📍 6 rue Bel Air – 44000 Nantes</span>
+          </address>
+          <a href="nous-contacter.html" class="btn-postuler">Envoyer ma candidature</a>
+        </div>
+        <div class="contact-card">
+          <div class="big-icon">📞</div>
+          <h3>Vous préférez appeler&nbsp;?</h3>
+          <p>Notre coordinatrice RH répond du lundi au vendredi, de 9h à 17h.</p>
+          <a href="tel:0240354343" class="phone">02 40 35 43 43</a>
+          <a href="mailto:contact@ssiadnsaid.fr" class="email-link">contact@ssiadnsaid.fr</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band" aria-labelledby="cta-title">
+    <div class="container">
+      <h2 id="cta-title">Prêt(e) à rejoindre l'aventure NSAD&nbsp;?</h2>
+      <p>Chaque candidature est lue avec attention. On attend votre message.</p>
+      <div class="cta-buttons">
+        <a href="nous-contacter.html" class="btn-primary">✉️ Postuler maintenant</a>
+        <a href="qui-sommes-nous.html" class="btn-outline">Découvrir l'association</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>Nantes Soins à Domicile</h2>
+          <p>Association loi 1901 · Agrément préfectoral · Partenaire du CHU de Nantes.</p>
+          <address>6 rue Bel Air – 44000 Nantes | 02 40 35 43 43 | contact@ssiadnsaid.fr</address>
+        </div>
+        <div class="footer-col">
+          <h3>Nos Services</h3>
+          <ul>
+            <li><a href="soins-infirmiers-nantes.html">Soins infirmiers</a></li>
+            <li><a href="soin-hygiene-domicile-nantes.html">Soins d'hygiène</a></li>
+            <li><a href="nursing-aide-soignant-nantes.html">Nursing</a></li>
+            <li><a href="accompagnement-fin-de-vie-nantes.html">Fin de vie</a></li>
+            <li><a href="dossiers-apa-pch-nantes.html">APA / PCH</a></li>
+            <li><a href="nos-services.html">Tous les services</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Nos Quartiers</h3>
+          <ul>
+            <li><a href="quartier-centre-ville.html">Centre-ville</a></li>
+            <li><a href="quartier-ile-de-nantes.html">Île de Nantes</a></li>
+            <li><a href="quartier-bellevue-chantenay.html">Bellevue-Chantenay</a></li>
+            <li><a href="quartier-dervallières-zola.html">Dervallières-Zola</a></li>
+            <li><a href="nos-quartiers.html">Tous les quartiers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>L'Association</h3>
+          <ul>
+            <li><a href="qui-sommes-nous.html">Qui sommes-nous&nbsp;?</a></li>
+            <li><a href="nos-valeurs-engagements.html">Nos valeurs</a></li>
+            <li><a href="nos-partenaires.html">Nos partenaires</a></li>
+            <li><a href="mag-expert.html">Le Mag Expert</a></li>
+            <li><a href="recrutement.html">Recrutement</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="nous-contacter.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 NSAD | Prototype SEO/GEO/AEO 2027</div>
+    </div>
+  </footer>
+
+</body>
+</html>

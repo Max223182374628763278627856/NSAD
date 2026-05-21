@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soins à domicile dans votre quartier à Nantes | Nantes Soins à Domicile</title>
+  <meta name="description" content="Nantes Soins à Domicile intervient dans tous les quartiers de Nantes : Centre-Ville, Île de Nantes, Bellevue-Chantenay, Hauts-Pavés, Dervallières-Zola… Soins infirmiers et aide à domicile 7j/7.">
+  <link rel="canonical" href="https://nantes-soins-a-domicile.fr/nos-quartiers/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalBusiness",
+      "@id": "https://nantes-soins-a-domicile.fr/#organisation",
+      "name": "Nantes Soins à Domicile",
+      "url": "https://nantes-soins-a-domicile.fr",
+      "telephone": "+33240354343",
+      "address": { "@type": "PostalAddress", "streetAddress": "6 rue Bel Air", "addressLocality": "Nantes", "postalCode": "44000", "addressCountry": "FR" },
+      "areaServed": { "@type": "City", "name": "Nantes", "sameAs": "https://www.wikidata.org/wiki/Q12191" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nantes-soins-a-domicile.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "Nos quartiers", "item": "https://nantes-soins-a-domicile.fr/nos-quartiers/" }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+:root { --primary:#3C697F; --primary-dark:#2d5163; --primary-deeper:#1a3340; --mint:#8FF0D2; --mint-dark:#6de8c2; --coral:#FF9E8E; --lavender:#C8D5FC; --text:#3a4a52; --bg-light:#f4f9fb; --white:#ffffff; --dark:#1a2d36; --radius:24px; --radius-sm:12px; --radius-pill:100px; --shadow-sm:0 2px 8px rgba(60,105,127,.06); --shadow:0 8px 28px rgba(60,105,127,.10); }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Hind',sans-serif;font-size:18px;line-height:1.8;color:var(--text);background:var(--white);overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);box-shadow:0 2px 24px rgba(60,105,127,0.10);}
+.nav-logo img{height:46px;width:auto;display:block;}
+.nav-links{display:flex;gap:18px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--primary);}
+.nav-links a.active{font-weight:700;border-bottom:2px solid var(--primary);padding-bottom:2px;}
+.nav-cta{background:var(--primary);color:#fff;padding:11px 22px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:background 0.2s;white-space:nowrap;}
+.nav-cta:hover{background:var(--primary-dark);}
+
+.hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 60%,var(--primary-deeper) 100%);padding:140px 48px 100px;position:relative;overflow:hidden;text-align:center;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(143,240,210,0.15) 0%,transparent 60%);pointer-events:none;}
+.hero-inner{max-width:760px;margin:0 auto;position:relative;}
+.breadcrumb{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:20px;}
+.breadcrumb a{color:rgba(255,255,255,0.55);text-decoration:none;}
+.breadcrumb a:hover{color:var(--mint);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(143,240,210,0.15);border:1px solid rgba(143,240,210,0.3);color:var(--mint);padding:6px 18px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
+.hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:20px;line-height:1.15;}
+.hero h1 em{color:var(--mint);font-style:normal;}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.8;max-width:620px;margin:0 auto 36px;}
+.hero-stats{display:flex;justify-content:center;gap:48px;padding-top:36px;border-top:1px solid rgba(255,255,255,0.10);}
+.stat-num{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:800;color:var(--mint);display:block;}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.5);}
+
+.section{padding:80px 48px;max-width:1200px;margin:0 auto;}
+.section-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;}
+.section-label::before{content:'';width:24px;height:2px;background:var(--mint);border-radius:2px;}
+.section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:16px;}
+.section-title em{color:var(--primary);font-style:normal;}
+.section-sub{font-size:1rem;color:#4a5d66;line-height:1.8;max-width:660px;margin-bottom:52px;}
+
+.quartiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.quartier-card{background:var(--bg-light);border-radius:var(--radius-sm);padding:32px 28px;border:1px solid rgba(60,105,127,0.08);text-decoration:none;color:inherit;transition:all 0.25s;display:block;}
+.quartier-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(60,105,127,0.18);}
+.quartier-emoji{font-size:2rem;margin-bottom:14px;display:block;}
+.quartier-card h3{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.quartier-card p{font-size:0.95rem;color:#4a5d66;line-height:1.7;margin-bottom:14px;}
+.quartier-tag{display:inline-block;font-size:10px;font-weight:700;background:rgba(143,240,210,0.2);color:var(--primary);padding:3px 10px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:0.5px;}
+.quartier-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--primary);text-decoration:none;}
+.quartier-link::after{content:'→';}
+
+.intro-band{background:var(--bg-light);padding:72px 48px;}
+.intro-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.intro-text h2{font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:20px;}
+.intro-text h2 em{color:var(--primary);font-style:normal;}
+.intro-text p{font-size:1rem;color:#4a5d66;line-height:1.8;margin-bottom:16px;}
+.values-list{display:flex;flex-direction:column;gap:16px;}
+.value-item{display:flex;align-items:flex-start;gap:14px;background:#fff;border-radius:var(--radius-sm);padding:18px 20px;border:1px solid rgba(60,105,127,0.08);}
+.value-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+.value-item strong{display:block;font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:700;color:var(--dark);}
+.value-item span{font-size:0.9rem;color:#4a5d66;line-height:1.7;}
+
+.cta-band{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:72px 48px;text-align:center;}
+.cta-band h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;margin-bottom:16px;}
+.cta-band p{color:rgba(255,255,255,0.75);font-size:1rem;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.btn-white{background:#fff;color:var(--primary);padding:16px 36px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.btn-white:hover{background:var(--mint);}
+.btn-outline-white{background:transparent;color:#fff;padding:16px 36px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,0.5);transition:all 0.2s;}
+.btn-outline-white:hover{border-color:#fff;}
+
+footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;max-width:1200px;margin-left:auto;margin-right:auto;}
+.footer-brand h2{font-size:18px;color:#fff;margin-bottom:12px;}
+.footer-brand p{font-size:15px;line-height:1.8;}
+.footer-col h3{font-size:12px;font-weight:700;color:var(--mint);margin-bottom:14px;letter-spacing:1.5px;text-transform:uppercase;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col a{font-size:14px;color:rgba(255,255,255,0.65);text-decoration:none;transition:all 0.2s;}
+.footer-col a:hover{color:var(--mint);padding-left:5px;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.32);flex-wrap:wrap;gap:12px;max-width:1200px;margin-left:auto;margin-right:auto;}
+
+@media(max-width:900px){
+  nav{padding:12px 20px;} .nav-links{display:none;}
+  .hero{padding:100px 20px 60px;}
+  .hero-stats{gap:24px;}
+  .section{padding:60px 20px;} .intro-band{padding:60px 20px;}
+  .quartiers-grid{grid-template-columns:1fr 1fr;}
+  .intro-inner{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .quartiers-grid{grid-template-columns:1fr;}
+  .hero-stats{flex-direction:column;gap:16px;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav" role="navigation" aria-label="Navigation principale">
+  <a href="index.html" class="nav-logo" aria-label="Nantes Soins à Domicile – Accueil">
+    <img src="logo.png" alt="Nantes Soins à Domicile" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="nos-quartiers.html" class="active">Nos Quartiers</a></li>
+    <li><a href="nos-services.html">Nos Services</a></li>
+    <li><a href="mag-expert.html">Le Mag</a></li>
+    <li><a href="qui-sommes-nous.html">L'Association</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="recrutement.html">Recrutement</a></li>
+    <li><a href="nous-contacter.html">Contact</a></li>
+  </ul>
+  <a href="tel:0240354343" class="nav-cta">📞 02 40 35 43 43</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a> › Nos Quartiers
+    </div>
+    <div class="hero-badge">📍 Proximité & présence locale</div>
+    <h1>Soins à domicile<br>dans <em>votre quartier</em> à Nantes</h1>
+    <p>Parce que chaque quartier de Nantes a ses particularités, ses habitants, ses habitudes de vie, nous avons construit une présence de proximité partout dans la ville. Connaître votre environnement, c'est mieux vous accompagner chez vous.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">9+</span><span class="stat-label">Quartiers couverts</span></div>
+      <div><span class="stat-num">7j/7</span><span class="stat-label">Interventions</span></div>
+      <div><span class="stat-num">70+</span><span class="stat-label">Professionnels</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="intro-band">
+  <div class="intro-inner">
+    <div class="intro-text">
+      <h2>Une présence humaine <em>ancrée dans Nantes</em></h2>
+      <p>Chez Nantes Soins à Domicile, nous ne sommes pas une structure nationale anonyme. Nous sommes une association nantaise, née ici, enracinée ici. Nos équipes connaissent vos rues, vos commerces de proximité, les accès parfois compliqués de certains immeubles, la disposition des hôpitaux et cliniques proches de chez vous.</p>
+      <p>Cette connaissance intime du terrain nous permet d'intervenir avec fluidité, sans perte de temps, et surtout avec cette chaleur qui fait toute la différence quand on reçoit quelqu'un chez soi.</p>
+      <p>Chaque page quartier ci-dessous vous présente notre ancrage local, les professionnels de santé partenaires, les structures de soins à proximité, et nos réponses aux besoins spécifiques de chaque secteur géographique.</p>
+    </div>
+    <div class="values-list">
+      <div class="value-item">
+        <div class="value-icon">🏥</div>
+        <div><strong>Proximité avec les établissements de santé</strong><span>Nous connaissons les protocoles de sortie d'hôpital de chaque quartier, du CHU à la clinique du Confluent.</span></div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🚶</div>
+        <div><strong>Intervention rapide sur tout le territoire</strong><span>Nos soignants habitent et travaillent dans Nantes. Pas de longues routes — juste votre quartier.</span></div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🤝</div>
+        <div><strong>Continuité avec votre médecin traitant</strong><span>Nous collaborons avec les médecins et pharmacies de votre secteur pour assurer la continuité des soins.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GRILLE QUARTIERS -->
+<div class="section">
+  <span class="section-label">Silo Local — Seo Proximité</span>
+  <h2 class="section-title">Choisissez <em>votre quartier</em></h2>
+  <p class="section-sub">Retrouvez toutes les informations spécifiques à votre secteur : professionnels partenaires, établissements de santé à proximité, et nos interventions dans votre environnement quotidien.</p>
+
+  <div class="quartiers-grid">
+    <a href="quartier-centre-ville.html" class="quartier-card">
+      <span class="quartier-emoji">🏛️</span>
+      <h3>Centre-Ville / CHU</h3>
+      <p>Proximité immédiate du CHU de Nantes. Nous accompagnons les sorties d'hôpital et assurons la continuité des soins post-hospitaliers en cœur de ville.</p>
+      <span class="quartier-tag">Sortie d'Hôpital</span>
+    </a>
+    <a href="quartier-ile-de-nantes.html" class="quartier-card">
+      <span class="quartier-emoji">🌉</span>
+      <h3>Île de Nantes</h3>
+      <p>Un territoire en pleine transformation où nous adaptons nos interventions aux nouvelles résidences, aux chantiers de vie et à la mobilité parfois complexe de ce quartier dynamique.</p>
+      <span class="quartier-tag">Urbanisme & Mobilité</span>
+    </a>
+    <a href="quartier-bellevue-chantenay.html" class="quartier-card">
+      <span class="quartier-emoji">⚓</span>
+      <h3>Bellevue-Chantenay</h3>
+      <p>Des quartiers populaires avec une identité forte, entre Loire et collines. Nos équipes s'y sentent chez elles et accompagnent les familles avec le respect que mérite chaque foyer.</p>
+      <span class="quartier-tag">Esprit de Quartier</span>
+    </a>
+    <a href="quartier-hauts-paves-saint-felix.html" class="quartier-card">
+      <span class="quartier-emoji">🏡</span>
+      <h3>Hauts-Pavés / Saint-Félix</h3>
+      <p>Cadre de vie paisible au bord de l'Erdre. Nous intervenons dans ce quartier résidentiel apprécié des seniors, avec une attention particulière au lien social et à la qualité de vie.</p>
+      <span class="quartier-tag">Cadre de Vie & Erdre</span>
+    </a>
+    <a href="quartier-dervallières-zola.html" class="quartier-card">
+      <span class="quartier-emoji">🌿</span>
+      <h3>Dervallières-Zola</h3>
+      <p>Un quartier vert au tissu social dense. Nous y assurons un suivi régulier et humain pour les personnes qui souhaitent rester chez elles entourées de leur environnement familier.</p>
+      <span class="quartier-tag">Esprit de Quartier</span>
+    </a>
+    <a href="quartier-breil-barbiere.html" class="quartier-card">
+      <span class="quartier-emoji">🌳</span>
+      <h3>Breil-Barbière</h3>
+      <p>Entre parcs et résidences calmes, ce quartier accueille de nombreuses familles auxquelles nous apportons aide et soins dans un esprit de continuité et de bienveillance.</p>
+      <span class="quartier-tag">Proximité Verte</span>
+    </a>
+    <a href="quartier-malakoff-saint-donatien.html" class="quartier-card">
+      <span class="quartier-emoji">🏙️</span>
+      <h3>Malakoff / Saint-Donatien</h3>
+      <p>Un quartier en renouveau, mêlant anciens habitants et nouvelles familles. Nos équipes y sont présentes pour accompagner tout le monde avec la même attention inconditionnelle.</p>
+      <span class="quartier-tag">Quartier Mixte</span>
+    </a>
+    <a href="quartier-nantes-nord.html" class="quartier-card">
+      <span class="quartier-emoji">🔭</span>
+      <h3>Nantes Nord</h3>
+      <p>Les quartiers nord de Nantes forment un territoire étendu où nous intervenons avec efficacité grâce à notre connaissance des accès et notre réseau de soignants locaux.</p>
+      <span class="quartier-tag">Grand Territoire</span>
+    </a>
+    <a href="quartier-nantes-sud.html" class="quartier-card">
+      <span class="quartier-emoji">🌅</span>
+      <h3>Nantes Sud</h3>
+      <p>Des quartiers résidentiels au riche tissu associatif. Nous accompagnons ici les personnes âgées et les familles aidantes avec douceur et régularité dans leurs besoins quotidiens.</p>
+      <span class="quartier-tag">Résidentiel</span>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>Vous ne savez pas par où commencer ?</h2>
+  <p>Appelez-nous — notre équipe vous oriente en quelques minutes vers la solution qui correspond à votre situation et à votre quartier.</p>
+  <div class="cta-btns">
+    <a href="nous-contacter.html" class="btn-white">Prendre contact</a>
+    <a href="tel:0240354343" class="btn-outline-white">📞 02 40 35 43 43</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Nantes Soins à Domicile</h2>
+      <p>Association loi 1901 · Agrément préfectoral · Partenaire du CHU de Nantes.</p>
+      <address style="font-style:normal;font-size:13px;color:rgba(255,255,255,0.42);line-height:1.7;margin-top:12px">
+        6 rue Bel Air – 44000 Nantes<br>
+        <a href="tel:0240354343" style="color:rgba(255,255,255,0.52);text-decoration:none">02 40 35 43 43</a> · <a href="mailto:contact@ssiadnsaid.fr" style="color:rgba(255,255,255,0.52);text-decoration:none">contact@ssiadnsaid.fr</a>
+      </address>
+    </div>
+    <div class="footer-col">
+      <h3>Nos Services</h3>
+      <ul>
+        <li><a href="soins-infirmiers-nantes.html">Soins infirmiers</a></li>
+        <li><a href="soin-hygiene-domicile-nantes.html">Aide à l'hygiène</a></li>
+        <li><a href="nursing-aide-soignant-nantes.html">Nursing AS</a></li>
+        <li><a href="accompagnement-fin-de-vie-nantes.html">Fin de vie</a></li>
+        <li><a href="dossiers-apa-pch-nantes.html">Aides APA / PCH</a></li>
+        <li><a href="nos-services.html">Tous les services →</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Nos Quartiers</h3>
+      <ul>
+        <li><a href="quartier-centre-ville.html">Centre-Ville / CHU</a></li>
+        <li><a href="quartier-ile-de-nantes.html">Île de Nantes</a></li>
+        <li><a href="quartier-bellevue-chantenay.html">Bellevue-Chantenay</a></li>
+        <li><a href="quartier-dervallières-zola.html">Dervallières-Zola</a></li>
+        <li><a href="nos-quartiers.html">Tous les quartiers →</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>L'Association</h3>
+      <ul>
+        <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+        <li><a href="nos-valeurs-engagements.html">Nos valeurs</a></li>
+        <li><a href="nos-partenaires.html">Nos partenaires</a></li>
+        <li><a href="mag-expert.html">Le Mag Expert</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="nous-contacter.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Nantes Soins à Domicile – Association loi 1901 – Nantes (44000)</span>
+    <span>Prototype SEO/GEO/AEO 2027</span>
+  </div>
+</footer>
+</body>
+</html>
