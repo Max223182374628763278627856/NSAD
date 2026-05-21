@@ -443,54 +443,126 @@
   </div>
 </section>
 
-<footer role="contentinfo">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <h2>Nantes Soins à Domicile</h2>
-      <p>Association loi 1901 à but non lucratif · Fondée le 01/12/2010 · Agrément préfectoral · Partenaire du CHU de Nantes.</p>
-      <address style="font-style:normal;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7">
-        6 rue Bel Air – 44000 Nantes<br>
-        Tél : <a href="tel:0240354343" style="color:rgba(255,255,255,0.6);text-decoration:none">02 40 35 43 43</a><br>
-        Email : <a href="mailto:contact@ssiadnsaid.fr" style="color:rgba(255,255,255,0.6);text-decoration:none">contact@ssiadnsaid.fr</a>
-      </address>
-      <div class="social-links" style="margin-top:16px">
-        <a href="https://www.linkedin.com/company/nantes-soins-a-domicile" class="social-link" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">in</a>
-        <a href="https://www.youtube.com/@nantessoinsadomicile" class="social-link" aria-label="YouTube" rel="noopener noreferrer" target="_blank">▶</a>
-        <a href="https://www.facebook.com/nantessoinsadomicile" class="social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">f</a>
-      </div>
+<style id="nsad-footer-css">
+/* ══════════ FOOTER NSAD — Barre contact ══════════ */
+.ft-bar{background:#3C697F;padding:13px 0;}
+.ft-bar-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.ft-bar-items{display:flex;gap:28px;flex-wrap:wrap;}
+.ft-bar-item{display:flex;align-items:center;gap:7px;font-family:'Hind',sans-serif;font-size:14px;color:rgba(255,255,255,0.85);}
+.ft-phone{font-family:'Poppins',sans-serif;font-size:1.15rem;font-weight:700;color:#8FF0D2;text-decoration:none;white-space:nowrap;}
+.ft-phone:hover{color:#fff;text-decoration:none;}
+/* ══════════ FOOTER NSAD — Corps ══════════ */
+footer.nsad-ft{background:#1B2A33;color:rgba(255,255,255,0.78);padding:56px 0 0;font-family:'Hind',sans-serif;font-size:14px;line-height:1.7;}
+footer.nsad-ft a{color:rgba(255,255,255,0.65);text-decoration:none;transition:color .2s;}
+footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
+.ft-inner{max-width:1140px;margin:0 auto;padding:0 24px;}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:48px;padding-bottom:48px;}
+.ft-brand h2{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin:0 0 10px;}
+.ft-brand p{font-size:13.5px;opacity:.6;margin-bottom:8px;}
+.ft-brand address{font-style:normal;font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:18px;}
+.ft-brand address a{color:rgba(255,255,255,0.45);}
+.ft-brand address a:hover{color:#8FF0D2;}
+.ft-social{display:flex;gap:8px;}
+.ft-social-link{width:32px;height:32px;background:rgba(255,255,255,0.07);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:rgba(255,255,255,0.55)!important;transition:background .2s,color .2s;text-decoration:none!important;}
+.ft-social-link:hover{background:#3C697F;color:#8FF0D2!important;}
+.ft-col h3{font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;color:#8FF0D2;text-transform:uppercase;letter-spacing:2px;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid rgba(143,240,210,0.18);}
+.ft-col h3.ft-h3-mt{margin-top:22px;}
+.ft-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;}
+.ft-col ul li a{font-size:13.5px;}
+.ft-col ul li a.ft-all{color:#8FF0D2!important;font-weight:600;font-size:12.5px;margin-top:3px;display:inline-block;}
+.ft-col ul li a.ft-all:hover{color:#fff!important;}
+.ft-faq-badge{display:inline-flex;align-items:center;gap:5px;}
+.ft-faq-badge::before{content:'?';display:inline-flex;width:16px;height:16px;background:#8FF0D2;color:#1B2A33;border-radius:50%;font-size:10px;font-weight:800;align-items:center;justify-content:center;flex-shrink:0;}
+.ft-bottom{border-top:1px solid rgba(255,255,255,0.07);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,0.3);}
+.ft-bottom a{color:rgba(255,255,255,0.3);}
+.ft-bottom a:hover{color:rgba(255,255,255,0.6);}
+@media(max-width:960px){.ft-grid{grid-template-columns:1fr 1fr;gap:32px;}.ft-bar-items{gap:16px;}}
+@media(max-width:580px){.ft-grid{grid-template-columns:1fr;gap:28px;}.ft-bar-inner{flex-direction:column;align-items:flex-start;gap:8px;}.ft-bar-items{gap:10px;flex-direction:column;}}
+</style>
+
+<div class="ft-bar" aria-label="Contact rapide">
+  <div class="ft-bar-inner">
+    <div class="ft-bar-items">
+      <span class="ft-bar-item">📍 6 rue Bel Air – 44000 Nantes</span>
+      <span class="ft-bar-item">🕐 Lun.–Ven. 7h45–12h30 &amp; 14h–17h30</span>
+      <span class="ft-bar-item">🔁 Interventions 7j/7</span>
     </div>
-    <div class="footer-col">
-      <h3>Nos services</h3>
-      <ul>
-        <li><a href="index.html#aide-domicile">Aide à domicile Nantes ✨</a></li>
-        <li><a href="index.html#services-detail">Soins infirmiers Nantes</a></li>
-        <li><a href="index.html#services-detail">Nursing &amp; hygiène</a></li>
-        <li><a href="index.html#services-detail">Accompagnement autonomie</a></li>
-        <li><a href="index.html#aide-domicile">Aide au répit aidants</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h3>À propos</h3>
-      <ul>
-        <li><a href="nous-contacter.html">Qui sommes-nous</a></li>
-        <li><a href="nous-contacter.html">Notre équipe</a></li>
-        <li><a href="nos-partenaires.html">Nos partenaires</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h3>Rejoindre</h3>
-      <ul>
-        <li><a href="https://nantes-soins-a-domicile.fr/offres-emploi/" target="_blank" rel="noopener noreferrer">Offres d'emploi</a></li>
-        <li><a href="nous-contacter.html">Postuler</a></li>
-        <li><a href="#">Mentions légales</a></li>
-        <li><a href="#">Politique RGPD</a></li>
-      </ul>
-    </div>
+    <a href="tel:0240354343" class="ft-phone">📞 02 40 35 43 43</a>
   </div>
-  <div class="footer-bottom">
-    <span>© 2024 Nantes Soins à Domicile – Association loi 1901 – Nantes (44000)</span>
-    <span>Site développé par l'agence web <a href="https://galopins.fr" style="color:rgba(255,255,255,0.5);text-decoration:none" rel="noopener noreferrer">Galopins</a></span>
+</div>
+
+<footer id="nsad-footer" class="nsad-ft" role="contentinfo">
+  <div class="ft-inner">
+    <div class="ft-grid">
+
+      <div class="ft-brand">
+        <h2>Nantes Soins à Domicile</h2>
+        <p>Association loi 1901 · Agrément préfectoral<br>Partenaire du CHU de Nantes.</p>
+        <address>
+          6 rue Bel Air – 44000 Nantes<br>
+          <a href="tel:0240354343">02 40 35 43 43</a> &nbsp;·&nbsp;
+          <a href="mailto:contact@ssiadnsaid.fr">contact@ssiadnsaid.fr</a>
+        </address>
+        <div class="ft-social">
+          <a href="https://www.linkedin.com/company/nantes-soins-a-domicile" class="ft-social-link" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">in</a>
+          <a href="https://www.facebook.com/nantessoinsadomicile" class="ft-social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">f</a>
+          <a href="https://www.youtube.com/@nantessoinsadomicile" class="ft-social-link" aria-label="YouTube" rel="noopener noreferrer" target="_blank">▶</a>
+        </div>
+      </div>
+
+      <div class="ft-col">
+        <h3>Nos Quartiers</h3>
+        <ul>
+          <li><a href="quartier-centre-ville.html">Centre-ville</a></li>
+          <li><a href="quartier-ile-de-nantes.html">Île de Nantes</a></li>
+          <li><a href="quartier-bellevue-chantenay.html">Bellevue-Chantenay</a></li>
+          <li><a href="quartier-dervallières-zola.html">Dervallières-Zola</a></li>
+          <li><a href="quartier-hauts-paves-saint-felix.html">Hauts-Pavés</a></li>
+          <li><a href="quartier-breil-barbiere.html">Breil-Barbière</a></li>
+          <li><a href="quartier-malakoff-saint-donatien.html">Malakoff</a></li>
+          <li><a href="quartier-nantes-nord.html">Nantes Nord</a></li>
+          <li><a href="nos-quartiers.html" class="ft-all">Tous les quartiers →</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-col">
+        <h3>Nos Services</h3>
+        <ul>
+          <li><a href="soins-infirmiers-nantes.html">Soins infirmiers</a></li>
+          <li><a href="soin-hygiene-domicile-nantes.html">Soins d'hygiène</a></li>
+          <li><a href="nursing-aide-soignant-nantes.html">Nursing</a></li>
+          <li><a href="accompagnement-fin-de-vie-nantes.html">Fin de vie</a></li>
+          <li><a href="nutrition-repas-domicile-nantes.html">Nutrition &amp; repas</a></li>
+          <li><a href="mobilite-vie-sociale-nantes.html">Mobilité &amp; lien social</a></li>
+          <li><a href="dossiers-apa-pch-nantes.html">APA / PCH</a></li>
+          <li><a href="lien-famille-corps-medical-nantes.html">Famille &amp; médecin</a></li>
+          <li><a href="nos-services.html" class="ft-all">Tous les services →</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-col">
+        <h3>Le Mag Expert</h3>
+        <ul>
+          <li><a href="comprendre-alzheimer-parkinson-nantes.html">Alzheimer &amp; Parkinson</a></li>
+          <li><a href="guide-aidant-nantais.html">Guide de l'aidant nantais</a></li>
+          <li><a href="mag-expert.html" class="ft-all">Tous les articles →</a></li>
+        </ul>
+        <h3 class="ft-h3-mt">L'Association</h3>
+        <ul>
+          <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+          <li><a href="nos-valeurs-engagements.html">Nos valeurs</a></li>
+          <li><a href="nos-partenaires.html">Nos partenaires</a></li>
+          <li><a href="faq.html" class="ft-faq-badge">FAQ</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="nous-contacter.html">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="ft-bottom">
+      <span>© 2026 Nantes Soins à Domicile – Association loi 1901 – Nantes (44000)</span>
+      <span>Prototype SEO/GEO/AEO 2027</span>
+    </div>
   </div>
 </footer>
 <script>
