@@ -15,10 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: .
-          branch: gh-pages
-          clean: true
+          fetch-depth: 0
+
+      - name: Push to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B gh-pages
+          git push origin gh-pages --force
