@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "version": "1.0",
+    "updated": "2026-05-26",
+    "note": "Données centralisées NSAD — quartiers + CTAs. Injecter via JS ou bloc HTML Elementor."
+  },
+
+  "ctas": {
+    "principal":    "Échangeons sur votre projet de vie",
+    "urgence":      "Besoin d'une aide urgente à Nantes ?",
+    "tel":          "02 40 35 43 43",
+    "tel_href":     "tel:0240354343",
+    "email":        "contact@ssiadnsaid.fr",
+    "email_href":   "mailto:contact@ssiadnsaid.fr",
+    "contact_page": "nous-contacter.html"
+  },
+
+  "quartiers": [
+    {
+      "slug":        "centre",
+      "name":        "Centre-ville",
+      "name_full":   "Centre-ville de Nantes",
+      "href":        "quartier-centre-ville.html",
+      "img":         "assets/img/quartier-centre-ville.jpg",
+      "img_alt":     "Aide à domicile Centre-ville Nantes",
+      "svg_color":   "#FF9E8E",
+      "svg_fill":    "rgba(255,158,142,0.20)",
+      "svg_fill_active": "rgba(255,158,142,0.55)",
+      "description": "Soins à domicile au cœur de Nantes, quartier Centre-ville. SSIAD agréé ARS, Projet de Vie Individualisé, APA/PCH acceptées.",
+      "covered":     true
+    },
+    {
+      "slug":        "derv",
+      "name":        "Dervallières – Zola",
+      "name_full":   "Dervallières – Zola, Nantes",
+      "href":        "quartier-dervallières-zola.html",
+      "img":         "assets/img/quartier-dervallieres-zola.jpg",
+      "img_alt":     "Aide à domicile Dervallières Zola Nantes",
+      "svg_color":   "#8FF0D2",
+      "svg_fill":    "rgba(143,240,210,0.18)",
+      "svg_fill_active": "rgba(143,240,210,0.55)",
+      "description": "SSIAD agréé ARS à Dervallières – Zola (Tram ligne 2). PVI co-construit avec le CLIC Loire-Atlantique. 7j/7.",
+      "covered":     true
+    },
+    {
+      "slug":        "bellevue",
+      "name":        "Bellevue – Chantenay",
+      "name_full":   "Bellevue – Chantenay, Nantes",
+      "href":        "quartier-bellevue-chantenay.html",
+      "img":         "assets/img/quartier-bellevue-chantenay.jpg",
+      "img_alt":     "Aide à domicile Bellevue Chantenay Nantes",
+      "svg_color":   "#C8D5FC",
+      "svg_fill":    "rgba(200,213,252,0.22)",
+      "svg_fill_active": "rgba(200,213,252,0.65)",
+      "description": "Présence de proximité à Bellevue et Chantenay, Nantes. Aides-soignant(e)s DEAS, aide à l'hygiène, bientraitance.",
+      "covered":     true
+    },
+    {
+      "slug":        "hauts",
+      "name":        "Hauts-Pavés – Saint-Félix",
+      "name_full":   "Hauts-Pavés – Saint-Félix, Nantes",
+      "href":        "quartier-hauts-paves-saint-felix.html",
+      "img":         "assets/img/quartier-hauts-paves-saint-felix.jpg",
+      "img_alt":     "Aide à domicile Hauts-Pavés Saint-Félix Nantes",
+      "svg_color":   "#C8D5FC",
+      "svg_fill":    "rgba(200,213,252,0.25)",
+      "svg_fill_active": "rgba(200,213,252,0.65)",
+      "description": "SSIAD agréé ARS — Hauts-Pavés, Saint-Félix, Viarme. Coordination CHU de Nantes. APA GIR 1–4 et PCH acceptées.",
+      "covered":     true
+    },
+    {
+      "slug":        "nord",
+      "name":        "Nantes Nord",
+      "name_full":   "Nantes Nord – Erdre",
+      "href":        "quartier-nantes-nord.html",
+      "img":         "assets/img/quartier-nantes-nord.jpg",
+      "img_alt":     "Aide à domicile Nantes Nord Erdre",
+      "svg_color":   "#8FF0D2",
+      "svg_fill":    "rgba(143,240,210,0.20)",
+      "svg_fill_active": "rgba(143,240,210,0.55)",
+      "description": "Soins à domicile Nantes Nord (Erdre). SSIAD agréé ARS, Chronobus C4, PVI individualisé. Intervention 48h.",
+      "covered":     true
+    },
+    {
+      "slug":        "ile",
+      "name":        "Île de Nantes",
+      "name_full":   "Île de Nantes",
+      "href":        "quartier-ile-de-nantes.html",
+      "img":         "assets/img/quartier-ile-de-nantes.jpg",
+      "img_alt":     "Aide à domicile Île de Nantes",
+      "svg_color":   "#8FF0D2",
+      "svg_fill":    "rgba(143,240,210,0.25)",
+      "svg_fill_active": "rgba(143,240,210,0.60)",
+      "description": "Présence à l'Île de Nantes (Tram ligne 1). SSIAD agréé ARS, aide à l'hygiène, soins infirmiers 7j/7.",
+      "covered":     true
+    },
+    {
+      "slug":        "malakoff",
+      "name":        "Malakoff – Saint-Donatien",
+      "name_full":   "Malakoff – Saint-Donatien, Nantes",
+      "href":        "quartier-malakoff-saint-donatien.html",
+      "img":         "assets/img/quartier-malakoff-saint-donatien.jpg",
+      "img_alt":     "Aide à domicile Malakoff Saint-Donatien Nantes",
+      "svg_color":   "#7DA2FA",
+      "svg_fill":    "rgba(125,162,250,0.20)",
+      "svg_fill_active": "rgba(125,162,250,0.55)",
+      "description": "SSIAD agréé ARS à Malakoff, Saint-Donatien, Prairie-de-Mauves. Coordination CHU Hôtel-Dieu. APA/PCH, 7j/7.",
+      "covered":     true
+    },
+    {
+      "slug":        "breil",
+      "name":        "Breil-Barbière",
+      "name_full":   "Breil-Barbière, Nantes",
+      "href":        "quartier-breil-barbiere.html",
+      "img":         "assets/img/quartier-breil-barbiere.jpg",
+      "img_alt":     "Aide à domicile Breil-Barbière Nantes",
+      "svg_color":   "#7DA2FA",
+      "svg_fill":    "rgba(125,162,250,0.18)",
+      "svg_fill_active": "rgba(125,162,250,0.55)",
+      "description": "SSIAD agréé ARS à Breil-Barbière, Nantes (44100). Aide à l'hygiène, PVI, Chronobus C6. Intervention 48h.",
+      "covered":     true
+    },
+    {
+      "slug":        "nantes-sud",
+      "name":        "Nantes Sud",
+      "name_full":   "Nantes Sud",
+      "href":        "quartier-nantes-sud.html",
+      "img":         "assets/img/quartier-nantes-sud.jpg",
+      "img_alt":     "Aide à domicile Nantes Sud",
+      "svg_color":   "#C8D5FC",
+      "svg_fill":    "rgba(200,213,252,0.20)",
+      "svg_fill_active": "rgba(200,213,252,0.60)",
+      "description": "SSIAD agréé ARS à Nantes Sud (Tram ligne 2, Bd Joliot-Curie, Rezé). PVI, aide à l'hygiène, 7j/7.",
+      "covered":     true
+    },
+    {
+      "slug":        "erdre",
+      "name":        "Nantes Erdre",
+      "name_full":   "Nantes Erdre",
+      "href":        null,
+      "img":         null,
+      "img_alt":     null,
+      "svg_color":   "rgba(180,160,100,0.4)",
+      "svg_fill":    "rgba(200,185,130,0.12)",
+      "svg_fill_active": "rgba(200,185,130,0.12)",
+      "description": "Secteur hors zone d'intervention directe. Contactez-nous pour vérifier votre adresse.",
+      "covered":     false
+    },
+    {
+      "slug":        "doulon",
+      "name":        "Doulon-Bottière",
+      "name_full":   "Doulon-Bottière, Nantes",
+      "href":        null,
+      "img":         null,
+      "img_alt":     null,
+      "svg_color":   "rgba(180,160,100,0.4)",
+      "svg_fill":    "rgba(200,185,130,0.12)",
+      "svg_fill_active": "rgba(200,185,130,0.12)",
+      "description": "Secteur hors zone d'intervention directe. Contactez-nous pour vérifier votre adresse.",
+      "covered":     false
+    }
+  ]
+}
