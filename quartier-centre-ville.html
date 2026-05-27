@@ -116,6 +116,16 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
   .services-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
 }
+.infirmiers-section{padding:0 48px 80px;}
+.infirmiers-inner{max-width:1200px;margin:0 auto;}
+.infirmiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+.infirmier-card{background:var(--bg-light);border-radius:var(--radius-sm);padding:24px;border:1px solid rgba(60,105,127,0.10);border-top:3px solid var(--primary);}
+.infirmier-card-icon{margin-bottom:10px;}
+.infirmier-card h3{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:8px;font-family:'Poppins',sans-serif;}
+.infirmier-adresse{font-size:0.92rem;color:#4a5d66;line-height:1.6;margin-bottom:12px;display:flex;align-items:flex-start;gap:6px;}
+.infirmier-tel{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;padding:10px 18px;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;text-decoration:none;min-height:44px;transition:background 0.2s;}
+.infirmier-tel:hover{background:var(--primary-dark);}
+@media(max-width:900px){.infirmiers-section{padding:0 20px 60px;}.infirmiers-grid{grid-template-columns:1fr;}}
   </style>
   <link rel="stylesheet" href="nsad-common.css">
 </head>
@@ -225,28 +235,32 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
     </div>
   </div>
 
-  <!-- CONNAISSANCE LOCALE -->
-  <div class="local-band">
-    <div class="local-inner">
-      <span class="section-label">Connaissance du territoire</span>
-      <h2 class="section-title" style="max-width:600px">Ce que nos équipes <em>connaissent de vos quartiers</em></h2>
-      <div class="local-grid">
-          <div class="local-item">
-            <h3>Structures de santé à proximité</h3>
-            <p>CHU de Nantes, pharmacies Centre-ville (Place du Commerce, rue de la Paix, rue Crébillon), médecins de ville du quartier, CLIC Loire-Atlantique. Nos équipes connaissent chaque interlocuteur pour coordonner votre parcours de soins.</p>
-          </div>
-          <div class="local-item">
-            <h3>Accessibilité et déplacements</h3>
-            <p>Le Centre-ville est desservi par les lignes de tramway 1 et 2, le Busway et de nombreuses lignes de bus. Nos soignants s'organisent pour être ponctuels malgré les travaux et la densité du trafic urbain.</p>
-          </div>
-          <div class="local-item">
-            <h3>Partenaires associatifs locaux</h3>
-            <p>CCAS de Nantes, associations de quartier Bouffay et Graslin, maisons de quartier Centre-ville. Un réseau humain solide pour que personne ne reste isolé dans ce quartier dense et vivant.</p>
-          </div>
-          <div class="local-item">
-            <h3>Population accompagnée</h3>
-            <p>Seniors dans leurs appartements historiques du Centre-ville, personnes en retour d'hospitalisation depuis le CHU, aidants familiaux. Nous répondons à chaque profil avec écoute et sur-mesure.</p>
-          </div>
+</div>
+
+<!-- INFIRMIERS LIBÉRAUX -->
+<div class="infirmiers-section">
+  <div class="infirmiers-inner">
+    <span class="section-label">Réseau de santé local</span>
+    <h2 class="section-title">Infirmiers libéraux <em>partenaires du quartier</em></h2>
+    <p class="section-sub">Dans le cadre d'une prise en charge coordonnée, nous travaillons avec les infirmiers libéraux du Centre-ville. Ces professionnels de santé indépendants sont vos interlocuteurs de proximité pour la continuité des soins.</p>
+    <div class="infirmiers-grid">
+      <div class="infirmier-card" itemscope itemtype="https://schema.org/Physician">
+        <div class="infirmier-card-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="9" r="5" stroke="#3C697F" stroke-width="2"/><path d="M5 24q0-8 9-8 9 0 9 8" stroke="#3C697F" stroke-width="2" stroke-linecap="round"/><path d="M14 14v4M12 16h4" stroke="#8FF0D2" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3 itemprop="name">ETIENNE Ronan</h3>
+        <p class="infirmier-adresse"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4.57 1 3 2.57 3 4.5c0 3 3.5 7.5 3.5 7.5S10 7.5 10 4.5C10 2.57 8.43 1 6.5 1z" fill="rgba(60,105,127,0.3)"/><circle cx="6.5" cy="4.5" r="1.3" fill="#3C697F"/></svg> <span itemprop="address">38 Bd Gabriel Guist'Hau, 44000 Nantes</span></p>
+        <a href="tel:0613138098" class="infirmier-tel" itemprop="telephone">06 13 13 80 98</a>
+      </div>
+      <div class="infirmier-card" itemscope itemtype="https://schema.org/Physician">
+        <div class="infirmier-card-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="9" r="5" stroke="#3C697F" stroke-width="2"/><path d="M5 24q0-8 9-8 9 0 9 8" stroke="#3C697F" stroke-width="2" stroke-linecap="round"/><path d="M14 14v4M12 16h4" stroke="#8FF0D2" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3 itemprop="name">FAVENNEC Anne</h3>
+        <p class="infirmier-adresse"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4.57 1 3 2.57 3 4.5c0 3 3.5 7.5 3.5 7.5S10 7.5 10 4.5C10 2.57 8.43 1 6.5 1z" fill="rgba(60,105,127,0.3)"/><circle cx="6.5" cy="4.5" r="1.3" fill="#3C697F"/></svg> <span itemprop="address">9 Rue Jeanne d'Arc, 44000 Nantes</span></p>
+        <a href="tel:0673363530" class="infirmier-tel" itemprop="telephone">06 73 36 35 30</a>
+      </div>
+      <div class="infirmier-card" itemscope itemtype="https://schema.org/Physician">
+        <div class="infirmier-card-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="9" r="5" stroke="#3C697F" stroke-width="2"/><path d="M5 24q0-8 9-8 9 0 9 8" stroke="#3C697F" stroke-width="2" stroke-linecap="round"/><path d="M14 14v4M12 16h4" stroke="#8FF0D2" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3 itemprop="name">MENENDEZ Ophélie</h3>
+        <p class="infirmier-adresse"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4.57 1 3 2.57 3 4.5c0 3 3.5 7.5 3.5 7.5S10 7.5 10 4.5C10 2.57 8.43 1 6.5 1z" fill="rgba(60,105,127,0.3)"/><circle cx="6.5" cy="4.5" r="1.3" fill="#3C697F"/></svg> <span itemprop="address">9 rue Kléber, 44000 Nantes</span></p>
+        <a href="tel:0633421193" class="infirmier-tel" itemprop="telephone">06 33 42 11 93</a>
       </div>
     </div>
   </div>
