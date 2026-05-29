@@ -346,4 +346,118 @@ Insérer via **Elementor → HTML Widget** ou **Code Block** le code complet du 
 
 ---
 
+## 12. Polissage Haute Couture — Sprint v1.1
+
+Cinq améliorations UX/visuelles appliquées à l'ensemble des 35 pages statiques.
+
+---
+
+### 12.1 Carte Interactive SVG — `nos-quartiers.html`
+
+Carte schématique de Nantes avec 11 bulles cliquables et le tracé de la Loire.
+
+| Élément | Détail |
+|---|---|
+| `viewBox` | `0 0 680 440` |
+| Bulles actives | 9 quartiers couverts → `<a href="quartier-xxx.html">` |
+| Bulles inactives | 2 zones hors-couverture → `<g class="qb-inactive">` (tirets, opacité 50 %) |
+| Loire | Chemin SVG `fill` avec dégradé bleu‑ardoise |
+| Hover | `transform: scale(1.10)` via `transform-box: fill-box; transform-origin: center` |
+| Accessibilité | `<title>` SVG natif, `role="img"`, `aria-label` sur chaque lien |
+
+**Migration Elementor :**
+Option A — **Widget Carte Google Maps** personnalisé avec marqueurs : moins fidèle visuellement.
+Option B — **Widget HTML** (Elementor Pro) avec le bloc SVG complet copié depuis `nos-quartiers.html` → section `.carte-band`.
+
+---
+
+### 12.2 Skeleton Loaders — `nsad-common.css`
+
+Shimmer animé pour les images en cours de chargement.
+
+| Classe | Usage |
+|---|---|
+| `.img-skel` | Wrapper d'image — shimmer `::before` disparaît à `img-loaded` |
+| `.skel` | Élément générique en état de chargement |
+| `.skel-text` | Ligne de texte fantôme (`height: 1em`) |
+| `.skel-block` | Bloc rectangulaire fantôme |
+
+**Keyframe** : `nsad-shimmer` — gradient `#e4eef3 → #cce1ec → #e4eef3` sur `1200px`, durée `1.6s`.
+**Déclenchement JS** : `nsad-ux.js` → `setupImgSkeletons()` détecte `img.complete` et ajoute `.img-loaded`.
+**`prefers-reduced-motion`** : animation désactivée, fond uni `#e4eef3`.
+
+**Migration Elementor :** Appliquer la classe `.img-skel` sur le widget Image via *Advanced → CSS Classes*. Le JS sera chargé par le thème enfant via `functions.php` : `wp_enqueue_script('nsad-ux', ...)`.
+
+---
+
+### 12.3 Transitions de Pages — `nsad-common.css` + `nsad-ux.js`
+
+Fade doux entre chaque page interne (230 ms sortie, 280 ms entrée).
+
+| Phase | Mécanisme |
+|---|---|
+| **Entrée** | `@keyframes nsad-page-in` sur `body` — `opacity 0→1` + `translateY(6px→0)` |
+| **Sortie** | `nsad-ux.js` capture le clic, ajoute `.nsad-out` sur `body`, attend 230 ms avant `location.href` |
+| **bfcache** | `pageshow` event → retire `.nsad-out` si `event.persisted` |
+| **Liens ignorés** | `#ancres`, `tel:`, `mailto:`, `http://`, `https://`, `//`, `download`, `target=_blank` |
+
+**`prefers-reduced-motion`** : toutes les animations désactivées (`animation: none`, `transition: none`).
+
+**Migration Elementor :** Elementor Pro inclut des *Page Transitions* natives (Settings → Page Transitions). Privilégier le type **Fade** avec durée **280 ms**. Le JS personnalisé peut être supprimé une fois la fonctionnalité Elementor activée.
+
+---
+
+### 12.4 Accessibilité Clavier — `nsad-common.css` + `nsad-ux.js`
+
+Halo `:focus-visible` mint conforme WCAG 2.2 §2.4.11 Focus Appearance.
+
+| Élément | Style |
+|---|---|
+| Liens, boutons, `[tabindex]` | `outline: 2.5px solid #70E8C6` + `box-shadow: 0 0 0 5px rgba(112,232,198,.18)` |
+| `.nav-cta`, `.nsad-floating-call` | `border-radius: 50px` |
+| Inputs / select / textarea | `box-shadow: 0 0 0 3px rgba(112,232,198,.25)` |
+| Souris | `:focus:not(:focus-visible)` → `outline: none` |
+
+**Polyfill JS** (Safari < 15.4) : `nsad-ux.js` détecte l'absence de `:focus-visible` natif et applique la classe `.focus-kb` sur `body` selon l'usage clavier / souris.
+
+**Migration Elementor :** Coller les règles `:focus-visible` dans *Elementor → Custom CSS* (global). Le polyfill JS reste dans le thème enfant.
+
+---
+
+### 12.5 Micro-interactions Formulaire — `nous-contacter.html`
+
+Validation temps réel et retours visuels sur le formulaire de contact.
+
+| État | Classe CSS | Apparence |
+|---|---|---|
+| Champ valide | `.fg-valid` | Bordure mint `#8FF0D2` + checkmark `✓` via `::after` |
+| Champ invalide | `.fg-invalid` | Bordure corail `#FF9E8E` |
+| Message d'erreur | `.fg-error` | Texte corail `13px` sous le champ |
+| Bouton envoi | `.form-submit.fs-success` | Fond mint, texte « ✓ Message envoyé », animation `fadeInUp` |
+
+**Validation JS** : événement `blur` (non intrusif) + revalidation `input` en temps réel si le champ est déjà marqué invalide. Règles : `required`, `pattern` (téléphone, email), `checkbox` (RGPD).
+
+**Migration Elementor :** Utiliser **Elementor Form** (Pro) avec les widgets *Email*, *Text*, *Select*, *Checkbox* et activer *Form Actions → Email*. La validation visuelle est reproduite via *Style → Fields → Border Color* conditionnel (CSS custom) ou un plugin tiers comme *Elementor Form Styler*.
+
+---
+
+### 12.6 Déploiement — Fichiers Partagés
+
+Deux fichiers à inclure dans **chaque page** du site (et dans le thème WordPress enfant) :
+
+| Fichier | Rôle | Balise |
+|---|---|---|
+| `nsad-common.css` | Styles partagés (nav, skeleton, transitions, focus) | `<link rel="stylesheet" href="nsad-common.css">` — **en dernier** dans `<head>` |
+| `nsad-ux.js` | JS partagé (transitions, skeletons, focus polyfill) | `<script src="nsad-ux.js"></script>` — **juste avant** `</body>` |
+
+**Vérification rapide** : tout fichier HTML du projet doit contenir ces deux lignes. Commande de contrôle :
+```bash
+# Vérifier que tous les HTML incluent nsad-ux.js
+grep -rL "nsad-ux.js" *.html
+# Vérifier que tous les HTML incluent nsad-common.css
+grep -rL "nsad-common.css" *.html
+```
+
+---
+
 *Document vivant — mettre à jour après chaque sprint de migration.*

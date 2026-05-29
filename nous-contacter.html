@@ -148,13 +148,68 @@
     font-family:'Hind',sans-serif; font-size:14px; color:var(--dark);
     transition:border-color 0.2s, box-shadow 0.2s; outline:none;
   }
+  /* ── Micro-interactions : focus lueur mint ── */
   input:focus, select:focus, textarea:focus {
-    border-color:var(--primary); box-shadow:0 0 0 3px rgba(60,105,127,0.1);
+    border-color:var(--primary);
+    box-shadow:0 0 0 3.5px rgba(112,232,198,0.30);
+    outline:none;
   }
   textarea { resize:vertical; min-height:120px; }
-  select { cursor:pointer; }
-  .form-submit { width:100%; padding:16px; background:var(--primary); color:var(--white); border:none; border-radius:50px; font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; cursor:pointer; transition:all 0.2s; }
-  .form-submit:hover { background:#2d5163; transform:translateY(-2px); box-shadow:0 8px 24px rgba(60,105,127,0.25); }
+  select { cursor:pointer; appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232E6A8A' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:36px; }
+  /* ── État valide : bordure mint + coche ── */
+  .form-group { position:relative; }
+  .form-group.fg-valid input,
+  .form-group.fg-valid select,
+  .form-group.fg-valid textarea {
+    border-color:var(--mint-dark,#3DC9A0);
+    box-shadow:0 0 0 3px rgba(112,232,198,.18);
+  }
+  .form-group.fg-valid::after {
+    content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+    width:18px;height:18px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='9' fill='%2370E8C6'/%3E%3Cpath d='M6 10l3 3 5-5' stroke='%231B2A33' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    pointer-events:none;
+  }
+  /* Pour select et textarea, décaler la coche */
+  .form-group.fg-valid select  { padding-right:52px; }
+  .form-group.fg-valid textarea + *,
+  .form-group.fg-valid.textarea-group::after { top:42px;transform:none; }
+  /* ── État invalide : bordure corail ── */
+  .form-group.fg-invalid input,
+  .form-group.fg-invalid select,
+  .form-group.fg-invalid textarea {
+    border-color:#FF8A75;
+    box-shadow:0 0 0 3px rgba(255,138,117,.18);
+  }
+  .form-group .fg-error {
+    display:none;font-size:12px;color:#E86D59;margin-top:5px;
+    animation:nsad-page-in .25s ease both;
+  }
+  .form-group.fg-invalid .fg-error { display:block; }
+  /* ── Bouton submit : états ── */
+  .form-submit {
+    width:100%;padding:16px;background:var(--primary);color:var(--white);border:none;
+    border-radius:50px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;
+    cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s,opacity .2s;
+    position:relative;overflow:hidden;
+  }
+  .form-submit:hover { background:#2d5163;transform:translateY(-2px);box-shadow:0 8px 24px rgba(60,105,127,0.25); }
+  .form-submit:focus-visible { box-shadow:0 0 0 3px rgba(112,232,198,.45);outline:none; }
+  .form-submit.fs-loading { opacity:.75;pointer-events:none; }
+  .form-submit.fs-success {
+    background:#3DC9A0 !important;
+    transform:none !important;
+    box-shadow:0 4px 20px rgba(61,201,160,.35) !important;
+  }
+  /* Coche animée dans le bouton succès */
+  @keyframes fs-check { 0%{transform:scale(0) rotate(-10deg)}80%{transform:scale(1.15)}100%{transform:scale(1)} }
+  .form-submit.fs-success::before {
+    content:'✓ Message envoyé';display:flex;align-items:center;justify-content:center;
+    position:absolute;inset:0;background:inherit;
+    animation:fs-check .4s cubic-bezier(.34,1.56,.64,1) both;
+  }
   .form-note { font-size:12px; color:#8a9aa2; text-align:center; margin-top:12px; line-height:1.5; }
 
   /* MAP PLACEHOLDER */
@@ -189,16 +244,6 @@
     .form-card { padding:24px; }
   }
 
-/* Page transition overlay — always present, invisible by default */
-#page-transition {
-  position: fixed;
-  inset: 0;
-  z-index: 8000;
-  background: var(--primary);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.38s cubic-bezier(0.4,0,1,1);
-}
 
 
   /* Secondary page nav — starts scrolled (white) */
@@ -376,6 +421,93 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 });
 
 </script>
+
+<!-- ── Micro-interactions formulaire ── -->
+<script>
+(function(){
+  'use strict';
+  var form=document.querySelector('form[novalidate]');
+  if(!form)return;
+
+  /* Règles de validation par champ */
+  var rules={
+    prenom:{required:true,label:'Le prénom'},
+    nom:{required:true,label:'Le nom'},
+    telephone:{required:true,label:'Le téléphone',pattern:/^[\d\s\+\-\(\)\.]{8,20}$/},
+    email:{required:false,pattern:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,label:'L\'email'},
+    sujet:{required:true,label:'L\'objet'},
+    rgpd:{required:true,checkbox:true,label:'L\'acceptation RGPD'}
+  };
+
+  function getGroup(field){return field.closest('.form-group');}
+
+  function validate(field){
+    var id=field.id,rule=rules[id];
+    if(!rule)return true;
+    var val=rule.checkbox?field.checked:field.value.trim();
+    var ok=true;
+    var msg='';
+    if(rule.required&&!val){ok=false;msg=(rule.label||'Ce champ')+' est requis.';}
+    else if(val&&rule.pattern&&!rule.checkbox&&!rule.pattern.test(field.value.trim())){
+      ok=false;msg=(rule.label||'Ce champ')+' n\'est pas valide.';
+    }
+    var group=getGroup(field);
+    if(!group)return ok;
+    /* Supprimer ou créer le message d'erreur */
+    var errEl=group.querySelector('.fg-error');
+    if(!errEl){errEl=document.createElement('span');errEl.className='fg-error';errEl.setAttribute('role','alert');group.appendChild(errEl);}
+    errEl.textContent=ok?'':msg;
+    group.classList.toggle('fg-valid',   ok&&!!val);
+    group.classList.toggle('fg-invalid', !ok);
+    /* Pour textarea : ajuster position de la coche */
+    if(field.tagName.toLowerCase()==='textarea')group.classList.add('textarea-group');
+    return ok;
+  }
+
+  /* Validation au blur (chaque champ) */
+  form.querySelectorAll('input,select,textarea').forEach(function(f){
+    f.addEventListener('blur',function(){validate(f);});
+    f.addEventListener('input',function(){
+      var group=getGroup(f);
+      /* Si le champ était invalide, re-vérifier en temps réel */
+      if(group&&group.classList.contains('fg-invalid'))validate(f);
+    });
+  });
+
+  /* Soumission */
+  var btn=form.querySelector('.form-submit');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var allOk=true;
+    form.querySelectorAll('input,select,textarea').forEach(function(f){
+      if(!validate(f))allOk=false;
+    });
+    if(!allOk){
+      /* Scroll vers le premier champ invalide */
+      var first=form.querySelector('.fg-invalid');
+      if(first){first.scrollIntoView({behavior:'smooth',block:'center'});}
+      return;
+    }
+    /* Simulation envoi */
+    if(btn){
+      btn.classList.add('fs-loading');
+      setTimeout(function(){
+        btn.classList.remove('fs-loading');
+        btn.classList.add('fs-success');
+        /* Reset après 4s */
+        setTimeout(function(){
+          btn.classList.remove('fs-success');
+          form.reset();
+          form.querySelectorAll('.form-group').forEach(function(g){
+            g.classList.remove('fg-valid','fg-invalid');
+          });
+        },4000);
+      },900);
+    }
+  });
+}());
+</script>
+<script src="nsad-ux.js"></script>
 <a href="tel:0240354343" class="nsad-floating-call" aria-label="Appeler Nantes Soins &#224; Domicile"><span class="fc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.07 6.07l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg></span><span class="fc-label">02 40 35 43 43</span></a>
 </body>
 </html>

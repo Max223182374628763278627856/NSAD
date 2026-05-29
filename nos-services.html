@@ -657,12 +657,6 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 [data-delay="3"] { transition-delay:0.3s; }
 [data-delay="4"] { transition-delay:0.4s; }
 
-/* PAGE TRANSITION */
-#page-transition {
-  position:fixed; inset:0; z-index:8000;
-  background:var(--primary); opacity:0;
-  pointer-events:none; transition:opacity 0.38s cubic-bezier(0.4,0,1,1);
-}
 
 /* ═══════════════════════════
    RESPONSIVE
@@ -694,7 +688,7 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 </style> <link rel="stylesheet" href="nsad-common.css">
 </head>
 <body> <div id="scroll-bar"></div>
-<div id="page-transition"></div> <!-- ══════════ NAV ══════════ -->
+<!-- ══════════ NAV ══════════ -->
 <nav role="navigation" aria-label="Navigation principale" id="main-nav"> <a href="index.html" class="nav-logo" aria-label="Nantes Soins à Domicile — Accueil"> <img src="logo.png" alt="Logo Nantes Soins à Domicile" width="160" height="48"> </a> <ul class="nav-links"> <li><a href="index.html">Accueil</a></li> <li><a href="nos-quartiers.html">Nos Quartiers</a></li> <li><a href="nos-services.html">Nos Services</a></li> <li><a href="nos-actualites.html">Nos Actualit&eacute;s</a></li> <li><a href="qui-sommes-nous.html">L'Association</a></li> <li><a href="recrutement.html">Recrutement</a></li> <li><a href="nous-contacter.html">Contact</a></li> </ul> <a href="tel:0240354343" class="nav-cta">02&nbsp;40&nbsp;35&nbsp;43&nbsp;43</a> <button class="nav-hamburger" id="nsad-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="nsad-mobile-nav" role="navigation" aria-label="Menu mobile"> <a href="index.html">Accueil</a> <a href="nos-services.html">Nos services</a> <a href="nos-quartiers.html">Nos quartiers</a> <a href="nos-actualites.html">Nos Actualit&#233;s</a> <a href="qui-sommes-nous.html">L&#39;Association</a> <a href="recrutement.html">Recrutement</a> <a href="nous-contacter.html" class="nav-mobile-cta">Nous contacter</a>
@@ -803,35 +797,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   });
 });
 
-/* Page transition */
-(function() {
-  var overlay = document.getElementById('page-transition');
-  document.addEventListener('click', function(e) {
-    var link = e.target.closest('a[href]');
-    if (!link) return;
-    var href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:')
-        || link.target === '_blank' || e.metaKey || e.ctrlKey) return;
-    e.preventDefault();
-    if (overlay) {
-      overlay.style.opacity = '1';
-      overlay.style.pointerEvents = 'all';
-    }
-    setTimeout(function() { window.location.href = href; }, 380);
-  });
-  // Entrée : fade in depuis overlay
-  if (overlay) {
-    overlay.style.opacity = '1';
-    overlay.style.pointerEvents = 'all';
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        overlay.style.transition = 'opacity 0.45s cubic-bezier(0,0,0.2,1)';
-        overlay.style.opacity = '0';
-        setTimeout(function() { overlay.style.pointerEvents = 'none'; }, 460);
-      });
-    });
-  }
-})();
-</script> <a href="tel:0240354343" class="nsad-floating-call" aria-label="Appeler Nantes Soins &#224; Domicile"><span class="fc-icon"></span><span class="fc-label">02 40 35 43 43</span></a>
+</script>
+<script src="nsad-ux.js"></script>
+<a href="tel:0240354343" class="nsad-floating-call" aria-label="Appeler Nantes Soins &#224; Domicile"><span class="fc-icon"></span><span class="fc-label">02 40 35 43 43</span></a>
 </body>
 </html>

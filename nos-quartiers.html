@@ -242,7 +242,277 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
     </div> <div class="hero-badge">Agréé ARS Pays de la Loire — Proximité locale</div> <h1>Soins à domicile<br>dans <em>votre quartier</em> à Nantes</h1> <p>Notre <strong>service agréé par l'ARS Pays de la Loire</strong> intervient dans chaque quartier de Nantes avec une équipe de soignants qui connaît votre rue, vos pharmacies de proximité, vos accès. Chaque accompagnement s'inscrit dans un <strong>Projet de Vie Individualisé</strong>, finançable par l'<strong>APA</strong> (selon votre GIR) ou la <strong>PCH</strong>, 7j/7.</p> <div class="hero-stats" data-reveal="fade"> <div><span class="stat-num">9+</span><span class="stat-label">Quartiers couverts</span></div> <div><span class="stat-num">7j/7</span><span class="stat-label">Interventions</span></div> <div><span class="stat-num">70+</span><span class="stat-label">Professionnels</span></div> </div> </div>
 </section> <!-- INTRO -->
 <div class="intro-band"> <div class="intro-inner" data-reveal="up"> <div class="intro-text"> <h2>Une présence humaine <em>ancrée dans Nantes</em></h2> <p>Chez Nantes Soins à Domicile, nous ne sommes pas une structure nationale anonyme. Nous sommes une association nantaise, née ici, enracinée ici. Nos équipes connaissent vos rues, vos commerces de proximité, les accès parfois complexes de certains immeubles, et les établissements de santé proches — du <strong>CHU de Nantes</strong> aux pharmacies de quartier.</p> <p>Cette connaissance intime du terrain nous permet d'intervenir avec fluidité et <strong>bientraitance</strong>. Nos infirmièr(e)s coordinateurs co-construisent avec vous un <strong>Projet de Vie Individualisé</strong> et active si besoin les dispositifs <strong>CLIC et MAIA</strong> de Loire-Atlantique pour une coordination pluridisciplinaire complète.</p> <p>Chaque page quartier vous présente notre ancrage local, les infirmiers libéraux partenaires, les structures de soins à proximité et les lignes de tramway pour comprendre comment nous rejoignons votre domicile au plus vite.</p> </div> <div class="values-list"> <div class="value-item"> <div class="value-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="2" stroke="#3C697F" stroke-width="1.8"/><path d="M11 7v8M7 11h8" stroke="#3C697F" stroke-width="1.8" stroke-linecap="round"/></svg></div> <div><strong>Proximité avec les établissements de santé</strong><span>Nous connaissons les protocoles de sortie d'hôpital de chaque quartier, du CHU à la clinique du Confluent.</span></div> </div> <div class="value-item"> <div class="value-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="12" cy="4" r="2" stroke="#3C697F" stroke-width="1.8"/><path d="M8 18l2-5 2 2 2-5" stroke="#3C697F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10l2-3 3 2" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div> <div><strong>Intervention rapide sur tout le territoire nantais</strong><span>Nos soignants habitent et travaillent dans Nantes.</span></div> </div> <div class="value-item"> <div class="value-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 12l4-4 3 3 3-3 4 4" stroke="#3C697F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12l3 4h8l3-4" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div> <div><strong>Continuité avec votre médecin traitant</strong><span>Nous collaborons avec les médecins, pharmacies et dispositifs CLIC/MAIA de votre secteur. Le Projet de Vie Individualisé circule entre tous les acteurs.</span></div> </div> </div> </div>
-</div> <!-- GRILLE QUARTIERS -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     CARTE INTERACTIVE — 9 quartiers actifs + 2 hors zone
+═══════════════════════════════════════════════════ -->
+<style>
+/* ── Carte Band ── */
+.carte-band{padding:80px 48px;background:var(--white);}
+.carte-inner{max-width:860px;margin:0 auto;}
+.carte-header{text-align:center;margin-bottom:40px;}
+.carte-header .section-label{justify-content:center;}
+.carte-header .section-title{margin-bottom:12px;}
+.carte-sub{font-size:1rem;color:var(--text-muted,#637D88);max-width:560px;margin:0 auto;line-height:1.8;}
+/* Card wrapper */
+.carte-wrap{
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 4px 32px rgba(46,106,138,.10);
+  overflow:hidden;
+  padding:4px;
+}
+.carte-wrap svg{display:block;width:100%;height:auto;}
+.carte-note{text-align:center;font-size:13px;color:var(--text-muted,#637D88);margin-top:14px;line-height:1.6;}
+.carte-note a{color:var(--primary,#2E6A8A);font-weight:600;}
+/* ── SVG Elements ── */
+.city-bg{fill:rgba(46,106,138,.04);stroke:rgba(46,106,138,.07);stroke-width:1.5;fill-rule:evenodd;}
+.loire-path{fill:rgba(176,218,238,.70);}
+.loire-label{font-family:'Hind',sans-serif;font-size:13px;font-style:italic;fill:rgba(46,106,138,.50);letter-spacing:1.5px;}
+/* Bubble group — scale spring on hover */
+.qb-link{cursor:pointer;text-decoration:none;}
+.qb-link:focus{outline:none;}
+.qb-group{
+  transition:transform .32s cubic-bezier(.34,1.56,.64,1);
+  transform-box:fill-box;
+  transform-origin:center center;
+}
+.qb-link:hover .qb-group,
+.qb-link:focus-visible .qb-group{transform:scale(1.10);}
+/* Circle */
+.qb-circle{
+  fill:#fff;
+  stroke:var(--primary,#2E6A8A);
+  stroke-width:2;
+  transition:fill .22s ease,stroke-width .22s ease,filter .22s ease;
+  filter:drop-shadow(0 2px 6px rgba(46,106,138,.15));
+}
+.qb-link:hover .qb-circle,
+.qb-link:focus-visible .qb-circle{
+  fill:var(--primary,#2E6A8A);
+  stroke-width:0;
+  filter:drop-shadow(0 6px 16px rgba(46,106,138,.38));
+}
+/* Île de Nantes — fond légèrement teinté mint */
+.qb-ile{fill:rgba(112,232,198,.12);}
+.qb-link:hover .qb-ile{fill:var(--primary,#2E6A8A);}
+/* Center dot */
+.qb-dot{fill:var(--primary,#2E6A8A);transition:fill .22s ease,transform .32s cubic-bezier(.34,1.56,.64,1);transform-box:fill-box;transform-origin:center;}
+.qb-link:hover .qb-dot,
+.qb-link:focus-visible .qb-dot{fill:var(--mint,#70E8C6);transform:scale(1.4);}
+/* Label typography */
+.qb-label{font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;fill:#122432;transition:fill .22s ease;pointer-events:none;}
+.qb-sublabel{font-family:'Hind',sans-serif;font-size:10px;fill:#637D88;transition:fill .22s ease;pointer-events:none;}
+.qb-link:hover .qb-label,
+.qb-link:focus-visible .qb-label,
+.qb-link:hover .qb-sublabel,
+.qb-link:focus-visible .qb-sublabel{fill:var(--primary,#2E6A8A);}
+/* Focus ring : cercle mint autour du bubble */
+.qb-link:focus-visible .qb-circle{
+  stroke:var(--mint,#70E8C6);
+  stroke-width:3;
+  filter:drop-shadow(0 0 8px rgba(112,232,198,.55));
+}
+/* Inactive / hors zone */
+.qb-inactive .qb-circle{
+  fill:rgba(255,255,255,.75);
+  stroke:#9CBDD0;
+  stroke-dasharray:5 3;
+  stroke-width:1.8;
+  filter:none;
+}
+.qb-inactive .qb-dot{fill:#9CBDD0;}
+.qb-inactive .qb-label{fill:#9CBDD0;font-weight:500;}
+.qb-inactive .qb-sublabel{fill:#B8CDD8;}
+/* Mobile : scroll horizontal si trop petit */
+@media(max-width:560px){
+  .carte-band{padding:60px 16px;}
+  .carte-wrap{overflow-x:auto;}
+  .carte-wrap svg{min-width:420px;}
+}
+</style>
+
+<section class="carte-band" id="carte-nantes" aria-labelledby="carte-titre">
+  <div class="carte-inner">
+    <header class="carte-header" data-reveal="up">
+      <div style="display:flex;justify-content:center;"><span class="section-label">Carte interactive</span></div>
+      <h2 class="section-title" id="carte-titre">Votre quartier <em>sur la carte</em></h2>
+      <p class="carte-sub">Cliquez sur votre secteur pour découvrir l'équipe locale, les partenaires et les modalités d'intervention NSAD.</p>
+    </header>
+
+    <div class="carte-wrap" data-reveal="up" data-delay="1">
+      <svg viewBox="0 0 680 440"
+           role="img"
+           aria-labelledby="map-svg-title"
+           focusable="false"
+           xmlns="http://www.w3.org/2000/svg">
+        <title id="map-svg-title">Carte schématique de Nantes — 9 quartiers couverts par Nantes Soins à Domicile</title>
+
+        <!-- Fond -->
+        <rect width="680" height="440" fill="#EAF6FB" rx="12"/>
+
+        <!-- Silhouette ville (très subtile) -->
+        <path class="city-bg"
+          d="M 58,26 L 190,16 L 330,12 L 452,20 L 580,44 L 646,87 L 660,168 L 648,248 L 640,308 L 622,375 L 548,405 L 420,414 L 298,410 L 175,404 L 86,376 L 38,322 L 18,252 L 20,170 L 38,100 Z"/>
+
+        <!-- Loire — bande fluide est-ouest -->
+        <path class="loire-path"
+          d="M 0,244 C 68,228 124,234 178,246 C 228,256 272,264 298,261
+             C 326,258 360,250 418,258 C 476,266 548,254 680,246
+             L 680,304 C 548,312 476,322 418,314
+             C 360,306 326,314 298,317
+             C 272,320 228,314 178,302
+             C 124,290 68,284 0,300 Z"/>
+        <text class="loire-label" x="602" y="283" text-anchor="middle"
+              transform="rotate(-1.5,602,283)">Loire</text>
+
+        <!-- ──────────────────────────────────────────
+             9 QUARTIERS ACTIFS
+        ────────────────────────────────────────── -->
+
+        <!-- 1. Nantes Nord -->
+        <a href="quartier-nantes-nord.html" class="qb-link"
+           aria-label="Soins à domicile – Nantes Nord">
+          <title>Nantes Nord — Voir nos services</title>
+          <g class="qb-group" transform="translate(390,52)">
+            <circle class="qb-circle" r="26"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label" y="42" text-anchor="middle">Nantes Nord</text>
+          </g>
+        </a>
+
+        <!-- 2. Hauts-Pavés / Saint-Félix -->
+        <a href="quartier-hauts-paves-saint-felix.html" class="qb-link"
+           aria-label="Soins à domicile – Hauts-Pavés / Saint-Félix">
+          <title>Hauts-Pavés / Saint-Félix — Voir nos services</title>
+          <g class="qb-group" transform="translate(156,90)">
+            <circle class="qb-circle" r="26"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label"    y="42" text-anchor="middle">Hauts-Pavés</text>
+            <text class="qb-sublabel" y="54" text-anchor="middle">/ Saint-Félix</text>
+          </g>
+        </a>
+
+        <!-- 3. Dervallières-Zola -->
+        <a href="quartier-dervallières-zola.html" class="qb-link"
+           aria-label="Soins à domicile – Dervallières-Zola">
+          <title>Dervallières-Zola — Voir nos services</title>
+          <g class="qb-group" transform="translate(216,184)">
+            <circle class="qb-circle" r="26"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label"    y="42" text-anchor="middle">Dervallières</text>
+            <text class="qb-sublabel" y="54" text-anchor="middle">Zola</text>
+          </g>
+        </a>
+
+        <!-- 4. Breil-Barbière -->
+        <a href="quartier-breil-barbiere.html" class="qb-link"
+           aria-label="Soins à domicile – Breil-Barbière">
+          <title>Breil-Barbière — Voir nos services</title>
+          <g class="qb-group" transform="translate(96,192)">
+            <circle class="qb-circle" r="26"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label" y="42" text-anchor="middle">Breil-Barbière</text>
+          </g>
+        </a>
+
+        <!-- 5. Centre-Ville / CHU (bulle principale — r=30) -->
+        <a href="quartier-centre-ville.html" class="qb-link"
+           aria-label="Soins à domicile – Centre-Ville et CHU de Nantes">
+          <title>Centre-Ville / CHU — Voir nos services</title>
+          <g class="qb-group" transform="translate(320,170)">
+            <circle class="qb-circle" r="30"/>
+            <circle class="qb-dot" r="5.5"/>
+            <text class="qb-label"    y="47" text-anchor="middle">Centre-Ville</text>
+            <text class="qb-sublabel" y="60" text-anchor="middle">/ CHU</text>
+          </g>
+        </a>
+
+        <!-- 6. Malakoff / Saint-Donatien -->
+        <a href="quartier-malakoff-saint-donatien.html" class="qb-link"
+           aria-label="Soins à domicile – Malakoff / Saint-Donatien">
+          <title>Malakoff / Saint-Donatien — Voir nos services</title>
+          <g class="qb-group" transform="translate(460,180)">
+            <circle class="qb-circle" r="26"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label"    y="42" text-anchor="middle">Malakoff</text>
+            <text class="qb-sublabel" y="54" text-anchor="middle">/ St-Donatien</text>
+          </g>
+        </a>
+
+        <!-- 7. Île de Nantes (dans la Loire) -->
+        <a href="quartier-ile-de-nantes.html" class="qb-link"
+           aria-label="Soins à domicile – Île de Nantes">
+          <title>Île de Nantes — Voir nos services</title>
+          <g class="qb-group" transform="translate(318,275)">
+            <circle class="qb-circle qb-ile" r="27"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label" y="43" text-anchor="middle">Île de Nantes</text>
+          </g>
+        </a>
+
+        <!-- 8. Bellevue-Chantenay -->
+        <a href="quartier-bellevue-chantenay.html" class="qb-link"
+           aria-label="Soins à domicile – Bellevue-Chantenay">
+          <title>Bellevue-Chantenay — Voir nos services</title>
+          <g class="qb-group" transform="translate(108,304)">
+            <circle class="qb-circle" r="26"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label"    y="42" text-anchor="middle">Bellevue</text>
+            <text class="qb-sublabel" y="54" text-anchor="middle">Chantenay</text>
+          </g>
+        </a>
+
+        <!-- 9. Nantes Sud -->
+        <a href="quartier-nantes-sud.html" class="qb-link"
+           aria-label="Soins à domicile – Nantes Sud">
+          <title>Nantes Sud — Voir nos services</title>
+          <g class="qb-group" transform="translate(410,340)">
+            <circle class="qb-circle" r="26"/>
+            <circle class="qb-dot" r="4.5"/>
+            <text class="qb-label" y="42" text-anchor="middle">Nantes Sud</text>
+          </g>
+        </a>
+
+        <!-- ──────────────────────────────────────────
+             2 ZONES NON COUVERTES (pointillés)
+        ────────────────────────────────────────── -->
+
+        <!-- 10. Rezé (hors zone) -->
+        <g class="qb-inactive" transform="translate(242,375)"
+           role="img" aria-label="Rezé — hors couverture actuelle">
+          <circle class="qb-circle" r="20"/>
+          <text class="qb-label"    y="34" text-anchor="middle" font-size="10.5">Rezé</text>
+          <text class="qb-sublabel" y="45" text-anchor="middle" font-size="9">hors zone</text>
+        </g>
+
+        <!-- 11. Doulon-Gohards (hors zone) -->
+        <g class="qb-inactive" transform="translate(566,168)"
+           role="img" aria-label="Doulon-Gohards — hors couverture actuelle">
+          <circle class="qb-circle" r="20"/>
+          <text class="qb-label"    y="34" text-anchor="middle" font-size="10.5">Doulon</text>
+          <text class="qb-sublabel" y="45" text-anchor="middle" font-size="9">hors zone</text>
+        </g>
+
+        <!-- Légende -->
+        <g transform="translate(22,420)" aria-hidden="true">
+          <circle cx="8"   cy="0" r="7"   fill="#fff"                stroke="#2E6A8A" stroke-width="1.8"/>
+          <circle cx="8"   cy="0" r="2.5" fill="#2E6A8A"/>
+          <text x="22" y="5" font-family="Hind,sans-serif" font-size="11" fill="#637D88">Zone couverte NSAD</text>
+          <circle cx="172" cy="0" r="6.5" fill="rgba(255,255,255,.75)" stroke="#9CBDD0" stroke-dasharray="4.5 2.5" stroke-width="1.8"/>
+          <text x="186" y="5" font-family="Hind,sans-serif" font-size="11" fill="#9CBDD0">Hors couverture actuelle</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="carte-note">Les zones en pointillés ne sont pas encore couvertes.
+      <a href="nous-contacter.html">Contactez-nous</a> — nous étudions chaque demande.
+    </p>
+  </div>
+</section>
+
+<!-- GRILLE QUARTIERS -->
 <div class="section"> <span class="section-label" data-reveal="up">Agréé ARS — Présence locale 7j/7</span> <h2 class="section-title" data-reveal="up">Choisissez <em>votre quartier</em></h2> <p class="section-sub" data-reveal="up" data-delay="1">Retrouvez toutes les informations spécifiques à votre secteur : infirmiers libéraux partenaires, établissements de santé à proximité, lignes de tramway et modalités APA/PCH. Chaque quartier, un accompagnement fondé sur la <strong>bientraitance</strong> et le <strong>Projet de Vie Individualisé</strong>.</p> <div class="quartiers-grid"> <a href="quartier-centre-ville.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Centre-Ville / CHU</h3> <p>Proximité immédiate du CHU de Nantes. Nous accompagnons les sorties d'hôpital et assurons la continuité des soins post-hospitaliers en cœur de ville.</p> <span class="quartier-tag">Sortie d'Hôpital</span> </a> <a href="quartier-ile-de-nantes.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Île de Nantes</h3> <p>Un territoire en pleine transformation où nous adaptons nos interventions aux nouvelles résidences, aux chantiers de vie et à la mobilité parfois complexe de ce quartier dynamique.</p> <span class="quartier-tag">Urbanisme & Mobilité</span> </a> <a href="quartier-bellevue-chantenay.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Bellevue-Chantenay</h3> <p>Des quartiers populaires avec une identité forte, entre Loire et collines. Nos équipes s'y sentent chez elles et accompagnent les familles avec le respect que mérite chaque foyer.</p> <span class="quartier-tag">Esprit de Quartier</span> </a> <a href="quartier-hauts-paves-saint-felix.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Hauts-Pavés / Saint-Félix</h3> <p>Cadre de vie paisible au bord de l'Erdre. Nous intervenons dans ce quartier résidentiel apprécié des seniors, avec une attention particulière au lien social et à la qualité de vie.</p> <span class="quartier-tag">Cadre de Vie & Erdre</span> </a> <a href="quartier-dervallières-zola.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Dervallières-Zola</h3> <p>Un quartier vert au tissu social dense. Nous y assurons un suivi régulier et humain pour les personnes qui souhaitent rester chez elles entourées de leur environnement familier.</p> <span class="quartier-tag">Esprit de Quartier</span> </a> <a href="quartier-breil-barbiere.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Breil-Barbière</h3> <p>Entre parcs et résidences calmes, ce quartier accueille de nombreuses familles auxquelles nous apportons aide et soins dans un esprit de continuité et de bienveillance.</p> <span class="quartier-tag">Proximité Verte</span> </a> <a href="quartier-malakoff-saint-donatien.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Malakoff / Saint-Donatien</h3> <p>Un quartier en renouveau, mêlant anciens habitants et nouvelles familles. Nos équipes y sont présentes pour accompagner tout le monde avec la même attention inconditionnelle.</p> <span class="quartier-tag">Quartier Mixte</span> </a> <a href="quartier-nantes-nord.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Nantes Nord</h3> <p>Les quartiers nord de Nantes forment un territoire étendu où nous intervenons avec efficacité grâce à notre connaissance des accès et notre réseau de soignants locaux.</p> <span class="quartier-tag">Grand Territoire</span> </a> <a href="quartier-nantes-sud.html" class="quartier-card" data-reveal="up"> <div class="quartier-dot" aria-hidden="true"></div> <h3>Nantes Sud</h3> <p>Des quartiers résidentiels au riche tissu associatif. Nous accompagnons ici les personnes âgées et les familles aidantes avec douceur et régularité dans leurs besoins quotidiens.</p> <span class="quartier-tag">Résidentiel</span> </a> </div>
 </div> <!-- CTA -->
 <div class="cta-band"> <h2 data-reveal="up">Besoin d'une aide urgente à Nantes ?</h2> <p>Notre infirmière coordinatrice vous répond sous 48h — évaluation GIR, Projet de Vie Individualisé, APA/PCH. Intervention Agréé ARS dans votre quartier dès le lendemain.</p> <div class="cta-btns"> <a href="nous-contacter.html" class="btn-white">Échangeons sur votre projet de vie</a> <a href="tel:0240354343" class="btn-outline-white">02 40 35 43 43</a> </div>
@@ -329,5 +599,6 @@ footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
   });
 })();
 </script>
+<script src="nsad-ux.js"></script>
 </body>
 </html>
