@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
-<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Soins à domicile par quartier Nantes | Agréé ARS, APA/GIR 7j/7</title> <meta name="description" content="Agréé ARS Pays de la Loire intervenant dans tous les quartiers de Nantes : Centre-Ville, Île de Nantes, Chantenay, Hauts-Pavés, Dervallières-Zola… APA/PCH acceptées, Projet de Vie Individualisé, 7j/7."> <link rel="canonical" href="https://nantes-soins-a-domicile.fr/nos-quartiers/"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet"> <script type="application/ld+json">
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Soins à domicile par quartier Nantes | Agréé ARS, APA/GIR 7j/7</title> <meta name="description" content="Agréé ARS Pays de la Loire intervenant dans tous les quartiers de Nantes : Centre-Ville, Île de Nantes, Chantenay, Hauts-Pavés, Dervallières-Zola… APA/PCH acceptées, Projet de Vie Individualisé, 7j/7."> <link rel="canonical" href="https://nantes-soins-a-domicile.fr/nos-quartiers/"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="variables.css"> <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -23,7 +24,78 @@
   ]
 }
 </script> <style>
-:root { --primary:#3C697F; --primary-dark:#2d5163; --primary-deeper:#1a3340; --mint:#8FF0D2; --mint-dark:#6de8c2; --coral:#FF9E8E; --lavender:#C8D5FC; --text:#3a4a52; --bg-light:#f4f9fb; --white:#ffffff; --dark:#1a2d36; --radius:24px; --radius-sm:12px; --radius-pill:100px; --shadow-sm:0 2px 8px rgba(60,105,127,.06); --shadow:0 8px 28px rgba(60,105,127,.10); }
+:root {
+  /* ★ Design System v2.0 — variables.css ★
+     Valeurs gérées via variables.css pour la migration Elementor.
+     Ne pas modifier ici : éditer variables.css. */
+
+  /* Palette primaire — Ardoise Profond */
+  --primary:        #2E6A8A;
+  --primary-dark:   #1E4F68;
+  --primary-deeper: #0F2F3E;
+  --primary-50:     #EAF3F8;
+  --primary-100:    #C8DFE9;
+
+  /* Accents */
+  --mint:       #70E8C6;
+  --mint-dark:  #3DC9A0;
+  --coral:      #FF8A75;
+  --coral-dark: #E86D59;
+  --lavender:   #7DA2FA;
+  --lavender-100: #D0DBFC;
+
+  /* Surfaces */
+  --white:      #FFFFFF;
+  --bg:         #F5F8FA;
+  --bg-light:   #EBF3F7;
+  --surface-card: #FFFFFF;
+  --surface-dark: #0F2F3E;
+
+  /* Texte */
+  --text:        #344852;
+  --text-heading: #122432;
+  --dark:        #122432;
+  --ink:         #122432;
+  --ink-soft:    #637D88;
+  --text-muted:  #637D88;
+  --line:        rgba(14, 40, 60, 0.09);
+
+  /* Typographie */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body:    'Hind', sans-serif;
+
+  /* Border radius */
+  --radius:     18px;
+  --radius-sm:  10px;
+  --radius-lg:  28px;
+  --radius-xl:  40px;
+  --radius-pill: 9999px;
+
+  /* Ombres douces (double couche, teintées primary) */
+  --shadow-xs: 0 1px 2px rgba(14, 40, 60, 0.05);
+  --shadow-sm: 0 2px 6px rgba(14, 40, 60, 0.07), 0 1px 2px rgba(14, 40, 60, 0.04);
+  --shadow:    0 4px 16px rgba(14, 40, 60, 0.09), 0 2px 5px rgba(14, 40, 60, 0.05);
+  --shadow-md: 0 4px 16px rgba(14, 40, 60, 0.09), 0 2px 5px rgba(14, 40, 60, 0.05);
+  --shadow-lg: 0 8px 32px rgba(14, 40, 60, 0.11), 0 3px 10px rgba(14, 40, 60, 0.06);
+  --shadow-xl: 0 20px 56px rgba(14, 40, 60, 0.13), 0 8px 20px rgba(14, 40, 60, 0.07);
+  --shadow-primary: 0 4px 20px rgba(46, 106, 138, 0.30);
+  --shadow-primary-lg: 0 8px 36px rgba(46, 106, 138, 0.42);
+  --shadow-coral: 0 4px 20px rgba(255, 138, 117, 0.38);
+  --shadow-coral-lg: 0 8px 36px rgba(255, 138, 117, 0.52);
+
+  /* Transitions fluides */
+  --ease-out:    cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast:   160ms cubic-bezier(0.0, 0.0, 0.2, 1);
+  --transition-base:   260ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  --transition-slow:   420ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  --transition-spring: 480ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Rétro-compatibilité */
+  --accent-deep: #28A882;
+  --blue-light:  #7DA2FA;
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Hind',sans-serif;font-size:18px;line-height:1.8;color:var(--text);background:var(--white);overflow-x:hidden;}
@@ -32,10 +104,10 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);box-shadow:0 2px 24px rgba(60,105,127,0.10);}
 .nav-logo img{height:46px;width:auto;display:block;}
 .nav-links{display:flex;gap:18px;list-style:none;}
-.nav-links a{font-size:13px;font-weight:500;color:var(--text);text-decoration:none;transition:color 0.2s;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text);text-decoration:none;transition:color var(--transition-fast);}
 .nav-links a:hover,.nav-links a.active{color:var(--primary);}
 .nav-links a.active{font-weight:700;border-bottom:2px solid var(--primary);padding-bottom:2px;}
-.nav-cta{background:var(--primary);color:#fff;padding:11px 22px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:background 0.2s;white-space:nowrap;}
+.nav-cta{background:var(--primary);color:#fff;padding:11px 22px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:background var(--transition-fast);white-space:nowrap;}
 .nav-cta:hover{background:var(--primary-dark);}
 
 .hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 60%,var(--primary-deeper) 100%);padding:140px 48px 100px;position:relative;overflow:hidden;text-align:center;}
@@ -84,9 +156,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .cta-band h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;margin-bottom:16px;}
 .cta-band p{color:rgba(255,255,255,0.75);font-size:1rem;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;}
 .cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
-.btn-white{background:#fff;color:var(--primary);padding:16px 36px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.btn-white{background:#fff;color:var(--primary);padding:16px 36px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all var(--transition-fast);}
 .btn-white:hover{background:var(--mint);}
-.btn-outline-white{background:transparent;color:#fff;padding:16px 36px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,0.5);transition:all 0.2s;}
+.btn-outline-white{background:transparent;color:#fff;padding:16px 36px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--radius-pill);font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,0.5);transition:all var(--transition-fast);}
 .btn-outline-white:hover{border-color:#fff;}
 
 footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px;}
@@ -95,7 +167,7 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
 .footer-brand p{font-size:15px;line-height:1.8;}
 .footer-col h3{font-size:12px;font-weight:700;color:var(--mint);margin-bottom:14px;letter-spacing:1.5px;text-transform:uppercase;}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.footer-col a{font-size:14px;color:rgba(255,255,255,0.65);text-decoration:none;transition:all 0.2s;}
+.footer-col a{font-size:14px;color:rgba(255,255,255,0.65);text-decoration:none;transition:all var(--transition-fast);}
 .footer-col a:hover{color:var(--mint);padding-left:5px;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.32);flex-wrap:wrap;gap:12px;max-width:1200px;margin-left:auto;margin-right:auto;}
 
@@ -131,7 +203,7 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
 </div> <!-- CTA -->
 <div class="cta-band"> <h2>Besoin d'une aide urgente à Nantes ?</h2> <p>Notre infirmière coordinatrice vous répond sous 48h — évaluation GIR, Projet de Vie Individualisé, APA/PCH. Intervention Agréé ARS dans votre quartier dès le lendemain.</p> <div class="cta-btns"> <a href="nous-contacter.html" class="btn-white">Échangeons sur votre projet de vie</a> <a href="tel:0240354343" class="btn-outline-white">02 40 35 43 43</a> </div>
 </div>
-<style id="nsad-footer-css">
+<style>
 /* ══════════ FOOTER NSAD — Barre contact ══════════ */
 .ft-bar{background:#3C697F;padding:13px 0;}
 .ft-bar-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
@@ -141,7 +213,7 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
 .ft-phone:hover{color:#fff;text-decoration:none;}
 /* ══════════ FOOTER NSAD — Corps ══════════ */
 footer.nsad-ft{background:#1B2A33;color:rgba(255,255,255,0.78);padding:56px 0 0;font-family:'Hind',sans-serif;font-size:14px;line-height:1.7;}
-footer.nsad-ft a{color:rgba(255,255,255,0.65);text-decoration:none;transition:color .2s;}
+footer.nsad-ft a{color:rgba(255,255,255,0.65);text-decoration:none;transition:color var(--transition-fast);}
 footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
 .ft-inner{max-width:1140px;margin:0 auto;padding:0 24px;}
 .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:48px;padding-bottom:48px;}
@@ -151,7 +223,7 @@ footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
 .ft-brand address a{color:rgba(255,255,255,0.45);}
 .ft-brand address a:hover{color:#8FF0D2;}
 .ft-social{display:flex;gap:8px;}
-.ft-social-link{width:32px;height:32px;background:rgba(255,255,255,0.07);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:rgba(255,255,255,0.55)!important;transition:background .2s,color .2s;text-decoration:none!important;}
+.ft-social-link{width:32px;height:32px;background:rgba(255,255,255,0.07);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:rgba(255,255,255,0.55)!important;transition:background var(--transition-fast),color .2s;text-decoration:none!important;}
 .ft-social-link:hover{background:#3C697F;color:#8FF0D2!important;}
 .ft-col h3{font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;color:#8FF0D2;text-transform:uppercase;letter-spacing:2px;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid rgba(143,240,210,0.18);}
 .ft-col h3.ft-h3-mt{margin-top:22px;}

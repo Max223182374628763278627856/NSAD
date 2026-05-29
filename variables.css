@@ -1,0 +1,280 @@
+/* ═══════════════════════════════════════════════════════════════════
+   NSAD — DESIGN SYSTEM v2.0
+   Source of truth • Créé pour la migration WordPress / Elementor
+   ───────────────────────────────────────────────────────────────────
+
+   ██ GUIDE DE MIGRATION ELEMENTOR ██
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ COULEURS  →  Elementor > Apparence > Couleurs Globales          │
+   │ TYPOGRAPHIE → Elementor > Apparence > Polices Globales          │
+   │ OMBRES     →  Chaque widget > Style > Ombre de boîte (Box Shadow)│
+   │ TRANSITIONS → Chaque widget > Avancé > Effets CSS              │
+   └─────────────────────────────────────────────────────────────────┘
+
+   USAGE HTML : <link rel="stylesheet" href="variables.css">
+   Doit être chargé AVANT nsad-common.css et les styles inline.
+═══════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ──────────────────────────────────────────────────────────────
+     🎨 PALETTE PRIMAIRE — Ardoise Profond
+     Soin à domicile · Confiance · Expertise médicale
+     Elementor Global : "Primaire" (#2E6A8A)
+  ────────────────────────────────────────────────────────────── */
+  --primary-50:    #EAF3F8;   /* fonds de section très légers */
+  --primary-100:   #C8DFE9;   /* bordures douces, dividers */
+  --primary-200:   #9DC3D3;   /* icônes sur fond clair */
+  --primary-300:   #5A9AB6;   /* hover léger, liens secondaires */
+  --primary:       #2E6A8A;   /* ★ couleur principale — plus vibrante */
+  --primary-dark:  #1E4F68;   /* hover boutons, accents forts */
+  --primary-deeper: #0F2F3E;  /* textes sombres, hero dark */
+
+  /* Alias sémantiques (utilisés dans le HTML) */
+  --color-primary:      var(--primary);
+  --color-primary-dark: var(--primary-dark);
+
+  /* ──────────────────────────────────────────────────────────────
+     🌿 PALETTE MENTHE — Sage Apaisante
+     Naturel · Douceur · Bien-être
+     Elementor Global : "Accent Menthe" (#70E8C6)
+
+     Évolution vs actuel (#8FF0D2) :
+     → Moins électrique, plus sage/organique
+     → Meilleur contraste sur fond blanc
+  ────────────────────────────────────────────────────────────── */
+  --mint-50:   #EDFAF5;
+  --mint-100:  #C5F2E2;
+  --mint:      #70E8C6;   /* ★ version douce de #8FF0D2 */
+  --mint-dark: #3DC9A0;   /* sur fond blanc, lisible */
+  --mint-deep: #28A882;   /* texte sur --mint-50 */
+
+  /* ──────────────────────────────────────────────────────────────
+     🪸 PALETTE CORAIL — Chaleur & Urgence Douce
+     CTA · Floating button · Appels à l'action
+     Elementor Global : "Accent Corail" (#FF8A75)
+  ────────────────────────────────────────────────────────────── */
+  --coral-50:   #FFF1EE;
+  --coral-100:  #FFCEC6;
+  --coral:      #FF8A75;   /* ★ légèrement plus profond que #FF9E8E */
+  --coral-dark: #E86D59;   /* hover */
+  --coral-deep: #C94F3A;   /* texte sur --coral-50 */
+
+  /* ──────────────────────────────────────────────────────────────
+     💜 PALETTE LAVANDE — Sérénité & Accompagnement
+     Badges · Catégories · Éléments doux
+     Elementor Global : "Accent Lavande" (#7DA2FA)
+  ────────────────────────────────────────────────────────────── */
+  --lavender-50:  #EDF1FE;
+  --lavender-100: #D0DBFC;
+  --lavender:     #7DA2FA;   /* conservé (déjà premium) */
+  --lavender-dark: #5578E4;
+
+  /* ──────────────────────────────────────────────────────────────
+     ⬜ SURFACES & FONDS
+     Elementor : Fond de Section / Fond de Conteneur
+  ────────────────────────────────────────────────────────────── */
+  --surface-page:  #F5F8FA;   /* fond de page (remplace blanc pur) */
+  --surface-card:  #FFFFFF;   /* fond carte, article, modal */
+  --surface-light: #EBF3F7;   /* sections alternées légères */
+  --surface-dark:  #0F2F3E;   /* sections hero fond sombre */
+  --surface-overlay: rgba(15, 47, 62, 0.72); /* overlays images */
+
+  /* ──────────────────────────────────────────────────────────────
+     ✍️  TYPOGRAPHIE
+     Elementor : Polices Globales > Titre / Corps
+  ────────────────────────────────────────────────────────────── */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body:    'Hind', sans-serif;
+
+  /* Échelle typographique */
+  --text-xs:    0.75rem;    /*  12px — labels */
+  --text-sm:    0.8125rem;  /*  13px — meta */
+  --text-base:  1.0625rem;  /*  17px — corps standard */
+  --text-md:    1.125rem;   /*  18px — corps senior minimum */
+  --text-lg:    1.25rem;    /*  20px — leads */
+  --text-xl:    1.5rem;     /*  24px — sous-titres */
+  --text-2xl:   2rem;       /*  32px — titres section */
+  --text-3xl:   clamp(2rem, 3.5vw, 2.75rem);   /* titres h2 */
+  --text-hero:  clamp(2.25rem, 4.5vw, 3.75rem); /* titres hero h1 */
+
+  /* Interlignage */
+  --leading-tight:   1.15;
+  --leading-snug:    1.4;
+  --leading-base:    1.6;
+  --leading-relaxed: 1.85;   /* corps texte senior */
+
+  /* Graisses */
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    800;
+
+  /* ──────────────────────────────────────────────────────────────
+     🖋️  COULEURS DE TEXTE
+     Elementor : Style > Couleur de texte
+  ────────────────────────────────────────────────────────────── */
+  --text-heading:  #122432;   /* titres principaux — plus profond */
+  --text-body:     #344852;   /* corps de texte */
+  --text-muted:    #637D88;   /* descriptions secondaires */
+  --text-subtle:   #8FA5AE;   /* placeholders, labels légers */
+  --text-on-dark:  rgba(255, 255, 255, 0.93);
+  --text-on-dark-muted: rgba(255, 255, 255, 0.62);
+  --text-link:     var(--primary);
+  --text-link-hover: var(--primary-dark);
+
+  /* ──────────────────────────────────────────────────────────────
+     📐 ESPACEMENTS
+     Elementor : Marges & Paddings des sections
+  ────────────────────────────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32:  128px;
+
+  --inner-x:    clamp(20px, 5vw, 80px);   /* padding horizontal sections */
+  --inner-max:  1140px;                    /* largeur max contenu */
+  --inner-wide: 1280px;                    /* contenu large (tableaux) */
+
+  /* ──────────────────────────────────────────────────────────────
+     🔵 BORDER RADIUS
+     Elementor : Effets > Rayon des Coins
+  ────────────────────────────────────────────────────────────── */
+  --radius-xs:   4px;
+  --radius-sm:   10px;
+  --radius:      18px;
+  --radius-md:   20px;
+  --radius-lg:   28px;
+  --radius-xl:   40px;
+  --radius-pill: 9999px;
+
+  /* ──────────────────────────────────────────────────────────────
+     🌫️  OMBRES DOUCES (Soft Shadows)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Technique : double couche (ambient + directional)
+     Basées sur la teinte --primary pour harmonie chromatique
+     (pas de gris neutre générique)
+
+     Elementor :
+       Widget > Style > Ombre de boîte
+       X:0  Y:4  Blur:20  Spread:0  Couleur: rgba(14,40,60,0.09)
+  ────────────────────────────────────────────────────────────── */
+  --shadow-xs:
+    0 1px 2px rgba(14, 40, 60, 0.05);
+
+  --shadow-sm:
+    0 2px 6px  rgba(14, 40, 60, 0.07),
+    0 1px 2px  rgba(14, 40, 60, 0.04);
+
+  --shadow-md:
+    0 4px 16px rgba(14, 40, 60, 0.09),
+    0 2px 5px  rgba(14, 40, 60, 0.05);
+
+  --shadow-lg:
+    0 8px 32px rgba(14, 40, 60, 0.11),
+    0 3px 10px rgba(14, 40, 60, 0.06);
+
+  --shadow-xl:
+    0 20px 56px rgba(14, 40, 60, 0.13),
+    0 8px 20px  rgba(14, 40, 60, 0.07);
+
+  /* Ombres colorées — boutons CTA (glow effect) */
+  --shadow-primary:    0 4px 20px rgba(46, 106, 138, 0.30);
+  --shadow-primary-lg: 0 8px 36px rgba(46, 106, 138, 0.42);
+  --shadow-coral:      0 4px 20px rgba(255, 138, 117, 0.38);
+  --shadow-coral-lg:   0 8px 36px rgba(255, 138, 117, 0.52);
+  --shadow-mint:       0 4px 16px rgba(112, 232, 198, 0.38);
+
+  /* ──────────────────────────────────────────────────────────────
+     ⚡ TRANSITIONS FLUIDES
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Elementor : Widget > Avancé > Effets CSS > Transition
+
+     --transition-fast   → survols micro-interactions (badges, icônes)
+     --transition-base   → boutons, liens, cartes
+     --transition-slow   → entrées de section, overlays
+     --transition-spring → éléments qui "arrivent" (modals, drawers)
+  ────────────────────────────────────────────────────────────── */
+  --ease-out:    cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);  /* micro-rebond */
+
+  --transition-fast:   160ms var(--ease-out);
+  --transition-base:   260ms var(--ease-in-out);
+  --transition-slow:   420ms var(--ease-in-out);
+  --transition-spring: 480ms var(--ease-spring);
+
+  /* ──────────────────────────────────────────────────────────────
+     🔲 BORDURES
+  ────────────────────────────────────────────────────────────── */
+  --border-light:   1px solid rgba(14, 40, 60, 0.07);
+  --border-medium:  1px solid rgba(14, 40, 60, 0.12);
+  --border-primary: 1px solid var(--primary-200);
+  --border-focus:   2px solid var(--primary);  /* accessibilité focus */
+
+  /* ──────────────────────────────────────────────────────────────
+     📊 Z-INDEX
+  ────────────────────────────────────────────────────────────── */
+  --z-base:     1;
+  --z-raised:   10;
+  --z-sticky:   50;
+  --z-nav:      100;
+  --z-floating: 500;
+  --z-modal:    1000;
+  --z-toast:    2000;
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MAPPING ELEMENTOR — GUIDE DE MIGRATION
+   ─────────────────────────────────────────────────────────────────
+
+   ÉTAPE 1 — Couleurs Globales (Apparence > Élémentaire)
+   ┌──────────────────────────┬─────────────┬───────────────────────┐
+   │ Nom dans Elementor        │ Variable CSS │ Valeur Hex            │
+   ├──────────────────────────┼─────────────┼───────────────────────┤
+   │ Primaire                  │ --primary    │ #2E6A8A               │
+   │ Primaire Foncé            │ --primary-dark│ #1E4F68              │
+   │ Accent Menthe             │ --mint       │ #70E8C6               │
+   │ Accent Corail             │ --coral      │ #FF8A75               │
+   │ Accent Lavande            │ --lavender   │ #7DA2FA               │
+   │ Fond Page                 │ --surface-page│ #F5F8FA              │
+   │ Fond Carte                │ --surface-card│ #FFFFFF              │
+   │ Texte Titre               │ --text-heading│ #122432              │
+   │ Texte Corps               │ --text-body  │ #344852               │
+   │ Texte Discret             │ --text-muted │ #637D88               │
+   └──────────────────────────┴─────────────┴───────────────────────┘
+
+   ÉTAPE 2 — Polices Globales (Apparence > Élémentaire > Typographie)
+   • Titre Principal : Poppins, Bold 700/800, letter-spacing -0.01em
+   • Titre Secondaire : Poppins, SemiBold 600
+   • Corps : Hind, Regular 400, taille min 18px, interlignage 1.85
+
+   ÉTAPE 3 — Paramètres Globaux > Espacement
+   • Marge Section : 80px haut/bas desktop, 48px mobile
+   • Padding Container : clamp(20px, 5vw, 80px)
+   • Gap Grille : 28px
+
+   ÉTAPE 4 — Boutons Globaux
+   • Fond : var(--primary) → Couleur Globale "Primaire"
+   • Survol : var(--primary-dark)
+   • Rayon : 9999px (pill)
+   • Hauteur min : 52px (accessibilité senior)
+   • Ombre : X:0 Y:4 Blur:20 Spread:0 → rgba(46,106,138,0.30)
+
+   ÉTAPE 5 — Ombres Globales
+   • Carte Standard : Y:4 Blur:16 → rgba(14,40,60,0.09)
+   • Carte Hover    : Y:8 Blur:32 → rgba(14,40,60,0.11)
+   • Bouton CTA     : Y:4 Blur:20 → rgba(46,106,138,0.30)
+
+═══════════════════════════════════════════════════════════════════ */
