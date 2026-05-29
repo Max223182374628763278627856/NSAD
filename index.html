@@ -365,94 +365,89 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 .quartier-select-section { background: var(--white); padding: 96px 48px; }
 .quartier-select-inner { max-width: 1100px; margin: 0 auto; }
 .quartier-select-header { margin-bottom: 48px; }
-.rds-wrap { padding: 48px 0 16px; }
+/* ─── Zigzag Quartiers ─── */
+.rds-wrap { padding: 48px 0 24px; }
 .rds-track {
-  position: relative; max-width: 800px; margin: 0 auto; padding-bottom: 32px;
+  position: relative; max-width: 820px; margin: 0 auto; padding-bottom: 48px;
 }
-/* Ligne verticale */
 .rds-line {
-  position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
   background: linear-gradient(to bottom,
-    transparent 0%, var(--primary) 6%, var(--primary) 94%, transparent 100%);
-  transform: translateX(-50%); border-radius: 2px; pointer-events: none;
+    transparent 0%, rgba(60,105,127,0.18) 5%,
+    rgba(60,105,127,0.18) 95%, transparent 100%);
+  transform: translateX(-50%); pointer-events: none;
 }
-/* Voiture */
-.rds-car {
-  position: absolute; left: 50%; top: 0; width: 50px; height: 22px;
-  transform: translateX(-50%);
-  z-index: 10; will-change: transform;
-  filter: drop-shadow(0 3px 10px rgba(60,105,127,0.45));
-}
-.rds-line-fill {
-  position: absolute; left: 0; top: 0; width: 100%; height: 0;
-  background: var(--mint, #8FF0D2); border-radius: 2px; pointer-events: none;
-}
-/* Tooltip */
-.rds-tooltip {
-  position: absolute; left: calc(100% + 16px); top: 50%;
-  transform: translateY(-50%) translateX(-8px);
-  background: var(--mint, #8FF0D2); color: var(--primary, #3C697F);
-  border-radius: 50px; padding: 6px 16px; white-space: nowrap;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 16px rgba(60,105,127,0.20);
-}
-.rds-tooltip.rds-tt-visible { opacity: 1; transform: translateY(-50%) translateX(0); }
-.rds-tt-name {
-  display: block; font-family: 'Poppins',sans-serif;
-  font-size: 12px; font-weight: 700; line-height: 1.3;
-}
-.rds-tt-hint {
-  display: block; font-family: 'Hind',sans-serif;
-  font-size: 11px; opacity: 0.72; line-height: 1.3;
-}
-/* Stations */
 .rds-station {
-  display: grid; grid-template-columns: 1fr 40px 1fr;
-  align-items: center; min-height: 90px; position: relative;
+  display: grid; grid-template-columns: 1fr 48px 1fr;
+  align-items: center; min-height: 100px; padding: 16px 0;
+  text-decoration: none; position: relative;
 }
-.rds-st-node { display: flex; align-items: center; justify-content: center; z-index: 2; }
-.rds-st-dot {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: #fff; border: 3px solid rgba(60,105,127,0.22);
-  transition: all 0.4s var(--ease-quart, ease); display: block; flex-shrink: 0;
+.rds-station:hover, .rds-station:focus { text-decoration: none; }
+.rds-node {
+  display: flex; align-items: center; justify-content: center; z-index: 2;
 }
-.rds-station.rds-passed .rds-st-dot {
-  background: var(--mint, #8FF0D2); border-color: var(--primary, #3C697F);
-  box-shadow: 0 0 0 6px rgba(143,240,210,0.22); transform: scale(1.18);
+.rds-dot {
+  width: 16px; height: 16px; border-radius: 50%; display: block; flex-shrink: 0;
+  background: var(--white, #fff); border: 2.5px solid rgba(60,105,127,0.25);
+  transition: background 0.3s ease, border-color 0.3s ease,
+              box-shadow 0.3s ease, transform 0.3s ease;
 }
-.rds-st-name {
-  display: block; font-family: 'Poppins',sans-serif;
-  font-size: 15px; font-weight: 600; color: rgba(60,105,127,0.35);
-  text-decoration: none; transition: color 0.4s; line-height: 1.3;
+.rds-station:hover .rds-dot,
+.rds-station:focus-visible .rds-dot {
+  background: var(--mint, #8FF0D2);
+  border-color: var(--primary, #3C697F);
+  box-shadow: 0 0 0 7px rgba(143,240,210,0.22), 0 0 0 14px rgba(143,240,210,0.08);
+  transform: scale(1.2);
 }
-.rds-st-name:hover { color: var(--primary, #3C697F); text-decoration: underline; }
-.rds-station.rds-passed .rds-st-name { color: var(--primary, #3C697F); font-weight: 700; }
-.rds-st-hint {
-  font-family: 'Hind',sans-serif; font-size: 13px;
-  color: transparent; margin: 4px 0 0; line-height: 1.4;
-  transition: color 0.4s 0.08s;
+.rds-content {
+  display: flex; flex-direction: column; gap: 5px;
+  border-radius: 12px;
+  transition: background 0.3s ease;
 }
-.rds-station.rds-passed .rds-st-hint { color: var(--ink-soft, #5a7080); }
-/* Cote : data-side="left" -> contenu a gauche, data-side="right" -> droite */
-.rds-station[data-side="left"]  .rds-st-l { text-align: right; padding-right: 26px; }
-.rds-station[data-side="left"]  .rds-st-r { visibility: hidden; }
-.rds-station[data-side="right"] .rds-st-l { visibility: hidden; }
-.rds-station[data-side="right"] .rds-st-r { text-align: left; padding-left: 26px; }
-/* Mobile */
+.rds-station:hover .rds-content,
+.rds-station:focus-visible .rds-content { background: rgba(60,105,127,0.055); }
+.rds-name {
+  font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;
+  color: var(--ink, #1B2A33); line-height: 1.3;
+  transition: color 0.3s ease;
+}
+.rds-station:hover .rds-name,
+.rds-station:focus-visible .rds-name { color: var(--primary, #3C697F); }
+.rds-hint {
+  font-family: 'Hind', sans-serif; font-size: 13px;
+  color: var(--ink-soft, #5a7080); line-height: 1.4;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+.rds-station:hover .rds-hint { color: var(--primary, #3C697F); opacity: 0.7; }
+/* Cote gauche : contenu à gauche de la ligne */
+.rds-station[data-side="left"] .rds-content {
+  grid-column: 1; text-align: right; align-items: flex-end;
+  padding: 12px 22px 12px 14px;
+}
+.rds-station[data-side="left"] .rds-node   { grid-column: 2; }
+.rds-station[data-side="left"] .rds-spacer { grid-column: 3; }
+/* Cote droit : contenu à droite de la ligne */
+.rds-station[data-side="right"] .rds-spacer { grid-column: 1; }
+.rds-station[data-side="right"] .rds-node   { grid-column: 2; }
+.rds-station[data-side="right"] .rds-content {
+  grid-column: 3; text-align: left; align-items: flex-start;
+  padding: 12px 14px 12px 22px;
+}
+/* Mobile ≤600px : ligne à gauche, tout aligné à droite */
 @media (max-width: 600px) {
   .rds-line { left: 20px; transform: none; }
-  .rds-car  { left: 20px; transform: translate(-50%, -50%); }
-  .rds-station { grid-template-columns: 40px 1fr; min-height: 72px; }
-  .rds-station[data-side="left"]  .rds-st-l,
-  .rds-station[data-side="right"] .rds-st-l { display: none; }
-  .rds-station[data-side="left"]  .rds-st-r,
-  .rds-station[data-side="right"] .rds-st-r {
-    visibility: visible; display: block;
-    grid-column: 2; text-align: left; padding-left: 14px; padding-right: 0;
+  .rds-station {
+    grid-template-columns: 40px 1fr; min-height: 68px; padding: 12px 0;
   }
-  .rds-st-node { grid-column: 1; }
-  .rds-tooltip { left: calc(100% + 8px); }
+  .rds-station[data-side="left"]  .rds-content,
+  .rds-station[data-side="right"] .rds-content {
+    grid-column: 2; text-align: left; align-items: flex-start;
+    padding: 10px 8px 10px 14px;
+  }
+  .rds-station[data-side="left"]  .rds-node,
+  .rds-station[data-side="right"] .rds-node  { grid-column: 1; }
+  .rds-station .rds-spacer { display: none; }
+  .rds-name { font-size: 15px; }
 }
 /* CTA bloc */
 .block-cta-group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
@@ -1100,101 +1095,100 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 <section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title"> <div class="quartier-select-inner"> <div class="quartier-select-header"> <span class="section-label">Zone d'intervention</span> <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2> <p class="section-sub">Faites défiler pour suivre notre route à travers Nantes et découvrir nos services quartier par quartier.</p> </div> <div class="rds-wrap">
 <div class="rds-track" id="rds-track">
 
-  <div class="rds-line" id="rds-line"><div class="rds-line-fill" id="rds-line-fill"></div></div>
-
-  <!-- Voiture SVG -->
-  <div class="rds-car" id="rds-car" aria-hidden="true">
-    <svg width="50" height="22" viewBox="0 0 50 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Corps -->
-      <rect x="1" y="10" width="48" height="10" rx="4" fill="#3C697F"/>
-      <!-- Toit -->
-      <path d="M14 10 L19 4 L37 4 L42 10Z" fill="#3C697F"/>
-      <!-- Vitre avant -->
-      <path d="M22 9.5 L26 4.5 L37 4.5 L41 9.5Z" fill="rgba(143,240,210,0.28)"/>
-      <!-- Vitre arriere -->
-      <path d="M15 9.5 L19 4.5 L25 4.5 L21 9.5Z" fill="rgba(255,255,255,0.16)"/>
-      <!-- Bande accent mint -->
-      <rect x="1" y="13.5" width="48" height="1.8" rx="0.9" fill="#8FF0D2" opacity="0.72"/>
-      <!-- Phare avant -->
-      <rect x="46.5" y="11.5" width="2.5" height="2.5" rx="1.2" fill="#8FF0D2"/>
-      <!-- Feu arriere -->
-      <rect x="1" y="11.5" width="2" height="2.5" rx="1" fill="#FF9E8E" opacity="0.8"/>
-      <!-- Roue arriere -->
-      <circle cx="13" cy="20" r="3" fill="#1B2A33"/><circle cx="13" cy="20" r="1.3" fill="#3C697F"/>
-      <!-- Roue avant -->
-      <circle cx="37" cy="20" r="3" fill="#1B2A33"/><circle cx="37" cy="20" r="1.3" fill="#3C697F"/>
-    </svg>
-    <div class="rds-tooltip" id="rds-tooltip">
-      <span class="rds-tt-name"></span>
-      <span class="rds-tt-hint"></span>
-    </div>
-  </div>
+  <div class="rds-line"></div>
 
   <!-- 1 Centre-Ville (gauche) -->
-  <div class="rds-station" data-q="centre" data-side="left">
-    <div class="rds-st-l"><a href="quartier-centre-ville.html" class="rds-st-name">Centre-Ville / CHU</a><p class="rds-st-hint">Sorties d&rsquo;h&ocirc;pital &middot; 7j/7</p></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"></div>
-  </div>
+  <a href="quartier-centre-ville.html" class="rds-station" data-q="centre" data-side="left">
+    <div class="rds-content">
+      <span class="rds-name">Centre-Ville / CHU</span>
+      <span class="rds-hint">Sorties d&rsquo;h&ocirc;pital &middot; 7j/7</span>
+    </div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-spacer" aria-hidden="true"></div>
+  </a>
 
   <!-- 2 Dervallières (droite) -->
-  <div class="rds-station" data-q="derv" data-side="right">
-    <div class="rds-st-l"></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"><a href="quartier-dervallieres-zola.html" class="rds-st-name">Dervalli&egrave;res &ndash; Zola</a><p class="rds-st-hint">Soins de quartier &middot; 7j/7</p></div>
-  </div>
+  <a href="quartier-dervallières-zola.html" class="rds-station" data-q="derv" data-side="right">
+    <div class="rds-spacer" aria-hidden="true"></div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-content">
+      <span class="rds-name">Dervalli&egrave;res &ndash; Zola</span>
+      <span class="rds-hint">Soins de quartier &middot; 7j/7</span>
+    </div>
+  </a>
 
   <!-- 3 Bellevue (gauche) -->
-  <div class="rds-station" data-q="bellevue" data-side="left">
-    <div class="rds-st-l"><a href="quartier-bellevue-chantenay.html" class="rds-st-name">Bellevue &ndash; Chantenay</a><p class="rds-st-hint">Bord de Loire &middot; 7j/7</p></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"></div>
-  </div>
+  <a href="quartier-bellevue-chantenay.html" class="rds-station" data-q="bellevue" data-side="left">
+    <div class="rds-content">
+      <span class="rds-name">Bellevue &ndash; Chantenay</span>
+      <span class="rds-hint">Bord de Loire &middot; 7j/7</span>
+    </div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-spacer" aria-hidden="true"></div>
+  </a>
 
   <!-- 4 Hauts-Pavés (droite) -->
-  <div class="rds-station" data-q="hauts" data-side="right">
-    <div class="rds-st-l"></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"><a href="quartier-hauts-paves-saint-felix.html" class="rds-st-name">Hauts-Pav&eacute;s &ndash; St-F&eacute;lix</a><p class="rds-st-hint">Bord de l&rsquo;Erdre &middot; 7j/7</p></div>
-  </div>
+  <a href="quartier-hauts-paves-saint-felix.html" class="rds-station" data-q="hauts" data-side="right">
+    <div class="rds-spacer" aria-hidden="true"></div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-content">
+      <span class="rds-name">Hauts-Pav&eacute;s &ndash; St-F&eacute;lix</span>
+      <span class="rds-hint">Bord de l&rsquo;Erdre &middot; 7j/7</span>
+    </div>
+  </a>
 
   <!-- 5 Nantes Nord (gauche) -->
-  <div class="rds-station" data-q="nord" data-side="left">
-    <div class="rds-st-l"><a href="quartier-nantes-nord.html" class="rds-st-name">Nantes Nord</a><p class="rds-st-hint">Grand territoire &middot; 7j/7</p></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"></div>
-  </div>
+  <a href="quartier-nantes-nord.html" class="rds-station" data-q="nord" data-side="left">
+    <div class="rds-content">
+      <span class="rds-name">Nantes Nord</span>
+      <span class="rds-hint">Grand territoire &middot; 7j/7</span>
+    </div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-spacer" aria-hidden="true"></div>
+  </a>
 
   <!-- 6 Île de Nantes (droite) -->
-  <div class="rds-station" data-q="ile" data-side="right">
-    <div class="rds-st-l"></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"><a href="quartier-ile-de-nantes.html" class="rds-st-name">&Icirc;le de Nantes</a><p class="rds-st-hint">C&oelig;ur de Loire &middot; 7j/7</p></div>
-  </div>
+  <a href="quartier-ile-de-nantes.html" class="rds-station" data-q="ile" data-side="right">
+    <div class="rds-spacer" aria-hidden="true"></div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-content">
+      <span class="rds-name">&Icirc;le de Nantes</span>
+      <span class="rds-hint">C&oelig;ur de Loire &middot; 7j/7</span>
+    </div>
+  </a>
 
   <!-- 7 Malakoff (gauche) -->
-  <div class="rds-station" data-q="malakoff" data-side="left">
-    <div class="rds-st-l"><a href="quartier-malakoff-saint-donatien.html" class="rds-st-name">Malakoff &ndash; St-Donatien</a><p class="rds-st-hint">Quartier renouvel&eacute; &middot; 7j/7</p></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"></div>
-  </div>
+  <a href="quartier-malakoff-saint-donatien.html" class="rds-station" data-q="malakoff" data-side="left">
+    <div class="rds-content">
+      <span class="rds-name">Malakoff &ndash; St-Donatien</span>
+      <span class="rds-hint">Quartier renouvel&eacute; &middot; 7j/7</span>
+    </div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-spacer" aria-hidden="true"></div>
+  </a>
 
   <!-- 8 Breil-Barbière (droite) -->
-  <div class="rds-station" data-q="breil" data-side="right">
-    <div class="rds-st-l"></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"><a href="quartier-breil-barbiere.html" class="rds-st-name">Breil-Barbi&egrave;re</a><p class="rds-st-hint">Entre parcs &middot; 7j/7</p></div>
-  </div>
+  <a href="quartier-breil-barbiere.html" class="rds-station" data-q="breil" data-side="right">
+    <div class="rds-spacer" aria-hidden="true"></div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-content">
+      <span class="rds-name">Breil-Barbi&egrave;re</span>
+      <span class="rds-hint">Entre parcs &middot; 7j/7</span>
+    </div>
+  </a>
 
   <!-- 9 Nantes Sud (gauche) -->
-  <div class="rds-station" data-q="nantes-sud" data-side="left">
-    <div class="rds-st-l"><a href="nos-quartiers.html" class="rds-st-name">Nantes Sud</a><p class="rds-st-hint">Tissu r&eacute;sidentiel &middot; 7j/7</p></div>
-    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
-    <div class="rds-st-r"></div>
-  </div>
+  <a href="nos-quartiers.html" class="rds-station" data-q="nantes-sud" data-side="left">
+    <div class="rds-content">
+      <span class="rds-name">Nantes Sud</span>
+      <span class="rds-hint">Tissu r&eacute;sidentiel &middot; 7j/7</span>
+    </div>
+    <div class="rds-node"><span class="rds-dot"></span></div>
+    <div class="rds-spacer" aria-hidden="true"></div>
+  </a>
 
 </div>
-<div class="block-cta-group" style="justify-content:center;margin-top:40px">
+<div class="block-cta-group" style="justify-content:center;margin-top:48px">
   <a href="nos-quartiers.html" class="btn-block-primary">Voir tous nos quartiers</a>
   <a href="nous-contacter.html" class="btn-block-secondary">Nous contacter &rarr;</a>
 </div>
@@ -1280,99 +1274,7 @@ window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-/* ── Route du Soin — scroll 60fps (fix v2) ────────────────── */
-(function() {
-  var section  = document.getElementById('quartiers');
-  var track    = document.getElementById('rds-track');
-  var lineEl   = document.getElementById('rds-line');
-  var lineFill = document.getElementById('rds-line-fill');
-  var car      = document.getElementById('rds-car');
-  var tooltip  = document.getElementById('rds-tooltip');
-  if (!section || !car || !lineEl || !lineFill) return;
-
-  var ttName   = tooltip.querySelector('.rds-tt-name');
-  var ttHint   = tooltip.querySelector('.rds-tt-hint');
-  var stations = Array.from(document.querySelectorAll('.rds-station'));
-  var ticking  = false;
-
-  /* Positions absolues (page coords) — recomputees au resize */
-  var dotYs = [], firstY = 0, lastY = 0, trackAbsTop = 0;
-
-  function precompute() {
-    var scrollY = window.pageYOffset;
-    trackAbsTop = track.getBoundingClientRect().top + scrollY;
-    dotYs = stations.map(function(st) {
-      var dot = st.querySelector('.rds-st-dot');
-      return dot.getBoundingClientRect().top + scrollY - trackAbsTop;
-    });
-    firstY = dotYs[0]         || 45;
-    lastY  = dotYs[dotYs.length - 1] || 400;
-  }
-
-  function update() {
-    ticking = false;
-    var scrollY = window.pageYOffset;
-    var vh      = window.innerHeight;
-    var sRect   = section.getBoundingClientRect();
-
-    /* Progression : 0 quand le haut de la section est a 60% du viewport,
-       1 quand le bas de la section passe a 40% du viewport */
-    var scrollStart = -(sRect.top - vh * 0.60);
-    var scrollEnd   = sRect.height - vh * 0.40;
-    var p = scrollEnd > 0 ? scrollStart / scrollEnd : 0;
-    p = Math.max(0, Math.min(1, p));
-
-    /* Position Y de la voiture dans le track (en px depuis le haut du track) */
-    var carY = firstY + p * (lastY - firstY);
-
-    /* translateX(-50%) centre horizontalement ; translateY positionne sur la ligne */
-    car.style.transform = 'translateX(-50%) translateY(' + carY + 'px)';
-
-    /* Ligne qui s'allume : la fill monte depuis firstY jusqu'a carY */
-    lineFill.style.top    = firstY + 'px';
-    lineFill.style.height = Math.max(0, carY - firstY + 11) + 'px';
-
-    /* Activation des stations */
-    var activeStation = null;
-    var carCenter = carY + 11; /* moitie hauteur voiture */
-    stations.forEach(function(st, i) {
-      var passed = carCenter >= dotYs[i];
-      if (st.classList.contains('rds-passed') !== passed) {
-        st.classList.toggle('rds-passed', passed);
-      }
-      if (passed) activeStation = st;
-    });
-
-    /* Tooltip */
-    if (activeStation && p > 0) {
-      var nameEl = activeStation.querySelector('.rds-st-name');
-      if (nameEl) {
-        ttName.textContent = nameEl.textContent;
-        ttHint.textContent = '7 j/7';
-        tooltip.classList.add('rds-tt-visible');
-      }
-    } else {
-      tooltip.classList.remove('rds-tt-visible');
-    }
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', function() { precompute(); update(); }, { passive: true });
-
-  /* Init apres rendu complet */
-  if (document.readyState === 'complete') {
-    precompute(); update();
-  } else {
-    window.addEventListener('load', function() { precompute(); update(); });
-  }
-})();
+/* Zone quartiers — interaction pure CSS */
 
 /* Floating call button — visible only after hero */var revealObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
