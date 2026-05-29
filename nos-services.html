@@ -305,10 +305,17 @@ nav {
 .soin-card {
   background:var(--white); border:1px solid var(--line);
   border-radius:var(--radius-lg); padding:36px 32px;
-  box-shadow:var(--shadow-sm); transition:all 0.35s var(--ease-quart);
+  box-shadow:var(--shadow-sm); transition:all var(--transition-base);
   display:flex; flex-direction:column; gap:14px;
+  position:relative; overflow:hidden;
 }
-.soin-card:hover { box-shadow:var(--shadow-lg); border-color:var(--mint); transform:translateY(-6px); }
+.soin-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--primary), var(--mint));
+  opacity:0; transition:opacity var(--transition-base);
+}
+.soin-card:hover { box-shadow:var(--shadow-xl); border-color:transparent; transform:translateY(-6px); }
+.soin-card:hover::before { opacity:1; }
 .soin-icon {
   width:68px; height:68px; border-radius:20px;
   display:flex; align-items:center; justify-content:center;
