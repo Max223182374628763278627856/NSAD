@@ -1,27 +1,45 @@
 /**
- * NSAD — UX Commons  v1.0
+ * NSAD — UX Commons  v1.1  (performance edition)
  * ─────────────────────────────────────────────────────────
- * 1. Page transitions (fade-out au clic interne)
- * 2. Skeleton loaders (img-skel auto-setup)
- * 3. Focus-visible polyfill (très léger)
+ * 1. Page transitions — fade-out 150 ms au clic interne
+ *    Le fade-in (0.2 s) est géré en CSS pur — aucun JS requis
+ *    pour l'affichage initial. Body toujours visible (opacity:1).
  *
- * Ajouter en bas de chaque page :
- *   <script src="nsad-ux.js"></script>
+ * 2. Skeleton loaders — détection img chargées (async, idle)
+ *
+ * 3. Focus-visible polyfill minimal (Safari < 15.4)
+ *
+ * ⚡ Chargé en bas de <body> — ne bloque pas le rendu.
+ *    Fallback de sécurité : si JS est lent, body reste visible.
  * ─────────────────────────────────────────────────────────
  */
 (function () {
   'use strict';
 
   /* ═══════════════════════════════════════════════
-     1. PAGE TRANSITION — fade-out sur liens internes
-     La classe .nsad-out est définie dans nsad-common.css
+     FILET DE SÉCURITÉ — garantit opacity:1
+     Si une classe nsad-out est coincée pour une raison
+     quelconque, elle est retirée après 600 ms.
   ═══════════════════════════════════════════════ */
-  var NAV_DURATION = 230; // ms — doit correspondre à la transition CSS
+  setTimeout(function () {
+    if (document.body.classList.contains('nsad-out')) {
+      document.body.classList.remove('nsad-out');
+    }
+  }, 600);
+
+
+  /* ═══════════════════════════════════════════════
+     1. PAGE TRANSITION — fade-out sur liens internes
+        150 ms (doit correspondre à la transition CSS)
+        Le fade-IN est entièrement en CSS — aucun JS.
+  ═══════════════════════════════════════════════ */
+  var NAV_DURATION = 150;
 
   document.addEventListener('click', function (e) {
-    /* Trouver le lien ancêtre le plus proche */
     var el = e.target;
     var link = null;
+
+    /* Remonter jusqu'au <a> ancêtre */
     while (el && el !== document) {
       if (el.tagName && el.tagName.toLowerCase() === 'a' && el.getAttribute('href')) {
         link = el;
@@ -33,15 +51,15 @@
 
     var href = link.getAttribute('href');
 
-    /* Ignorer : ancres, protocoles spéciaux, external, download, target=_blank */
+    /* Ignorer : ancres, protocoles spéciaux, externes, download, _blank */
     if (!href ||
         href.charAt(0) === '#' ||
-        href.indexOf('tel:')    === 0 ||
-        href.indexOf('mailto:') === 0 ||
-        href.indexOf('javascript:') === 0 ||
-        href.indexOf('http://') === 0 ||
-        href.indexOf('https://') === 0 ||
-        href.indexOf('//') === 0 ||
+        href.indexOf('tel:')         === 0 ||
+        href.indexOf('mailto:')      === 0 ||
+        href.indexOf('javascript:')  === 0 ||
+        href.indexOf('http://')      === 0 ||
+        href.indexOf('https://')     === 0 ||
+        href.indexOf('//')           === 0 ||
         link.hasAttribute('download') ||
         link.getAttribute('target') === '_blank') {
       return;
@@ -50,15 +68,15 @@
     e.preventDefault();
     var dest = href;
 
-    /* Appliquer le fade-out */
     document.body.classList.add('nsad-out');
 
+    /* Fallback : naviguer même si la transition CSS échoue */
     setTimeout(function () {
       window.location.href = dest;
     }, NAV_DURATION);
   }, false);
 
-  /* Réinitialiser la classe si l'utilisateur revient (bfcache) */
+  /* Réinitialiser si l'utilisateur revient (bfcache) */
   window.addEventListener('pageshow', function (ev) {
     if (ev.persisted) {
       document.body.classList.remove('nsad-out');
@@ -68,8 +86,8 @@
 
   /* ═══════════════════════════════════════════════
      2. SKELETON LOADERS — images
-     Toute image dans un wrapper .img-skel reçoit
-     la classe .img-loaded dès que l'image est prête.
+        Exécuté en idle (non-bloquant) — le contenu
+        textuel est déjà affiché avant cette étape.
   ═══════════════════════════════════════════════ */
   function setupImgSkeletons() {
     document.querySelectorAll('.img-skel img').forEach(function (img) {
@@ -87,51 +105,28 @@
     });
   }
 
-  /* Logo nav — wrap automatique si pas déjà wrappé */
-  function wrapNavLogo() {
-    var logoImg = document.querySelector('.nav-logo img');
-    if (!logoImg || logoImg.closest('.img-skel')) return;
-    var wrap = document.createElement('span');
-    wrap.className = 'img-skel';
-    wrap.style.cssText = 'display:inline-block;height:46px;width:auto;min-width:120px;border-radius:4px;';
-    logoImg.parentNode.insertBefore(wrap, logoImg);
-    wrap.appendChild(logoImg);
-    function markLoaded() { wrap.classList.add('img-loaded'); }
-    if (logoImg.complete && logoImg.naturalWidth > 0) {
-      markLoaded();
-    } else {
-      logoImg.addEventListener('load',  markLoaded, { once: true });
-      logoImg.addEventListener('error', markLoaded, { once: true });
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      setupImgSkeletons();
-      wrapNavLogo();
-    });
+  /* Différer en tâche de fond — ne pas bloquer le thread principal */
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(setupImgSkeletons, { timeout: 2000 });
   } else {
-    setupImgSkeletons();
-    wrapNavLogo();
+    setTimeout(setupImgSkeletons, 200);
   }
 
 
   /* ═══════════════════════════════════════════════
      3. FOCUS-VISIBLE polyfill minimal
-     Pour Safari < 15.4 qui ne supporte pas :focus-visible
+        Pour Safari < 15.4 sans support natif.
   ═══════════════════════════════════════════════ */
   (function () {
     var usingMouse = false;
-    document.addEventListener('mousedown', function () { usingMouse = true; },  true);
+    document.addEventListener('mousedown', function () { usingMouse = true;  }, true);
     document.addEventListener('keydown',   function () { usingMouse = false; }, true);
 
-    /* Sur navigateurs qui ne supportent pas :focus-visible nativement,
-       on ajoute/retire la classe .focus-kb sur le body */
     try {
       document.querySelector(':focus-visible');
     } catch (err) {
-      /* Navigateur sans support natif — activer la classe fallback */
-      document.addEventListener('focusin', function (e) {
+      /* Navigateur sans support natif */
+      document.addEventListener('focusin', function () {
         if (!usingMouse) { document.body.classList.add('focus-kb'); }
       }, true);
       document.addEventListener('focusout', function () {
