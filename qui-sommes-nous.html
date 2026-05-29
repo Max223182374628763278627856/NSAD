@@ -81,7 +81,234 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
 (function(){var b=document.getElementById('nsad-hamburger'),m=document.getElementById('nsad-mobile-nav');if(!b||!m)return;b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});document.addEventListener('click',function(e){if(!b.contains(e.target)&&!m.contains(e.target)){m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded','false');}});})();
 </script> <section class="hero"> <div class="hero-inner"> <div class="breadcrumb"><a href="index.html">Accueil</a> › L'Association</div> <div class="hero-badge"> Association loi 1901</div> <h1>Qui sommes-nous ?<br><em>Nantes Soins à Domicile</em></h1> <p>Née à Nantes, enracinée à Nantes. Depuis plus de 30 ans, notre association accompagne les habitants de la ville et de ses quartiers avec une conviction simple : chacun mérite des soins dignes et humains, chez soi.</p> <div class="hero-stats"> <div><span class="stat-num">30+</span><span class="stat-label">Années d'existence</span></div> <div><span class="stat-num">70+</span><span class="stat-label">Professionnels</span></div> <div><span class="stat-num">9</span><span class="stat-label">Quartiers couverts</span></div> <div><span class="stat-num">7j/7</span><span class="stat-label">Sans interruption</span></div> </div> </div>
 </section> <div class="story-band"> <div class="story-inner"> <div class="story-text"> <div class="assoc-badge"> Association loi 1901 — Sans but lucratif</div> <h2>Une association <em>nantaise, ancrée dans son territoire</em></h2> <p>Nantes Soins à Domicile est une association loi 1901, c'est-à-dire une structure à but non lucratif dont la mission première est l'intérêt général. Nous ne cherchons pas à dégager des bénéfices — nous cherchons à faire du bien.</p> <p>Créée par des professionnels de santé nantais convaincus que le maintien à domicile est une alternative digne et efficace à l'hospitalisation ou à la maison de retraite, l'association a grandi progressivement, quartier après quartier, en construisant des liens de confiance avec les habitants, les médecins, les pharmacies et les services hospitaliers.</p> <p>Aujourd'hui, nos 70 professionnels — infirmiers, aides-soignants, auxiliaires de vie, coordinatrices, assistantes administratives — forment une équipe soudée par une même vocation : être là, vraiment là, pour chaque personne que nous accompagnons.</p> <p>Notre agrément préfectoral et notre partenariat avec le CHU de Nantes attestent de la qualité et du sérieux de notre démarche. Mais ce qui nous distingue vraiment, c'est quelque chose qui ne se mesure pas sur un document officiel : l'attention sincère portée à chaque individu.</p> </div> <div class="values-cards"> <div class="value-card"><span class="value-icon"></span><div><strong>Une association, pas une entreprise</strong><span>Sans actionnaires ni objectif de rentabilité. Tout est au service de la mission : accompagner les Nantais chez eux.</span></div></div> <div class="value-card"><span class="value-icon"></span><div><strong>Agréée & certifiée</strong><span>Agrément préfectoral, partenaire du CHU de Nantes. Un cadre de qualité reconnu par les institutions.</span></div></div> <div class="value-card"><span class="value-icon"></span><div><strong>70 professionnels diplômés</strong><span>Infirmiers DE, aides-soignants, auxiliaires de vie, coordinatrices expérimentées. Des parcours humains autant que techniques.</span></div></div> <div class="value-card"><span class="value-icon"></span><div><strong>Enracinés à Nantes depuis 30 ans</strong><span>Nos équipes vivent dans les quartiers où elles travaillent. Une connaissance du terrain qui n'a pas de prix.</span></div></div> </div> </div>
-</div> <div class="team-band"> <div class="team-inner"> <span class="section-label">Notre équipe</span> <h2 class="section-title">Des <em>professionnels qui ont choisi</em> ce métier</h2> <p class="section-sub">Chez NSAD, on ne recrute pas que des diplômes. On recrute des personnes. Des hommes et des femmes qui ont choisi les soins à domicile par vocation, pas par défaut.</p> <div class="profiles-grid"> <div class="profile-card"> <div class="profile-avatar"></div> <h3>Les infirmières de coordination</h3> <div class="profile-role">Infirmières Diplômées d'État</div> <p class="profile-desc">Pilotes de l'équipe, elles organisent les soins, coordonnent avec les médecins, forment les nouvelles recrues et gardent une vision globale de chaque situation.</p> </div> <div class="profile-card"> <div class="profile-avatar"></div> <h3>Les aides-soignants</h3> <div class="profile-role">Diplôme d'État AS</div> <p class="profile-desc">Présents au quotidien pour la toilette, la surveillance, les soins de aide-soignant(e). Leur régularité et leur douceur créent un lien de confiance irremplaçable avec les patients.</p> </div> <div class="profile-card"> <div class="profile-avatar"></div> <h3>Les auxiliaires de vie</h3> <div class="profile-role">DEAVS / DEAES</div> <p class="profile-desc">Aide à la toilette, repas, sorties, vie sociale. Ils sont les gardiens du quotidien et souvent les premiers à détecter un changement dans l'état de santé.</p> </div> </div> <div class="assoc-links"> <a href="nos-valeurs-engagements.html" class="assoc-link">Nos valeurs & engagements</a> <a href="nos-partenaires.html" class="assoc-link">Nos partenaires</a> <a href="recrutement.html" class="assoc-link">Nous rejoindre</a> </div> </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TIMELINE — Notre Histoire
+     7 jalons · ligne scroll-driven · dots illuminés
+═══════════════════════════════════════════════════════ -->
+<style>
+/* ── Band ── */
+.timeline-band{padding:100px 48px 108px;background:#fff;overflow:hidden;}
+.timeline-inner{max-width:960px;margin:0 auto;}
+.timeline-header{text-align:center;margin-bottom:80px;}
+.timeline-header .section-label{display:inline-flex;justify-content:center;margin-bottom:14px;}
+.timeline-header .section-title{margin-bottom:18px;}
+.timeline-header .tl-intro{font-size:1rem;color:#4a5d66;line-height:1.8;max-width:560px;margin:0 auto;}
+
+/* ── Track & Lines ── */
+.tl-track{position:relative;padding:6px 0;}
+.tl-line-bg{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:rgba(60,105,127,.10);border-radius:2px;}
+.tl-line-fill{position:absolute;left:50%;top:0;width:2px;height:100%;transform:translateX(-50%) scaleY(0);transform-origin:top center;background:linear-gradient(180deg,#3C697F 0%,#8FF0D2 100%);border-radius:2px;will-change:transform;}
+
+/* ── Item grid ── */
+.tl-item{display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;margin-bottom:60px;}
+.tl-item:last-child{margin-bottom:0;}
+
+/* ── Card ── */
+.tl-content{background:#f4f9fb;border:1px solid rgba(60,105,127,.08);border-radius:16px;padding:28px 30px;position:relative;overflow:hidden;
+  transition:opacity .65s cubic-bezier(0,0,.2,1),transform .65s cubic-bezier(0,0,.2,1),box-shadow .3s;}
+/* Top gradient accent — visible uniquement au hover après activation */
+.tl-content::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#3C697F,#8FF0D2);opacity:0;transition:opacity .3s;}
+.tl-item.tl-active .tl-content:hover{box-shadow:0 10px 36px rgba(60,105,127,.13);}
+.tl-item.tl-active .tl-content:hover::before{opacity:1;}
+
+/* ── Arrow connectors ── */
+.tl-left  .tl-content::after,
+.tl-right .tl-content::after{content:'';position:absolute;top:50%;width:0;height:0;border:9px solid transparent;}
+.tl-left  .tl-content::after{right:-9px;transform:translateY(-50%);border-right-width:0;border-left-color:#f4f9fb;}
+.tl-right .tl-content::after{left:-9px; transform:translateY(-50%);border-left-width:0; border-right-color:#f4f9fb;}
+
+/* ── Grid positioning ── */
+.tl-left  .tl-content{grid-column:1;text-align:right;}
+.tl-left  .tl-node  {grid-column:2;display:flex;justify-content:center;position:relative;z-index:2;}
+.tl-left  .tl-spacer{grid-column:3;}
+.tl-right .tl-spacer{grid-column:1;}
+.tl-right .tl-node  {grid-column:2;display:flex;justify-content:center;position:relative;z-index:2;}
+.tl-right .tl-content{grid-column:3;text-align:left;}
+
+/* ── Entrance animations — état initial ── */
+.tl-left  .tl-content{opacity:0;transform:translateX(-28px);}
+.tl-right .tl-content{opacity:0;transform:translateX( 28px);}
+.tl-item.tl-active .tl-content{opacity:1;transform:translateX(0);}
+
+/* ── Dot ── */
+.tl-dot{width:18px;height:18px;border-radius:50%;background:#fff;border:2.5px solid rgba(60,105,127,.20);
+  transition:background .45s cubic-bezier(.34,1.56,.64,1),border-color .4s,transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .4s;}
+@keyframes tl-pulse{
+  0%  {box-shadow:0 0 0 0    rgba(143,240,210,.55);}
+  100%{box-shadow:0 0 0 14px rgba(143,240,210,0);}
+}
+.tl-item.tl-active .tl-dot{background:#8FF0D2;border-color:#3C697F;transform:scale(1.35);animation:tl-pulse 2.2s ease-out infinite;}
+
+/* ── Typography ── */
+.tl-year{display:inline-block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:#3C697F;background:rgba(60,105,127,.08);padding:4px 12px;border-radius:100px;margin-bottom:10px;}
+.tl-content h3{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;color:#1a2d36;margin-bottom:8px;line-height:1.3;}
+.tl-content p{font-size:.9rem;color:#4a5d66;line-height:1.8;margin:0;}
+
+/* ── Mobile : ligne à gauche, tout empilé ── */
+@media(max-width:768px){
+  .timeline-band{padding:72px 20px 80px;}
+  .timeline-header{margin-bottom:56px;}
+  .tl-line-bg{left:19px;transform:none;}
+  .tl-line-fill{left:19px;transform:scaleY(0);transform-origin:top left;}
+  .tl-item{grid-template-columns:40px 1fr;margin-bottom:40px;align-items:flex-start;}
+  .tl-left  .tl-content,
+  .tl-right .tl-content{grid-column:2;grid-row:1;text-align:left;transform:translateY(16px);}
+  .tl-item.tl-active .tl-content{transform:translateY(0);}
+  .tl-left  .tl-node,
+  .tl-right .tl-node{grid-column:1;grid-row:1;padding-top:14px;justify-content:center;}
+  .tl-left  .tl-spacer,
+  .tl-right .tl-spacer{display:none;}
+  .tl-left  .tl-content::after,
+  .tl-right .tl-content::after{display:none;}
+}
+/* ── Accessibilité : pas de mouvement ── */
+@media(prefers-reduced-motion:reduce){
+  .tl-line-fill,.tl-dot,.tl-content{transition:none!important;animation:none!important;}
+  .tl-left  .tl-content,
+  .tl-right .tl-content{opacity:1!important;transform:none!important;}
+}
+</style>
+
+<section class="timeline-band" id="nsad-timeline" aria-labelledby="tl-heading">
+  <div class="timeline-inner">
+
+    <header class="timeline-header">
+      <span class="section-label">Notre histoire</span>
+      <h2 class="section-title" id="tl-heading">30 ans d'engagement,<br><em>une ligne de vie</em></h2>
+      <p class="tl-intro">De la première visite à domicile jusqu'à aujourd'hui, chaque étape a été guidée par une conviction simple : accompagner les Nantais chez eux, avec humanité.</p>
+    </header>
+
+    <div class="tl-track" id="tlTrack">
+      <div class="tl-line-bg"   aria-hidden="true"></div>
+      <div class="tl-line-fill" id="tlLineFill" aria-hidden="true"></div>
+
+      <!-- ① 1993 — gauche -->
+      <article class="tl-item tl-left" data-tl-item>
+        <div class="tl-content">
+          <span class="tl-year">1993</span>
+          <h3>Fondation de l'association</h3>
+          <p>Des professionnels de santé nantais créent NSAD avec une conviction fondatrice : le domicile mérite des soins aussi rigoureux et dignes qu'à l'hôpital.</p>
+        </div>
+        <div class="tl-node"   aria-hidden="true"><div class="tl-dot"></div></div>
+        <div class="tl-spacer" aria-hidden="true"></div>
+      </article>
+
+      <!-- ② 1997 — droite -->
+      <article class="tl-item tl-right" data-tl-item>
+        <div class="tl-spacer" aria-hidden="true"></div>
+        <div class="tl-node"   aria-hidden="true"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <span class="tl-year">1997</span>
+          <h3>Agrément préfectoral</h3>
+          <p>L'État reconnaît officiellement la qualité de notre démarche — un jalon institutionnel qui ancre notre rôle dans le paysage de santé nantais.</p>
+        </div>
+      </article>
+
+      <!-- ③ 2003 — gauche -->
+      <article class="tl-item tl-left" data-tl-item>
+        <div class="tl-content">
+          <span class="tl-year">2003</span>
+          <h3>Partenariat avec le CHU de Nantes</h3>
+          <p>Signature avec le Centre Hospitalier Universitaire. Un corridor de coordination naît entre l'hôpital et le domicile, au bénéfice direct des patients.</p>
+        </div>
+        <div class="tl-node"   aria-hidden="true"><div class="tl-dot"></div></div>
+        <div class="tl-spacer" aria-hidden="true"></div>
+      </article>
+
+      <!-- ④ 2010 — droite -->
+      <article class="tl-item tl-right" data-tl-item>
+        <div class="tl-spacer" aria-hidden="true"></div>
+        <div class="tl-node"   aria-hidden="true"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <span class="tl-year">2010</span>
+          <h3>Cap des 50 professionnels</h3>
+          <p>L'équipe franchit les 50 collaborateurs diplômés. NSAD s'impose comme un acteur structurant du maintien à domicile dans les quartiers nantais.</p>
+        </div>
+      </article>
+
+      <!-- ⑤ 2015 — gauche -->
+      <article class="tl-item tl-left" data-tl-item>
+        <div class="tl-content">
+          <span class="tl-year">2015</span>
+          <h3>Maillage complet — 9 quartiers</h3>
+          <p>La couverture s'étend à l'ensemble des neuf quartiers nantais. Désormais, chaque habitant de la ville peut bénéficier de nos services de proximité.</p>
+        </div>
+        <div class="tl-node"   aria-hidden="true"><div class="tl-dot"></div></div>
+        <div class="tl-spacer" aria-hidden="true"></div>
+      </article>
+
+      <!-- ⑥ 2020 — droite -->
+      <article class="tl-item tl-right" data-tl-item>
+        <div class="tl-spacer" aria-hidden="true"></div>
+        <div class="tl-node"   aria-hidden="true"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <span class="tl-year">2020</span>
+          <h3>Mobilisation COVID-19</h3>
+          <p>En première ligne, nos équipes maintiennent la continuité des soins malgré les restrictions — 7j/7, sans interruption. La vocation exprimée au quotidien.</p>
+        </div>
+      </article>
+
+      <!-- ⑦ 2024 — gauche -->
+      <article class="tl-item tl-left" data-tl-item>
+        <div class="tl-content">
+          <span class="tl-year">2024</span>
+          <h3>30 ans &amp; 70+ professionnels</h3>
+          <p>Trois décennies d'engagement. Plus de 70 professionnels accompagnent des centaines de Nantais chaque jour chez eux — et la vocation reste intacte.</p>
+        </div>
+        <div class="tl-node"   aria-hidden="true"><div class="tl-dot"></div></div>
+        <div class="tl-spacer" aria-hidden="true"></div>
+      </article>
+
+    </div><!-- /.tl-track -->
+  </div><!-- /.timeline-inner -->
+</section>
+
+<noscript><style>.tl-left .tl-content,.tl-right .tl-content{opacity:1!important;transform:none!important;}</style></noscript>
+<script>
+(function () {
+  'use strict';
+  var track = document.getElementById('tlTrack');
+  var fill  = document.getElementById('tlLineFill');
+  if (!track || !fill) return;
+
+  var mob = function () { return window.innerWidth < 768; };
+
+  function update() {
+    var rect = track.getBoundingClientRect();
+    var vH   = window.innerHeight;
+
+    /* Progression 0→1 :
+       0 = sommet du track à 85 % du viewport
+       1 = bas du track a dépassé 85 % du viewport */
+    var p = (vH * 0.85 - rect.top) / rect.height;
+    p = p < 0 ? 0 : p > 1 ? 1 : p;
+
+    fill.style.transform = mob()
+      ? 'scaleY(' + p + ')'
+      : 'translateX(-50%) scaleY(' + p + ')';
+
+    /* Illumine chaque milestone quand son centre passe à 76 % du viewport */
+    var items = track.querySelectorAll('[data-tl-item]');
+    for (var i = 0; i < items.length; i++) {
+      var r = items[i].getBoundingClientRect();
+      if (r.top + r.height * 0.5 < vH * 0.76) {
+        items[i].classList.add('tl-active');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+  setTimeout(update, 180); /* sécurité : re-déclencher après rendu fonts/images */
+}());
+</script>
+
+<div class="team-band"> <div class="team-inner"> <span class="section-label">Notre équipe</span> <h2 class="section-title">Des <em>professionnels qui ont choisi</em> ce métier</h2> <p class="section-sub">Chez NSAD, on ne recrute pas que des diplômes. On recrute des personnes. Des hommes et des femmes qui ont choisi les soins à domicile par vocation, pas par défaut.</p> <div class="profiles-grid"> <div class="profile-card"> <div class="profile-avatar"></div> <h3>Les infirmières de coordination</h3> <div class="profile-role">Infirmières Diplômées d'État</div> <p class="profile-desc">Pilotes de l'équipe, elles organisent les soins, coordonnent avec les médecins, forment les nouvelles recrues et gardent une vision globale de chaque situation.</p> </div> <div class="profile-card"> <div class="profile-avatar"></div> <h3>Les aides-soignants</h3> <div class="profile-role">Diplôme d'État AS</div> <p class="profile-desc">Présents au quotidien pour la toilette, la surveillance, les soins de aide-soignant(e). Leur régularité et leur douceur créent un lien de confiance irremplaçable avec les patients.</p> </div> <div class="profile-card"> <div class="profile-avatar"></div> <h3>Les auxiliaires de vie</h3> <div class="profile-role">DEAVS / DEAES</div> <p class="profile-desc">Aide à la toilette, repas, sorties, vie sociale. Ils sont les gardiens du quotidien et souvent les premiers à détecter un changement dans l'état de santé.</p> </div> </div> <div class="assoc-links"> <a href="nos-valeurs-engagements.html" class="assoc-link">Nos valeurs & engagements</a> <a href="nos-partenaires.html" class="assoc-link">Nos partenaires</a> <a href="recrutement.html" class="assoc-link">Nous rejoindre</a> </div> </div>
 </div> <div class="cta-band"> <h2>Vous souhaitez nous faire confiance ?</h2> <p>Contactez-nous pour en savoir plus sur notre association et discuter de comment nous pouvons vous accompagner, vous ou votre proche.</p> <div class="cta-btns"><a href="nous-contacter.html" class="btn-white">Prendre contact</a><a href="tel:0240354343" class="btn-outline-white">02 40 35 43 43</a></div>
 </div> <style id="nsad-footer-css">
 /* ══════════ FOOTER NSAD — Barre contact ══════════ */
@@ -120,7 +347,7 @@ footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
 @media(max-width:580px){.ft-grid{grid-template-columns:1fr;gap:28px;}.ft-bar-inner{flex-direction:column;align-items:flex-start;gap:8px;}.ft-bar-items{gap:10px;flex-direction:column;}}
 </style> <div class="ft-bar" aria-label="Contact rapide"> <div class="ft-bar-inner"> <div class="ft-bar-items"> <span class="ft-bar-item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 6 rue Bel Air – 44000 Nantes</span> <span class="ft-bar-item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Lun.–Ven. 7h45–12h30 &amp; 14h–17h30</span> <span class="ft-bar-item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> Interventions 7j/7</span> </div> <a href="tel:0240354343" class="ft-phone"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.07 6.07l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>02 40 35 43 43</a> </div>
 </div> <footer id="nsad-footer" class="nsad-ft" role="contentinfo"> <div class="ft-inner"> <div class="ft-grid"> <div class="ft-brand"> <h2>Nantes Soins à Domicile</h2> <p>Association loi 1901 · Agrément préfectoral<br>Partenaire du CHU de Nantes.</p> <address> 6 rue Bel Air – 44000 Nantes<br> <a href="tel:0240354343">02 40 35 43 43</a> &nbsp;·&nbsp;
-          <a href="mailto:contact@ssiadnsaid.fr">contact@ssiadnsaid.fr</a> </address> <div class="ft-social"> <a href="https://www.linkedin.com/company/nantes-soins-a-domicile" class="ft-social-link" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">in</a> <a href="https://www.facebook.com/nantessoinsadomicile" class="ft-social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">f</a> <a href="https://www.youtube.com/@nantessoinsadomicile" class="ft-social-link" aria-label="YouTube" rel="noopener noreferrer" target="_blank"></a> </div> </div> <div class="ft-col"> <h3>Nos Quartiers</h3> <ul> <li><a href="quartier-centre-ville.html">Centre-ville</a></li> <li><a href="quartier-ile-de-nantes.html">Île de Nantes</a></li> <li><a href="quartier-bellevue-chantenay.html">Bellevue-Chantenay</a></li> <li><a href="quartier-dervallières-zola.html">Dervallières-Zola</a></li> <li><a href="quartier-hauts-paves-saint-felix.html">Hauts-Pavés</a></li> <li><a href="quartier-breil-barbiere.html">Breil-Barbière</a></li> <li><a href="quartier-malakoff-saint-donatien.html">Malakoff</a></li> <li><a href="quartier-nantes-nord.html">Nantes Nord</a></li> <li><a href="nos-quartiers.html" class="ft-all">Tous les quartiers →</a></li> </ul> </div> <div class="ft-col"> <h3>Nos Services</h3> <ul> <li><a href="soins-infirmiers-nantes.html">Soins infirmiers</a></li> <li><a href="soin-hygiene-domicile-nantes.html">Soins d'hygiène</a></li> <li><a href="nursing-aide-soignant-nantes.html">Aide-soignant(e)</a></li> <li><a href="accompagnement-fin-de-vie-nantes.html">Fin de vie</a></li> <li><a href="nutrition-repas-domicile-nantes.html">Nutrition &amp; repas</a></li> <li><a href="mobilite-vie-sociale-nantes.html">Mobilité &amp; lien social</a></li> <li><a href="dossiers-apa-pch-nantes.html">APA / PCH</a></li> <li><a href="lien-famille-corps-medical-nantes.html">Famille &amp; médecin</a></li> <li><a href="nos-services.html" class="ft-all">Tous les services →</a></li> </ul> </div> <div class="ft-col"> <h3>Nos Actualit&eacute;s</h3> <ul> <li><a href="comprendre-alzheimer-parkinson-nantes.html">Alzheimer &amp; Parkinson</a></li> <li><a href="guide-aidant-nantais.html">Guide de l'aidant nantais</a></li> <li><a href="mag-expert.html" class="ft-all">Tous les articles →</a></li> </ul> <h3 class="ft-h3-mt">L'Association</h3> <ul> <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li> <li><a href="nos-valeurs-engagements.html">Nos valeurs</a></li> <li><a href="nos-partenaires.html">Nos partenaires</a></li> <li><a href="recrutement.html">Recrutement</a></li> <li><a href="nous-contacter.html">Contact</a></li> </ul> </div> </div> <div class="ft-bottom"> <span>© 2026 Nantes Soins à Domicile – Association loi 1901 – Nantes (44000)</span> <span>Prototype SEO/GEO/AEO 2027</span> </div> </div>
+          <a href="mailto:contact@ssiadnsaid.fr">contact@ssiadnsaid.fr</a> </address> <div class="ft-social"> <a href="https://www.linkedin.com/company/nantes-soins-a-domicile" class="ft-social-link" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">in</a> <a href="https://www.facebook.com/nantessoinsadomicile" class="ft-social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">f</a> <a href="https://www.youtube.com/@nantessoinsadomicile" class="ft-social-link" aria-label="YouTube" rel="noopener noreferrer" target="_blank"></a> </div> </div> <div class="ft-col"> <h3>Nos Quartiers</h3> <ul> <li><a href="quartier-centre-ville.html">Centre-ville</a></li> <li><a href="quartier-ile-de-nantes.html">Île de Nantes</a></li> <li><a href="quartier-bellevue-chantenay.html">Bellevue-Chantenay</a></li> <li><a href="quartier-dervallières-zola.html">Dervallières-Zola</a></li> <li><a href="quartier-hauts-paves-saint-felix.html">Hauts-Pavés</a></li> <li><a href="quartier-breil-barbiere.html">Breil-Barbière</a></li> <li><a href="quartier-malakoff-saint-donatien.html">Malakoff</a></li> <li><a href="quartier-nantes-nord.html">Nantes Nord</a></li> <li><a href="nos-quartiers.html" class="ft-all">Tous les quartiers →</a></li> </ul> </div> <div class="ft-col"> <h3>Nos Services</h3> <ul> <li><a href="soins-infirmiers-nantes.html">Soins infirmiers</a></li> <li><a href="soin-hygiene-domicile-nantes.html">Soins d'hygiène</a></li> <li><a href="nursing-aide-soignant-nantes.html">Aide-soignant(e)</a></li> <li><a href="accompagnement-fin-de-vie-nantes.html">Fin de vie</a></li> <li><a href="nutrition-repas-domicile-nantes.html">Nutrition &amp; repas</a></li> <li><a href="mobilite-vie-sociale-nantes.html">Mobilité &amp; lien social</a></li> <li><a href="dossiers-apa-pch-nantes.html">APA / PCH</a></li> <li><a href="lien-famille-corps-medical-nantes.html">Famille &amp; médecin</a></li> <li><a href="nos-services.html" class="ft-all">Tous les services →</a></li> </ul> </div> <div class="ft-col"> <h3>Nos Actualit&eacute;s</h3> <ul> <li><a href="comprendre-alzheimer-parkinson-nantes.html">Alzheimer &amp; Parkinson</a></li> <li><a href="guide-aidant-nantais.html">Guide de l'aidant nantais</a></li> <li><a href="mag-expert.html" class="ft-all">Tous les articles →</a></li> </ul> <h3 class="ft-h3-mt">L'Association</h3> <ul> <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li> <li><a href="nos-valeurs-engagements.html">Nos valeurs</a></li> <li><a href="nos-partenaires.html">Nos partenaires</a></li> <li><a href="recrutement.html">Recrutement</a></li> <li><a href="nous-contacter.html">Contact</a></li> </ul> </div> </div> <div class="ft-bottom"> <span>© 2026 Nantes Soins à Domicile – Association loi 1901 – Nantes (44000)</span> <span><a href="mentions-legales.html">Mentions légales</a>&ensp;·&ensp;Prototype SEO/GEO/AEO 2027</span> </div> </div>
 </footer>
 <a href="tel:0240354343" class="nsad-floating-call" aria-label="Appeler Nantes Soins &#224; Domicile"><span class="fc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.07 6.07l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg></span><span class="fc-label">02 40 35 43 43</span></a>
 </body>

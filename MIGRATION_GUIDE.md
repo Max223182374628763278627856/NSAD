@@ -269,4 +269,81 @@ Page
 
 ---
 
+---
+
+## 11. Timeline Historique — `qui-sommes-nous.html`
+
+### 11.1 Description du composant
+
+Timeline verticale interactive à 7 jalons (1993 → 2024), pilotée par le scroll.
+
+| Élément               | Comportement                                                       |
+|-----------------------|--------------------------------------------------------------------|
+| Ligne de fond         | `2px`, gradient `#3C697F → #8FF0D2`, opacité 10 %                |
+| Ligne de progression  | Même couleur, `scaleY(0 → 1)` piloté par `scrollY`               |
+| Dots milestones       | Blanc au repos → fond `--mint`, `scale(1.35)`, pulse infini       |
+| Cartes (gauche)       | `opacity:0; translateX(-28px)` → révèle quand dot s'illumine     |
+| Cartes (droite)       | `opacity:0; translateX(+28px)` → idem                            |
+| Mobile (< 768 px)     | Ligne à gauche, tout empilé, animation `translateY`               |
+
+### 11.2 Option A — Widget Timeline Elementor Pro (recommandé)
+
+> Disponible dans **Elementor Pro ≥ 3.9** via le widget **Timeline**.
+
+1. Insérer le widget **Timeline** (catégorie Pro)
+2. **Layout** → Vertical, **Align** → Center (alternating)
+3. Pour chaque item : Year, Title, Description (7 items)
+4. **Style → Line** : couleur `--primary` (#3C697F), largeur 2px
+5. **Style → Icon/Point** : cercle, couleur active `--mint` (#8FF0D2)
+6. **Motion Effects** sur chaque item : Fade In Left / Fade In Right selon position
+
+**Limite :** Le widget Elementor ne supporte pas la progression scroll-driven native.  
+Pour la garder fidèlement, utiliser l'**Option B**.
+
+### 11.3 Option B — Code HTML/CSS/JS personnalisé (fidélité maximale)
+
+Insérer via **Elementor → HTML Widget** ou **Code Block** le code complet du composant.
+
+**Variables CSS à déclarer dans le CSS Global Elementor :**
+```css
+/* Coller dans Elementor → Personnaliser → CSS Additionnel */
+.tl-line-fill {
+  background: linear-gradient(180deg, var(--e-global-color-primary, #3C697F) 0%, var(--e-global-color-accent, #8FF0D2) 100%);
+}
+.tl-year { color: var(--e-global-color-primary, #3C697F); background: rgba(60,105,127,.08); }
+.tl-item.tl-active .tl-dot { background: var(--e-global-color-accent, #8FF0D2); border-color: var(--e-global-color-primary, #3C697F); }
+```
+
+**JS (coller en bas de page via Elementor → Personnaliser → CSS/JS Perso) :**
+```js
+// Pilotage scroll-driven de la timeline
+(function(){
+  var track=document.getElementById('tlTrack'),fill=document.getElementById('tlLineFill');
+  if(!track||!fill)return;
+  function update(){
+    var r=track.getBoundingClientRect(),vH=window.innerHeight;
+    var p=Math.max(0,Math.min(1,(vH*.85-r.top)/r.height));
+    var mob=window.innerWidth<768;
+    fill.style.transform=mob?'scaleY('+p+')':'translateX(-50%) scaleY('+p+')';
+    track.querySelectorAll('[data-tl-item]').forEach(function(i){
+      var ir=i.getBoundingClientRect();
+      if(ir.top+ir.height*.5<vH*.76)i.classList.add('tl-active');
+    });
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update,{passive:true});
+  update();setTimeout(update,180);
+}());
+```
+
+### 11.4 Accessibilité & fallbacks
+
+| Cas                          | Comportement                                             |
+|------------------------------|----------------------------------------------------------|
+| JavaScript désactivé         | `<noscript>` force `opacity:1; transform:none` sur tout |
+| `prefers-reduced-motion`     | Transitions désactivées, éléments visibles d'emblée     |
+| Navigateurs sans `IntersectionObserver` | Activation par `getBoundingClientRect` (scroll event) — compatible IE 11+ |
+
+---
+
 *Document vivant — mettre à jour après chaque sprint de migration.*
