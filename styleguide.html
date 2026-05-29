@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>NSAD — Design System v2.0 · Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Hind:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="variables.css">
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<style>
+
+/* ═══ RESET & BASE ═══ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: #0A1E2A;
+  color: var(--text-body, #344852);
+  line-height: var(--leading-relaxed, 1.85);
+}
+
+/* ═══ ACCENT TOP BAR ═══ */
+.sg-top-bar {
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--primary) 0%,
+    var(--mint) 40%,
+    var(--lavender) 70%,
+    var(--coral) 100%
+  );
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+/* ═══ STICKY NAV ═══ */
+.sg-nav {
+  position: sticky;
+  top: 4px;
+  z-index: 100;
+  background: rgba(10, 30, 42, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sg-nav::-webkit-scrollbar { display: none; }
+.sg-nav-brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--mint);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  padding: 16px 28px 16px 0;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  margin-right: 8px;
+}
+.sg-nav a {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  padding: 16px 14px;
+  white-space: nowrap;
+  transition: color var(--transition-fast, 160ms);
+  letter-spacing: 0.03em;
+}
+.sg-nav a:hover { color: rgba(255,255,255,0.9); }
+
+/* ═══ HERO ═══ */
+.sg-hero {
+  background: linear-gradient(160deg, #0F2F3E 0%, #1A4A62 50%, #0A2030 100%);
+  padding: 96px 80px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.sg-hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -80px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(112,232,198,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.sg-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 15%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(46,106,138,0.15) 0%, transparent 65%);
+  pointer-events: none;
+}
+.sg-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.sg-hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(112,232,198,0.12);
+  border: 1px solid rgba(112,232,198,0.25);
+  color: var(--mint);
+  font-family: var(--font-heading); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: var(--radius-pill);
+  margin-bottom: 24px;
+}
+.sg-hero-badge span { width: 6px; height: 6px; background: var(--mint); border-radius: 50%; }
+.sg-hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.sg-hero h1 em { color: var(--mint); font-style: normal; }
+.sg-hero p {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+.sg-hero-meta {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.sg-hero-meta-item {
+  display: flex; flex-direction: column;
+}
+.sg-hero-meta-item strong {
+  font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800;
+  color: #fff; line-height: 1;
+}
+.sg-hero-meta-item span {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  font-family: var(--font-heading); letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* ═══ LAYOUT ═══ */
+.sg-section {
+  padding: 80px 80px;
+  max-width: 100%;
+}
+.sg-section:nth-child(even) { background: var(--surface-page, #F5F8FA); }
+.sg-section:nth-child(odd)  { background: var(--surface-card, #FFFFFF); }
+.sg-section-inner { max-width: 1100px; margin: 0 auto; }
+.sg-section-dark {
+  background: var(--surface-dark, #0F2F3E) !important;
+}
+
+.sg-section-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  margin-bottom: 52px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(14,40,60,0.08);
+}
+.sg-section-dark .sg-section-header {
+  border-bottom-color: rgba(255,255,255,0.08);
+}
+.sg-section-label {
+  font-family: var(--font-heading); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--primary);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px;
+}
+.sg-section-dark .sg-section-label { color: var(--mint); }
+.sg-section-label::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 2px; background: currentColor; border-radius: 2px;
+}
+.sg-section-title {
+  font-family: var(--font-heading); font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700; color: var(--text-heading, #122432); line-height: 1.2;
+}
+.sg-section-dark .sg-section-title { color: #fff; }
+.sg-section-sub {
+  font-size: 0.9375rem; color: var(--text-muted, #637D88);
+  margin-top: 8px; max-width: 500px; line-height: 1.6;
+}
+.sg-section-dark .sg-section-sub { color: rgba(255,255,255,0.5); }
+.sg-section-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; font-weight: 400;
+  color: rgba(14,40,60,0.04); line-height: 1; user-select: none;
+  align-self: flex-start;
+}
+.sg-section-dark .sg-section-num { color: rgba(255,255,255,0.04); }
+
+/* ═══ ELEMENTOR NOTE ═══ */
+.el-note {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #FFF7ED; border: 1px solid #FFD5A8;
+  color: #8B4513;
+  font-family: var(--font-heading); font-size: 11px; font-weight: 500;
+  padding: 5px 12px; border-radius: var(--radius-pill);
+  margin-top: 12px;
+  line-height: 1.4;
+}
+.el-note::before { content: '⟡'; font-size: 12px; color: #F97316; }
+.el-note-block {
+  background: #FFFBF4;
+  border: 1px solid #FFE4C4;
+  border-left: 3px solid #F97316;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #6B3010;
+  line-height: 1.6;
+}
+.el-note-block strong { font-family: var(--font-heading); font-weight: 600; color: #C2510A; }
+
+/* ═══ SECTION : COULEURS ═══ */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.color-swatch {
+  border-radius: var(--radius-sm); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.color-swatch:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.color-swatch-top {
+  height: 80px;
+}
+.color-swatch-info {
+  background: var(--surface-card);
+  padding: 10px 12px;
+}
+.color-swatch-name {
+  font-family: var(--font-heading); font-size: 12px; font-weight: 600;
+  color: var(--text-heading); margin-bottom: 2px;
+}
+.color-swatch-var {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--text-muted);
+}
+.color-swatch-hex {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--text-body); font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ═══ SECTION : TYPOGRAPHIE ═══ */
+.type-row {
+  display: grid; grid-template-columns: 1fr 2fr auto;
+  align-items: baseline; gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(14,40,60,0.06);
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); }
+.type-meta strong { display: block; color: var(--text-body); font-weight: 500; margin-bottom: 2px; }
+.type-sample { color: var(--text-heading); }
+.type-label {
+  font-family: var(--font-heading); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--primary);
+  background: var(--primary-50, #EAF3F8);
+  padding: 4px 10px; border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+/* ═══ SECTION : OMBRES ═══ */
+.shadow-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 28px;
+}
+.shadow-demo {
+  background: var(--surface-card);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px;
+  transition: all var(--transition-base);
+  cursor: default;
+}
+.shadow-demo:hover { transform: translateY(-6px); }
+.shadow-demo-name {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  color: var(--text-muted); font-weight: 500;
+}
+.shadow-demo-desc { font-size: 11px; color: var(--text-subtle, #8FA5AE); text-align: center; }
+
+/* ═══ SECTION : BOUTONS ═══ */
+.btn-grid { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--primary); color: #fff;
+  font-family: var(--font-heading); font-size: 14px; font-weight: 600;
+  padding: 14px 28px; border-radius: var(--radius-pill);
+  text-decoration: none; border: none; cursor: pointer;
+  box-shadow: var(--shadow-primary);
+  transition: all var(--transition-base);
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow-primary-lg);
+  transform: translateY(-2px);
+}
+
+.btn-mint {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--mint); color: var(--primary-deeper, #0F2F3E);
+  font-family: var(--font-heading); font-size: 14px; font-weight: 700;
+  padding: 14px 28px; border-radius: var(--radius-pill);
+  text-decoration: none; border: none; cursor: pointer;
+  box-shadow: var(--shadow-mint);
+  transition: all var(--transition-base);
+}
+.btn-mint:hover {
+  background: var(--mint-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(112,232,198,0.45);
+}
+
+.btn-coral {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--coral); color: #fff;
+  font-family: var(--font-heading); font-size: 14px; font-weight: 700;
+  padding: 14px 28px; border-radius: var(--radius-pill);
+  text-decoration: none; border: none; cursor: pointer;
+  box-shadow: var(--shadow-coral);
+  transition: all var(--transition-base);
+}
+.btn-coral:hover {
+  background: var(--coral-dark);
+  box-shadow: var(--shadow-coral-lg);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--primary);
+  font-family: var(--font-heading); font-size: 14px; font-weight: 600;
+  padding: 13px 27px; border-radius: var(--radius-pill);
+  text-decoration: none;
+  border: 1.5px solid var(--primary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+.btn-ghost:hover {
+  background: var(--primary-50, #EAF3F8);
+  border-color: var(--primary-dark);
+  color: var(--primary-dark);
+}
+
+.btn-outline-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: rgba(255,255,255,0.85);
+  font-family: var(--font-heading); font-size: 14px; font-weight: 600;
+  padding: 13px 27px; border-radius: var(--radius-pill);
+  text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+.btn-outline-white:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 9px 18px; font-size: 13px;
+}
+.btn-icon { font-size: 16px; }
+
+/* ═══ SECTION : BADGES & PILLS ═══ */
+.badge-grid { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.cat-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-heading); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: var(--radius-pill);
+}
+.cat-primary   { background: var(--primary-50, #EAF3F8); color: var(--primary-dark); }
+.cat-mint      { background: var(--mint-50, #EDFAF5); color: var(--mint-deep, #28A882); }
+.cat-coral     { background: var(--coral-50, #FFF1EE); color: var(--coral-deep, #C94F3A); }
+.cat-lavender  { background: var(--lavender-50, #EDF1FE); color: var(--lavender-dark, #5578E4); }
+.cat-dark      { background: var(--surface-dark, #0F2F3E); color: var(--mint); }
+
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.88);
+  padding: 8px 16px; border-radius: var(--radius-pill);
+  font-size: 13px; font-weight: 500; font-family: var(--font-heading);
+}
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-heading); font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: var(--radius-pill);
+}
+.status-ok   { background: #ECFDF5; color: #065F46; }
+.status-ok::before { content:''; width:7px;height:7px;background:#10B981;border-radius:50%; }
+.status-info { background: #EFF6FF; color: #1E40AF; }
+.status-info::before { content:''; width:7px;height:7px;background:#3B82F6;border-radius:50%; }
+
+/* ═══ SECTION : CARDS SERVICES ═══ */
+.cards-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+@media(max-width:900px) { .cards-grid { grid-template-columns: 1fr; } }
+
+.service-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg, 28px);
+  padding: 36px 28px 32px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(14,40,60,0.05);
+  transition: all var(--transition-base);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+.service-card:hover::before { opacity: 1; }
+.service-card.card-lavender::before { background: var(--lavender); }
+.service-card.card-mint::before     { background: var(--mint); }
+.service-card.card-coral::before    { background: var(--coral); }
+
+.service-card-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.icon-lavender { background: var(--lavender-50, #EDF1FE); }
+.icon-mint     { background: var(--mint-50, #EDFAF5); }
+.icon-coral    { background: var(--coral-50, #FFF1EE); }
+
+.service-card h3 {
+  font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;
+  color: var(--text-heading); margin-bottom: 10px; line-height: 1.3;
+}
+.service-card p {
+  font-size: 0.9375rem; color: var(--text-muted); line-height: 1.7;
+  margin-bottom: 20px;
+}
+.card-link {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 600;
+  color: var(--primary); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: gap var(--transition-fast), color var(--transition-fast);
+}
+.card-link:hover { color: var(--primary-dark); gap: 10px; }
+
+/* ═══ CARDS QUARTIERS ═══ */
+.quartier-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+@media(max-width:900px) { .quartier-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.quartier-card {
+  background: var(--surface-card);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(14,40,60,0.06);
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+.quartier-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-200, #9DC3D3);
+  background: var(--primary-50, #EAF3F8);
+}
+.quartier-dot {
+  width: 10px; height: 10px;
+  background: var(--primary);
+  border-radius: 50%; flex-shrink: 0;
+  transition: background var(--transition-fast), transform var(--transition-spring);
+}
+.quartier-card:hover .quartier-dot {
+  background: var(--mint-dark);
+  transform: scale(1.4);
+}
+.quartier-name {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 600;
+  color: var(--text-heading);
+  transition: color var(--transition-fast);
+}
+.quartier-card:hover .quartier-name { color: var(--primary); }
+.quartier-arrow {
+  margin-left: auto; font-size: 14px; color: var(--text-muted);
+  transition: transform var(--transition-base), color var(--transition-fast);
+}
+.quartier-card:hover .quartier-arrow { transform: translateX(4px); color: var(--primary); }
+
+/* ═══ INFO CARD ═══ */
+.info-card-demo {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+  max-width: 460px;
+}
+.info-card-title {
+  font-family: var(--font-heading); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.info-card-title::before {
+  content: ''; width: 20px; height: 2px;
+  background: var(--primary); border-radius: 2px;
+}
+.info-row-demo {
+  display: flex; gap: 14px; padding: 14px 0;
+  border-bottom: 1px solid rgba(14,40,60,0.06);
+  align-items: flex-start;
+}
+.info-row-demo:last-child { border-bottom: none; }
+.info-row-icon-demo {
+  width: 32px; height: 32px;
+  background: var(--primary-50, #EAF3F8);
+  border-radius: var(--radius-xs, 4px);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.info-row-content strong {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 700;
+  color: var(--text-heading); display: block; margin-bottom: 3px;
+}
+.info-row-content span {
+  font-size: 13px; color: var(--text-muted); line-height: 1.55;
+}
+.info-highlight-demo {
+  background: var(--primary-50, #EAF3F8);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px; margin-top: 16px;
+  font-size: 13px; color: var(--text-body); line-height: 1.6;
+}
+.info-highlight-demo strong {
+  font-family: var(--font-heading); font-weight: 700;
+  color: var(--primary); display: block;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;
+}
+
+/* ═══ SECTION : FORMULAIRES ═══ */
+.form-demo {
+  max-width: 480px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.form-group-demo label {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 600;
+  color: var(--text-heading); display: block; margin-bottom: 8px;
+}
+.form-input-demo {
+  width: 100%; padding: 14px 18px;
+  background: var(--surface-card);
+  border: 1.5px solid rgba(14,40,60,0.12);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 1rem; color: var(--text-body);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-input-demo:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(46,106,138,0.12);
+}
+.form-input-demo::placeholder { color: var(--text-subtle, #8FA5AE); }
+
+/* ═══ SECTION : LOTTIE ANIMATIONS ═══ */
+.lottie-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+@media(max-width:800px) { .lottie-grid { grid-template-columns: 1fr; } }
+
+.lottie-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 40px 28px 28px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  transition: all var(--transition-base);
+}
+.lottie-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(112,232,198,0.2);
+  transform: translateY(-4px);
+}
+.lottie-wrapper {
+  width: 160px; height: 160px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.lottie-card h3 {
+  font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+  color: #fff; margin-bottom: 8px;
+}
+.lottie-card p {
+  font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;
+  margin-bottom: 16px;
+}
+.lottie-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--mint); background: rgba(112,232,198,0.1);
+  border: 1px solid rgba(112,232,198,0.2);
+  padding: 4px 10px; border-radius: var(--radius-pill);
+}
+
+.lottie-hero-demo {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 48px;
+  background: linear-gradient(135deg, var(--primary-deeper, #0F2F3E) 0%, rgba(46,106,138,0.3) 100%);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  margin-top: 40px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+@media(max-width:700px) {
+  .lottie-hero-demo { grid-template-columns: 1fr; text-align: center; }
+  .lottie-hero-demo > div:last-child { margin: 0 auto; }
+}
+.lottie-hero-demo h3 {
+  font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;
+  color: #fff; margin-bottom: 12px;
+}
+.lottie-hero-demo h3 em { color: var(--mint); font-style: normal; }
+.lottie-hero-demo p {
+  font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 24px; line-height: 1.7;
+}
+
+.el-note-dark {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.25);
+  color: #FBD38D;
+  font-family: var(--font-heading); font-size: 11px; font-weight: 500;
+  padding: 5px 12px; border-radius: var(--radius-pill);
+  margin-top: 12px;
+}
+.el-note-dark::before { content: '⟡'; font-size: 12px; color: #F97316; }
+
+/* ═══ SECTION : FOOTER / MIGRATION MAP ═══ */
+.migration-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+@media(max-width:800px) { .migration-grid { grid-template-columns: 1fr; } }
+
+.migration-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.migration-card-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--mint); font-weight: 600; letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.migration-card h4 {
+  font-family: var(--font-heading); font-size: 15px; font-weight: 700;
+  color: #fff; margin-bottom: 10px;
+}
+.migration-card p {
+  font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65;
+}
+.migration-card-steps {
+  margin-top: 14px; display: flex; flex-direction: column; gap: 6px;
+}
+.migration-step {
+  font-size: 12px; color: rgba(255,255,255,0.6);
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.migration-step::before {
+  content: '→'; color: var(--mint); flex-shrink: 0; font-weight: 700;
+}
+
+/* ═══ CSS FALLBACK animation (si Lottie ne charge pas) ═══ */
+@keyframes sg-pulse-ring {
+  0%   { transform: scale(0.85); opacity: 1; }
+  50%  { transform: scale(1.05); opacity: 0.7; }
+  100% { transform: scale(0.85); opacity: 1; }
+}
+@keyframes sg-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.lottie-fallback {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px;
+  animation: sg-float 3s ease-in-out infinite;
+}
+.lottie-fallback-pulse {
+  animation: sg-pulse-ring 2s ease-in-out infinite;
+}
+
+/* ═══ CODE SNIPPET ═══ */
+.code-block {
+  background: #0A1E2A;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #7DD3C8;
+  overflow-x: auto;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+.code-block .kw  { color: #9ECFFF; }
+.code-block .val { color: #FFD080; }
+.code-block .cmt { color: rgba(255,255,255,0.3); }
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px) {
+  .sg-hero { padding: 60px 24px 48px; }
+  .sg-section { padding: 56px 24px; }
+  .sg-nav { padding: 0 20px; }
+  .type-row { grid-template-columns: 1fr; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .lottie-grid { grid-template-columns: 1fr; }
+  .migration-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ ACCENT TOP BAR ═══ -->
+<div class="sg-top-bar" role="presentation"></div>
+
+<!-- ═══ STICKY NAV ═══ -->
+<nav class="sg-nav" aria-label="Style Guide Navigation">
+  <span class="sg-nav-brand">NSAD DS v2.0</span>
+  <a href="#couleurs">Couleurs</a>
+  <a href="#typographie">Typographie</a>
+  <a href="#ombres">Ombres</a>
+  <a href="#boutons">Boutons</a>
+  <a href="#badges">Badges</a>
+  <a href="#cards">Cards</a>
+  <a href="#formulaires">Formulaires</a>
+  <a href="#animations">Animations</a>
+  <a href="#migration">Migration WP</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="sg-hero" role="banner">
+  <div class="sg-hero-inner">
+    <div class="sg-hero-badge"><span></span>Design System · Version 2.0 · Mai 2026</div>
+    <h1>Nantes Soins à Domicile<br><em>Design System</em></h1>
+    <p>Référentiel visuel complet — palette premium, composants interactifs et guide de migration WordPress / Elementor.</p>
+    <div class="sg-hero-meta">
+      <div class="sg-hero-meta-item">
+        <strong>34</strong>
+        <span>pages HTML</span>
+      </div>
+      <div class="sg-hero-meta-item">
+        <strong>1</strong>
+        <span>variables.css</span>
+      </div>
+      <div class="sg-hero-meta-item">
+        <strong>12</strong>
+        <span>composants</span>
+      </div>
+      <div class="sg-hero-meta-item">
+        <strong>~0</strong>
+        <span>dépendances JS</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     01 — COULEURS
+══════════════════════════════════════════ -->
+<section class="sg-section" id="couleurs">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">01</div>
+        <h2 class="sg-section-title">Palette Premium</h2>
+        <p class="sg-section-sub">Palette évoluée vs v1.0 — plus de profondeur, cohérence chromatique totale. Chaque teinte est intentionnelle.</p>
+      </div>
+      <span class="sg-section-num">01</span>
+    </div>
+
+    <div class="color-grid">
+      <!-- Primaires -->
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#2E6A8A"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primaire</div>
+          <div class="color-swatch-var">--primary</div>
+          <div class="color-swatch-hex">#2E6A8A</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#1E4F68"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primaire Foncé</div>
+          <div class="color-swatch-var">--primary-dark</div>
+          <div class="color-swatch-hex">#1E4F68</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#EAF3F8"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Primaire Doux</div>
+          <div class="color-swatch-var">--primary-50</div>
+          <div class="color-swatch-hex">#EAF3F8</div>
+        </div>
+      </div>
+      <!-- Accents -->
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#70E8C6"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Menthe Sage</div>
+          <div class="color-swatch-var">--mint</div>
+          <div class="color-swatch-hex">#70E8C6</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#FF8A75"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Corail Chaud</div>
+          <div class="color-swatch-var">--coral</div>
+          <div class="color-swatch-hex">#FF8A75</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#7DA2FA"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Lavande</div>
+          <div class="color-swatch-var">--lavender</div>
+          <div class="color-swatch-hex">#7DA2FA</div>
+        </div>
+      </div>
+      <!-- Surfaces -->
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#F5F8FA; border:1px solid #e8eef2"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Fond Page</div>
+          <div class="color-swatch-var">--bg / --surface-page</div>
+          <div class="color-swatch-hex">#F5F8FA</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#0F2F3E"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Fond Sombre</div>
+          <div class="color-swatch-var">--surface-dark</div>
+          <div class="color-swatch-hex">#0F2F3E</div>
+        </div>
+      </div>
+      <!-- Textes -->
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#122432"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Texte Titre</div>
+          <div class="color-swatch-var">--text-heading / --ink</div>
+          <div class="color-swatch-hex">#122432</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#344852"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Texte Corps</div>
+          <div class="color-swatch-var">--text / --text-body</div>
+          <div class="color-swatch-hex">#344852</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-top" style="background:#637D88"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Texte Discret</div>
+          <div class="color-swatch-var">--text-muted / --ink-soft</div>
+          <div class="color-swatch-hex">#637D88</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="el-note-block" style="margin-top:24px">
+      <strong>Elementor — Couleurs Globales :</strong>
+      Apparence › Élémentaire › Couleurs Globales. Créer 10 entrées (Primaire, Primaire Foncé, Menthe, Corail, Lavande, Fond Page, Fond Sombre, Texte Titre, Texte Corps, Texte Discret). Une fois défini, chaque widget utilise "Couleur Globale" → mise à jour instantanée sur tout le site en 1 clic.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     02 — TYPOGRAPHIE
+══════════════════════════════════════════ -->
+<section class="sg-section" id="typographie">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">02</div>
+        <h2 class="sg-section-title">Échelle Typographique</h2>
+        <p class="sg-section-sub">Poppins pour les titres (impact, confiance), Hind pour le corps (lisibilité senior garantie à 18px minimum).</p>
+      </div>
+      <span class="sg-section-num">02</span>
+    </div>
+
+    <div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Hero H1</strong>clamp(2.25→3.75rem) · 800 · LS -0.02em</div>
+        <div class="type-sample" style="font-family:'Poppins',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:#122432;letter-spacing:-0.02em;line-height:1.08">Soins à domicile <em style="color:#2E6A8A;font-style:normal">à Nantes</em></div>
+        <span class="type-label">--text-hero</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Section H2</strong>clamp(1.5→2rem) · 700 · LS -0.01em</div>
+        <div class="type-sample" style="font-family:'Poppins',sans-serif;font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:700;color:#122432;letter-spacing:-0.01em">Nos services à <em style="color:#2E6A8A;font-style:normal">domicile</em></div>
+        <span class="type-label">--text-3xl</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Card H3</strong>1.1rem · 700 · LS 0</div>
+        <div class="type-sample" style="font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;color:#122432">Soins infirmiers à domicile</div>
+        <span class="type-label">--text-xl</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Corps Senior</strong>1.0625rem · 400 · LH 1.85</div>
+        <div class="type-sample" style="font-family:'Hind',sans-serif;font-size:1.0625rem;color:#344852;line-height:1.85;max-width:480px">Nos professionnels diplômés interviennent dans votre quartier 7 jours sur 7. Un seul appel suffit pour organiser votre prise en charge à domicile.</div>
+        <span class="type-label">--text-base · senior</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Lead / Intro</strong>1.125rem · 400 · LH 1.7</div>
+        <div class="type-sample" style="font-family:'Hind',sans-serif;font-size:1.125rem;color:#637D88;line-height:1.7">Soins infirmiers, aide à domicile et accompagnement administratif — 70 professionnels diplômés.</div>
+        <span class="type-label">--text-md</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Label / Section</strong>0.6875rem · 700 · LS 0.18em · UPPERCASE</div>
+        <div class="type-sample" style="font-family:'Poppins',sans-serif;font-size:0.6875rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#2E6A8A">Nos services à domicile</div>
+        <span class="type-label">label</span>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><strong>Meta / Code</strong>JetBrains Mono · 12px · 400</div>
+        <div class="type-sample" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#637D88">--primary: #2E6A8A · var(--shadow-md)</div>
+        <span class="type-label">monospace</span>
+      </div>
+    </div>
+
+    <div class="el-note-block" style="margin-top:24px">
+      <strong>Elementor — Polices Globales :</strong>
+      Apparence › Élémentaire › Typographie Globale. "Titre" → Poppins 700/800. "Corps" → Hind 400, taille 18px, interlignage 1.85. "Accent" → Poppins 600 pour labels en uppercase.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     03 — OMBRES
+══════════════════════════════════════════ -->
+<section class="sg-section" id="ombres">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">03</div>
+        <h2 class="sg-section-title">Système d'Ombres Douces</h2>
+        <p class="sg-section-sub">Double couche (ambient + directional). Teintées avec --primary pour une cohérence chromatique totale — pas de gris neutre générique.</p>
+      </div>
+      <span class="sg-section-num">03</span>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:32px">Survolez chaque carte pour voir l'élévation au hover.</p>
+
+    <div class="shadow-grid">
+      <div class="shadow-demo" style="box-shadow:var(--shadow-xs)">
+        <div class="shadow-demo-name">--shadow-xs</div>
+        <div class="shadow-demo-desc">Badges, petits éléments. 1px, 2px blur.</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-sm)">
+        <div class="shadow-demo-name">--shadow-sm</div>
+        <div class="shadow-demo-desc">Pills, inputs au focus. 2px, 6px blur.</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-md)">
+        <div class="shadow-demo-name">--shadow (--shadow-md)</div>
+        <div class="shadow-demo-desc">Cards repos. 4px, 16px blur. État par défaut.</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-lg)">
+        <div class="shadow-demo-name">--shadow-lg</div>
+        <div class="shadow-demo-desc">Cards au hover. 8px, 32px blur.</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-xl)">
+        <div class="shadow-demo-name">--shadow-xl</div>
+        <div class="shadow-demo-desc">Modals, drawers. 20px, 56px blur.</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-primary);border-top:3px solid var(--primary)">
+        <div class="shadow-demo-name" style="color:var(--primary)">--shadow-primary</div>
+        <div class="shadow-demo-desc">Boutons CTA primaires. Glow coloré.</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-coral);border-top:3px solid var(--coral)">
+        <div class="shadow-demo-name" style="color:var(--coral)">--shadow-coral</div>
+        <div class="shadow-demo-desc">Bouton appel flottant. Glow corail.</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-mint);border-top:3px solid var(--mint)">
+        <div class="shadow-demo-name" style="color:var(--mint-dark)">--shadow-mint</div>
+        <div class="shadow-demo-desc">Boutons mint, CTA secondaires.</div>
+      </div>
+    </div>
+
+    <div class="el-note-block" style="margin-top:24px">
+      <strong>Elementor — Ombre de Boîte :</strong>
+      Widget › Style › Ombre de boîte. Pour --shadow-md : X=0, Y=4, Blur=16, Spread=0, Couleur=rgba(14,40,60,0.09). Pour --shadow-primary : Couleur=rgba(46,106,138,0.30). Ajouter une 2e couche pour la double ombre : Y=2, Blur=5, Couleur=rgba(14,40,60,0.05).
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     04 — BOUTONS
+══════════════════════════════════════════ -->
+<section class="sg-section" id="boutons">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">04</div>
+        <h2 class="sg-section-title">Boutons & CTAs</h2>
+        <p class="sg-section-sub">5 variantes. Tous en pill (radius-pill). Hauteur min 52px (accessibilité senior). Survolez pour les effets hover.</p>
+      </div>
+      <span class="sg-section-num">04</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Taille standard (min-height 52px)</p>
+        <div class="btn-grid">
+          <button class="btn-primary">Prendre contact <span class="btn-icon">→</span></button>
+          <button class="btn-mint">02 40 35 43 43 <span class="btn-icon">📞</span></button>
+          <button class="btn-coral">Appeler maintenant</button>
+          <button class="btn-ghost">En savoir plus →</button>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Taille petite (sections secondaires)</p>
+        <div class="btn-grid">
+          <button class="btn-primary btn-sm">Prendre contact</button>
+          <button class="btn-ghost btn-sm">Soins infirmiers →</button>
+          <button class="btn-mint btn-sm">En savoir plus</button>
+        </div>
+      </div>
+      <div style="background:var(--surface-dark);padding:28px;border-radius:var(--radius-lg)">
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:16px">Sur fond sombre (sections hero)</p>
+        <div class="btn-grid">
+          <button class="btn-mint">02 40 35 43 43</button>
+          <button class="btn-outline-white">Formulaire de contact</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block" style="margin-top:24px">
+<span class="cmt">/* Transition fluide sur tous les boutons */</span>
+.btn-primary {
+  <span class="kw">transition</span>: <span class="val">all var(--transition-base)</span>;
+  <span class="kw">box-shadow</span>: <span class="val">var(--shadow-primary)</span>;
+}
+.btn-primary:hover {
+  <span class="kw">transform</span>: <span class="val">translateY(-2px)</span>;
+  <span class="kw">box-shadow</span>: <span class="val">var(--shadow-primary-lg)</span>;
+}
+    </div>
+    <div class="el-note-block">
+      <strong>Elementor — Bouton Global :</strong>
+      Élémentaire › Bouton. Fond = Couleur Globale "Primaire". Rayon = 9999px. Hauteur min = 52px. Transition = 260ms ease-in-out. Hover : fond = Couleur Globale "Primaire Foncé" + Ombre = --shadow-primary-lg.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     05 — BADGES & PILLS
+══════════════════════════════════════════ -->
+<section class="sg-section" id="badges">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">05</div>
+        <h2 class="sg-section-title">Badges & Pills</h2>
+        <p class="sg-section-sub">Catégorisation des services, statuts, labels hero. Chaque couleur a une sémantique précise.</p>
+      </div>
+      <span class="sg-section-num">05</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Catégories de service</p>
+        <div class="badge-grid">
+          <span class="cat-pill cat-lavender">Soins à domicile</span>
+          <span class="cat-pill cat-mint">Aide à domicile</span>
+          <span class="cat-pill cat-coral">Accompagnement administratif</span>
+          <span class="cat-pill cat-primary">Soins infirmiers</span>
+          <span class="cat-pill cat-dark">Agréé ARS Pays de la Loire</span>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Pills hero (sur fond sombre)</p>
+        <div style="background:var(--surface-dark);padding:20px;border-radius:var(--radius);display:flex;flex-wrap:wrap;gap:10px">
+          <span class="hero-pill">Agréé ARS Pays de la Loire</span>
+          <span class="hero-pill">Sur prescription médicale</span>
+          <span class="hero-pill">7j/7 — y compris fériés</span>
+          <span class="hero-pill">Agrément préfectoral</span>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px">Badges de statut</p>
+        <div class="badge-grid">
+          <span class="status-badge status-ok">Agréé ARS · Actif</span>
+          <span class="status-badge status-info">7j/7 · Y compris fériés</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="el-note-block">
+      <strong>Elementor — Badge / Pill :</strong>
+      Widget Bouton avec padding 6px/14px, fond = tinte correspondante (Couleur Globale + opacité 10%), pas de shadow, rayon = 9999px. Pour les hero-pills : fond = rgba(255,255,255,0.10), bordure = rgba(255,255,255,0.20).
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     06 — CARDS
+══════════════════════════════════════════ -->
+<section class="sg-section" id="cards">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">06</div>
+        <h2 class="sg-section-title">Cards — Services & Quartiers</h2>
+        <p class="sg-section-sub">Effets de survol avec élévation (translateY + shadow upgrade) et accent coloré en haut de carte. Survolez chaque carte.</p>
+      </div>
+      <span class="sg-section-num">06</span>
+    </div>
+
+    <!-- Service Cards -->
+    <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px">Cards de service (hover : border-top accent + élévation)</p>
+    <div class="cards-grid" style="margin-bottom:48px">
+      <div class="service-card card-lavender">
+        <div class="service-card-icon icon-lavender">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M6 5v10a7 7 0 0 0 14 0V5" stroke="#7DA2FA" stroke-width="2.2" stroke-linecap="round"/><path d="M13 19v5" stroke="#7DA2FA" stroke-width="2.2" stroke-linecap="round"/><circle cx="13" cy="25" r="2" fill="#7DA2FA"/></svg>
+        </div>
+        <span class="cat-pill cat-lavender" style="margin-bottom:12px;font-size:10px">Soins à domicile</span>
+        <h3>Soins infirmiers à domicile</h3>
+        <p>Pansements, injections, perfusions sur prescription médicale. Agréé ARS Pays de la Loire, 7j/7.</p>
+        <a href="soins-infirmiers-nantes.html" class="card-link">En savoir plus <span>→</span></a>
+      </div>
+
+      <div class="service-card card-mint">
+        <div class="service-card-icon icon-mint">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 3L3 10v14h8v-6h4v6h8V10L13 3z" stroke="#3DC9A0" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="cat-pill cat-mint" style="margin-bottom:12px;font-size:10px">Aide à domicile</span>
+        <h3>Aide à domicile & autonomie</h3>
+        <p>Repas, ménage, courses, accompagnement social. Nos auxiliaires de vie préservent le lien humain, 7j/7.</p>
+        <a href="aide-a-domicile-nantes.html" class="card-link">En savoir plus <span>→</span></a>
+      </div>
+
+      <div class="service-card card-coral">
+        <div class="service-card-icon icon-coral">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="4" y="3" width="18" height="22" rx="3" stroke="#FF8A75" stroke-width="2"/><line x1="9" y1="9" x2="17" y2="9" stroke="#FF8A75" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="14" x2="17" y2="14" stroke="#FF8A75" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="19" x2="14" y2="19" stroke="#FF8A75" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <span class="cat-pill cat-coral" style="margin-bottom:12px;font-size:10px">Accompagnement</span>
+        <h3>Dossiers APA/PCH & coordination</h3>
+        <p>Constitution des dossiers, Projet de Vie Individualisé, coordination médecins et CLIC Loire-Atlantique.</p>
+        <a href="dossiers-apa-pch-nantes.html" class="card-link">En savoir plus <span>→</span></a>
+      </div>
+    </div>
+
+    <!-- Quartier Cards -->
+    <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px">Cards quartiers (hover : fond primaire-50 + dot mint)</p>
+    <div class="quartier-grid" style="margin-bottom:40px">
+      <a class="quartier-card"><div class="quartier-dot"></div><span class="quartier-name">Centre-ville</span><span class="quartier-arrow">→</span></a>
+      <a class="quartier-card"><div class="quartier-dot"></div><span class="quartier-name">Île de Nantes</span><span class="quartier-arrow">→</span></a>
+      <a class="quartier-card"><div class="quartier-dot"></div><span class="quartier-name">Bellevue-Chantenay</span><span class="quartier-arrow">→</span></a>
+      <a class="quartier-card"><div class="quartier-dot"></div><span class="quartier-name">Dervallières-Zola</span><span class="quartier-arrow">→</span></a>
+      <a class="quartier-card"><div class="quartier-dot"></div><span class="quartier-name">Hauts-Pavés</span><span class="quartier-arrow">→</span></a>
+      <a class="quartier-card"><div class="quartier-dot"></div><span class="quartier-name">Breil-Barbière</span><span class="quartier-arrow">→</span></a>
+      <a class="quartier-card"><div class="quartier-dot"></div><span class="quartier-name">Malakoff</span><span class="quartier-arrow">→</span></a>
+      <a class="quartier-card" style="background:var(--primary);border-color:var(--primary)">
+        <div class="quartier-dot" style="background:var(--mint)"></div>
+        <span class="quartier-name" style="color:#fff">Tous les quartiers →</span>
+      </a>
+    </div>
+
+    <!-- Info Card -->
+    <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px">Info Card (pages services)</p>
+    <div class="info-card-demo">
+      <div class="info-card-title">Ce qu'il faut savoir</div>
+      <div class="info-row-demo">
+        <div class="info-row-icon-demo">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#2E6A8A" stroke-width="1.8"/><path d="M5.5 9l3 3 4-4" stroke="#2E6A8A" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div class="info-row-content"><strong>Agréé ARS Pays de la Loire</strong><span>Soins sur prescription médicale, co-construction du Projet de Vie.</span></div>
+      </div>
+      <div class="info-row-demo">
+        <div class="info-row-icon-demo"></div>
+        <div class="info-row-content"><strong>Ordonnance obligatoire</strong><span>Votre médecin traitant prescrit les actes infirmiers.</span></div>
+      </div>
+      <div class="info-highlight-demo">
+        <strong>Disponibilité</strong>
+        Interventions sous condition de place disponible. Contactez-nous pour vérifier votre situation.
+      </div>
+    </div>
+
+    <div class="el-note-block">
+      <strong>Elementor — Card Service :</strong>
+      Conteneur Flex › Colonne. Padding 36px/28px. Rayon = var(--radius-lg) = 28px. Ombre repos = --shadow-md. Motion › Hover : translateY(-6px) + ombre = --shadow-xl + transition 260ms ease-in-out. Border-top 3px colorée via CSS personnalisé (:before pseudo-élément, opacity 0→1 au hover).
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     07 — FORMULAIRES
+══════════════════════════════════════════ -->
+<section class="sg-section" id="formulaires">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">07</div>
+        <h2 class="sg-section-title">Éléments de Formulaire</h2>
+        <p class="sg-section-sub">Focus ring coloré en --primary. Transitions fluides. Taille minimum 18px pour la saisie senior.</p>
+      </div>
+      <span class="sg-section-num">07</span>
+    </div>
+
+    <div class="form-demo">
+      <div class="form-group-demo">
+        <label>Prénom <span style="color:var(--coral)">*</span></label>
+        <input type="text" class="form-input-demo" placeholder="Marie" style="font-size:1.0625rem">
+      </div>
+      <div class="form-group-demo">
+        <label>Téléphone <span style="color:var(--coral)">*</span></label>
+        <input type="tel" class="form-input-demo" placeholder="06 XX XX XX XX" style="font-size:1.0625rem">
+      </div>
+      <div class="form-group-demo">
+        <label>Objet de la demande</label>
+        <select class="form-input-demo" style="font-size:1.0625rem">
+          <option>Soins infirmiers à domicile</option>
+          <option>Aide à domicile</option>
+          <option>Aide-soignant(e) &amp; hygiène</option>
+          <option>Dossiers APA / PCH</option>
+        </select>
+      </div>
+      <div class="form-group-demo">
+        <label>Message</label>
+        <textarea class="form-input-demo" rows="4" placeholder="Décrivez brièvement votre situation…" style="resize:vertical;font-size:1.0625rem"></textarea>
+      </div>
+      <div>
+        <button class="btn-primary" style="width:100%;justify-content:center">Envoyer ma demande →</button>
+      </div>
+    </div>
+
+    <div class="el-note-block">
+      <strong>Elementor — Formulaire :</strong>
+      Widget Formulaire Élémentaire. Style › Champ : fond blanc, bordure 1.5px rgba(14,40,60,0.12), rayon 10px, taille police 17px. Style › Focus : bordure --primary, ombre 0 0 0 3px rgba(46,106,138,0.12). Style › Bouton Envoyer : utiliser le style "Btn Primary" défini en global.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     08 — ANIMATIONS LOTTIE (Phase D)
+══════════════════════════════════════════ -->
+<section class="sg-section sg-section-dark" id="animations">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">08 — Phase D</div>
+        <h2 class="sg-section-title">Animations Lottie</h2>
+        <p class="sg-section-sub">Test d'intégration du player Lottie avec la nouvelle palette. Les animations chargent depuis lottiefiles.com — remplaçables par des fichiers JSON personnalisés.</p>
+      </div>
+      <span class="sg-section-num">08</span>
+    </div>
+
+    <!-- 3 animations grid -->
+    <div class="lottie-grid" style="margin-bottom:48px">
+
+      <!-- Animation 1 : Cœur / Soin -->
+      <div class="lottie-card">
+        <div class="lottie-wrapper" style="background:rgba(46,106,138,0.12);border-radius:var(--radius-md)">
+          <lottie-player
+            src="https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json"
+            background="transparent"
+            speed="1"
+            style="width:130px;height:130px"
+            loop
+            autoplay>
+          </lottie-player>
+        </div>
+        <h3>Soin & Bienveillance</h3>
+        <p>Animation de soin pour la hero section ou les cartes services "Soins infirmiers".</p>
+        <span class="lottie-tag">hero · service-card</span>
+        <div class="el-note-dark" style="margin-top:16px">⟡ Elementor : Widget Lottie › src = URL JSON · Taille 160px · Autoplay · Boucle</div>
+      </div>
+
+      <!-- Animation 2 : Maison / Domicile -->
+      <div class="lottie-card">
+        <div class="lottie-wrapper" style="background:rgba(112,232,198,0.08);border-radius:var(--radius-md)">
+          <lottie-player
+            src="https://assets2.lottiefiles.com/packages/lf20_ystsffqy.json"
+            background="transparent"
+            speed="0.8"
+            style="width:130px;height:130px"
+            loop
+            autoplay>
+          </lottie-player>
+        </div>
+        <h3>À Domicile</h3>
+        <p>Animation maison pour les sections "Zone d'intervention" ou la page nos-quartiers.</p>
+        <span class="lottie-tag">quartiers · aide-domicile</span>
+        <div class="el-note-dark" style="margin-top:16px">⟡ Elementor : Widget Lottie › src = URL JSON · Trigger = Scroll Into View</div>
+      </div>
+
+      <!-- Animation 3 : Validation / Confiance -->
+      <div class="lottie-card">
+        <div class="lottie-wrapper" style="background:rgba(255,138,117,0.08);border-radius:var(--radius-md)">
+          <lottie-player
+            src="https://assets3.lottiefiles.com/private_files/lf30_bb9bkg1h.json"
+            background="transparent"
+            speed="0.7"
+            style="width:130px;height:130px"
+            loop
+            autoplay>
+          </lottie-player>
+        </div>
+        <h3>Confirmation</h3>
+        <p>Animation de succès pour la confirmation d'envoi du formulaire de contact.</p>
+        <span class="lottie-tag">formulaire · confirmation</span>
+        <div class="el-note-dark" style="margin-top:16px">⟡ Elementor : Widget Lottie › Mode = Jouer une fois · Déclenché par JS après submit</div>
+      </div>
+    </div>
+
+    <!-- Démo hero avec Lottie intégré -->
+    <div class="lottie-hero-demo">
+      <div>
+        <div class="sg-hero-badge" style="margin-bottom:16px"><span></span>Démo d'intégration hero</div>
+        <h3>Soins infirmiers &amp; aide<br><em>à domicile à Nantes</em></h3>
+        <p>Voici comment une animation Lottie s'intégre dans une section hero sans alourdir la palette — le fond sombre laisse respirer l'animation tout en restant lisible.</p>
+        <div class="btn-grid">
+          <button class="btn-mint btn-sm">02 40 35 43 43</button>
+          <button class="btn-outline-white btn-sm">En savoir plus →</button>
+        </div>
+      </div>
+      <div style="width:180px;height:180px;border-radius:var(--radius-lg);background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08)">
+        <lottie-player
+          src="https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json"
+          background="transparent"
+          speed="0.9"
+          style="width:150px;height:150px"
+          loop
+          autoplay>
+        </lottie-player>
+      </div>
+    </div>
+
+    <!-- Guide Lottie -->
+    <div style="margin-top:36px;padding:24px;background:rgba(255,255,255,0.03);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.07)">
+      <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mint);margin-bottom:16px">Sources d'animations gratuites recommandées</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">
+        <div style="background:rgba(255,255,255,0.04);border-radius:var(--radius-sm);padding:14px">
+          <p style="font-family:'Poppins',sans-serif;font-weight:600;color:#fff;font-size:13px;margin-bottom:6px">🔗 LottieFiles.com</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.5)">Filtrer par "Healthcare", "Care", "Medical". Format .json gratuit. Rechercher : "heart", "care", "home", "doctor".</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:var(--radius-sm);padding:14px">
+          <p style="font-family:'Poppins',sans-serif;font-weight:600;color:#fff;font-size:13px;margin-bottom:6px">🎨 Compatibilité palette</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.5)">Choisir des animations en blanc/transparent ou éditer les couleurs via l'éditeur LottieFiles pour matcher --mint (#70E8C6) et --primary (#2E6A8A).</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:var(--radius-sm);padding:14px">
+          <p style="font-family:'Poppins',sans-serif;font-weight:600;color:#fff;font-size:13px;margin-bottom:6px">📦 Pages stratégiques</p>
+          <p style="font-size:12px;color:rgba(255,255,255,0.5)">Priorité : index.html (hero) · nous-contacter.html (confirmation) · nos-services.html (section cards). Éviter les pages quartiers (trop nombreuses).</p>
+        </div>
+      </div>
+    </div>
+    <div class="el-note-dark" style="margin-top:16px">
+      ⟡ Elementor WordPress : Widget "Lottie" natif (onglet Widgets › Basique). Pas de plugin supplémentaire. Uploader le .json ou coller l'URL CDN directement.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     09 — GUIDE MIGRATION ELEMENTOR
+══════════════════════════════════════════ -->
+<section class="sg-section sg-section-dark" id="migration">
+  <div class="sg-section-inner">
+    <div class="sg-section-header">
+      <div>
+        <div class="sg-section-label">09</div>
+        <h2 class="sg-section-title">Roadmap Migration WordPress</h2>
+        <p class="sg-section-sub">Correspondance HTML → Elementor. Chaque section HTML est un futur Conteneur Elementor.</p>
+      </div>
+      <span class="sg-section-num">09</span>
+    </div>
+
+    <div class="migration-grid">
+      <div class="migration-card">
+        <div class="migration-card-num">ÉTAPE 01</div>
+        <h4>Variables CSS → Global Styles</h4>
+        <p>Copier les 10 hex depuis variables.css dans Élémentaire › Couleurs Globales.</p>
+        <div class="migration-card-steps">
+          <div class="migration-step">Primaire = #2E6A8A</div>
+          <div class="migration-step">Menthe = #70E8C6</div>
+          <div class="migration-step">Corail = #FF8A75</div>
+          <div class="migration-step">Polices : Poppins + Hind</div>
+        </div>
+      </div>
+      <div class="migration-card">
+        <div class="migration-card-num">ÉTAPE 02</div>
+        <h4>.section-hero → Conteneur Hero</h4>
+        <p>Hauteur 100vh, fond linear-gradient (dark). 2 colonnes : texte + Lottie.</p>
+        <div class="migration-card-steps">
+          <div class="migration-step">Widget Titre › H1 · Poppins 800</div>
+          <div class="migration-step">Widget Texte › corps Hind 18px</div>
+          <div class="migration-step">Widget Bouton × 2 (Primary + Ghost)</div>
+          <div class="migration-step">Widget Lottie (animation hero)</div>
+        </div>
+      </div>
+      <div class="migration-card">
+        <div class="migration-card-num">ÉTAPE 03</div>
+        <h4>.soins-grid → Boucle de Posts</h4>
+        <p>3 colonnes en Conteneur Flexbox. Chaque card = Template de Post.</p>
+        <div class="migration-card-steps">
+          <div class="migration-step">CPT "Services" dans WordPress</div>
+          <div class="migration-step">Widget Boucle avec Template Card</div>
+          <div class="migration-step">Champ ACF : icône, couleur-accent, lien</div>
+        </div>
+      </div>
+      <div class="migration-card">
+        <div class="migration-card-num">ÉTAPE 04</div>
+        <h4>.quartiers-grid → Boucle Taxonomy</h4>
+        <p>Taxo "Quartier" sur le CPT "Services". Cards générées automatiquement.</p>
+        <div class="migration-card-steps">
+          <div class="migration-step">Taxonomie "Quartier" (9 termes)</div>
+          <div class="migration-step">Template Terme = quartier-card</div>
+          <div class="migration-step">Dot + hover via CSS Global</div>
+        </div>
+      </div>
+      <div class="migration-card">
+        <div class="migration-card-num">ÉTAPE 05</div>
+        <h4>FAQ → Widget Accordéon</h4>
+        <p>Widget Accordéon Élémentaire Pro ou Boucle sur CPT "FAQ". Transitions CSS.</p>
+        <div class="migration-card-steps">
+          <div class="migration-step">Accordéon Élémentaire natif</div>
+          <div class="migration-step">Style : border-left primary + bg-50</div>
+          <div class="migration-step">Transition : --transition-base</div>
+        </div>
+      </div>
+      <div class="migration-card">
+        <div class="migration-card-num">ÉTAPE 06</div>
+        <h4>Footer → Template Global</h4>
+        <p>Footer défini 1 fois dans Élémentaire › Templates › Footer. Utilisé sur 34 pages.</p>
+        <div class="migration-card-steps">
+          <div class="migration-step">4 colonnes Flexbox</div>
+          <div class="migration-step">Menu dynamique WordPress</div>
+          <div class="migration-step">Widget Carte (Google Maps)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code integration snippet -->
+    <div style="margin-top:40px">
+      <p style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--mint);margin-bottom:12px">Intégration Lottie — Code HTML</p>
+      <div class="code-block">
+<span class="cmt">&lt;!-- Charger le player une fois dans &lt;head&gt; --&gt;</span>
+<span class="kw">&lt;script</span> src=<span class="val">"https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"</span><span class="kw">&gt;&lt;/script&gt;</span>
+
+<span class="cmt">&lt;!-- Utilisation dans la page --&gt;</span>
+<span class="kw">&lt;lottie-player</span>
+  src=<span class="val">"https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json"</span>
+  background=<span class="val">"transparent"</span>
+  speed=<span class="val">"1"</span>
+  style=<span class="val">"width:200px; height:200px"</span>
+  loop autoplay&gt;
+<span class="kw">&lt;/lottie-player&gt;</span>
+
+<span class="cmt">&lt;!-- Elementor WordPress : Widget Lottie &gt; Coller l'URL JSON --&gt;</span>
+      </div>
+    </div>
+
+    <!-- Footer du style guide -->
+    <div style="margin-top:56px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div>
+        <p style="font-family:'Poppins',sans-serif;font-weight:700;color:#fff;font-size:15px">NSAD Design System v2.0</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px">Blueprint pour migration WordPress + Elementor · Mai 2026</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="index.html" class="btn-outline-white btn-sm">Accueil →</a>
+        <a href="nos-services.html" class="btn-outline-white btn-sm">Nos Services →</a>
+        <a href="variables.css" target="_blank" class="btn-outline-white btn-sm">variables.css →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
