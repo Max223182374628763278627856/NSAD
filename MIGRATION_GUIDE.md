@@ -208,4 +208,65 @@ Page
 
 ---
 
+## 10. UX — Navigation Active & Scroll Reveal
+
+### 10.1 État actif du menu
+
+| HTML statique                           | Elementor / WordPress                                    |
+|-----------------------------------------|----------------------------------------------------------|
+| `class="active"` auto-détecté par JS   | Nav Menu widget → **Highlight current page** (natif)    |
+| `::after` underline mint animé          | CSS Perso sur `.e-nav-menu a.elementor-item-active`      |
+| `color: var(--primary)` sur lien actif  | Elementor Global Style → Nav Menu Active Color           |
+
+**CSS Perso Elementor pour reproduire le soulignement mint :**
+```css
+.e-nav-menu .elementor-item {
+  position: relative;
+  padding-bottom: 4px;
+}
+.e-nav-menu .elementor-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--mint, #70E8C6);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 260ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.e-nav-menu .elementor-item:hover::after,
+.e-nav-menu .elementor-item-active::after {
+  transform: scaleX(1);
+}
+```
+
+### 10.2 Scroll Reveal — Animations d'entrée
+
+**Implémentation HTML/CSS/JS actuelle :**
+- Attribut `data-reveal="up"` sur les éléments cibles
+- CSS : début à `opacity:0; translateY(24px)`, arrivée à `opacity:1; translateY(0)`
+- Durée : **0.6s** avec timing `cubic-bezier(0.0, 0.0, 0.2, 1)` (ease-out Material Design)
+- Déclenché par `IntersectionObserver` (threshold 0.12, rootMargin -32px)
+- Stagger automatique dans les grilles via CSS nth-child
+
+**Reproduire dans Elementor :**
+1. Sélectionner l'élément (section, widget, colonne)
+2. Onglet **Avancé → Effets de mouvement**
+3. **Animation d'entrée** → choisir **Fade In Up**
+4. **Durée** : `600ms` / **Retard** : `0ms` (ou `100ms`, `200ms` pour le stagger)
+5. Pour les cartes en grille : appliquer sur chaque widget avec retards croissants de `100ms`
+
+**Éléments cibles par page :**
+
+| Page             | Éléments avec `data-reveal`                                      |
+|------------------|------------------------------------------------------------------|
+| `index.html`     | trust-band, soins-grid (×3), steps, testimonials, FAQ sections  |
+| `nos-services.html` | soins-header, soin-cards (×3), service-detail (left/right)  |
+| `nos-quartiers.html` | hero-stats, intro-inner, section-label, section-title, section-sub, quartier-cards (×9 avec stagger nth-child), cta h2 |
+
+**Note Elementor :** Les `transition-delay` CSS ne fonctionnent pas avec les Motion Effects d'Elementor. Utiliser à la place le champ "Retard" dans l'onglet Motion Effects de **chaque widget individuel**.
+
+---
+
 *Document vivant — mettre à jour après chaque sprint de migration.*
