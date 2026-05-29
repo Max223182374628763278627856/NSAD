@@ -365,125 +365,91 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 .quartier-select-section { background: var(--white); padding: 96px 48px; }
 .quartier-select-inner { max-width: 1100px; margin: 0 auto; }
 .quartier-select-header { margin-bottom: 48px; }
-.quartier-select-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
-.quartier-list { display: flex; flex-direction: column; gap: 10px; }
-.quartier-list-item {
-  display: flex; align-items: center; gap: 14px;
-  padding: 14px 20px; border-radius: var(--radius-pill);
-  background: var(--bg); border: 1.5px solid transparent;
-  cursor: pointer; transition: all 0.25s var(--ease-quart);
-  font-family: 'Poppins',sans-serif; font-size: 16px; font-weight: 500; color: var(--ink);
-  text-decoration: none; user-select: none;
+.rds-wrap { padding: 48px 0 16px; }
+.rds-track {
+  position: relative; max-width: 800px; margin: 0 auto; padding-bottom: 32px;
 }
-.quartier-list-item:hover { background: rgba(60,105,127,0.07); border-color: var(--line); }
-.quartier-list-item.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
-.quartier-list-item.uncovered {
-  opacity: 0.55; cursor: default; pointer-events: none;
-  background: var(--bg);
+/* Ligne verticale */
+.rds-line {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(to bottom,
+    transparent 0%, var(--primary) 6%, var(--primary) 94%, transparent 100%);
+  transform: translateX(-50%); border-radius: 2px; pointer-events: none;
 }
-.quartier-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: rgba(60,105,127,0.35); flex-shrink: 0; transition: background var(--transition-fast);
+/* Voiture */
+.rds-car {
+  position: absolute; left: 50%; top: 0; width: 56px; height: 28px;
+  transform: translate(-50%, -50%); z-index: 10;
+  filter: drop-shadow(0 4px 12px rgba(60,105,127,0.40));
+  will-change: top;
 }
-.quartier-list-item.active .quartier-dot { background: var(--mint); }
-.quartier-list-item.uncovered .quartier-dot { background: rgba(180,180,180,0.6); }
-.quartier-check { margin-left: auto; font-size: 16px; opacity: 0; transition: opacity 0.2s; }
-.quartier-list-item.active .quartier-check { opacity: 1; }
-.quartier-badge-hors {
-  margin-left: auto; font-size: 11px; font-weight: 600; font-family:'Poppins',sans-serif;
-  background: rgba(180,160,120,0.15); color: #8a7040;
-  padding: 2px 8px; border-radius: 20px; white-space: nowrap;
-}
-/* ─── Showcase Quartiers ─── */
-.quartier-map-wrap { position: relative; }
-.qs-showcase {
-  position: relative; height: 520px;
-  border-radius: var(--radius, 16px); overflow: hidden;
-  background: #0e2232;
-  box-shadow: 0 24px 64px rgba(14,40,60,0.20);
-}
-/* Slides */
-.qs-slide {
-  position: absolute; inset: 0;
+/* Tooltip */
+.rds-tooltip {
+  position: absolute; left: calc(100% + 16px); top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  background: var(--mint, #8FF0D2); color: var(--primary, #3C697F);
+  border-radius: 50px; padding: 6px 16px; white-space: nowrap;
   opacity: 0; pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 16px rgba(60,105,127,0.20);
 }
-.qs-slide.qs-active { opacity: 1; pointer-events: auto; }
-/* Photo de fond */
-.qs-bg {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  transform: scale(1.06);
-  transition: transform 0.65s cubic-bezier(0.25,1,0.5,1);
+.rds-tooltip.rds-tt-visible { opacity: 1; transform: translateY(-50%) translateX(0); }
+.rds-tt-name {
+  display: block; font-family: 'Poppins',sans-serif;
+  font-size: 12px; font-weight: 700; line-height: 1.3;
 }
-.qs-slide.qs-active .qs-bg { transform: scale(1); }
-/* Voile dégradé */
-.qs-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(8,20,30,0.90) 0%,
-    rgba(8,20,30,0.50) 48%,
-    rgba(8,20,30,0.18) 100%
-  );
+.rds-tt-hint {
+  display: block; font-family: 'Hind',sans-serif;
+  font-size: 11px; opacity: 0.72; line-height: 1.3;
 }
-/* Slide par défaut */
-.qs-default-body {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center; padding: 48px;
+/* Stations */
+.rds-station {
+  display: grid; grid-template-columns: 1fr 40px 1fr;
+  align-items: center; min-height: 90px; position: relative;
 }
-.qs-default-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(112,232,198,0.14); border: 1px solid rgba(112,232,198,0.32);
-  color: var(--mint, #70E8C6); border-radius: 50px;
-  font-family: 'Poppins',sans-serif; font-size: 12px; font-weight: 600;
-  letter-spacing: 1.4px; text-transform: uppercase; padding: 7px 20px;
-  margin-bottom: 20px;
+.rds-st-node { display: flex; align-items: center; justify-content: center; z-index: 2; }
+.rds-st-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; border: 3px solid rgba(60,105,127,0.22);
+  transition: all 0.4s var(--ease-quart, ease); display: block; flex-shrink: 0;
 }
-.qs-default-badge span { width:7px;height:7px;background:var(--mint,#70E8C6);border-radius:50%;animation:pulse 2s infinite; }
-.qs-default-title {
-  font-family: 'Poppins',sans-serif; font-size: 26px; font-weight: 800;
-  color: #fff; line-height: 1.2; margin-bottom: 12px;
+.rds-station.rds-passed .rds-st-dot {
+  background: var(--mint, #8FF0D2); border-color: var(--primary, #3C697F);
+  box-shadow: 0 0 0 6px rgba(143,240,210,0.22); transform: scale(1.18);
 }
-.qs-default-hint {
-  font-family: 'Hind',sans-serif; font-size: 15px;
-  color: rgba(255,255,255,0.45); line-height: 1.6;
+.rds-st-name {
+  display: block; font-family: 'Poppins',sans-serif;
+  font-size: 15px; font-weight: 600; color: rgba(60,105,127,0.35);
+  text-decoration: none; transition: color 0.4s; line-height: 1.3;
 }
-/* Contenu quartier */
-.qs-content {
-  position: absolute; bottom: 0; left: 0; right: 0; padding: 36px 40px;
-  transform: translateY(10px);
-  transition: transform 0.5s cubic-bezier(0.25,1,0.5,1) 0.05s;
+.rds-st-name:hover { color: var(--primary, #3C697F); text-decoration: underline; }
+.rds-station.rds-passed .rds-st-name { color: var(--primary, #3C697F); font-weight: 700; }
+.rds-st-hint {
+  font-family: 'Hind',sans-serif; font-size: 13px;
+  color: transparent; margin: 4px 0 0; line-height: 1.4;
+  transition: color 0.4s 0.08s;
 }
-.qs-slide.qs-active .qs-content { transform: translateY(0); }
-.qs-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(112,232,198,0.18); border: 1px solid rgba(112,232,198,0.42);
-  color: #70E8C6; border-radius: 50px;
-  font-family: 'Poppins',sans-serif; font-size: 10px; font-weight: 700;
-  letter-spacing: 1.8px; text-transform: uppercase; padding: 5px 14px;
-  margin-bottom: 14px;
+.rds-station.rds-passed .rds-st-hint { color: var(--ink-soft, #5a7080); }
+/* Cote : data-side="left" -> contenu a gauche, data-side="right" -> droite */
+.rds-station[data-side="left"]  .rds-st-l { text-align: right; padding-right: 26px; }
+.rds-station[data-side="left"]  .rds-st-r { visibility: hidden; }
+.rds-station[data-side="right"] .rds-st-l { visibility: hidden; }
+.rds-station[data-side="right"] .rds-st-r { text-align: left; padding-left: 26px; }
+/* Mobile */
+@media (max-width: 600px) {
+  .rds-line { left: 20px; transform: none; }
+  .rds-car  { left: 20px; transform: translate(-50%, -50%); }
+  .rds-station { grid-template-columns: 40px 1fr; min-height: 72px; }
+  .rds-station[data-side="left"]  .rds-st-l,
+  .rds-station[data-side="right"] .rds-st-l { display: none; }
+  .rds-station[data-side="left"]  .rds-st-r,
+  .rds-station[data-side="right"] .rds-st-r {
+    visibility: visible; display: block;
+    grid-column: 2; text-align: left; padding-left: 14px; padding-right: 0;
+  }
+  .rds-st-node { grid-column: 1; }
+  .rds-tooltip { left: calc(100% + 8px); }
 }
-.qs-title {
-  font-family: 'Poppins',sans-serif;
-  font-size: clamp(20px,2vw,28px); font-weight: 800;
-  color: #fff; margin: 0 0 10px; line-height: 1.18;
-}
-.qs-desc {
-  font-family: 'Hind',sans-serif; font-size: 15px;
-  line-height: 1.66; color: rgba(255,255,255,0.82);
-  margin: 0 0 22px; max-width: 400px;
-}
-.qs-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Poppins',sans-serif; font-size: 13px; font-weight: 700;
-  color: #fff; text-decoration: none;
-  border-bottom: 2px solid rgba(112,232,198,0.55); padding-bottom: 2px;
-  transition: gap .2s ease, border-color .2s;
-}
-.qs-link:hover { gap: 14px; border-color: #70E8C6; }
 /* CTA bloc */
 .block-cta-group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
 .btn-block-primary {
@@ -623,8 +589,6 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
   .steps-row { grid-template-columns:1fr 1fr; gap:32px; }
   .step-connector { display:none; }
   .quartier-select-grid, .faq-grid { grid-template-columns:1fr; gap:40px; }
-  .qs-showcase { height: 340px; }
-  .qs-content { padding: 24px 28px; }
   .footer-grid { grid-template-columns:1fr; }
   .hero-stats { gap:16px; flex-wrap:wrap; }
   .trust-band { flex-direction:column; gap:0; }
@@ -1129,137 +1093,102 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 </section> <!-- ══════════ COMMENT ÇA SE PASSE ══════════ -->
 <section class="steps-section" aria-labelledby="steps-title"> <div class="steps-inner"> <div class="steps-header"> <span class="block-eyebrow">Comment ça se passe</span> <h2 class="section-title" id="steps-title">De votre appel à notre première visite,<br><em>4 étapes simples</em></h2> </div> <div class="steps-row"> <div class="step-item"> <div class="step-circle">1</div> <h3>Vous nous appelez</h3> <p>Un échange téléphonique pour comprendre votre situation et vos besoins.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">2</div> <h3>Visite d'évaluation</h3> <p>Notre infirmier coordinateur se déplace chez vous pour évaluer vos besoins.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">3</div> <h3>Plan personnalisé</h3> <p>Nous co-construisons un plan de soins adapté à votre quotidien.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">4</div> <h3>Démarrage des soins</h3> <p>Une équipe dédiée intervient à votre domicile, 7j/7.</p> </div> </div> <div class="block-cta-group" style="justify-content:center;margin-top:52px"> <a href="tel:0240354343" class="btn-block-primary">Nous appeler — 02&nbsp;40&nbsp;35&nbsp;43&nbsp;43</a> <a href="nous-contacter.html" class="btn-block-secondary">Formulaire de contact →</a> </div> </div>
 </section> <!-- ══════════ SÉLECTEUR QUARTIERS ══════════ -->
-<section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title"> <div class="quartier-select-inner"> <div class="quartier-select-header"> <span class="section-label">Zone d'intervention</span> <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2> <p class="section-sub">Sélectionnez votre quartier pour découvrir nos services près de chez vous.</p> </div> <div class="quartier-select-grid"> <!-- Liste --> <div class="quartier-list" role="list"> <a href="quartier-centre-ville.html"              class="quartier-list-item active" data-q="centre"       role="listitem"><span class="quartier-dot"></span>Centre-ville<span class="quartier-check"></span></a> <a href="quartier-dervallières-zola.html"         class="quartier-list-item"        data-q="derv"         role="listitem"><span class="quartier-dot"></span>Dervallières – Zola<span class="quartier-check"></span></a> <a href="quartier-bellevue-chantenay.html"                  class="quartier-list-item"        data-q="bellevue"     role="listitem"><span class="quartier-dot"></span>Bellevue – Chantenay<span class="quartier-check"></span></a> <a href="quartier-hauts-paves-saint-felix.html"   class="quartier-list-item"        data-q="hauts"        role="listitem"><span class="quartier-dot"></span>Hauts-Pavés – Saint-Félix<span class="quartier-check"></span></a> <a href="quartier-nantes-nord.html"               class="quartier-list-item"        data-q="nord"         role="listitem"><span class="quartier-dot"></span>Nantes Nord<span class="quartier-check"></span></a> <a href="quartier-ile-de-nantes.html"             class="quartier-list-item"        data-q="ile"          role="listitem"><span class="quartier-dot"></span>Île de Nantes<span class="quartier-check"></span></a> <a href="quartier-malakoff-saint-donatien.html"   class="quartier-list-item"        data-q="malakoff"     role="listitem"><span class="quartier-dot"></span>Malakoff – Saint-Donatien<span class="quartier-check"></span></a> <a href="quartier-breil-barbiere.html"            class="quartier-list-item"        data-q="breil"        role="listitem"><span class="quartier-dot"></span>Breil-Barbière<span class="quartier-check"></span></a> <a href="nos-quartiers.html"                          class="quartier-list-item"        data-q="nantes-sud"   role="listitem"><span class="quartier-dot"></span>Nantes Sud<span class="quartier-check"></span></a> <span                                             class="quartier-list-item uncovered"                    role="listitem"><span class="quartier-dot"></span>Nantes Erdre<span class="quartier-badge-hors">Hors zone</span></span> <span                                             class="quartier-list-item uncovered"                    role="listitem"><span class="quartier-dot"></span>Doulon-Bottière<span class="quartier-badge-hors">Hors zone</span></span> </div> <!-- ════════════════════════════════════════════════════════
-           CARTE SVG INTERACTIVE — Quartiers de Nantes
-           Chaque zone <polygon> porte un attribut data-q qui correspond
-           aux data-q des .quartier-list-item.
-           Interaction bidirectionnelle gérée par le JS en bas de page.
-           ════════════════════════════════════════════════════════ --> 
+<section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title"> <div class="quartier-select-inner"> <div class="quartier-select-header"> <span class="section-label">Zone d'intervention</span> <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2> <p class="section-sub">Faites défiler pour suivre notre route à travers Nantes et découvrir nos services quartier par quartier.</p> </div> <div class="rds-wrap">
+<div class="rds-track" id="rds-track">
 
-<div class="quartier-map-wrap">
-<div class="qs-showcase" id="qs-showcase">
+  <div class="rds-line" id="rds-line"></div>
 
-  <!-- ── Slide par défaut (aucun quartier survolé) ── -->
-  <div class="qs-slide qs-active" data-q="default">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-Loire/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-default-body">
-      <div class="qs-default-badge"><span></span>Zone d&rsquo;intervention</div>
-      <p class="qs-default-title">Nantes Soins<br>à Domicile</p>
-      <p class="qs-default-hint">Survolez un quartier ci-contre<br>pour découvrir nos services près de chez vous.</p>
+  <!-- Voiture SVG -->
+  <div class="rds-car" id="rds-car" aria-hidden="true">
+    <svg width="56" height="28" viewBox="0 0 56 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="11" width="54" height="14" rx="5" fill="#3C697F"/>
+      <path d="M15 11 L21 3 L40 3 L47 11 Z" fill="#3C697F"/>
+      <path d="M22 10 L27 4 L39 4 L44 10 Z" fill="rgba(255,255,255,0.22)"/>
+      <rect x="1" y="15" width="54" height="2.5" rx="1" fill="#8FF0D2" opacity="0.55"/>
+      <path d="M15 10 L19 4 L23 4 L20 10 Z" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="14" cy="25" r="4.2" fill="#1B2A33"/>
+      <circle cx="14" cy="25" r="1.8" fill="#3C697F"/>
+      <circle cx="41" cy="25" r="4.2" fill="#1B2A33"/>
+      <circle cx="41" cy="25" r="1.8" fill="#3C697F"/>
+      <rect x="50" y="13" width="4.5" height="3" rx="1.5" fill="#8FF0D2" opacity="0.9"/>
+    </svg>
+    <div class="rds-tooltip" id="rds-tooltip">
+      <span class="rds-tt-name"></span>
+      <span class="rds-tt-hint"></span>
     </div>
   </div>
 
-  <!-- ── Centre-Ville / CHU ── -->
-  <div class="qs-slide" data-q="centre">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-centre-historique/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Centre-Ville / CHU</h3>
-      <p class="qs-desc">Proximité immédiate du CHU de Nantes. Accompagnement des sorties d&rsquo;hôpital et continuité des soins post-hospitaliers en cœur de ville.</p>
-      <a href="quartier-centre-ville.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 1 Centre-Ville (gauche) -->
+  <div class="rds-station" data-q="centre" data-side="left">
+    <div class="rds-st-l"><a href="quartier-centre-ville.html" class="rds-st-name">Centre-Ville / CHU</a><p class="rds-st-hint">Sorties d&rsquo;h&ocirc;pital &middot; 7j/7</p></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"></div>
   </div>
 
-  <!-- ── Dervallières – Zola ── -->
-  <div class="qs-slide" data-q="derv">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-derv-vert/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Dervallières – Zola</h3>
-      <p class="qs-desc">Quartier vert au tissu social dense. Suivi régulier et humain pour les personnes souhaitant rester chez elles dans un environnement familier.</p>
-      <a href="quartier-dervallières-zola.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 2 Dervallières (droite) -->
+  <div class="rds-station" data-q="derv" data-side="right">
+    <div class="rds-st-l"></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"><a href="quartier-dervallieres-zola.html" class="rds-st-name">Dervalli&egrave;res &ndash; Zola</a><p class="rds-st-hint">Soins de quartier &middot; 7j/7</p></div>
   </div>
 
-  <!-- ── Bellevue – Chantenay ── -->
-  <div class="qs-slide" data-q="bellevue">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-bellevue-loire/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Bellevue – Chantenay</h3>
-      <p class="qs-desc">Entre Loire et collines, un quartier populaire à l&rsquo;identité forte. Nos équipes accompagnent chaque famille dans le respect profond de leur quotidien.</p>
-      <a href="quartier-bellevue-chantenay.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 3 Bellevue (gauche) -->
+  <div class="rds-station" data-q="bellevue" data-side="left">
+    <div class="rds-st-l"><a href="quartier-bellevue-chantenay.html" class="rds-st-name">Bellevue &ndash; Chantenay</a><p class="rds-st-hint">Bord de Loire &middot; 7j/7</p></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"></div>
   </div>
 
-  <!-- ── Hauts-Pavés – Saint-Félix ── -->
-  <div class="qs-slide" data-q="hauts">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-hauts-erdre/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Hauts-Pavés – Saint-Félix</h3>
-      <p class="qs-desc">Cadre paisible au bord de l&rsquo;Erdre, apprécié des seniors. Interventions avec une attention particulière au lien social et à l&rsquo;autonomie résiduelle.</p>
-      <a href="quartier-hauts-paves-saint-felix.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 4 Hauts-Pavés (droite) -->
+  <div class="rds-station" data-q="hauts" data-side="right">
+    <div class="rds-st-l"></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"><a href="quartier-hauts-paves-saint-felix.html" class="rds-st-name">Hauts-Pav&eacute;s &ndash; St-F&eacute;lix</a><p class="rds-st-hint">Bord de l&rsquo;Erdre &middot; 7j/7</p></div>
   </div>
 
-  <!-- ── Nantes Nord ── -->
-  <div class="qs-slide" data-q="nord">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-nord-residentiel/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Nantes Nord</h3>
-      <p class="qs-desc">Grand territoire couvert avec efficacité grâce à notre réseau de soignants implantés localement et notre parfaite connaissance des accès.</p>
-      <a href="quartier-nantes-nord.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 5 Nantes Nord (gauche) -->
+  <div class="rds-station" data-q="nord" data-side="left">
+    <div class="rds-st-l"><a href="quartier-nantes-nord.html" class="rds-st-name">Nantes Nord</a><p class="rds-st-hint">Grand territoire &middot; 7j/7</p></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"></div>
   </div>
 
-  <!-- ── Île de Nantes ── -->
-  <div class="qs-slide" data-q="ile">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-ile-loire-moderne/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Île de Nantes</h3>
-      <p class="qs-desc">Territoire en pleine transformation. Interventions adaptées aux nouvelles résidences, avec une mobilité pensée pour ce quartier dynamique au cœur de la Loire.</p>
-      <a href="quartier-ile-de-nantes.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 6 Île de Nantes (droite) -->
+  <div class="rds-station" data-q="ile" data-side="right">
+    <div class="rds-st-l"></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"><a href="quartier-ile-de-nantes.html" class="rds-st-name">&Icirc;le de Nantes</a><p class="rds-st-hint">C&oelig;ur de Loire &middot; 7j/7</p></div>
   </div>
 
-  <!-- ── Malakoff – Saint-Donatien ── -->
-  <div class="qs-slide" data-q="malakoff">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-malakoff-mixte/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Malakoff – Saint-Donatien</h3>
-      <p class="qs-desc">Quartier en renouveau mêlant anciens habitants et nouvelles familles. Nos équipes y apportent la même attention inconditionnelle à chacun.</p>
-      <a href="quartier-malakoff-saint-donatien.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 7 Malakoff (gauche) -->
+  <div class="rds-station" data-q="malakoff" data-side="left">
+    <div class="rds-st-l"><a href="quartier-malakoff-saint-donatien.html" class="rds-st-name">Malakoff &ndash; St-Donatien</a><p class="rds-st-hint">Quartier renouvel&eacute; &middot; 7j/7</p></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"></div>
   </div>
 
-  <!-- ── Breil-Barbière ── -->
-  <div class="qs-slide" data-q="breil">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-breil-calme/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Breil-Barbière</h3>
-      <p class="qs-desc">Entre parcs et résidences calmes, nombreuses familles auxquelles nous apportons aide et soins dans un esprit de bienveillance et de continuité.</p>
-      <a href="quartier-breil-barbiere.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 8 Breil-Barbière (droite) -->
+  <div class="rds-station" data-q="breil" data-side="right">
+    <div class="rds-st-l"></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"><a href="quartier-breil-barbiere.html" class="rds-st-name">Breil-Barbi&egrave;re</a><p class="rds-st-hint">Entre parcs &middot; 7j/7</p></div>
   </div>
 
-  <!-- ── Nantes Sud ── -->
-  <div class="qs-slide" data-q="nantes-sud">
-    <div class="qs-bg" style="background-image:url('https://picsum.photos/seed/nantes-sud-residentiel/900/600')"></div>
-    <div class="qs-overlay"></div>
-    <div class="qs-content">
-      <div class="qs-tag">Soins à domicile</div>
-      <h3 class="qs-title">Nantes Sud</h3>
-      <p class="qs-desc">Tissu résidentiel et associatif riche. Accompagnement doux et régulier des personnes âgées et des familles aidantes dans leurs besoins quotidiens.</p>
-      <a href="quartier-nantes-sud.html" class="qs-link">Découvrir ce quartier &rarr;</a>
-    </div>
+  <!-- 9 Nantes Sud (gauche) -->
+  <div class="rds-station" data-q="nantes-sud" data-side="left">
+    <div class="rds-st-l"><a href="nos-quartiers.html" class="rds-st-name">Nantes Sud</a><p class="rds-st-hint">Tissu r&eacute;sidentiel &middot; 7j/7</p></div>
+    <div class="rds-st-node"><span class="rds-st-dot"></span></div>
+    <div class="rds-st-r"></div>
   </div>
 
 </div>
-</div> </div> </div>
+<div class="block-cta-group" style="justify-content:center;margin-top:40px">
+  <a href="nos-quartiers.html" class="btn-block-primary">Voir tous nos quartiers</a>
+  <a href="nous-contacter.html" class="btn-block-secondary">Nous contacter &rarr;</a>
+</div>
+</div>
+</div>
+</div>
 </section> <!-- ══════════ FAQ ══════════ -->
 <section class="faq-section" id="faq" aria-labelledby="faq-title"> <div style="text-align:center;max-width:1200px;margin:0 auto;"> <span class="section-label" style="justify-content:center">Questions fréquentes</span> <h2 class="section-title" id="faq-title" style="text-align:center">Tout savoir sur nos <em>services à domicile</em></h2> </div> <div class="faq-grid"> <div class="faq-list"> <details> <summary>Quelle est la différence entre aide à domicile et aide-soignante ?<span class="summary-plus">+</span></summary> <div class="faq-answer">L'auxiliaire de vie aide pour les tâches du quotidien (ménage, repas, compagnie). L'aide-soignant(e) DEAS réalise des soins d'hygiène et de confort (aide à l'hygiène, habillage, surveillance) sous supervision infirmière, dans le respect de l'autonomie résiduelle. Les deux peuvent intervenir ensemble à votre domicile.</div> </details> <details> <summary>Qu'est-ce qu'un Projet de Vie Individualisé (PVI) ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Le Projet de Vie Individualisé (PVI) est co-construit avec vous, votre famille et notre infirmier coordinateur. Il définit vos objectifs d'autonomie résiduelle, vos rythmes de vie et vos préférences. Ce plan est réévalué régulièrement avec le CLIC Loire-Atlantique et, si besoin, le CHU de Nantes — dans une démarche de bientraitance.</div> </details> <details> <summary>Intervenez-vous dans tout Nantes ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Non, nos équipes interviennent dans une sélection de quartiers nantais : Dervallières, Zola, Bellevue, Chantenay, Breil-Barberie, Île de Nantes, Nantes sud et nord, Malakoff, Saint-Donatien, Hauts-Pavés, Saint-Félix et le Centre-ville. Contactez-nous pour vérifier votre adresse.</div> </details> <details> <summary>Comment bénéficier de vos services ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Appelez le 02 40 35 43 43 ou remplissez notre formulaire de contact. Selon votre besoin, une évaluation à domicile peut être organisée pour établir un plan personnalisé.</div> </details> <details> <summary>Quels sont vos horaires d'intervention ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Nos équipes interviennent 7 jours sur 7, y compris les jours fériés. Notre secrétariat est joignable du lundi au vendredi de 7h45 à 12h30 et de 14h00 à 17h30 au 02 40 35 43 43.</div> </details> </div> <div class="faq-cta-box"> <h3>Une question ? Contactez-nous</h3> <p>Notre équipe répond à toutes vos questions et peut organiser une évaluation à domicile.</p> <a href="tel:0240354343" class="btn-primary">02&nbsp;40&nbsp;35&nbsp;43&nbsp;43</a> <a href="nous-contacter.html" class="btn-outline" style="border-color:rgba(255,255,255,0.3);color:white">Formulaire de contact</a> <p style="font-size:12px;color:rgba(255,255,255,0.4)">Association loi 1901 · Agréée · Partenaire CHU de Nantes</p> </div> </div>
 </section> <!-- ══════════ TÉMOIGNAGES ══════════ -->
@@ -1339,59 +1268,62 @@ window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-/* ── Showcase Quartiers — fondu interactif ─────────────── */
+/* ── Route du Soin — scroll interactif ─────────────────── */
 (function() {
-  var showcase = document.getElementById('qs-showcase');
-  if (!showcase) return;
+  var section = document.getElementById('quartiers');
+  var track   = document.getElementById('rds-track');
+  var lineEl  = document.getElementById('rds-line');
+  var car     = document.getElementById('rds-car');
+  var tooltip = document.getElementById('rds-tooltip');
+  if (!section || !car || !lineEl) return;
 
-  var slides    = showcase.querySelectorAll('.qs-slide');
-  var listItems = document.querySelectorAll('.quartier-list-item:not(.uncovered)');
-  var leaveTimer = null;
+  var ttName   = tooltip.querySelector('.rds-tt-name');
+  var ttHint   = tooltip.querySelector('.rds-tt-hint');
+  var stations = Array.from(document.querySelectorAll('.rds-station'));
 
-  function showSlide(key) {
-    slides.forEach(function(s) {
-      var isTarget = s.dataset.q === key;
-      s.classList.toggle('qs-active', isTarget);
+  function update() {
+    var sRect = section.getBoundingClientRect();
+    var lRect = lineEl.getBoundingClientRect();
+    var vh    = window.innerHeight;
+    var lineH = lineEl.offsetHeight;
+    var carH  = car.offsetHeight || 28;
+
+    /* Progress 0→1 : midpoint viewport traverse la section du haut en bas */
+    var mid = vh * 0.5;
+    var p   = (mid - sRect.top) / sRect.height;
+    p = Math.max(0, Math.min(1, p));
+
+    var carTop = p * (lineH - carH);
+    car.style.top = carTop + 'px';
+
+    /* Activation stations */
+    var activeStation = null;
+    stations.forEach(function(st) {
+      var dot  = st.querySelector('.rds-st-dot');
+      var dotY = dot.getBoundingClientRect().top - lRect.top;
+      var passed = (carTop + carH / 2) >= dotY;
+      if (st.classList.contains('rds-passed') !== passed) {
+        st.classList.toggle('rds-passed', passed);
+      }
+      if (passed) activeStation = st;
     });
+
+    /* Tooltip */
+    if (activeStation) {
+      var nameEl = activeStation.querySelector('.rds-st-name');
+      if (nameEl) {
+        ttName.textContent = nameEl.textContent;
+        ttHint.textContent = '7⁠j/7';
+        tooltip.classList.add('rds-tt-visible');
+      }
+    } else {
+      tooltip.classList.remove('rds-tt-visible');
+    }
   }
 
-  function syncList(key) {
-    listItems.forEach(function(item) {
-      item.classList.toggle('active', item.dataset.q === key);
-    });
-  }
-
-  /* Survol depuis la liste */
-  listItems.forEach(function(item) {
-    item.addEventListener('mouseenter', function() {
-      clearTimeout(leaveTimer);
-      showSlide(item.dataset.q);
-      syncList(item.dataset.q);
-    });
-    item.addEventListener('focus', function() {
-      clearTimeout(leaveTimer);
-      showSlide(item.dataset.q);
-      syncList(item.dataset.q);
-    });
-    item.addEventListener('mouseleave', function() {
-      leaveTimer = setTimeout(function() {
-        showSlide('default');
-        syncList(null);
-      }, 120); /* petit délai anti-flickering entre items */
-    });
-    item.addEventListener('blur', function() {
-      leaveTimer = setTimeout(function() {
-        showSlide('default');
-        syncList(null);
-      }, 120);
-    });
-  });
-
-  /* Clic sur la liste : navigation normale (le lien href gère ça) */
-
-  /* État initial */
-  showSlide('default');
-
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
 })();
 
 /* Floating call button — visible only after hero */var revealObs = new IntersectionObserver(function(entries) {
