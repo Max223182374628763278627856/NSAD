@@ -73,3 +73,29 @@ Instructions de référence pour toute intervention sur ce projet.
 - Sections bien délimitées avec titres clairs
 - Footer complet avec coordonnées et mentions légales
 - Toujours un numéro de téléphone visible et cliquable (`tel:`) sur mobile
+
+---
+
+## LICENCES DES RESSOURCES TIERCES (RÈGLE IMMUABLE)
+
+### Animations Lottie
+- **Acceptées sans attribution** : LottieFiles Simple License, Public Domain (CC0)
+- **Acceptées avec attribution** : Creative Commons CC BY — ajouter obligatoirement une entrée dans la section `## Crédits` de `mentions-légales.html`
+- **Refusées** : CC BY-NC, CC BY-SA, CC BY-ND, toute licence commerciale restrictive
+- **Procédure** : avant d'intégrer une animation, vérifier la licence sur la page de l'animation. En cas de doute, ne pas intégrer.
+
+### Si attribution CC BY requise
+1. Ajouter dans `mentions-légales.html` → section `## Crédits` :
+   ```
+   - [Nom de l'animation] par [Auteur] — LottieFiles — CC BY 4.0
+     URL : https://lottiefiles.com/...
+     Utilisée sur : [page(s) concernée(s)]
+   ```
+2. Créer la page si elle n'existe pas encore.
+
+### Illustrations SVG custom (créées par Claude)
+- Aucune attribution requise — propriété du projet NSAD.
+- Libre de modification, d'utilisation commerciale et de migration WordPress.
+
+### Polices (Google Fonts)
+- Poppins et Hind sont sous licence SIL Open Font License (OFL) — aucune attribution requise.
