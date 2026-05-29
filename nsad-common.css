@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   NSAD COMMON STYLES — v1.0
+   NSAD COMMON STYLES — v1.2
    Chargé en dernier dans chaque page pour
    garantir la cohérence visuelle du site.
    Ne pas modifier sans mettre à jour STRATEGIE-SEO-NSAD.md
@@ -256,40 +256,6 @@ nav {
 }
 
 /* ══════════════════════════════
-   SCROLL REVEAL — Shared
-   Utilisé sur toutes les pages via data-reveal="up|fade|scale"
-   Reproduire dans Elementor : Motion Effects > Entrance > Fade In Up
-══════════════════════════════ */
-[data-reveal] {
-  opacity: 0;
-  transition:
-    opacity 0.6s cubic-bezier(0.0, 0.0, 0.2, 1),
-    transform 0.6s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
-[data-reveal="up"]    { transform: translateY(24px); }
-[data-reveal="left"]  { transform: translateX(-24px); }
-[data-reveal="right"] { transform: translateX(24px); }
-[data-reveal="scale"] { transform: scale(0.96); }
-[data-reveal="fade"]  { transform: none; }
-[data-reveal].revealed {
-  opacity: 1 !important;
-  transform: none !important;
-  /* Rétablit transition:all pour que les hover effects fonctionnent après l'entrée */
-  transition: all var(--transition-base, 260ms cubic-bezier(0.4,0,0.2,1)) !important;
-}
-[data-delay="1"] { transition-delay: 0.10s; }
-[data-delay="2"] { transition-delay: 0.20s; }
-[data-delay="3"] { transition-delay: 0.30s; }
-[data-delay="4"] { transition-delay: 0.40s; }
-[data-delay="5"] { transition-delay: 0.50s; }
-
-/* Stagger automatique dans les grilles */
-.quartiers-grid .quartier-card[data-reveal]:nth-child(3n+2) { transition-delay: 0.10s; }
-.quartiers-grid .quartier-card[data-reveal]:nth-child(3n)   { transition-delay: 0.20s; }
-.soins-grid .soin-card[data-reveal]:nth-child(2) { transition-delay: 0.10s; }
-.soins-grid .soin-card[data-reveal]:nth-child(3) { transition-delay: 0.20s; }
-
-/* ══════════════════════════════
    ACCESSIBILITÉ — Focus visible
    Halo --mint pour navigation clavier
    WCAG 2.2 §2.4.11 — Focus Appearance
@@ -313,107 +279,14 @@ button:focus-visible,
   border-radius: 6px;
 }
 /* Cas spéciaux */
-.nav-cta:focus-visible       { border-radius: 50px; }
+.nav-cta:focus-visible            { border-radius: 50px; }
 .nsad-floating-call:focus-visible { border-radius: 50px; }
-.nav-hamburger:focus-visible  { border-radius: 6px; }
-/* Inputs / selects / textarea — gérés séparément dans les pages */
+.nav-hamburger:focus-visible      { border-radius: 6px; }
+/* Inputs / selects / textarea */
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
   outline: 2.5px solid var(--mint, #70E8C6);
   outline-offset: 0;
   box-shadow: 0 0 0 3px rgba(112, 232, 198, 0.25);
-}
-
-/* ══════════════════════════════
-   PAGE TRANSITIONS — Fade-in CSS pur (0.2s)
-   • Entrée  : transform seul — body TOUJOURS visible (opacity:1)
-   • Sortie  : .nsad-out → opacity 0 en 150 ms (ajouté par nsad-ux.js)
-   • Fallback: sans JS, body reste à opacity:1, aucun blocage
-══════════════════════════════ */
-@keyframes nsad-page-in {
-  from { transform: translateY(5px); }
-  to   { transform: translateY(0);   }
-}
-body {
-  animation: nsad-page-in 0.2s ease-out forwards;
-}
-body.nsad-out {
-  opacity: 0 !important;
-  transition: opacity 0.15s ease !important;
-  pointer-events: none !important;
-}
-/* Désactiver si prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  body          { animation: none !important; }
-  body.nsad-out { transition: none !important; opacity: 0 !important; }
-}
-
-/* ══════════════════════════════
-   SKELETON LOADERS — Shimmer
-   Pulsation douce pour états de chargement
-   Usage : ajouter class="skel" ou "skel-text" / "skel-block"
-══════════════════════════════ */
-@keyframes nsad-shimmer {
-  0%   { background-position: -600px 0; }
-  100% { background-position: 600px 0;  }
-}
-.skel,
-.skel-text,
-.skel-block {
-  background: linear-gradient(
-    90deg,
-    #e4eef3 25%,
-    #cce1ec 50%,
-    #e4eef3 75%
-  );
-  background-size: 1200px 100%;
-  animation: nsad-shimmer 1.6s ease-in-out infinite;
-  color: transparent !important;
-  border-radius: 8px;
-  pointer-events: none;
-  user-select: none;
-}
-.skel *,
-.skel-text *,
-.skel-block * { visibility: hidden !important; }
-
-/* Variantes */
-.skel-text  { height: 1em;  border-radius: 4px; display: block; }
-.skel-block { border-radius: var(--radius-sm, 10px); }
-
-/* Image wrapper avec skeleton auto */
-.img-skel {
-  position: relative;
-  overflow: hidden;
-  background: #e4eef3;
-  border-radius: 8px;
-  display: block;
-}
-.img-skel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, #e4eef3 25%, #cce1ec 50%, #e4eef3 75%);
-  background-size: 1200px 100%;
-  animation: nsad-shimmer 1.6s ease-in-out infinite;
-  z-index: 1;
-  transition: opacity 0.35s ease;
-}
-.img-skel.img-loaded::before {
-  opacity: 0;
-  pointer-events: none;
-}
-.img-skel img {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: 100%;
-  height: auto;
-}
-@media (prefers-reduced-motion: reduce) {
-  .skel, .skel-text, .skel-block, .img-skel::before {
-    animation: none !important;
-    background: #e4eef3 !important;
-  }
 }
