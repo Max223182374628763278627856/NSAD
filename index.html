@@ -1143,11 +1143,9 @@ function animateCount(el, target, duration) {
 }
 
 
-/* Init — compte à rebours chiffres clés */
-window.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('[data-count]').forEach(function(el) {
-    animateCount(el, parseInt(el.dataset.count), 1600);
-  });
+/* Init — compte à rebours chiffres clés (script en bas de body : DOM déjà prêt) */
+document.querySelectorAll('[data-count]').forEach(function(el) {
+  animateCount(el, parseInt(el.dataset.count), 1600);
 });
 
 /* Nav scroll */
