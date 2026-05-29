@@ -365,7 +365,7 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 .quartier-select-section { background: var(--white); padding: 96px 48px; }
 .quartier-select-inner { max-width: 1100px; margin: 0 auto; }
 .quartier-select-header { margin-bottom: 48px; }
-.quartier-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.quartier-select-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start; }
 .quartier-list { display: flex; flex-direction: column; gap: 10px; }
 .quartier-list-item {
   display: flex; align-items: center; gap: 14px;
@@ -394,16 +394,28 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
   background: rgba(180,160,120,0.15); color: #8a7040;
   padding: 2px 8px; border-radius: 20px; white-space: nowrap;
 }
-/* Map container */
-.quartier-map-wrap { position: relative; max-width: 400px; margin: 0 auto; }
-.quartier-map-svg { width: 100%; height: auto; }
-/* Dot animation for active quartier */
-@keyframes q-pulse { 0%,100%{r:7;opacity:1;} 50%{r:11;opacity:0.4;} }
-.q-dot-pulse { animation: q-pulse 2s ease-in-out infinite; }
+/* ─── Carte Leaflet ─── */
+.quartier-map-wrap { position: relative; }
+#nantes-leaflet-map {
+  height: 520px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md, 0 4px 24px rgba(14,40,60,0.12));
+}
+/* Glow SVG sur zone active */
+.leaflet-interactive.q-zone-active {
+  filter: drop-shadow(0 0 12px rgba(112,232,198,0.70));
+}
+/* Overrides Leaflet */
+.leaflet-container { font-family: 'Hind', sans-serif; }
+.leaflet-control-attribution { font-size: 10px; }
+.leaflet-control-zoom a {
+  font-family: 'Poppins', sans-serif; font-weight: 600; color: #3C697F !important;
+}
 /* Zone note */
 .zone-note {
-  margin-top: 20px; background: #fff8f0; border: 1px solid #ffd6b0;
-  border-radius: var(--radius-sm); padding: 14px 18px;
+  margin-top: 14px; background: #fff8f0; border: 1px solid #ffd6b0;
+  border-radius: var(--radius-sm); padding: 12px 16px;
   font-size: 13px; color: #8a5a2a; display: flex; align-items: flex-start; gap: 10px;
 }
 /* CTA bloc */
@@ -545,6 +557,7 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
   .steps-row { grid-template-columns:1fr 1fr; gap:32px; }
   .step-connector { display:none; }
   .quartier-select-grid, .faq-grid { grid-template-columns:1fr; gap:40px; }
+  #nantes-leaflet-map { height: 340px; }
   .footer-grid { grid-template-columns:1fr; }
   .hero-stats { gap:16px; flex-wrap:wrap; }
   .trust-band { flex-direction:column; gap:0; }
@@ -844,7 +857,8 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
     }
   ]
 }
-</script> <link rel="stylesheet" href="nsad-common.css">
+</script> <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+<link rel="stylesheet" href="nsad-common.css">
 </head>
 <body>  <!-- ══════════ NAV ══════════ -->
 <nav id="main-nav" role="navigation" aria-label="Navigation principale"> <a href="index.html" class="nav-logo" aria-label="Nantes Soins à Domicile – Accueil"> <!--
@@ -1054,126 +1068,14 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
            Chaque zone <polygon> porte un attribut data-q qui correspond
            aux data-q des .quartier-list-item.
            Interaction bidirectionnelle gérée par le JS en bas de page.
-           ════════════════════════════════════════════════════════ --> <div class="quartier-map-wrap"> <svg class="quartier-map-svg"
-             viewBox="0 0 420 380"
-             xmlns="http://www.w3.org/2000/svg"
-             role="img"
-             aria-label="Carte interactive des quartiers de Nantes couverts par Nantes Soins à Domicile"> <!-- ── DEFS : ombres, dégradés ── --> <defs> <filter id="zone-shadow" x="-15%" y="-15%" width="130%" height="130%"> <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(60,105,127,0.25)"/> </filter> </defs> <!-- ── FOND DE CARTE (territoire global) ── --> <path d="M 55,25 L 180,12 L 295,18 L 390,52 L 408,148 L 395,250
-                   L 345,310 L 268,358 L 178,368 L 90,342 L 32,288
-                   L 12,195 L 22,98 Z"
-                fill="#F4F8FB" stroke="#CBD5E0" stroke-width="1.5"/> <!-- ── LA LOIRE (bande bleue centrale) ── --> <!-- La Loire traverse Nantes d'est en ouest vers y≈255 --> <path d="M 0,272 Q 60,256 145,260 Q 180,263 215,260
-                   Q 255,257 290,262 Q 350,254 420,244"
-                fill="none" stroke="rgba(125,162,250,0.5)" stroke-width="12"
-                stroke-linecap="round"/> <text x="310" y="252" font-size="9" fill="rgba(125,162,250,0.8)"
-                font-family="Hind,sans-serif" font-style="italic">la Loire</text> <!-- ════════════════════════
-               ZONES COUVERTES
-               ════════════════════════ --> <!-- ─ Nantes Nord (data-q="nord") ─────────────────────────
-               Couleur repos : rgba(143,240,210,0.20)
-               Couleur active/survol : rgba(143,240,210,0.55) via CSS  --> <polygon
-            points="118,22 238,14 298,20 332,42 328,88 308,110 262,120
-                    215,122 168,118 128,104 108,74"
-            data-q="nord"
-            class="q-zone"
-            fill="rgba(143,240,210,0.20)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Nantes Nord"/> <text x="175" y="68" font-size="9.5" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Nantes Nord</text> <!-- ─ Hauts-Pavés – Saint-Félix (data-q="hauts") ──────────
-               Couleur repos : rgba(200,213,252,0.25) --> <polygon
-            points="215,122 262,120 308,110 332,125 330,165 298,180
-                    255,182 215,172 198,155 200,135"
-            data-q="hauts"
-            class="q-zone"
-            fill="rgba(200,213,252,0.25)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Hauts-Pavés – Saint-Félix"/> <text x="240" y="148" font-size="9" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Hauts-Pavés</text> <!-- ─ Breil-Barbière (data-q="breil") ─────────────────────
-               Couleur repos : rgba(125,162,250,0.18) --> <polygon
-            points="108,74 128,104 168,118 200,135 198,158 175,178
-                    142,182 95,175 65,150 60,120 88,92"
-            data-q="breil"
-            class="q-zone"
-            fill="rgba(125,162,250,0.18)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Breil-Barbière"/> <text x="88" y="142" font-size="9" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Breil</text> <!-- ─ Centre-ville (data-q="centre") ──────────────────────
-               Couleur repos : rgba(255,158,142,0.20) --> <polygon
-            points="198,155 255,155 298,180 294,204 280,232 248,250
-                    208,252 178,240 165,215 168,178"
-            data-q="centre"
-            class="q-zone"
-            fill="rgba(255,158,142,0.20)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Centre-ville"/> <text x="200" y="200" font-size="9.5" fill="#3C697F" font-weight="700"
-                font-family="Poppins,sans-serif" pointer-events="none">Centre-ville</text> <!-- ─ Dervallières – Zola (data-q="derv") ─────────────────
-               Couleur repos : rgba(143,240,210,0.18) --> <polygon
-            points="60,158 95,175 142,182 175,178 168,218 154,240
-                    122,255 78,252 46,228 44,195 56,170"
-            data-q="derv"
-            class="q-zone"
-            fill="rgba(143,240,210,0.18)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Dervallières – Zola"/> <text x="68" y="212" font-size="9" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Dervallières</text> <!-- ─ Bellevue – Chantenay (data-q="bellevue") ─────────────
-               Couleur repos : rgba(200,213,252,0.22) --> <polygon
-            points="16,192 46,185 60,185 60,232 46,265 32,286 14,272 10,228"
-            data-q="bellevue"
-            class="q-zone"
-            fill="rgba(200,213,252,0.22)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Bellevue – Chantenay"/> <text x="15" y="228" font-size="8.5" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Bellevue–</text> <text x="15" y="239" font-size="8.5" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Chantenay</text> <!-- ─ Malakoff – Saint-Donatien (data-q="malakoff") ────────
-               Couleur repos : rgba(125,162,250,0.20) --> <polygon
-            points="298,180 332,165 358,155 382,175 386,225 362,250
-                    320,262 294,264 280,232 294,204"
-            data-q="malakoff"
-            class="q-zone"
-            fill="rgba(125,162,250,0.20)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Malakoff – Saint-Donatien"/> <text x="310" y="200" font-size="9" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Malakoff</text> <!-- ─ Île de Nantes (data-q="ile") ─────────────────────────
-               Île dans la Loire, y ≈ 260–315
-               Couleur repos : rgba(143,240,210,0.25) --> <polygon
-            points="146,262 212,255 254,255 294,264 292,298 268,314
-                    220,320 172,314 148,298"
-            data-q="ile"
-            class="q-zone"
-            fill="rgba(143,240,210,0.25)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Île de Nantes"/> <text x="186" y="290" font-size="9" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Île de Nantes</text> <!-- ─ Nantes Sud (data-q="nantes-sud") ────────────────────
-               Sous la Loire
-               Couleur repos : rgba(200,213,252,0.20) --> <polygon
-            points="76,272 118,264 146,268 148,298 172,314 220,320
-                    268,314 292,298 312,292 310,338 270,360 192,370
-                    125,354 88,322"
-            data-q="nantes-sud"
-            class="q-zone"
-            fill="rgba(200,213,252,0.20)"
-            stroke="#3C697F" stroke-width="1.5" stroke-linejoin="round"
-            tabindex="0" role="button" aria-label="Zone Nantes Sud"/> <text x="175" y="342" font-size="9.5" fill="#3C697F" font-weight="600"
-                font-family="Poppins,sans-serif" pointer-events="none">Nantes Sud</text> <!-- ════════════════════════
-               ZONES HORS COUVERTURE
-               (pointer-events:none en CSS, tirets)
-               ════════════════════════ --> <!-- ─ Nantes Erdre (hors zone) ─────────────────────────── --> <polygon
-            points="298,20 392,52 408,148 395,162 358,155 332,125 328,88 332,42"
-            data-q="erdre"
-            class="q-zone-hors"
-            fill="rgba(200,185,130,0.12)"
-            stroke="rgba(180,150,80,0.35)" stroke-width="1.2"
-            stroke-dasharray="5 3" stroke-linejoin="round"/> <text x="340" y="88" font-size="8.5" fill="rgba(120,100,50,0.65)"
-                font-family="Poppins,sans-serif" pointer-events="none">Nantes Erdre</text> <text x="340" y="99" font-size="7.5" fill="rgba(120,100,50,0.50)"
-                font-family="Hind,sans-serif" pointer-events="none">(hors zone)</text> <!-- ─ Doulon-Bottière (hors zone) ─────────────────────── --> <polygon
-            points="358,155 395,162 412,225 390,252 362,250 386,225 382,175"
-            data-q="doulon"
-            class="q-zone-hors"
-            fill="rgba(200,185,130,0.12)"
-            stroke="rgba(180,150,80,0.35)" stroke-width="1.2"
-            stroke-dasharray="5 3" stroke-linejoin="round"/> <text x="370" y="198" font-size="8" fill="rgba(120,100,50,0.60)"
-                font-family="Poppins,sans-serif" pointer-events="none">Doulon</text> <text x="370" y="208" font-size="7.5" fill="rgba(120,100,50,0.50)"
-                font-family="Hind,sans-serif" pointer-events="none">(hors zone)</text> </svg> <!-- Note zone limitée — sans emoji --> <div class="zone-note"> <!-- Icône triangle avertissement SVG --> <span aria-hidden="true"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M8 2L1 14h14L8 2z" stroke="#c07a30" stroke-width="1.5"
-                    stroke-linejoin="round" fill="rgba(255,165,80,0.15)"/> <line x1="8" y1="7" x2="8" y2="10" stroke="#c07a30" stroke-width="1.5"
-                    stroke-linecap="round"/> <circle cx="8" cy="12" r="0.8" fill="#c07a30"/> </svg> </span> <span>Zone limitée. <a href="nous-contacter.html" style="color:#8a5a2a;font-weight:600">Contactez-nous</a> pour vérifier votre adresse.</span> </div> </div> </div> </div>
+           ════════════════════════════════════════════════════════ --> 
+<div class="quartier-map-wrap">
+  <div id="nantes-leaflet-map"></div>
+  <div class="zone-note">
+    <span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L1 14h14L8 2z" stroke="#c07a30" stroke-width="1.5" stroke-linejoin="round" fill="rgba(255,165,80,0.15)"/><line x1="8" y1="7" x2="8" y2="10" stroke="#c07a30" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r="0.8" fill="#c07a30"/></svg></span>
+    <span>Zone limitée. <a href="nous-contacter.html" style="color:#8a5a2a;font-weight:600">Contactez-nous</a> pour vérifier votre adresse.</span>
+  </div>
+</div> </div> </div>
 </section> <!-- ══════════ FAQ ══════════ -->
 <section class="faq-section" id="faq" aria-labelledby="faq-title"> <div style="text-align:center;max-width:1200px;margin:0 auto;"> <span class="section-label" style="justify-content:center">Questions fréquentes</span> <h2 class="section-title" id="faq-title" style="text-align:center">Tout savoir sur nos <em>services à domicile</em></h2> </div> <div class="faq-grid"> <div class="faq-list"> <details> <summary>Quelle est la différence entre aide à domicile et aide-soignante ?<span class="summary-plus">+</span></summary> <div class="faq-answer">L'auxiliaire de vie aide pour les tâches du quotidien (ménage, repas, compagnie). L'aide-soignant(e) DEAS réalise des soins d'hygiène et de confort (aide à l'hygiène, habillage, surveillance) sous supervision infirmière, dans le respect de l'autonomie résiduelle. Les deux peuvent intervenir ensemble à votre domicile.</div> </details> <details> <summary>Qu'est-ce qu'un Projet de Vie Individualisé (PVI) ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Le Projet de Vie Individualisé (PVI) est co-construit avec vous, votre famille et notre infirmier coordinateur. Il définit vos objectifs d'autonomie résiduelle, vos rythmes de vie et vos préférences. Ce plan est réévalué régulièrement avec le CLIC Loire-Atlantique et, si besoin, le CHU de Nantes — dans une démarche de bientraitance.</div> </details> <details> <summary>Intervenez-vous dans tout Nantes ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Non, nos équipes interviennent dans une sélection de quartiers nantais : Dervallières, Zola, Bellevue, Chantenay, Breil-Barberie, Île de Nantes, Nantes sud et nord, Malakoff, Saint-Donatien, Hauts-Pavés, Saint-Félix et le Centre-ville. Contactez-nous pour vérifier votre adresse.</div> </details> <details> <summary>Comment bénéficier de vos services ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Appelez le 02 40 35 43 43 ou remplissez notre formulaire de contact. Selon votre besoin, une évaluation à domicile peut être organisée pour établir un plan personnalisé.</div> </details> <details> <summary>Quels sont vos horaires d'intervention ?<span class="summary-plus">+</span></summary> <div class="faq-answer">Nos équipes interviennent 7 jours sur 7, y compris les jours fériés. Notre secrétariat est joignable du lundi au vendredi de 7h45 à 12h30 et de 14h00 à 17h30 au 02 40 35 43 43.</div> </details> </div> <div class="faq-cta-box"> <h3>Une question ? Contactez-nous</h3> <p>Notre équipe répond à toutes vos questions et peut organiser une évaluation à domicile.</p> <a href="tel:0240354343" class="btn-primary">02&nbsp;40&nbsp;35&nbsp;43&nbsp;43</a> <a href="nous-contacter.html" class="btn-outline" style="border-color:rgba(255,255,255,0.3);color:white">Formulaire de contact</a> <p style="font-size:12px;color:rgba(255,255,255,0.4)">Association loi 1901 · Agréée · Partenaire CHU de Nantes</p> </div> </div>
 </section> <!-- ══════════ TÉMOIGNAGES ══════════ -->
@@ -1225,6 +1127,7 @@ footer.nsad-ft a:hover{color:#8FF0D2;text-decoration:none;}
 </footer> <!-- ══════════ FLOATING CALL BUTTON ══════════ -->
 <!-- ════ BOUTON APPEL FLOTTANT ════ -->
 <!-- ══════════ JAVASCRIPT ══════════ -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 function animateCount(el, target, duration) {
   var startTime = performance.now();
@@ -1253,35 +1156,216 @@ window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-/* Quartier selector — highlight dot on hover/click */
+/* ── Carte Leaflet interactive — Quartiers de Nantes ────── */
 (function() {
-  var items = document.querySelectorAll('.quartier-list-item');
-  var dots  = document.querySelectorAll('.q-main-dot');
-  var pulses = document.querySelectorAll('.q-dot-pulse');
+  if (typeof L === 'undefined') return;
+  var mapEl = document.getElementById('nantes-leaflet-map');
+  if (!mapEl) return;
 
-  function setActive(q) {
-    // list items
-    items.forEach(function(el) { el.classList.toggle('active', el.dataset.q === q); });
-    // pulse ring
-    pulses.forEach(function(el) { el.style.display = el.dataset.q === q ? '' : 'none'; });
-    // main dot colors
-    dots.forEach(function(el) {
-      el.setAttribute('fill', el.dataset.q === q ? '#FF9E8E' : '#3C697F');
+  /* ─ Données géographiques OSM réelles ─ */
+  var QUARTIERS = [
+    { id:'centre', name:'Centre-Ville / CHU', url:'quartier-centre-ville.html',
+      latlngs:[
+        [47.2216329,-1.5512194],[47.2212264,-1.5522081],[47.2206922,-1.5533192],
+        [47.2203310,-1.5540485],[47.2200847,-1.5547348],[47.2200620,-1.5592183],
+        [47.2193765,-1.5602014],[47.2188688,-1.5609282],[47.2179390,-1.5622669],
+        [47.2184022,-1.5631841],[47.2177788,-1.5657247],[47.2169351,-1.5671193],
+        [47.2163695,-1.5686306],[47.2145141,-1.5728062],[47.2130276,-1.5717029],
+        [47.2114315,-1.5711269],[47.2099033,-1.5705622],[47.2088268,-1.5677107],
+        [47.2083691,-1.5659766],[47.2090953,-1.5624248],[47.2078838,-1.5515815],
+        [47.2078539,-1.5493091],[47.2101039,-1.5421212],[47.2112354,-1.5387167],
+        [47.2155780,-1.5466105],[47.2164419,-1.5468541],[47.2174211,-1.5476999],
+        [47.2186041,-1.5486052],[47.2194074,-1.5492711],[47.2214556,-1.5509554]
+      ]
+    },
+    { id:'ile', name:'Île de Nantes', url:'quartier-ile-de-nantes.html',
+      latlngs:[
+        [47.2169899,-1.5109554],[47.2155,-1.5126],[47.2135,-1.5144],
+        [47.2105,-1.5185],[47.2095,-1.5209],[47.2072,-1.5226],
+        [47.2047,-1.5277],[47.2036,-1.5301],[47.1980827,-1.5484223],
+        [47.1974,-1.5782],[47.2046,-1.5726],[47.2060,-1.5710],
+        [47.2091,-1.5633],[47.2112354,-1.5387167],[47.2123,-1.5299],
+        [47.2129,-1.5251],[47.2146,-1.5204],[47.2164,-1.5149],
+        [47.2169899,-1.5109554]
+      ]
+    },
+    { id:'nantes-sud', name:'Nantes Sud', url:'quartier-nantes-sud.html',
+      latlngs:[
+        [47.2036247,-1.5301531],[47.1997,-1.5281],[47.1982,-1.5298],
+        [47.1977,-1.5306],[47.1956,-1.5250],[47.1920,-1.5253],
+        [47.1894,-1.5138],[47.1805856,-1.5181093],[47.1806,-1.5490],
+        [47.1973,-1.5785],[47.2015,-1.5746],[47.2036247,-1.5301531]
+      ]
+    },
+    { id:'bellevue', name:'Bellevue – Chantenay', url:'quartier-bellevue-chantenay.html',
+      latlngs:[
+        [47.1911630,-1.6418115],[47.1904964,-1.6410595],[47.1897274,-1.6378208],
+        [47.1894166,-1.6351330],[47.1892451,-1.6299289],[47.1888270,-1.6271541],
+        [47.1883515,-1.6251985],[47.1876628,-1.6218276],[47.1866507,-1.6175418],
+        [47.1857113,-1.6142267],[47.1847576,-1.6104131],[47.1844735,-1.6085969],
+        [47.1850998,-1.6039994],[47.1881412,-1.5993360],[47.1902617,-1.5957914],
+        [47.1972637,-1.5785403],[47.2050325,-1.5723650],[47.2061582,-1.5711221],
+        [47.2076793,-1.5823331],[47.2093732,-1.5886646],[47.2101201,-1.6035159],
+        [47.2111844,-1.6093900],[47.2085461,-1.6116684],[47.2042766,-1.6150655],
+        [47.1966510,-1.6180402],[47.1945121,-1.6191255],[47.1911630,-1.6418115]
+      ]
+    },
+    { id:'breil', name:'Breil-Barbière', url:'quartier-breil-barbiere.html',
+      latlngs:[
+        [47.2232994,-1.5848305],[47.2263262,-1.5831044],[47.2278779,-1.5810713],
+        [47.2288854,-1.5759327],[47.2308165,-1.5701647],[47.2319583,-1.5681402],
+        [47.2345248,-1.5633691],[47.2374013,-1.5630401],[47.2421209,-1.5565950],
+        [47.2437935,-1.5642456],[47.2451961,-1.5710772],[47.2471565,-1.5772891],
+        [47.2437230,-1.5826201],[47.2410898,-1.5877475],[47.2384048,-1.5879714],
+        [47.2346286,-1.5847997],[47.2312485,-1.5919917],[47.2294151,-1.5969267],
+        [47.2256787,-1.5877261],[47.2232994,-1.5848305]
+      ]
+    },
+    { id:'derv', name:'Dervallières – Zola', url:'quartier-dervallieres-zola.html',
+      latlngs:[
+        [47.2294151,-1.5969267],[47.2256787,-1.5877261],[47.2212004,-1.6041005],
+        [47.2181969,-1.6041239],[47.2141813,-1.6073522],[47.2111844,-1.6093900],
+        [47.2061582,-1.5711221],[47.2050325,-1.5723650],[47.2076793,-1.5823331],
+        [47.2093732,-1.5886646],[47.2218044,-1.6027834],[47.2289004,-1.5979031],
+        [47.2294151,-1.5969267]
+      ]
+    },
+    { id:'hauts', name:'Hauts-Pavés – Saint-Félix', url:'quartier-hauts-paves-saint-felix.html',
+      latlngs:[
+        [47.2145141,-1.5728062],[47.2174730,-1.5733333],[47.2197550,-1.5773177],
+        [47.2232979,-1.5848252],[47.2264902,-1.5830361],[47.2290089,-1.5753050],
+        [47.2308165,-1.5701647],[47.2332055,-1.5659649],[47.2372060,-1.5631973],
+        [47.2403692,-1.5476504],[47.2429256,-1.5507595],[47.2421209,-1.5565950],
+        [47.2273521,-1.5538660],[47.2216329,-1.5512194],[47.2178750,-1.5623626],
+        [47.2190806,-1.5605983],[47.2200620,-1.5592183],[47.2145141,-1.5728062]
+      ]
+    },
+    { id:'nord', name:'Nantes Nord', url:'quartier-nantes-nord.html',
+      latlngs:[
+        [47.2422617,-1.5465613],[47.2553556,-1.5431780],[47.2603833,-1.5543755],
+        [47.2704214,-1.5590182],[47.2685169,-1.5581922],[47.2651634,-1.5582029],
+        [47.2625960,-1.5547243],[47.2717905,-1.5717787],[47.2744311,-1.5873286],
+        [47.2727634,-1.5842090],[47.2719320,-1.5764564],[47.2720279,-1.5740313],
+        [47.2719006,-1.5725297],[47.2421209,-1.5565950],[47.2393306,-1.5611625],
+        [47.2422617,-1.5465613]
+      ]
+    },
+    { id:'malakoff', name:'Malakoff – Saint-Donatien', url:'quartier-malakoff-saint-donatien.html',
+      latlngs:[
+        [47.2353165,-1.5487133],[47.2325915,-1.5482177],[47.2304877,-1.5500788],
+        [47.2282384,-1.5526807],[47.2273521,-1.5538660],[47.2228878,-1.5529331],
+        [47.2216329,-1.5512194],[47.2194074,-1.5492711],[47.2164419,-1.5468541],
+        [47.2112354,-1.5387167],[47.2127476,-1.5274656],[47.2164508,-1.5149187],
+        [47.2249483,-1.5214325],[47.2333689,-1.5332960],[47.2346227,-1.5412733],
+        [47.2353165,-1.5487133]
+      ]
+    }
+  ];
+
+  var GHOST_ZONES = [
+    { id:'doulon', name:'Doulon – Bottière',
+      latlngs:[
+        [47.2603,-1.4941],[47.2500,-1.4972],[47.2427,-1.5065],
+        [47.2360,-1.5158],[47.2265,-1.5192],[47.2290,-1.5215],
+        [47.2603,-1.4941]
+      ]
+    },
+    { id:'erdre', name:'Nantes Erdre',
+      latlngs:[
+        [47.2338,-1.5499],[47.2421,-1.5466],[47.2553,-1.5431],
+        [47.2950,-1.5350],[47.2950,-1.4994],[47.2338,-1.4994],
+        [47.2338,-1.5499]
+      ]
+    }
+  ];
+
+  /* ─ Initialisation de la carte ─ */
+  var map = L.map('nantes-leaflet-map', {
+    center: [47.218, -1.553],
+    zoom: 12,
+    zoomControl: true,
+    scrollWheelZoom: false,
+    renderer: L.svg({ padding: 0.1 })
+  });
+
+  /* CartoDB Positron — fond clair, sans labels colorés, pas de clé API */
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  /* ─ Styles ─ */
+  var S_DEFAULT = {
+    fillColor: '#3C697F', fillOpacity: 0.07,
+    color: 'rgba(60,105,127,0.18)', weight: 1.5,
+    className: ''
+  };
+  var S_ACTIVE = {
+    fillColor: '#70E8C6', fillOpacity: 0.50,
+    color: '#2E6A8A', weight: 2.5,
+    className: 'q-zone-active'
+  };
+  var S_GHOST = {
+    fillColor: '#9CABB3', fillOpacity: 0.05,
+    color: 'rgba(150,165,175,0.25)', weight: 1,
+    dashArray: '5 4', interactive: false, className: ''
+  };
+
+  var layers = {};
+  var activeKey = null;
+
+  /* ─ Zones couvertes ─ */
+  QUARTIERS.forEach(function(q) {
+    var poly = L.polygon(q.latlngs, Object.assign({}, S_DEFAULT));
+    poly.on('mouseover', function() { setActive(q.id); });
+    poly.on('mouseout',  function() { setActive(null); });
+    poly.on('click',     function() { window.location.href = q.url; });
+    poly.on('keypress',  function(e) { if (e.originalEvent.key === 'Enter') window.location.href = q.url; });
+    poly.addTo(map);
+    layers[q.id] = poly;
+  });
+
+  /* ─ Zones hors couverture ─ */
+  GHOST_ZONES.forEach(function(q) {
+    L.polygon(q.latlngs, S_GHOST).addTo(map);
+  });
+
+  /* ─ Activation bidirectionnelle liste ↔ carte ─ */
+  function setActive(key) {
+    /* Reset ancien */
+    if (activeKey && layers[activeKey]) {
+      layers[activeKey].setStyle(S_DEFAULT);
+      var el = layers[activeKey].getElement();
+      if (el) el.classList.remove('q-zone-active');
+    }
+    activeKey = key;
+
+    /* Activer nouveau */
+    if (key && layers[key]) {
+      layers[key].setStyle(S_ACTIVE);
+      layers[key].bringToFront();
+      var el2 = layers[key].getElement();
+      if (el2) el2.classList.add('q-zone-active');
+    }
+
+    /* Synchroniser la liste */
+    document.querySelectorAll('.quartier-list-item').forEach(function(item) {
+      item.classList.toggle('active', item.dataset.q === key);
     });
   }
 
-  // init: set to first active
-  var firstActive = document.querySelector('.quartier-list-item.active');
-  if (firstActive) setActive(firstActive.dataset.q);
-
-  items.forEach(function(item) {
-    item.addEventListener('mouseenter', function() { setActive(this.dataset.q); });
-    item.addEventListener('focus',      function() { setActive(this.dataset.q); });
-    item.addEventListener('click',      function(e) {
-      // let normal navigation happen if href is real; just update visuals
-      setActive(this.dataset.q);
-    });
+  /* ─ Hover depuis la liste → illumine la zone ─ */
+  document.querySelectorAll('.quartier-list-item:not(.uncovered)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() { setActive(item.dataset.q); });
+    item.addEventListener('focus',      function() { setActive(item.dataset.q); });
+    item.addEventListener('mouseleave', function() { setActive(null); });
+    item.addEventListener('blur',       function() { setActive(null); });
   });
+
+  /* ─ État initial : centre-ville actif ─ */
+  setActive('centre');
+
 })();
 
 /* Floating call button — visible only after hero */var revealObs = new IntersectionObserver(function(entries) {
