@@ -362,147 +362,203 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 /* ═══════════════════════════
    SÉLECTEUR QUARTIERS
 ═══════════════════════════ */
-.quartier-select-section { background: var(--white); padding: 72px 48px; }
+.quartier-select-section { background: linear-gradient(160deg, #f5fafb 0%, #edf7f3 52%, #f2f5fb 100%); padding: 72px 48px; }
 .quartier-select-inner { max-width: 1100px; margin: 0 auto; }
 .quartier-select-header { margin-bottom: 36px; }
 /* ─── Zigzag Quartiers ─── */
 /* ─── Zigzag Quartiers — chemin diagonal ─── */
-/* ─── Bento Grid — Mosaique Interactive ─── */
+/* ─── Bento Grid — Luxe & Lumiere ─── */
 .bento-wrap { padding: 8px 0 8px; }
 
-/* Grille 4 colonnes, 3 rangees de 190px */
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 190px;
   gap: 14px;
 }
-
-/* Tuiles larges (span 2) : positions 1, 5, 7 */
 .bento-grid .bento-tile:nth-child(1),
 .bento-grid .bento-tile:nth-child(5),
 .bento-grid .bento-tile:nth-child(7) { grid-column: span 2; }
 
-/* Tuile de base */
+/* ── Tuile de base ──────────────────────────────────── */
 .bento-tile {
   display: flex; flex-direction: column; justify-content: space-between;
-  padding: 22px 24px 20px;
-  border-radius: 24px;
-  border: 1.5px solid transparent;
+  padding: 22px 24px 20px; border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.55);
   text-decoration: none; color: inherit;
   position: relative; overflow: hidden;
-  transition: transform 0.32s cubic-bezier(0.25,1,0.5,1),
-              box-shadow 0.32s ease,
-              background 0.28s ease,
-              border-color 0.28s ease;
+  backdrop-filter: blur(8px) saturate(1.15);
+  -webkit-backdrop-filter: blur(8px) saturate(1.15);
+  will-change: transform;
+  transition:
+    transform  0.36s cubic-bezier(0.25,1,0.5,1),
+    box-shadow 0.36s ease,
+    border-color 0.30s ease,
+    background  0.30s ease;
 }
+
+/* Reflet verre — ligne lumineuse sur le bord superieur */
+.bento-tile::before {
+  content: ''; position: absolute;
+  top: 0; left: 8%; right: 8%; height: 1px; z-index: 4;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(255,255,255,0.96) 38%,
+    rgba(255,255,255,0.96) 62%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Halo mint interne — radial, fade au hover */
+.bento-tile::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: inherit; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%,
+    rgba(143,240,210,0.20) 0%, transparent 70%);
+  opacity: 0; transition: opacity 0.38s ease;
+}
+.bento-tile:hover::after,
+.bento-tile:focus-visible::after { opacity: 1; }
+
+/* Hover / Focus */
 .bento-tile:hover, .bento-tile:focus-visible {
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(143,240,210,0.68);
   text-decoration: none;
 }
-.bento-tile:focus-visible { outline: 3px solid var(--mint, #8FF0D2); outline-offset: 3px; }
+.bento-tile:focus-visible {
+  outline: 3px solid var(--mint,#8FF0D2); outline-offset: 4px;
+}
 
-/* ── Variantes de fond ───────────────────────────────── */
+/* ── Variante BLANC ─────────────────────────────────── */
 .bento-tile[data-bg="white"] {
-  background: #ffffff;
-  border-color: rgba(60,105,127,0.10);
-  box-shadow: 0 2px 12px rgba(60,105,127,0.07), 0 1px 3px rgba(0,0,0,0.04);
+  background: linear-gradient(148deg,
+    rgba(255,255,255,0.96) 0%,
+    rgba(232,249,244,0.92) 100%);
+  box-shadow:
+    0 1px 3px  rgba(0,0,0,0.04),
+    0 8px 22px rgba(60,105,127,0.09),
+    inset 0 1px 0 rgba(255,255,255,0.9);
 }
-.bento-tile[data-bg="mint"] {
-  background: rgba(143,240,210,0.14);
-  border-color: rgba(143,240,210,0.32);
-  box-shadow: 0 2px 12px rgba(143,240,210,0.12), 0 1px 3px rgba(0,0,0,0.03);
-}
-.bento-tile[data-bg="blue"] {
-  background: rgba(60,105,127,0.06);
-  border-color: rgba(60,105,127,0.12);
-  box-shadow: 0 2px 12px rgba(60,105,127,0.07), 0 1px 3px rgba(0,0,0,0.03);
-}
-/* Hover fond */
 .bento-tile[data-bg="white"]:hover {
-  background: rgba(60,105,127,0.04);
-  border-color: rgba(143,240,210,0.55);
-  box-shadow: 0 20px 50px rgba(60,105,127,0.14), 0 4px 10px rgba(0,0,0,0.06);
+  background: linear-gradient(148deg,
+    rgba(255,255,255,0.99) 0%,
+    rgba(225,250,244,0.96) 100%);
+  box-shadow:
+    0 2px 4px   rgba(0,0,0,0.04),
+    0 16px 36px rgba(60,105,127,0.14),
+    0 44px 64px rgba(60,105,127,0.08),
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 0 32px rgba(143,240,210,0.12);
+}
+
+/* ── Variante MENTHE ────────────────────────────────── */
+.bento-tile[data-bg="mint"] {
+  background: linear-gradient(148deg,
+    rgba(143,240,210,0.26) 0%,
+    rgba(255,255,255,0.90) 52%,
+    rgba(143,240,210,0.16) 100%);
+  box-shadow:
+    0 1px 3px  rgba(0,0,0,0.04),
+    0 8px 22px rgba(143,240,210,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.9);
 }
 .bento-tile[data-bg="mint"]:hover {
-  background: rgba(143,240,210,0.27);
-  border-color: rgba(143,240,210,0.60);
-  box-shadow: 0 20px 50px rgba(143,240,210,0.20), 0 4px 10px rgba(0,0,0,0.05);
-}
-.bento-tile[data-bg="blue"]:hover {
-  background: rgba(60,105,127,0.11);
-  border-color: rgba(143,240,210,0.50);
-  box-shadow: 0 20px 50px rgba(60,105,127,0.14), 0 4px 10px rgba(0,0,0,0.06);
+  background: linear-gradient(148deg,
+    rgba(143,240,210,0.42) 0%,
+    rgba(255,255,255,0.93) 52%,
+    rgba(143,240,210,0.24) 100%);
+  box-shadow:
+    0 2px 4px   rgba(0,0,0,0.04),
+    0 16px 36px rgba(143,240,210,0.32),
+    0 44px 64px rgba(143,240,210,0.16),
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 0 32px rgba(143,240,210,0.20);
 }
 
-/* ── Icone ──────────────────────────────────────────── */
-.bento-tile-icon {
-  width: 38px; height: 38px; border-radius: 11px;
-  background: rgba(60,105,127,0.09);
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.28s ease, transform 0.3s ease;
-  flex-shrink: 0;
+/* ── Variante BLEU ──────────────────────────────────── */
+.bento-tile[data-bg="blue"] {
+  background: linear-gradient(148deg,
+    rgba(255,255,255,0.94) 0%,
+    rgba(60,105,127,0.09) 100%);
+  box-shadow:
+    0 1px 3px  rgba(0,0,0,0.04),
+    0 8px 22px rgba(60,105,127,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.9);
 }
-.bento-tile[data-bg="mint"] .bento-tile-icon { background: rgba(255,255,255,0.55); }
-.bento-tile[data-bg="blue"] .bento-tile-icon { background: rgba(255,255,255,0.65); }
+.bento-tile[data-bg="blue"]:hover {
+  background: linear-gradient(148deg,
+    rgba(255,255,255,0.98) 0%,
+    rgba(60,105,127,0.13) 100%);
+  box-shadow:
+    0 2px 4px   rgba(0,0,0,0.04),
+    0 16px 36px rgba(60,105,127,0.15),
+    0 44px 64px rgba(60,105,127,0.08),
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 0 32px rgba(143,240,210,0.12);
+}
+
+/* ── Icone (cercle pastel avec shadow) ──────────────── */
+.bento-tile-icon {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,255,255,0.75);
+  box-shadow:
+    0 2px 8px  rgba(60,105,127,0.12),
+    0 1px 2px  rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 2;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.bento-tile[data-bg="mint"] .bento-tile-icon { background: rgba(255,255,255,0.65); }
 .bento-tile:hover .bento-tile-icon {
-  background: rgba(143,240,210,0.35);
-  transform: rotate(-4deg) scale(1.05);
+  background: rgba(255,255,255,0.99);
+  box-shadow:
+    0 0 0 7px  rgba(143,240,210,0.24),
+    0 4px 14px rgba(60,105,127,0.16),
+    inset 0 1px 0 rgba(255,255,255,1);
+  transform: scale(1.1) rotate(-3deg);
 }
 .bento-tile-icon svg { width: 22px; height: 22px; }
 
-/* ── Corps ──────────────────────────────────────────── */
-.bento-tile-body { display: flex; flex-direction: column; gap: 5px; flex: 1; justify-content: flex-end; }
+/* ── Corps (au-dessus du ::after) ───────────────────── */
+.bento-tile-body {
+  display: flex; flex-direction: column; gap: 5px;
+  flex: 1; justify-content: flex-end; position: relative; z-index: 2;
+}
 .bento-tile-name {
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--ink, #1B2A33); line-height: 1.25;
+  font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700;
+  color: var(--ink,#1B2A33); line-height: 1.25;
   transition: color 0.28s ease;
 }
-/* Tuiles larges : titre plus grand */
 .bento-grid .bento-tile:nth-child(1) .bento-tile-name,
 .bento-grid .bento-tile:nth-child(5) .bento-tile-name,
 .bento-grid .bento-tile:nth-child(7) .bento-tile-name { font-size: 17px; }
-.bento-tile:hover .bento-tile-name { color: var(--primary, #3C697F); }
+.bento-tile:hover .bento-tile-name { color: var(--primary,#3C697F); }
 .bento-tile-desc {
-  font-family: 'Hind', sans-serif;
-  font-size: 12.5px; color: var(--ink-soft, #5a7080); line-height: 1.45;
+  font-family: 'Hind', sans-serif; font-size: 12.5px;
+  color: var(--ink-soft,#5a7080); line-height: 1.45;
   transition: color 0.28s ease;
 }
-.bento-tile:hover .bento-tile-desc { color: rgba(60,105,127,0.75); }
-
-/* ── Indicateur cliquable (apparait au hover) ─────── */
+.bento-tile:hover .bento-tile-desc { color: rgba(60,105,127,0.82); }
 .bento-tile-cta {
   font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700;
-  color: var(--primary, #3C697F); letter-spacing: 0.4px;
+  color: var(--primary,#3C697F); letter-spacing: 0.4px;
   opacity: 0; transform: translateY(5px);
   transition: opacity 0.28s ease, transform 0.28s ease;
   align-self: flex-start; margin-top: 8px;
 }
-.bento-tile:hover .bento-tile-cta, .bento-tile:focus-visible .bento-tile-cta {
-  opacity: 1; transform: translateY(0);
-}
-/* Fond brillant en haut a droite (reflet premium) */
-.bento-tile::before {
-  content: '';
-  position: absolute; top: -40px; right: -40px;
-  width: 100px; height: 100px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(143,240,210,0.18) 0%, transparent 70%);
-  pointer-events: none; transition: opacity 0.3s;
-  opacity: 0;
-}
-.bento-tile:hover::before { opacity: 1; }
+.bento-tile:hover .bento-tile-cta,
+.bento-tile:focus-visible .bento-tile-cta { opacity: 1; transform: translateY(0); }
 
-/* Mobile ≤640px : colonne simple */
+/* ── Mobile ─────────────────────────────────────────── */
 @media (max-width: 640px) {
   .bento-grid {
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 160px;
-    gap: 10px;
+    grid-auto-rows: 160px; gap: 10px;
   }
   .bento-grid .bento-tile:nth-child(1),
   .bento-grid .bento-tile:nth-child(5),
   .bento-grid .bento-tile:nth-child(7) { grid-column: span 2; }
+  .bento-tile { backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
 @media (max-width: 400px) {
   .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
