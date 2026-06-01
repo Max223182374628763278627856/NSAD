@@ -362,125 +362,116 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 /* ═══════════════════════════
    SÉLECTEUR QUARTIERS
 ═══════════════════════════ */
-.quartier-select-section { background: var(--white); padding: 44px 48px; }
+.quartier-select-section { background: var(--white); padding: 72px 48px; }
 .quartier-select-inner { max-width: 1100px; margin: 0 auto; }
-.quartier-select-header { margin-bottom: 20px; }
+.quartier-select-header { margin-bottom: 36px; }
 /* ─── Zigzag Quartiers ─── */
 /* ─── Zigzag Quartiers — chemin diagonal ─── */
-.rds-wrap { padding: 8px 0 4px; }
-.rds-track {
-  position: relative; max-width: 740px; margin: 0 auto; padding-bottom: 8px;
+/* ─── Sentier de la Bienveillance ─── */
+.stb-wrap { padding: 16px 0 8px; }
+.stb-track {
+  position: relative; max-width: 900px; margin: 0 auto; padding-bottom: 24px;
 }
-.rds-station {
-  display: grid; grid-template-columns: 1fr 40px 1fr;
-  align-items: center; min-height: 46px; padding: 5px 0;
-  text-decoration: none; position: relative;
+/* Courbe SVG decorative (S-curve derriere les cartes) */
+.stb-curve {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  pointer-events: none; overflow: visible; z-index: 0;
 }
-.rds-station:hover, .rds-station:focus { text-decoration: none; }
-/* Noeud : dot decale gauche ou droite pour former le zigzag */
-.rds-node {
+/* Rangee = 1 quartier */
+.stb-row {
+  display: grid; grid-template-columns: 1fr 64px 1fr;
+  align-items: center; min-height: 130px; padding: 14px 0; position: relative;
+}
+/* Colonne dot centrale */
+.stb-col-dot {
   display: flex; align-items: center; justify-content: center; z-index: 2;
 }
-.rds-station[data-side="left"]  .rds-node { transform: translateX(-28px); }
-.rds-station[data-side="right"] .rds-node { transform: translateX( 28px); }
-/* ─── Connecteurs diagonaux entre dots consecutifs ──────────
-   Geometrie (station h=56px, decalage ±28px) :
-   dist horizontale = 56px, dist verticale = 56px
-   angle = 45°,  longueur = sqrt(56²+56²) ≈ 79px
-   origine Y = -28px (depuis le dessus de la station courante)
-   ─────────────────────────────────────────────────────────── */
-.rds-station[data-side="right"]::before,
-.rds-station[data-side="left"]:not(:first-child)::before {
-  content: ''; position: absolute;
-  height: 1.5px; width: 79px; z-index: 0;
-  background: rgba(60,105,127,0.20);
-  transform-origin: left center; pointer-events: none;
-}
-/* Venant du dot gauche (precedent) → vers dot droit (actuel) */
-.rds-station[data-side="right"]::before {
-  left: calc(50% - 28px); top: -28px;
-  transform: rotate(45deg);
-}
-/* Venant du dot droit (precedent) → vers dot gauche (actuel) */
-.rds-station[data-side="left"]:not(:first-child)::before {
-  left: calc(50% + 28px); top: -28px;
-  transform: rotate(135deg);
-}
-/* Illuminer le connecteur au survol */
-.rds-station:hover::before,
-.rds-station:focus-visible::before {
-  background: rgba(60,105,127,0.40);
-}
 /* Dot */
-.rds-dot {
-  width: 14px; height: 14px; border-radius: 50%; display: block; flex-shrink: 0;
+.stb-dot {
+  width: 16px; height: 16px; border-radius: 50%; display: block; flex-shrink: 0;
   background: var(--white, #fff); border: 2.5px solid rgba(60,105,127,0.28);
-  transition: background 0.3s ease, border-color 0.3s ease,
-              box-shadow 0.3s ease, transform 0.3s ease;
+  transition: background 0.35s ease, border-color 0.35s ease,
+              box-shadow 0.35s ease, transform 0.35s ease;
+  position: relative; z-index: 3;
 }
-.rds-station:hover .rds-dot,
-.rds-station:focus-visible .rds-dot {
+.stb-row:hover .stb-dot {
   background: var(--mint, #8FF0D2); border-color: var(--primary, #3C697F);
-  box-shadow: 0 0 0 6px rgba(143,240,210,0.24), 0 0 0 12px rgba(143,240,210,0.08);
-  transform: scale(1.25);
+  box-shadow: 0 0 0 8px rgba(143,240,210,0.26), 0 0 0 16px rgba(143,240,210,0.09);
+  transform: scale(1.15);
 }
-/* Contenu */
-.rds-content {
-  display: flex; flex-direction: column; gap: 2px;
-  border-radius: 10px; transition: background 0.3s ease;
+/* Colonne contenu (carte) */
+.stb-col-content {
+  display: flex;
 }
-.rds-station:hover .rds-content,
-.rds-station:focus-visible .rds-content { background: rgba(60,105,127,0.055); }
-.rds-name {
+.stb-row[data-side="left"] .stb-col-content {
+  grid-column: 1; justify-content: flex-end; padding-right: 28px;
+}
+.stb-row[data-side="left"] .stb-col-dot   { grid-column: 2; }
+.stb-row[data-side="left"] .stb-col-empty { grid-column: 3; }
+.stb-row[data-side="right"] .stb-col-empty { grid-column: 1; }
+.stb-row[data-side="right"] .stb-col-dot   { grid-column: 2; }
+.stb-row[data-side="right"] .stb-col-content {
+  grid-column: 3; justify-content: flex-start; padding-left: 28px;
+}
+/* Carte */
+.stb-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--white, #fff);
+  border: 1.5px solid rgba(60,105,127,0.09);
+  border-radius: 18px;
+  box-shadow: 0 2px 14px rgba(60,105,127,0.08), 0 1px 3px rgba(0,0,0,0.04);
+  padding: 18px 22px;
+  text-decoration: none; color: inherit; max-width: 340px; width: 100%;
+  transition: transform 0.3s cubic-bezier(0.25,1,0.5,1),
+              box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.stb-card:hover, .stb-row:hover .stb-card {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 44px rgba(60,105,127,0.15), 0 4px 10px rgba(0,0,0,0.06);
+  border-color: rgba(143,240,210,0.55);
+  text-decoration: none;
+}
+/* Icone */
+.stb-icon {
+  flex-shrink: 0; width: 40px; height: 40px;
+  background: rgba(143,240,210,0.14); border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s;
+}
+.stb-row:hover .stb-icon { background: rgba(143,240,210,0.28); }
+.stb-icon svg { width: 22px; height: 22px; }
+/* Corps */
+.stb-card-body { display: flex; flex-direction: column; gap: 3px; }
+.stb-card-name {
   font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600;
-  color: var(--ink, #1B2A33); line-height: 1.25; white-space: nowrap;
+  color: var(--ink, #1B2A33); line-height: 1.25;
   transition: color 0.3s ease;
 }
-.rds-station:hover .rds-name,
-.rds-station:focus-visible .rds-name { color: var(--primary, #3C697F); }
-.rds-hint {
-  font-family: 'Hind', sans-serif; font-size: 12px;
-  color: var(--ink-soft, #5a7080); line-height: 1.3;
-  transition: color 0.3s ease, opacity 0.3s ease;
+.stb-row:hover .stb-card-name,
+.stb-card:hover .stb-card-name { color: var(--primary, #3C697F); }
+.stb-card-hint {
+  font-family: 'Hind', sans-serif; font-size: 13px;
+  color: var(--ink-soft, #5a7080); line-height: 1.4;
 }
-.rds-station:hover .rds-hint { color: var(--primary, #3C697F); opacity: 0.72; }
-/* Cote gauche */
-.rds-station[data-side="left"] .rds-content {
-  grid-column: 1; text-align: right; align-items: flex-end;
-  padding: 8px 18px 8px 12px;
-}
-.rds-station[data-side="left"] .rds-node   { grid-column: 2; }
-.rds-station[data-side="left"] .rds-spacer { grid-column: 3; }
-/* Cote droit */
-.rds-station[data-side="right"] .rds-spacer { grid-column: 1; }
-.rds-station[data-side="right"] .rds-node   { grid-column: 2; }
-.rds-station[data-side="right"] .rds-content {
-  grid-column: 3; text-align: left; align-items: flex-start;
-  padding: 8px 12px 8px 18px;
-}
-/* Mobile : colonne gauche, tout aligne a droite */
-@media (max-width: 600px) {
-  .quartier-select-section { padding: 40px 20px !important; }
-  .rds-track::before {
-    content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 2px;
+/* Mobile */
+@media (max-width: 640px) {
+  .stb-curve { display: none; }
+  .stb-track::before {
+    content: ''; position: absolute; left: 21px; top: 0; bottom: 0; width: 2px;
     background: linear-gradient(to bottom,
-      transparent 0%, rgba(60,105,127,0.18) 8%,
-      rgba(60,105,127,0.18) 92%, transparent 100%);
+      transparent 0%, rgba(60,105,127,0.16) 8%, rgba(60,105,127,0.16) 92%, transparent 100%);
     pointer-events: none;
   }
-  .rds-station { grid-template-columns: 40px 1fr; min-height: 54px; padding: 6px 0; }
-  .rds-station::before { display: none; }
-  .rds-station[data-side="left"]  .rds-node,
-  .rds-station[data-side="right"] .rds-node {
-    grid-column: 1; transform: translateX(0);
+  .stb-row { grid-template-columns: 42px 1fr; min-height: auto; padding: 10px 0; }
+  .stb-row[data-side="left"]  .stb-col-dot,
+  .stb-row[data-side="right"] .stb-col-dot { grid-column: 1; }
+  .stb-row[data-side="left"]  .stb-col-content,
+  .stb-row[data-side="right"] .stb-col-content {
+    grid-column: 2; justify-content: flex-start; padding-left: 12px; padding-right: 0;
   }
-  .rds-station[data-side="left"]  .rds-content,
-  .rds-station[data-side="right"] .rds-content {
-    grid-column: 2; text-align: left; align-items: flex-start;
-    padding: 4px 8px 4px 14px;
-  }
-  .rds-station .rds-spacer { display: none; }
-  .rds-name { white-space: normal; font-size: 14px; }
+  .stb-col-empty { display: none; }
+  .stb-card { max-width: none; padding: 14px 16px; }
+  .stb-card-name { font-size: 14px; }
 }
 /* CTA bloc */
 .block-cta-group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
@@ -1125,101 +1116,145 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 </section> <!-- ══════════ COMMENT ÇA SE PASSE ══════════ -->
 <section class="steps-section" aria-labelledby="steps-title"> <div class="steps-inner"> <div class="steps-header"> <span class="block-eyebrow">Comment ça se passe</span> <h2 class="section-title" id="steps-title">De votre appel à notre première visite,<br><em>4 étapes simples</em></h2> </div> <div class="steps-row"> <div class="step-item"> <div class="step-circle">1</div> <h3>Vous nous appelez</h3> <p>Un échange téléphonique pour comprendre votre situation et vos besoins.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">2</div> <h3>Visite d'évaluation</h3> <p>Notre infirmier coordinateur se déplace chez vous pour évaluer vos besoins.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">3</div> <h3>Plan personnalisé</h3> <p>Nous co-construisons un plan de soins adapté à votre quotidien.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">4</div> <h3>Démarrage des soins</h3> <p>Une équipe dédiée intervient à votre domicile, 7j/7.</p> </div> </div> <div class="block-cta-group" style="justify-content:center;margin-top:52px"> <a href="tel:0240354343" class="btn-block-primary">Nous appeler — 02&nbsp;40&nbsp;35&nbsp;43&nbsp;43</a> <a href="nous-contacter.html" class="btn-block-secondary">Formulaire de contact →</a> </div> </div>
 </section> <!-- ══════════ SÉLECTEUR QUARTIERS ══════════ -->
-<section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title"> <div class="quartier-select-inner"> <div class="quartier-select-header"> <span class="section-label">Zone d'intervention</span> <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2> <p class="section-sub">Survolez un quartier pour découvrir nos services à votre porte — 7 j/7.</p> </div> <div class="rds-wrap">
-<div class="rds-track" id="rds-track">
+<section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title"> <div class="quartier-select-inner"> <div class="quartier-select-header"> <span class="section-label">Zone d'intervention</span> <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2> <p class="section-sub">Survolez un quartier pour découvrir nos services à votre porte — 7 j/7.</p> </div> <div class="stb-wrap">
+<div class="stb-track" id="stb-track">
 
-  <!-- 1 Centre-Ville (gauche) -->
-  <a href="quartier-centre-ville.html" class="rds-station" data-q="centre" data-side="left">
-    <div class="rds-content">
-      <span class="rds-name">Centre-Ville / CHU</span>
-      <span class="rds-hint">Sorties d&rsquo;h&ocirc;pital &middot; 7j/7</span>
-    </div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-spacer" aria-hidden="true"></div>
-  </a>
+  <!-- Courbe SVG Bezier decorative (S-curve, purement ornementale) -->
+  <svg class="stb-curve" viewBox="0 0 100 100" preserveAspectRatio="none"
+       aria-hidden="true" focusable="false">
+    <path d="M 50,0 C 28,16 28,34 50,50 C 72,66 72,84 50,100"
+          fill="none" stroke="rgba(60,105,127,0.14)" stroke-width="1.5"
+          stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  </svg>
 
-  <!-- 2 Dervallières (droite) -->
-  <a href="quartier-dervallières-zola.html" class="rds-station" data-q="derv" data-side="right">
-    <div class="rds-spacer" aria-hidden="true"></div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-content">
-      <span class="rds-name">Dervalli&egrave;res &ndash; Zola</span>
-      <span class="rds-hint">Soins de quartier &middot; 7j/7</span>
+  <div class="stb-row" data-q="centre" data-side="left">
+    <div class="stb-col-content">
+    <a href="quartier-centre-ville.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><path d="M10 3v14M3 10h14"/><rect x="6" y="6" width="8" height="8" rx="1.5" fill="rgba(143,240,210,.25)" stroke="none"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Centre-Ville / CHU</span>
+        <span class="stb-card-hint">Sorties d&rsquo;h&ocirc;pital &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-  </a>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-empty" aria-hidden="true"></div>
+  </div>
 
-  <!-- 3 Bellevue (gauche) -->
-  <a href="quartier-bellevue-chantenay.html" class="rds-station" data-q="bellevue" data-side="left">
-    <div class="rds-content">
-      <span class="rds-name">Bellevue &ndash; Chantenay</span>
-      <span class="rds-hint">Bord de Loire &middot; 7j/7</span>
+  <div class="stb-row" data-q="derv" data-side="right">
+    <div class="stb-col-empty" aria-hidden="true"></div>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-content">
+    <a href="quartier-dervallieres-zola.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17v-7"/><path d="M10 10c0-5-5-4-5 0 0 3 2 4 5 4"/><path d="M10 10c0-5 5-4 5 0 0 3-2 4-5 4"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Dervalli&egrave;res &ndash; Zola</span>
+        <span class="stb-card-hint">Soins de quartier &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-spacer" aria-hidden="true"></div>
-  </a>
+  </div>
 
-  <!-- 4 Hauts-Pavés (droite) -->
-  <a href="quartier-hauts-paves-saint-felix.html" class="rds-station" data-q="hauts" data-side="right">
-    <div class="rds-spacer" aria-hidden="true"></div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-content">
-      <span class="rds-name">Hauts-Pav&eacute;s &ndash; St-F&eacute;lix</span>
-      <span class="rds-hint">Bord de l&rsquo;Erdre &middot; 7j/7</span>
+  <div class="stb-row" data-q="bellevue" data-side="left">
+    <div class="stb-col-content">
+    <a href="quartier-bellevue-chantenay.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><path d="M2 9c1.3-2 2.7 2 4 0s2.7-2 4 0 2.7 2 4 0 1.3-2 4 0"/><path d="M2 13c1.3-2 2.7 2 4 0s2.7-2 4 0 2.7 2 4 0 1.3-2 4 0"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Bellevue &ndash; Chantenay</span>
+        <span class="stb-card-hint">Bord de Loire &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-  </a>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-empty" aria-hidden="true"></div>
+  </div>
 
-  <!-- 5 Nantes Nord (gauche) -->
-  <a href="quartier-nantes-nord.html" class="rds-station" data-q="nord" data-side="left">
-    <div class="rds-content">
-      <span class="rds-name">Nantes Nord</span>
-      <span class="rds-hint">Grand territoire &middot; 7j/7</span>
+  <div class="stb-row" data-q="hauts" data-side="right">
+    <div class="stb-col-empty" aria-hidden="true"></div>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-content">
+    <a href="quartier-hauts-paves-saint-felix.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="6.5"/><path d="M10 3.5v3M10 13.5v3M3.5 10h3M13.5 10h3"/><circle cx="10" cy="10" r="1.5" fill="#3C697F" stroke="none"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Hauts-Pav&eacute;s &ndash; St-F&eacute;lix</span>
+        <span class="stb-card-hint">Bord de l&rsquo;Erdre &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-spacer" aria-hidden="true"></div>
-  </a>
+  </div>
 
-  <!-- 6 Île de Nantes (droite) -->
-  <a href="quartier-ile-de-nantes.html" class="rds-station" data-q="ile" data-side="right">
-    <div class="rds-spacer" aria-hidden="true"></div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-content">
-      <span class="rds-name">&Icirc;le de Nantes</span>
-      <span class="rds-hint">C&oelig;ur de Loire &middot; 7j/7</span>
+  <div class="stb-row" data-q="nord" data-side="left">
+    <div class="stb-col-content">
+    <a href="quartier-nantes-nord.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l2.5 7h-5L10 2z"/><path d="M10 18l-2.5-7h5L10 18z" stroke-opacity=".4"/><circle cx="10" cy="10" r="1.5" fill="#3C697F" stroke="none"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Nantes Nord</span>
+        <span class="stb-card-hint">Grand territoire &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-  </a>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-empty" aria-hidden="true"></div>
+  </div>
 
-  <!-- 7 Malakoff (gauche) -->
-  <a href="quartier-malakoff-saint-donatien.html" class="rds-station" data-q="malakoff" data-side="left">
-    <div class="rds-content">
-      <span class="rds-name">Malakoff &ndash; St-Donatien</span>
-      <span class="rds-hint">Quartier renouvel&eacute; &middot; 7j/7</span>
+  <div class="stb-row" data-q="ile" data-side="right">
+    <div class="stb-col-empty" aria-hidden="true"></div>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-content">
+    <a href="quartier-ile-de-nantes.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13h16"/><path d="M6 13V9l4-4.5L14 9v4"/><path d="M3 17c1.5-1.5 3 1.5 5 0s3.5-1.5 5 0 2 1.5 4 0"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">&Icirc;le de Nantes</span>
+        <span class="stb-card-hint">C&oelig;ur de Loire &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-spacer" aria-hidden="true"></div>
-  </a>
+  </div>
 
-  <!-- 8 Breil-Barbière (droite) -->
-  <a href="quartier-breil-barbiere.html" class="rds-station" data-q="breil" data-side="right">
-    <div class="rds-spacer" aria-hidden="true"></div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-content">
-      <span class="rds-name">Breil-Barbi&egrave;re</span>
-      <span class="rds-hint">Entre parcs &middot; 7j/7</span>
+  <div class="stb-row" data-q="malakoff" data-side="left">
+    <div class="stb-col-content">
+    <a href="quartier-malakoff-saint-donatien.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="12" height="9" rx="1"/><path d="M4 8l6-5 6 5"/><path d="M9 17v-4h2v4"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Malakoff &ndash; St-Donatien</span>
+        <span class="stb-card-hint">Quartier renouvel&eacute; &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-  </a>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-empty" aria-hidden="true"></div>
+  </div>
 
-  <!-- 9 Nantes Sud (gauche) -->
-  <a href="nos-quartiers.html" class="rds-station" data-q="nantes-sud" data-side="left">
-    <div class="rds-content">
-      <span class="rds-name">Nantes Sud</span>
-      <span class="rds-hint">Tissu r&eacute;sidentiel &middot; 7j/7</span>
+  <div class="stb-row" data-q="breil" data-side="right">
+    <div class="stb-col-empty" aria-hidden="true"></div>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-content">
+    <a href="quartier-breil-barbiere.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="8" r="4.5"/><line x1="10" y1="12.5" x2="10" y2="17.5"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Breil-Barbi&egrave;re</span>
+        <span class="stb-card-hint">Entre parcs &middot; 7j/7</span>
+      </div>
+    </a>
     </div>
-    <div class="rds-node"><span class="rds-dot"></span></div>
-    <div class="rds-spacer" aria-hidden="true"></div>
-  </a>
+  </div>
+
+  <div class="stb-row" data-q="nantes-sud" data-side="left">
+    <div class="stb-col-content">
+    <a href="nos-quartiers.html" class="stb-card">
+      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.6 4.6l1.4 1.4M14 14l1.4 1.4M4.6 15.4l1.4-1.4M14 6l1.4-1.4"/></svg></div>
+      <div class="stb-card-body">
+        <span class="stb-card-name">Nantes Sud</span>
+        <span class="stb-card-hint">Tissu r&eacute;sidentiel &middot; 7j/7</span>
+      </div>
+    </a>
+    </div>
+    <div class="stb-col-dot"><span class="stb-dot"></span></div>
+    <div class="stb-col-empty" aria-hidden="true"></div>
+  </div>
 
 </div>
-<div class="block-cta-group" style="justify-content:center;margin-top:24px">
+<div class="block-cta-group" style="justify-content:center;margin-top:40px">
   <a href="nos-quartiers.html" class="btn-block-primary">Voir tous nos quartiers</a>
   <a href="nous-contacter.html" class="btn-block-secondary">Nous contacter &rarr;</a>
 </div>
