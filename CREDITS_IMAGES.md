@@ -15,7 +15,7 @@ sans attribution obligatoire. L'attribution ci-dessous est fournie par respect d
 | `derv.jpg` | Dervallières – Zola | Cours Cambronne, Nantes, France | Steven Roussel | https://unsplash.com/photos/63OgmeglNQI |
 | `bellevue.jpg` | Bellevue – Chantenay | Les Anneaux de Buren, Loire, Nantes | Matthias van der Hallen | https://unsplash.com/photos/-VO9NYAf5ag |
 | `hauts.jpg` | Hauts-Pavés – Saint-Félix | Jardin de la Fondation Claude Monet, Giverny, France | Edwards Lee | https://unsplash.com/photos/9yl5chmH82E |
-| `nord.jpg` | Nantes Nord | Vue aérienne, Saint-Haon-le-Châtel, Loire, France | Max Zed | https://unsplash.com/photos/aerial-view-of-green-trees-and-houses-during-daytime-KvEF44L8AMo |
+| `nord.jpg` | Nantes Nord | Immeubles résidentiels historiques, Nantes, France (vue rue) | Kate Filatova | https://www.pexels.com/photo/historic-apartment-buildings-in-nantes-france-30635924/ — **Pexels License** (usage commercial libre) |
 | `ile.jpg` | Île de Nantes | Grue Titan, Mail des Chantiers, Nantes | Dorian Le Sénéchal | https://unsplash.com/photos/XkORzpSnntQ |
 | `malakoff.jpg` | Malakoff – Saint-Donatien | Cathédrale Saint-Pierre-et-Saint-Paul, Impasse Saint-Laurent, Nantes — quartier Saint-Donatien | Steven Roussel | https://unsplash.com/photos/cars-parked-in-front-of-brown-concrete-building-during-daytime-ucWNYM_h7FY |
 | `breil.jpg` | Breil-Barbière | Parc verdoyant (nature & woodland) | Naoki Suzuki | https://unsplash.com/photos/a-lush-green-park-with-lots-of-trees-9Z-EjEcrh28 |
