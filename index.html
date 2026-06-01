@@ -367,111 +367,149 @@ nav.scrolled .nav-cta:hover { background:#ff8d7a; }
 .quartier-select-header { margin-bottom: 36px; }
 /* ─── Zigzag Quartiers ─── */
 /* ─── Zigzag Quartiers — chemin diagonal ─── */
-/* ─── Sentier de la Bienveillance ─── */
-.stb-wrap { padding: 16px 0 8px; }
-.stb-track {
-  position: relative; max-width: 900px; margin: 0 auto; padding-bottom: 24px;
+/* ─── Bento Grid — Mosaique Interactive ─── */
+.bento-wrap { padding: 8px 0 8px; }
+
+/* Grille 4 colonnes, 3 rangees de 190px */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 190px;
+  gap: 14px;
 }
-/* Courbe SVG decorative (S-curve derriere les cartes) */
-.stb-curve {
-  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
-  pointer-events: none; overflow: visible; z-index: 0;
+
+/* Tuiles larges (span 2) : positions 1, 5, 7 */
+.bento-grid .bento-tile:nth-child(1),
+.bento-grid .bento-tile:nth-child(5),
+.bento-grid .bento-tile:nth-child(7) { grid-column: span 2; }
+
+/* Tuile de base */
+.bento-tile {
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 22px 24px 20px;
+  border-radius: 24px;
+  border: 1.5px solid transparent;
+  text-decoration: none; color: inherit;
+  position: relative; overflow: hidden;
+  transition: transform 0.32s cubic-bezier(0.25,1,0.5,1),
+              box-shadow 0.32s ease,
+              background 0.28s ease,
+              border-color 0.28s ease;
 }
-/* Rangee = 1 quartier */
-.stb-row {
-  display: grid; grid-template-columns: 1fr 64px 1fr;
-  align-items: center; min-height: 130px; padding: 14px 0; position: relative;
-}
-/* Colonne dot centrale */
-.stb-col-dot {
-  display: flex; align-items: center; justify-content: center; z-index: 2;
-}
-/* Dot */
-.stb-dot {
-  width: 16px; height: 16px; border-radius: 50%; display: block; flex-shrink: 0;
-  background: var(--white, #fff); border: 2.5px solid rgba(60,105,127,0.28);
-  transition: background 0.35s ease, border-color 0.35s ease,
-              box-shadow 0.35s ease, transform 0.35s ease;
-  position: relative; z-index: 3;
-}
-.stb-row:hover .stb-dot {
-  background: var(--mint, #8FF0D2); border-color: var(--primary, #3C697F);
-  box-shadow: 0 0 0 8px rgba(143,240,210,0.26), 0 0 0 16px rgba(143,240,210,0.09);
-  transform: scale(1.15);
-}
-/* Colonne contenu (carte) */
-.stb-col-content {
-  display: flex;
-}
-.stb-row[data-side="left"] .stb-col-content {
-  grid-column: 1; justify-content: flex-end; padding-right: 28px;
-}
-.stb-row[data-side="left"] .stb-col-dot   { grid-column: 2; }
-.stb-row[data-side="left"] .stb-col-empty { grid-column: 3; }
-.stb-row[data-side="right"] .stb-col-empty { grid-column: 1; }
-.stb-row[data-side="right"] .stb-col-dot   { grid-column: 2; }
-.stb-row[data-side="right"] .stb-col-content {
-  grid-column: 3; justify-content: flex-start; padding-left: 28px;
-}
-/* Carte */
-.stb-card {
-  display: flex; align-items: center; gap: 14px;
-  background: var(--white, #fff);
-  border: 1.5px solid rgba(60,105,127,0.09);
-  border-radius: 18px;
-  box-shadow: 0 2px 14px rgba(60,105,127,0.08), 0 1px 3px rgba(0,0,0,0.04);
-  padding: 18px 22px;
-  text-decoration: none; color: inherit; max-width: 340px; width: 100%;
-  transition: transform 0.3s cubic-bezier(0.25,1,0.5,1),
-              box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.stb-card:hover, .stb-row:hover .stb-card {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 44px rgba(60,105,127,0.15), 0 4px 10px rgba(0,0,0,0.06);
-  border-color: rgba(143,240,210,0.55);
+.bento-tile:hover, .bento-tile:focus-visible {
+  transform: translateY(-8px);
   text-decoration: none;
 }
-/* Icone */
-.stb-icon {
-  flex-shrink: 0; width: 40px; height: 40px;
-  background: rgba(143,240,210,0.14); border-radius: 11px;
+.bento-tile:focus-visible { outline: 3px solid var(--mint, #8FF0D2); outline-offset: 3px; }
+
+/* ── Variantes de fond ───────────────────────────────── */
+.bento-tile[data-bg="white"] {
+  background: #ffffff;
+  border-color: rgba(60,105,127,0.10);
+  box-shadow: 0 2px 12px rgba(60,105,127,0.07), 0 1px 3px rgba(0,0,0,0.04);
+}
+.bento-tile[data-bg="mint"] {
+  background: rgba(143,240,210,0.14);
+  border-color: rgba(143,240,210,0.32);
+  box-shadow: 0 2px 12px rgba(143,240,210,0.12), 0 1px 3px rgba(0,0,0,0.03);
+}
+.bento-tile[data-bg="blue"] {
+  background: rgba(60,105,127,0.06);
+  border-color: rgba(60,105,127,0.12);
+  box-shadow: 0 2px 12px rgba(60,105,127,0.07), 0 1px 3px rgba(0,0,0,0.03);
+}
+/* Hover fond */
+.bento-tile[data-bg="white"]:hover {
+  background: rgba(60,105,127,0.04);
+  border-color: rgba(143,240,210,0.55);
+  box-shadow: 0 20px 50px rgba(60,105,127,0.14), 0 4px 10px rgba(0,0,0,0.06);
+}
+.bento-tile[data-bg="mint"]:hover {
+  background: rgba(143,240,210,0.27);
+  border-color: rgba(143,240,210,0.60);
+  box-shadow: 0 20px 50px rgba(143,240,210,0.20), 0 4px 10px rgba(0,0,0,0.05);
+}
+.bento-tile[data-bg="blue"]:hover {
+  background: rgba(60,105,127,0.11);
+  border-color: rgba(143,240,210,0.50);
+  box-shadow: 0 20px 50px rgba(60,105,127,0.14), 0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* ── Icone ──────────────────────────────────────────── */
+.bento-tile-icon {
+  width: 38px; height: 38px; border-radius: 11px;
+  background: rgba(60,105,127,0.09);
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.3s;
+  transition: background 0.28s ease, transform 0.3s ease;
+  flex-shrink: 0;
 }
-.stb-row:hover .stb-icon { background: rgba(143,240,210,0.28); }
-.stb-icon svg { width: 22px; height: 22px; }
-/* Corps */
-.stb-card-body { display: flex; flex-direction: column; gap: 3px; }
-.stb-card-name {
-  font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600;
+.bento-tile[data-bg="mint"] .bento-tile-icon { background: rgba(255,255,255,0.55); }
+.bento-tile[data-bg="blue"] .bento-tile-icon { background: rgba(255,255,255,0.65); }
+.bento-tile:hover .bento-tile-icon {
+  background: rgba(143,240,210,0.35);
+  transform: rotate(-4deg) scale(1.05);
+}
+.bento-tile-icon svg { width: 22px; height: 22px; }
+
+/* ── Corps ──────────────────────────────────────────── */
+.bento-tile-body { display: flex; flex-direction: column; gap: 5px; flex: 1; justify-content: flex-end; }
+.bento-tile-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px; font-weight: 700;
   color: var(--ink, #1B2A33); line-height: 1.25;
-  transition: color 0.3s ease;
+  transition: color 0.28s ease;
 }
-.stb-row:hover .stb-card-name,
-.stb-card:hover .stb-card-name { color: var(--primary, #3C697F); }
-.stb-card-hint {
-  font-family: 'Hind', sans-serif; font-size: 13px;
-  color: var(--ink-soft, #5a7080); line-height: 1.4;
+/* Tuiles larges : titre plus grand */
+.bento-grid .bento-tile:nth-child(1) .bento-tile-name,
+.bento-grid .bento-tile:nth-child(5) .bento-tile-name,
+.bento-grid .bento-tile:nth-child(7) .bento-tile-name { font-size: 17px; }
+.bento-tile:hover .bento-tile-name { color: var(--primary, #3C697F); }
+.bento-tile-desc {
+  font-family: 'Hind', sans-serif;
+  font-size: 12.5px; color: var(--ink-soft, #5a7080); line-height: 1.45;
+  transition: color 0.28s ease;
 }
-/* Mobile */
+.bento-tile:hover .bento-tile-desc { color: rgba(60,105,127,0.75); }
+
+/* ── Indicateur cliquable (apparait au hover) ─────── */
+.bento-tile-cta {
+  font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--primary, #3C697F); letter-spacing: 0.4px;
+  opacity: 0; transform: translateY(5px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  align-self: flex-start; margin-top: 8px;
+}
+.bento-tile:hover .bento-tile-cta, .bento-tile:focus-visible .bento-tile-cta {
+  opacity: 1; transform: translateY(0);
+}
+/* Fond brillant en haut a droite (reflet premium) */
+.bento-tile::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(143,240,210,0.18) 0%, transparent 70%);
+  pointer-events: none; transition: opacity 0.3s;
+  opacity: 0;
+}
+.bento-tile:hover::before { opacity: 1; }
+
+/* Mobile ≤640px : colonne simple */
 @media (max-width: 640px) {
-  .stb-curve { display: none; }
-  .stb-track::before {
-    content: ''; position: absolute; left: 21px; top: 0; bottom: 0; width: 2px;
-    background: linear-gradient(to bottom,
-      transparent 0%, rgba(60,105,127,0.16) 8%, rgba(60,105,127,0.16) 92%, transparent 100%);
-    pointer-events: none;
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 160px;
+    gap: 10px;
   }
-  .stb-row { grid-template-columns: 42px 1fr; min-height: auto; padding: 10px 0; }
-  .stb-row[data-side="left"]  .stb-col-dot,
-  .stb-row[data-side="right"] .stb-col-dot { grid-column: 1; }
-  .stb-row[data-side="left"]  .stb-col-content,
-  .stb-row[data-side="right"] .stb-col-content {
-    grid-column: 2; justify-content: flex-start; padding-left: 12px; padding-right: 0;
-  }
-  .stb-col-empty { display: none; }
-  .stb-card { max-width: none; padding: 14px 16px; }
-  .stb-card-name { font-size: 14px; }
+  .bento-grid .bento-tile:nth-child(1),
+  .bento-grid .bento-tile:nth-child(5),
+  .bento-grid .bento-tile:nth-child(7) { grid-column: span 2; }
+}
+@media (max-width: 400px) {
+  .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .bento-grid .bento-tile:nth-child(1),
+  .bento-grid .bento-tile:nth-child(5),
+  .bento-grid .bento-tile:nth-child(7) { grid-column: span 1; }
+  .bento-tile { min-height: 100px; }
 }
 /* CTA bloc */
 .block-cta-group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
@@ -1116,148 +1154,95 @@ footer { background:#1B2A33; color:rgba(255,255,255,0.7); padding:64px 48px 32px
 </section> <!-- ══════════ COMMENT ÇA SE PASSE ══════════ -->
 <section class="steps-section" aria-labelledby="steps-title"> <div class="steps-inner"> <div class="steps-header"> <span class="block-eyebrow">Comment ça se passe</span> <h2 class="section-title" id="steps-title">De votre appel à notre première visite,<br><em>4 étapes simples</em></h2> </div> <div class="steps-row"> <div class="step-item"> <div class="step-circle">1</div> <h3>Vous nous appelez</h3> <p>Un échange téléphonique pour comprendre votre situation et vos besoins.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">2</div> <h3>Visite d'évaluation</h3> <p>Notre infirmier coordinateur se déplace chez vous pour évaluer vos besoins.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">3</div> <h3>Plan personnalisé</h3> <p>Nous co-construisons un plan de soins adapté à votre quotidien.</p> </div> <div class="step-connector"></div> <div class="step-item"> <div class="step-circle">4</div> <h3>Démarrage des soins</h3> <p>Une équipe dédiée intervient à votre domicile, 7j/7.</p> </div> </div> <div class="block-cta-group" style="justify-content:center;margin-top:52px"> <a href="tel:0240354343" class="btn-block-primary">Nous appeler — 02&nbsp;40&nbsp;35&nbsp;43&nbsp;43</a> <a href="nous-contacter.html" class="btn-block-secondary">Formulaire de contact →</a> </div> </div>
 </section> <!-- ══════════ SÉLECTEUR QUARTIERS ══════════ -->
-<section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title"> <div class="quartier-select-inner"> <div class="quartier-select-header"> <span class="section-label">Zone d'intervention</span> <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2> <p class="section-sub">Survolez un quartier pour découvrir nos services à votre porte — 7 j/7.</p> </div> <div class="stb-wrap">
-<div class="stb-track" id="stb-track">
+<section class="quartier-select-section" id="quartiers" aria-labelledby="quartier-title"> <div class="quartier-select-inner"> <div class="quartier-select-header"> <span class="section-label">Zone d'intervention</span> <h2 class="section-title" id="quartier-title">Nous intervenons dans<br><em>votre quartier</em> à Nantes</h2> <p class="section-sub">Survolez un quartier pour découvrir nos services à votre porte — 7 j/7.</p> </div> <div class="bento-wrap">
+  <div class="bento-grid">
 
-  <!-- Courbe SVG Bezier decorative (S-curve, purement ornementale) -->
-  <svg class="stb-curve" viewBox="0 0 100 100" preserveAspectRatio="none"
-       aria-hidden="true" focusable="false">
-    <path d="M 50,0 C 28,16 28,34 50,50 C 72,66 72,84 50,100"
-          fill="none" stroke="rgba(60,105,127,0.14)" stroke-width="1.5"
-          stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-  </svg>
-
-  <div class="stb-row" data-q="centre" data-side="left">
-    <div class="stb-col-content">
-    <a href="quartier-centre-ville.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><path d="M10 3v14M3 10h14"/><rect x="6" y="6" width="8" height="8" rx="1.5" fill="rgba(143,240,210,.25)" stroke="none"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Centre-Ville / CHU</span>
-        <span class="stb-card-hint">Sorties d&rsquo;h&ocirc;pital &middot; 7j/7</span>
+    <a href="quartier-centre-ville.html" class="bento-tile" data-q="centre" data-bg="white">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><path d="M10 3v14M3 10h14"/><rect x="6" y="6" width="8" height="8" rx="1.5" fill="rgba(143,240,210,.25)" stroke="none"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Centre-Ville / CHU</span>
+        <span class="bento-tile-desc">Proximit&eacute; CHU &middot; Soins post-hospitaliers</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-empty" aria-hidden="true"></div>
-  </div>
 
-  <div class="stb-row" data-q="derv" data-side="right">
-    <div class="stb-col-empty" aria-hidden="true"></div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-content">
-    <a href="quartier-dervallieres-zola.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17v-7"/><path d="M10 10c0-5-5-4-5 0 0 3 2 4 5 4"/><path d="M10 10c0-5 5-4 5 0 0 3-2 4-5 4"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Dervalli&egrave;res &ndash; Zola</span>
-        <span class="stb-card-hint">Soins de quartier &middot; 7j/7</span>
+    <a href="quartier-dervallieres-zola.html" class="bento-tile" data-q="derv" data-bg="mint">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17v-7"/><path d="M10 10c0-5-5-4-5 0 0 3 2 4 5 4"/><path d="M10 10c0-5 5-4 5 0 0 3-2 4-5 4"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Dervalli&egrave;res &ndash; Zola</span>
+        <span class="bento-tile-desc">Quartier vert &middot; Pr&eacute;sence r&eacute;guli&egrave;re</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-  </div>
 
-  <div class="stb-row" data-q="bellevue" data-side="left">
-    <div class="stb-col-content">
-    <a href="quartier-bellevue-chantenay.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><path d="M2 9c1.3-2 2.7 2 4 0s2.7-2 4 0 2.7 2 4 0 1.3-2 4 0"/><path d="M2 13c1.3-2 2.7 2 4 0s2.7-2 4 0 2.7 2 4 0 1.3-2 4 0"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Bellevue &ndash; Chantenay</span>
-        <span class="stb-card-hint">Bord de Loire &middot; 7j/7</span>
+    <a href="quartier-bellevue-chantenay.html" class="bento-tile" data-q="bellevue" data-bg="blue">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><path d="M2 9c1.3-2 2.7 2 4 0s2.7-2 4 0 2.7 2 4 0 1.3-2 4 0"/><path d="M2 13c1.3-2 2.7 2 4 0s2.7-2 4 0 2.7 2 4 0 1.3-2 4 0"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Bellevue &ndash; Chantenay</span>
+        <span class="bento-tile-desc">Bord de Loire &middot; &Eacute;quipe d&eacute;di&eacute;e</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-empty" aria-hidden="true"></div>
-  </div>
 
-  <div class="stb-row" data-q="hauts" data-side="right">
-    <div class="stb-col-empty" aria-hidden="true"></div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-content">
-    <a href="quartier-hauts-paves-saint-felix.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="6.5"/><path d="M10 3.5v3M10 13.5v3M3.5 10h3M13.5 10h3"/><circle cx="10" cy="10" r="1.5" fill="#3C697F" stroke="none"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Hauts-Pav&eacute;s &ndash; St-F&eacute;lix</span>
-        <span class="stb-card-hint">Bord de l&rsquo;Erdre &middot; 7j/7</span>
+    <a href="quartier-hauts-paves-saint-felix.html" class="bento-tile" data-q="hauts" data-bg="blue">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="6.5"/><path d="M10 3.5v3M10 13.5v3M3.5 10h3M13.5 10h3"/><circle cx="10" cy="10" r="1.5" fill="#3C697F" stroke="none"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Hauts-Pav&eacute;s &ndash; St-F&eacute;lix</span>
+        <span class="bento-tile-desc">Bord de l&rsquo;Erdre &middot; Seniors</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-  </div>
 
-  <div class="stb-row" data-q="nord" data-side="left">
-    <div class="stb-col-content">
-    <a href="quartier-nantes-nord.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l2.5 7h-5L10 2z"/><path d="M10 18l-2.5-7h5L10 18z" stroke-opacity=".4"/><circle cx="10" cy="10" r="1.5" fill="#3C697F" stroke="none"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Nantes Nord</span>
-        <span class="stb-card-hint">Grand territoire &middot; 7j/7</span>
+    <a href="quartier-nantes-nord.html" class="bento-tile" data-q="nord" data-bg="mint">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l2.5 7h-5L10 2z"/><path d="M10 18l-2.5-7h5L10 18z" stroke-opacity=".35"/><circle cx="10" cy="10" r="1.5" fill="#3C697F" stroke="none"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Nantes Nord</span>
+        <span class="bento-tile-desc">Grand territoire &middot; R&eacute;seau local</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-empty" aria-hidden="true"></div>
-  </div>
 
-  <div class="stb-row" data-q="ile" data-side="right">
-    <div class="stb-col-empty" aria-hidden="true"></div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-content">
-    <a href="quartier-ile-de-nantes.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13h16"/><path d="M6 13V9l4-4.5L14 9v4"/><path d="M3 17c1.5-1.5 3 1.5 5 0s3.5-1.5 5 0 2 1.5 4 0"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">&Icirc;le de Nantes</span>
-        <span class="stb-card-hint">C&oelig;ur de Loire &middot; 7j/7</span>
+    <a href="quartier-ile-de-nantes.html" class="bento-tile" data-q="ile" data-bg="white">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13h16"/><path d="M6 13V9l4-4.5L14 9v4"/><path d="M3 17c1.5-1.5 3 1.5 5 0s3.5-1.5 5 0 2 1.5 4 0"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">&Icirc;le de Nantes</span>
+        <span class="bento-tile-desc">C&oelig;ur de Loire &middot; Mobilit&eacute; adapt&eacute;e</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-  </div>
 
-  <div class="stb-row" data-q="malakoff" data-side="left">
-    <div class="stb-col-content">
-    <a href="quartier-malakoff-saint-donatien.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="12" height="9" rx="1"/><path d="M4 8l6-5 6 5"/><path d="M9 17v-4h2v4"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Malakoff &ndash; St-Donatien</span>
-        <span class="stb-card-hint">Quartier renouvel&eacute; &middot; 7j/7</span>
+    <a href="quartier-malakoff-saint-donatien.html" class="bento-tile" data-q="malakoff" data-bg="white">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="12" height="9" rx="1"/><path d="M4 8l6-5 6 5"/><path d="M9 17v-4h2v4"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Malakoff &ndash; St-Donatien</span>
+        <span class="bento-tile-desc">Quartier renouvel&eacute; &middot; &Eacute;quipe pluridisciplinaire</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-empty" aria-hidden="true"></div>
-  </div>
 
-  <div class="stb-row" data-q="breil" data-side="right">
-    <div class="stb-col-empty" aria-hidden="true"></div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-content">
-    <a href="quartier-breil-barbiere.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="8" r="4.5"/><line x1="10" y1="12.5" x2="10" y2="17.5"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Breil-Barbi&egrave;re</span>
-        <span class="stb-card-hint">Entre parcs &middot; 7j/7</span>
+    <a href="quartier-breil-barbiere.html" class="bento-tile" data-q="breil" data-bg="mint">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="8" r="4.5"/><line x1="10" y1="12.5" x2="10" y2="17.5"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Breil-Barbi&egrave;re</span>
+        <span class="bento-tile-desc">Entre parcs &middot; Soins bienveillants</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-  </div>
 
-  <div class="stb-row" data-q="nantes-sud" data-side="left">
-    <div class="stb-col-content">
-    <a href="nos-quartiers.html" class="stb-card">
-      <div class="stb-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.6 4.6l1.4 1.4M14 14l1.4 1.4M4.6 15.4l1.4-1.4M14 6l1.4-1.4"/></svg></div>
-      <div class="stb-card-body">
-        <span class="stb-card-name">Nantes Sud</span>
-        <span class="stb-card-hint">Tissu r&eacute;sidentiel &middot; 7j/7</span>
+    <a href="nos-quartiers.html" class="bento-tile" data-q="nantes-sud" data-bg="blue">
+      <div class="bento-tile-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="#3C697F" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.6 4.6l1.4 1.4M14 14l1.4 1.4M4.6 15.4l1.4-1.4M14 6l1.4-1.4"/></svg></div>
+      <div class="bento-tile-body">
+        <span class="bento-tile-name">Nantes Sud</span>
+        <span class="bento-tile-desc">Tissu r&eacute;sidentiel &middot; Continuit&eacute; des soins</span>
+        <span class="bento-tile-cta">D&eacute;couvrir &rarr;</span>
       </div>
     </a>
-    </div>
-    <div class="stb-col-dot"><span class="stb-dot"></span></div>
-    <div class="stb-col-empty" aria-hidden="true"></div>
-  </div>
 
-</div>
-<div class="block-cta-group" style="justify-content:center;margin-top:40px">
-  <a href="nos-quartiers.html" class="btn-block-primary">Voir tous nos quartiers</a>
-  <a href="nous-contacter.html" class="btn-block-secondary">Nous contacter &rarr;</a>
-</div>
+  </div>
+  <div class="block-cta-group" style="justify-content:center;margin-top:40px">
+    <a href="nos-quartiers.html" class="btn-block-primary">Voir tous nos quartiers</a>
+    <a href="nous-contacter.html" class="btn-block-secondary">Nous contacter &rarr;</a>
+  </div>
 </div>
 </div>
 </div>
