@@ -17,9 +17,9 @@ sans attribution obligatoire. L'attribution ci-dessous est fournie par respect d
 | `hauts.jpg` | Hauts-Pavés – Saint-Félix | Jardin de la Fondation Claude Monet, Giverny, France | Edwards Lee | https://unsplash.com/photos/9yl5chmH82E |
 | `nord.jpg` | Nantes Nord | Vue aérienne, Saint-Haon-le-Châtel, Loire, France | Max Zed | https://unsplash.com/photos/aerial-view-of-green-trees-and-houses-during-daytime-KvEF44L8AMo |
 | `ile.jpg` | Île de Nantes | Grue Titan, Mail des Chantiers, Nantes | Dorian Le Sénéchal | https://unsplash.com/photos/XkORzpSnntQ |
-| `malakoff.jpg` | Malakoff – Saint-Donatien | Tour Bretagne (vue aérienne), Nantes | Quentin | https://unsplash.com/photos/aerial-photography-of-buildings-gTuRT6HVFsg |
+| `malakoff.jpg` | Malakoff – Saint-Donatien | Cathédrale Saint-Pierre-et-Saint-Paul, Impasse Saint-Laurent, Nantes — quartier Saint-Donatien | Steven Roussel | https://unsplash.com/photos/cars-parked-in-front-of-brown-concrete-building-during-daytime-ucWNYM_h7FY |
 | `breil.jpg` | Breil-Barbière | Parc verdoyant (nature & woodland) | Naoki Suzuki | https://unsplash.com/photos/a-lush-green-park-with-lots-of-trees-9Z-EjEcrh28 |
-| `nantes-sud.jpg` | Nantes Sud | Jardins du Château de Versailles, France | Hailey Wagner | https://unsplash.com/photos/green-grass-field-near-body-of-water-during-daytime-I3ignUHLrpU |
+| `nantes-sud.jpg` | Nantes Sud | Toits et immeubles résidentiels, Nantes, France | Marius Lelouard | https://unsplash.com/photos/white-and-black-buildings-under-grey-sky-Ap_vjU0VNa4 |
 
 ---
 
@@ -36,6 +36,6 @@ Date de téléchargement : juin 2026
 
 ## Usage sur le site
 
-Les images sont utilisées comme **arrière-plans subtils** (filigrane élégant) dans la section
-"Nos quartiers" de la page d'accueil (`index.html`), avec un filtre CSS `grayscale(80%)` et
-une opacité réduite à `0.14` pour un rendu discret et non intrusif.
+Les images sont utilisées comme **arrière-plans de tuiles** dans la section "Nos quartiers"
+de la page d'accueil (`index.html`). Traitement CSS : `background-blend-mode: multiply`
+avec un dégradé de couleur par quartier pour un rendu magazine luxe.
