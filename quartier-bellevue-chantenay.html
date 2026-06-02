@@ -213,6 +213,56 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:64px 48px 32px
 .infirmier-tel{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;padding:10px 18px;border-radius:50px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;text-decoration:none;min-height:44px;}
 .infirmier-tel:hover{background:var(--primary-dark);}
 @media(max-width:900px){.infirmiers-grid{grid-template-columns:1fr;}}
+
+/* ── CLASSES SPÉCIFIQUES BELLEVUE-CHANTENAY ── */
+
+/* Hero info cards */
+.hero-cards{display:flex;flex-direction:column;gap:12px;}
+.hero-info-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;}
+.hero-info-card-icon{width:36px;height:36px;background:rgba(143,240,210,0.18);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hero-info-card strong{display:block;font-size:14px;font-weight:700;color:#fff;}
+.hero-info-card span{font-size:12px;color:rgba(255,255,255,0.6);}
+
+/* Section wrapper */
+.section{max-width:1200px;margin:0 auto;padding:64px 48px;}
+
+/* Services grid colorés */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+.service-card{background:#fff;border-radius:var(--radius-sm);padding:28px 22px;border:1px solid rgba(60,105,127,0.08);border-top:4px solid transparent;transition:all 0.25s;}
+.service-card:nth-child(1){border-top-color:var(--mint);background:var(--bg-mint);}
+.service-card:nth-child(2){border-top-color:var(--coral);background:var(--bg-coral);}
+.service-card:nth-child(3){border-top-color:var(--blue);background:var(--bg-blue);}
+.service-card:nth-child(1):hover{box-shadow:0 10px 32px rgba(143,240,210,0.30);transform:translateY(-3px);}
+.service-card:nth-child(2):hover{box-shadow:0 10px 32px rgba(255,158,142,0.25);transform:translateY(-3px);}
+.service-card:nth-child(3):hover{box-shadow:0 10px 32px rgba(125,162,250,0.25);transform:translateY(-3px);}
+.service-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.service-card:nth-child(1) .service-card-icon{background:rgba(143,240,210,0.25);}
+.service-card:nth-child(2) .service-card-icon{background:rgba(255,158,142,0.20);}
+.service-card:nth-child(3) .service-card-icon{background:rgba(125,162,250,0.20);}
+.service-card h3{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.service-card p{font-size:1rem;color:#4a5d66;line-height:1.8;}
+
+/* Bande connaissance locale */
+.local-band{background:linear-gradient(135deg,rgba(143,240,210,0.10) 0%,rgba(200,213,252,0.12) 100%);padding:64px 0;}
+.local-inner{max-width:1200px;margin:0 auto;padding:0 48px;}
+.local-band .local-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+.local-band .local-item{background:#fff;border-radius:var(--radius-sm);padding:24px;border-left:4px solid transparent;}
+.local-band .local-item:nth-child(1){border-left-color:var(--mint);}
+.local-band .local-item:nth-child(2){border-left-color:var(--blue);}
+.local-band .local-item:nth-child(3){border-left-color:var(--coral);}
+.local-band .local-item:nth-child(4){border-left-color:var(--lavender);}
+.local-band .local-item h3{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.local-band .local-item p{font-size:1rem;color:#4a5d66;line-height:1.8;}
+
+/* Liens quartiers */
+.qlinks-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+
+@media(max-width:900px){
+  .section{padding:48px 20px;}
+  .services-grid{grid-template-columns:1fr;}
+  .local-band .local-grid{grid-template-columns:1fr;}
+  .local-inner{padding:0 20px;}
+}
 </style> <link rel="stylesheet" href="nsad-common.css">
 </head>
 <body> <nav id="main-nav" role="navigation" aria-label="Navigation principale"> <a href="index.html" class="nav-logo" aria-label="Nantes Soins à Domicile – Accueil"> <img src="logo.png" alt="Nantes Soins à Domicile" /> </a> <ul class="nav-links"> <li><a href="index.html">Accueil</a></li> <li><a href="nos-quartiers.html" class="active">Nos Quartiers</a></li> <li><a href="nos-services.html">Nos Services</a></li> <li><a href="nos-actualites.html">Nos Actualit&eacute;s</a></li> <li><a href="qui-sommes-nous.html">L'Association</a></li> <li><a href="recrutement.html">Recrutement</a></li> <li><a href="nous-contacter.html">Contact</a></li> </ul> <a href="tel:0240354343" class="nav-cta">02 40 35 43 43</a> <button class="nav-hamburger" id="nsad-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
