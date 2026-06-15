@@ -1,0 +1,26 @@
+DOSSIER LOGOS — NSAD
+════════════════════════════════════════════
+
+Placer ici les fichiers de logo NSAD avant de les uploader dans WordPress.
+
+FORMATS RECOMMANDÉS :
+  logo-nsad.png         → Logo couleur (fond transparent) — pour le header sur fond blanc
+  logo-nsad-blanc.png   → Logo blanc (fond transparent) — pour le footer sur fond sombre
+  logo-nsad.svg         → Version vectorielle (si disponible — recommandé)
+  favicon.ico           → Favicon 32×32 px
+
+DIMENSIONS RECOMMANDÉES :
+  Logo header  : largeur max 240px, hauteur max 70px, fond transparent
+  Logo footer  : même dimensions, version blanche ou claire
+  Favicon      : 32×32 px ou 64×64 px
+
+COMMENT UPLOADER DANS WORDPRESS :
+  Médias → Ajouter → Glisser-déposer les fichiers
+
+COMMENT APPLIQUER LE LOGO DANS ELEMENTOR :
+  Elementor → hamburger → Paramètres du site → Style du site → Logo du site
+  → Cliquer sur l'image actuelle → Médiathèque → Sélectionner le logo uploadé
+  → Enregistrer les modifications
+
+  Dans le template Header : Cliquer sur l'image logo → Widget Image → Choisir dans la médiathèque
+  Dans le template Footer : Même procédure pour le logo blanc

@@ -1,0 +1,486 @@
+{
+  "version": "0.4",
+  "title": "NSAD — Page Quartier Type",
+  "type": "page",
+  "content": [
+
+    {
+      "id": "nsad0001",
+      "elType": "section",
+      "isInner": false,
+      "_title": "SECTION 1 — Hero",
+      "settings": {
+        "layout": "full_width",
+        "height": "min-height",
+        "custom_height": { "unit": "px", "size": 420 },
+        "content_position": "middle",
+        "padding": { "unit": "px", "top": "120", "right": "40", "bottom": "80", "left": "40", "isLinked": false },
+        "css_classes": "nsad-hero",
+        "background_background": "gradient",
+        "background_color": "#2E6A8A",
+        "background_color_b": "#0F2F3E",
+        "background_gradient_angle": { "unit": "deg", "size": 135 }
+      },
+      "elements": [
+        {
+          "id": "nsad0002",
+          "elType": "column",
+          "settings": { "_column_size": 66, "content_position": "middle" },
+          "elements": [
+            {
+              "id": "nsad0003",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Aide à domicile <br><strong>[Nom du Quartier]</strong> — SSIAD NSAD Nantes",
+                "header_size": "h1",
+                "align": "left",
+                "title_color": "#ffffff",
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "800",
+                "typography_font_size": { "unit": "px", "size": 44 },
+                "typography_line_height": { "unit": "em", "size": 1.1 }
+              }
+            },
+            {
+              "id": "nsad0004",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>Des infirmiers diplômés, des aide-soignants et des auxiliaires de vie interviennent chez vous dans le quartier [Nom du Quartier], selon votre rythme et vos besoins.</p>",
+                "text_color": "rgba(255,255,255,0.88)",
+                "typography_font_size": { "unit": "px", "size": 18 },
+                "typography_line_height": { "unit": "em", "size": 1.7 },
+                "_padding": { "unit": "px", "top": "16", "right": "0", "bottom": "24", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "nsad0005",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Nous contacter",
+                "link": { "url": "/nous-contacter/", "is_external": false },
+                "align": "left",
+                "css_classes": "nsad-btn-white",
+                "border_radius": { "unit": "px", "top": "9999", "right": "9999", "bottom": "9999", "left": "9999", "isLinked": true }
+              }
+            }
+          ]
+        },
+        {
+          "id": "nsad0006",
+          "elType": "column",
+          "settings": { "_column_size": 33, "content_position": "middle" },
+          "elements": [
+            {
+              "id": "nsad0007",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div style=\"background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-radius:20px;padding:28px 24px;backdrop-filter:blur(10px);\"><p style=\"color:#fff;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;opacity:.7;\">Nos chiffres au [Quartier]</p><div style=\"display:flex;flex-direction:column;gap:16px;\"><div><span style=\"color:#70E8C6;font-size:32px;font-weight:800;font-family:Poppins;\">+200</span><p style=\"color:rgba(255,255,255,.8);font-size:14px;margin:0;\">patients accompagnés</p></div><div><span style=\"color:#70E8C6;font-size:32px;font-weight:800;font-family:Poppins;\">7j/7</span><p style=\"color:rgba(255,255,255,.8);font-size:14px;margin:0;\">disponibilité</p></div><div><span style=\"color:#70E8C6;font-size:32px;font-weight:800;font-family:Poppins;\">30 ans</span><p style=\"color:rgba(255,255,255,.8);font-size:14px;margin:0;\">d'expertise à Nantes</p></div></div></div>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "nsad0010",
+      "elType": "section",
+      "_title": "SECTION 2 — Services disponibles dans ce quartier",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1140 },
+        "padding": { "unit": "px", "top": "80", "right": "20", "bottom": "80", "left": "20", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#ffffff"
+      },
+      "elements": [
+        {
+          "id": "nsad0011",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "nsad0012",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Services disponibles dans votre quartier",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "700",
+                "typography_font_size": { "unit": "px", "size": 36 },
+                "_padding": { "unit": "px", "top": "0", "right": "0", "bottom": "48", "left": "0", "isLinked": false }
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "nsad0020",
+      "elType": "section",
+      "_title": "SECTION 2b — 3 cartes de services",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1140 },
+        "padding": { "unit": "px", "top": "0", "right": "20", "bottom": "80", "left": "20", "isLinked": false },
+        "gap": "extended",
+        "background_background": "classic",
+        "background_color": "#ffffff"
+      },
+      "elements": [
+        {
+          "id": "nsad0021",
+          "elType": "column",
+          "settings": { "_column_size": 33, "css_classes": "nsad-card nsad-card-mint" },
+          "elements": [
+            {
+              "id": "nsad0022",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-stethoscope", "library": "fa-solid" },
+                "title_text": "Soins infirmiers",
+                "description_text": "Injections, pansements, surveillance médicale. Des infirmiers diplômés d'État interviennent à votre domicile selon prescription médicale.",
+                "icon_color": "#2E6A8A",
+                "title_color": "#122432",
+                "title_typography_font_family": "Poppins",
+                "title_typography_font_weight": "700",
+                "title_typography_font_size": { "unit": "px", "size": 20 },
+                "description_color": "#637D88",
+                "description_typography_font_size": { "unit": "px", "size": 16 }
+              }
+            }
+          ]
+        },
+        {
+          "id": "nsad0023",
+          "elType": "column",
+          "settings": { "_column_size": 33, "css_classes": "nsad-card nsad-card-coral" },
+          "elements": [
+            {
+              "id": "nsad0024",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-hands-helping", "library": "fa-solid" },
+                "title_text": "Aide à domicile",
+                "description_text": "Toilette, repas, courses, compagnie. Une aide-soignante attentionnée s'adapte à votre rythme de vie et à vos habitudes.",
+                "icon_color": "#FF8A75",
+                "title_color": "#122432",
+                "title_typography_font_family": "Poppins",
+                "title_typography_font_weight": "700",
+                "title_typography_font_size": { "unit": "px", "size": 20 },
+                "description_color": "#637D88",
+                "description_typography_font_size": { "unit": "px", "size": 16 }
+              }
+            }
+          ]
+        },
+        {
+          "id": "nsad0025",
+          "elType": "column",
+          "settings": { "_column_size": 33, "css_classes": "nsad-card nsad-card-blue" },
+          "elements": [
+            {
+              "id": "nsad0026",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-users", "library": "fa-solid" },
+                "title_text": "Coordination famille",
+                "description_text": "Lien avec les médecins, gestion APA et PCH. Nous coordonnons tout pour que vous et votre famille soyez sereins.",
+                "icon_color": "#7DA2FA",
+                "title_color": "#122432",
+                "title_typography_font_family": "Poppins",
+                "title_typography_font_weight": "700",
+                "title_typography_font_size": { "unit": "px", "size": 20 },
+                "description_color": "#637D88",
+                "description_typography_font_size": { "unit": "px", "size": 16 }
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "nsad0030",
+      "elType": "section",
+      "_title": "SECTION 3 — Partenaires locaux",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1140 },
+        "padding": { "unit": "px", "top": "64", "right": "20", "bottom": "64", "left": "20", "isLinked": false },
+        "css_classes": "nsad-section-primary"
+      },
+      "elements": [
+        {
+          "id": "nsad0031",
+          "elType": "column",
+          "settings": { "_column_size": 50 },
+          "elements": [
+            {
+              "id": "nsad0032",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Infirmiers libéraux partenaires",
+                "header_size": "h2",
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "700",
+                "typography_font_size": { "unit": "px", "size": 28 },
+                "_padding": { "unit": "px", "top": "0", "right": "0", "bottom": "20", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "nsad0033",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>Notre réseau de professionnels de santé libéraux intervient en coordination avec nos équipes pour assurer la continuité de vos soins.</p><ul><li><strong>[Nom du cabinet 1]</strong> — [adresse] — [téléphone]</li><li><strong>[Nom du cabinet 2]</strong> — [adresse] — [téléphone]</li><li><strong>[Nom du cabinet 3]</strong> — [adresse] — [téléphone]</li></ul>",
+                "typography_font_size": { "unit": "px", "size": 16 },
+                "typography_line_height": { "unit": "em", "size": 1.8 }
+              }
+            }
+          ]
+        },
+        {
+          "id": "nsad0034",
+          "elType": "column",
+          "settings": { "_column_size": 50 },
+          "elements": [
+            {
+              "id": "nsad0035",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Pharmacies & ressources locales",
+                "header_size": "h3",
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "600",
+                "typography_font_size": { "unit": "px", "size": 20 },
+                "_padding": { "unit": "px", "top": "0", "right": "0", "bottom": "16", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "nsad0036",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<ul><li>[Pharmacie 1] — [adresse]</li><li>[Pharmacie 2] — [adresse]</li><li>EHPAD partenaire : [nom]</li><li>Centre médical : [nom]</li></ul>",
+                "typography_font_size": { "unit": "px", "size": 16 },
+                "typography_line_height": { "unit": "em", "size": 1.8 }
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "nsad0040",
+      "elType": "section",
+      "_title": "SECTION 4 — Histoire du quartier",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1140 },
+        "padding": { "unit": "px", "top": "64", "right": "20", "bottom": "64", "left": "20", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#ffffff"
+      },
+      "elements": [
+        {
+          "id": "nsad0041",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "nsad0042",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "[Nom du Quartier] : un territoire que nous connaissons bien",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "700",
+                "typography_font_size": { "unit": "px", "size": 30 },
+                "_padding": { "unit": "px", "top": "0", "right": "0", "bottom": "32", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "nsad0043",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>[Insérer ici le texte historique et géographique du quartier. Ce texte est unique pour chaque page quartier — il renforce le référencement local et montre la connaissance du territoire par NSAD.]</p><p>[Parler de l'histoire du quartier, de ses habitants, de sa transformation urbaine, des services disponibles à proximité, et du lien avec les soins à domicile.]</p>",
+                "typography_font_size": { "unit": "px", "size": 17 },
+                "typography_line_height": { "unit": "em", "size": 1.85 },
+                "_margin": { "unit": "px", "top": "0", "right": "auto", "bottom": "0", "left": "auto", "isLinked": false },
+                "max_width": { "unit": "px", "size": 820 }
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "nsad0050",
+      "elType": "section",
+      "_title": "SECTION 5 — FAQ locale",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1140 },
+        "padding": { "unit": "px", "top": "64", "right": "20", "bottom": "64", "left": "20", "isLinked": false },
+        "css_classes": "nsad-section-mint"
+      },
+      "elements": [
+        {
+          "id": "nsad0051",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "nsad0052",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Questions fréquentes — [Nom du Quartier]",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "700",
+                "typography_font_size": { "unit": "px", "size": 30 },
+                "_padding": { "unit": "px", "top": "0", "right": "0", "bottom": "40", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "nsad0053",
+              "elType": "widget",
+              "widgetType": "accordion",
+              "settings": {
+                "tabs": [
+                  {
+                    "_id": "faq01",
+                    "tab_title": "Comment bénéficier des soins à domicile au [Quartier] ?",
+                    "tab_content": "Pour bénéficier de nos services dans votre quartier, il vous suffit de nous contacter par téléphone au 02 40 35 43 43. Nous réalisons une évaluation gratuite de vos besoins à domicile et mettons en place un plan de soins personnalisé."
+                  },
+                  {
+                    "_id": "faq02",
+                    "tab_title": "Les soins sont-ils remboursés par l'Assurance Maladie ?",
+                    "tab_content": "Oui, les soins infirmiers à domicile dispensés par notre SSIAD sont pris en charge à 100% par l'Assurance Maladie, sans avance de frais. Nous gérons toutes les démarches administratives pour vous."
+                  },
+                  {
+                    "_id": "faq03",
+                    "tab_title": "Quels sont vos délais d'intervention au [Quartier] ?",
+                    "tab_content": "Nous intervenons généralement dans les 48 à 72 heures suivant votre demande. Pour les situations urgentes, nous mobilisons nos équipes dans les meilleurs délais. Contactez-nous directement pour évaluer votre situation."
+                  },
+                  {
+                    "_id": "faq04",
+                    "tab_title": "Travaillez-vous avec les médecins du [Quartier] ?",
+                    "tab_content": "Oui, nous collaborons étroitement avec les médecins généralistes et spécialistes du quartier. Notre coordinatrice assure le lien entre notre équipe, votre médecin traitant et votre famille."
+                  },
+                  {
+                    "_id": "faq05",
+                    "tab_title": "Puis-je choisir mes horaires d'intervention ?",
+                    "tab_content": "Oui, dans la mesure du possible, nous adaptons nos interventions à vos habitudes et à votre mode de vie. Nous respectons votre rythme et construisons un planning en accord avec vous."
+                  }
+                ],
+                "active_item": 1,
+                "title_html_tag": "div",
+                "title_color": "#122432",
+                "title_active_color": "#2E6A8A"
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "nsad0060",
+      "elType": "section",
+      "_title": "SECTION 6 — Navigation vers les autres quartiers",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1140 },
+        "padding": { "unit": "px", "top": "48", "right": "20", "bottom": "48", "left": "20", "isLinked": false },
+        "css_classes": "nsad-section-primary"
+      },
+      "elements": [
+        {
+          "id": "nsad0061",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "nsad0062",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Nous intervenons dans tous les quartiers de Nantes",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "700",
+                "typography_font_size": { "unit": "px", "size": 24 },
+                "_padding": { "unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "nsad0063",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div style=\"display:flex;flex-wrap:wrap;gap:10px;justify-content:center;\"><a href=\"/quartier-centre-ville/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:all .2s;\">Centre-ville</a><a href=\"/quartier-ile-de-nantes/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Île de Nantes</a><a href=\"/quartier-bellevue-chantenay/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Bellevue – Chantenay</a><a href=\"/quartier-hauts-paves-saint-felix/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Hauts-Pavés – Saint-Félix</a><a href=\"/quartier-nantes-nord/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Nantes Nord</a><a href=\"/quartier-malakoff-saint-donatien/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Malakoff – Saint-Donatien</a><a href=\"/quartier-breil-barbiere/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Breil-Barbière</a><a href=\"/quartier-nantes-sud/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Nantes Sud</a><a href=\"/quartier-dervallieres-zola/\" style=\"background:#fff;color:#2E6A8A;border:1.5px solid #C8DFE9;border-radius:9999px;padding:8px 20px;font-family:Poppins,sans-serif;font-weight:500;font-size:14px;text-decoration:none;\">Dervallières – Zola</a></div>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "nsad0070",
+      "elType": "section",
+      "_title": "SECTION 7 — CTA final",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1140 },
+        "padding": { "unit": "px", "top": "64", "right": "20", "bottom": "64", "left": "20", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#ffffff"
+      },
+      "elements": [
+        {
+          "id": "nsad0071",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "nsad0072",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div class=\"nsad-cta-band\"><p style=\"font-family:Poppins,sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px;\">Besoin d'aide au [Quartier] ?</p><h2 style=\"font-family:Poppins,sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;line-height:1.2;margin-bottom:20px;\">Échangeons sur votre projet de vie</h2><p style=\"color:rgba(255,255,255,.8);font-size:18px;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;\">Un premier contact gratuit et sans engagement pour évaluer vos besoins et construire une solution adaptée.</p><div style=\"display:flex;gap:16px;justify-content:center;flex-wrap:wrap;\"><a href=\"/nous-contacter/\" style=\"background:#fff;color:#2E6A8A;border-radius:9999px;padding:16px 36px;font-family:Poppins,sans-serif;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.15);transition:all .26s;\">Prendre contact</a><a href=\"tel:0240354343\" style=\"background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.4);color:#fff;border-radius:9999px;padding:16px 36px;font-family:Poppins,sans-serif;font-weight:700;font-size:15px;text-decoration:none;transition:all .26s;\">📞 02 40 35 43 43</a></div></div>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+  ],
+  "page_settings": {
+    "hide_title": "yes",
+    "elementor_page_settings": []
+  }
+}

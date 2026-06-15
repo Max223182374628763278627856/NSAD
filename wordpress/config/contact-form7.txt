@@ -1,0 +1,206 @@
+════════════════════════════════════════════════════════════════════
+NSAD — CONTACT FORM 7 : Configuration complète et optimisée
+════════════════════════════════════════════════════════════════════
+
+PLUGINS REQUIS :
+  ✅ Contact Form 7 (gratuit — wordpress.org/plugins/contact-form-7)
+  ✅ Flamingo (gratuit — stockage des messages reçus en BDD WP)
+
+════════════════════════════════════════════════════════════════════
+ÉTAPE 1 — CODE DU FORMULAIRE
+Contact → Formulaires → Ajouter → Nommer "Contact NSAD"
+Coller dans l'onglet "Formulaire" :
+════════════════════════════════════════════════════════════════════
+
+<div class="nsad-form-grid">
+
+  <div class="nsad-form-field">
+    <label for="nsad-nom">Prénom et nom <span aria-hidden="true">*</span></label>
+    [text* nsad-nom id:nsad-nom autocomplete:name placeholder "Ex : Marie Dupont"]
+  </div>
+
+  <div class="nsad-form-field">
+    <label for="nsad-tel">Numéro de téléphone <span aria-hidden="true">*</span></label>
+    [tel* nsad-tel id:nsad-tel autocomplete:tel placeholder "Ex : 06 12 34 56 78"]
+  </div>
+
+  <div class="nsad-form-field">
+    <label for="nsad-email">Adresse email</label>
+    [email nsad-email id:nsad-email autocomplete:email placeholder "votre@email.fr"]
+  </div>
+
+  <div class="nsad-form-field">
+    <label for="nsad-quartier">Votre quartier à Nantes</label>
+    [select nsad-quartier id:nsad-quartier include_blank
+      "Centre-ville"
+      "Île de Nantes"
+      "Bellevue – Chantenay"
+      "Hauts-Pavés – Saint-Félix"
+      "Nantes Nord"
+      "Malakoff – Saint-Donatien"
+      "Breil-Barbière"
+      "Nantes Sud"
+      "Dervallières – Zola"
+      "Autre quartier / hors Nantes"
+    ]
+  </div>
+
+  <div class="nsad-form-field nsad-form-full">
+    <label for="nsad-message">Votre message <span aria-hidden="true">*</span></label>
+    [textarea* nsad-message id:nsad-message rows:5 placeholder "Décrivez brièvement votre situation ou votre besoin. Plus vous nous donnez de détails, mieux nous pouvons préparer notre réponse."]
+  </div>
+
+  <div class="nsad-form-field nsad-form-full">
+    <label class="nsad-rgpd-label">
+      [acceptance nsad-rgpd]
+      <span>J'accepte que mes coordonnées soient utilisées par NSAD pour me recontacter. Conformément au RGPD, vous pouvez exercer vos droits en écrivant à <a href="mailto:contact@ssiadnsaid.fr">contact@ssiadnsaid.fr</a>.</span>
+    </label>
+  </div>
+
+  <div class="nsad-form-field nsad-form-full" style="text-align:center;">
+    [submit class:nsad-submit "Envoyer ma demande →"]
+  </div>
+
+</div>
+
+
+════════════════════════════════════════════════════════════════════
+ÉTAPE 2 — EMAIL DE RÉCEPTION (onglet "Courrier")
+════════════════════════════════════════════════════════════════════
+
+Destinataire (À) :
+  contact@ssiadnsaid.fr
+
+Expéditeur (De) :
+  NSAD Site Web <noreply@ssiadnsaid.fr>
+
+En-tête "Reply-To" (champ caché — activer "En-têtes additionnels") :
+  [nsad-email]
+
+Sujet :
+  [nsad-quartier] — Nouvelle demande de [nsad-nom]
+
+Corps du message :
+────────────────────────────────────────────────────────────────────
+Bonjour,
+
+Une nouvelle demande de contact a été reçue via le site SSIAD NSAD.
+
+──────────────────────────────
+COORDONNÉES DU DEMANDEUR
+──────────────────────────────
+Nom         : [nsad-nom]
+Téléphone   : [nsad-tel]
+Email       : [nsad-email]
+Quartier    : [nsad-quartier]
+
+──────────────────────────────
+MESSAGE
+──────────────────────────────
+[nsad-message]
+
+──────────────────────────────
+RGPD : Le demandeur a consenti au traitement de ses données.
+Date : [_date "d/m/Y à H:i"]
+IP   : [_remote_ip]
+──────────────────────────────
+
+Pour répondre : cliquez sur "Répondre" dans votre messagerie —
+la réponse ira directement à [nsad-email].
+
+—
+Ce message a été généré automatiquement par le site nsad-nantes.fr
+Ne pas répondre à cet email — utiliser le bouton Répondre de votre client mail.
+────────────────────────────────────────────────────────────────────
+
+
+════════════════════════════════════════════════════════════════════
+ÉTAPE 3 — EMAIL DE CONFIRMATION (onglet "Courrier 2" — activer)
+════════════════════════════════════════════════════════════════════
+
+Destinataire (À) :
+  [nsad-email]
+
+Expéditeur (De) :
+  SSIAD NSAD Nantes <contact@ssiadnsaid.fr>
+
+Sujet :
+  Votre demande a bien été reçue — NSAD Nantes
+
+Corps du message :
+────────────────────────────────────────────────────────────────────
+Bonjour [nsad-nom],
+
+Nous avons bien reçu votre message et nous vous en remercions.
+
+Notre équipe vous recontactera dans les meilleurs délais,
+généralement sous 24 heures ouvrées, au numéro suivant :
+📞 [nsad-tel]
+
+Si votre besoin est urgent, n'hésitez pas à nous appeler directement :
+📞 02 40 35 43 43 — du lundi au vendredi, de 8h à 18h.
+
+──────────────────────────────
+RÉCAPITULATIF DE VOTRE DEMANDE
+──────────────────────────────
+Quartier : [nsad-quartier]
+Message  : [nsad-message]
+──────────────────────────────
+
+Bien cordialement,
+
+L'équipe SSIAD NSAD
+6 rue Bel Air — 44000 Nantes
+📞 02 40 35 43 43
+✉️ contact@ssiadnsaid.fr
+────────────────────────────────────────────────────────────────────
+
+
+════════════════════════════════════════════════════════════════════
+ÉTAPE 4 — MESSAGES D'INTERFACE (onglet "Messages")
+════════════════════════════════════════════════════════════════════
+
+Message envoyé avec succès :
+  ✅ Merci [nsad-nom] ! Votre demande a été envoyée. Nous vous rappellerons au [nsad-tel] sous 24h.
+
+Validation : champ obligatoire manquant :
+  ⚠️ Merci de remplir ce champ pour que nous puissions vous recontacter.
+
+Validation : format email incorrect :
+  ⚠️ L'adresse email ne semble pas correcte. Vérifiez et réessayez.
+
+Validation : format téléphone incorrect :
+  ⚠️ Le numéro de téléphone ne semble pas valide (ex: 06 12 34 56 78).
+
+Erreur de l'expéditeur du courrier :
+  ❌ Une erreur s'est produite lors de l'envoi. Appelez-nous directement au 02 40 35 43 43.
+
+
+════════════════════════════════════════════════════════════════════
+ÉTAPE 5 — INTÉGRATION DANS ELEMENTOR
+════════════════════════════════════════════════════════════════════
+
+1. Après sauvegarde, Contact Form 7 génère un shortcode :
+   [contact-form-7 id="XXX" title="Contact NSAD"]
+
+2. Dans Elementor, sur la page "Nous contacter" :
+   a. Ajouter un widget "Code court" (Shortcode)
+   b. Coller le shortcode [contact-form-7 id="XXX" ...]
+   c. Le formulaire s'affiche avec le style NSAD automatiquement
+      (grâce au CSS dans config/custom-css.css section 7)
+
+3. Aucun autre réglage nécessaire.
+
+
+════════════════════════════════════════════════════════════════════
+CLASSES CSS UTILISÉES PAR CE FORMULAIRE
+(définies dans config/custom-css.css — section 7)
+════════════════════════════════════════════════════════════════════
+
+.nsad-form-grid    → Grille 2 colonnes pour les champs
+.nsad-form-field   → Conteneur d'un champ (label + input)
+.nsad-form-full    → Champ qui prend toute la largeur (message, RGPD, bouton)
+.nsad-rgpd-label   → Style de la case à cocher RGPD
+.nsad-submit       → Style du bouton d'envoi (couleur, arrondi, ombre)
+
+════════════════════════════════════════════════════════════════════

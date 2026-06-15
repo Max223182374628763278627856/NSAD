@@ -1,0 +1,122 @@
+{
+  "version": "0.4",
+  "title": "NSAD — Header (compatible Elementor Header & Footer Builder)",
+  "type": "page",
+  "_note": "Importer via : Elementor → Mes modèles → Importer des modèles. Puis dans HFB : Nouveau → Type Header → Modifier avec Elementor → Ajouter modèle.",
+  "content": [
+    {
+      "id": "hdr0001",
+      "elType": "section",
+      "_title": "Barre de navigation principale",
+      "settings": {
+        "layout": "full_width",
+        "padding": { "unit": "px", "top": "14", "right": "48", "bottom": "14", "left": "48", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "rgba(255,255,255,0.97)",
+        "box_shadow_box_shadow_type": "yes",
+        "box_shadow_box_shadow": {
+          "horizontal": 0, "vertical": 2, "blur": 24, "spread": 0,
+          "color": "rgba(60,105,127,0.10)"
+        },
+        "sticky": "top",
+        "sticky_offset": 0
+      },
+      "elements": [
+        {
+          "id": "hdr0002",
+          "elType": "column",
+          "settings": { "_column_size": 20, "content_position": "middle" },
+          "elements": [
+            {
+              "id": "hdr0003",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": { "url": "/wp-content/uploads/logo-nsad.png", "alt": "NSAD — Nantes Soins à Domicile" },
+                "image_size": "full",
+                "align": "left",
+                "width": { "unit": "px", "size": 140 },
+                "link_to": "custom",
+                "link": { "url": "/", "is_external": false }
+              }
+            }
+          ]
+        },
+        {
+          "id": "hdr0004",
+          "elType": "column",
+          "settings": { "_column_size": 55, "content_position": "middle" },
+          "elements": [
+            {
+              "id": "hdr0005",
+              "elType": "widget",
+              "widgetType": "html",
+              "_note": "Navigation — Remplacer par le widget Nav Menu du plugin HFB",
+              "settings": {
+                "html": "<nav class=\"nsad-header-nav\" role=\"navigation\" aria-label=\"Navigation principale\"><ul style=\"display:flex;gap:28px;list-style:none;margin:0;padding:0;align-items:center;justify-content:center;\"><li><a href=\"/nos-services/\" style=\"font-family:Poppins,sans-serif;font-size:14px;font-weight:500;color:#3a4a52;text-decoration:none;padding-bottom:4px;position:relative;\">Nos services</a></li><li><a href=\"/nos-quartiers/\" style=\"font-family:Poppins,sans-serif;font-size:14px;font-weight:500;color:#3a4a52;text-decoration:none;padding-bottom:4px;\">Nos quartiers</a></li><li><a href=\"/qui-sommes-nous/\" style=\"font-family:Poppins,sans-serif;font-size:14px;font-weight:500;color:#3a4a52;text-decoration:none;padding-bottom:4px;\">Qui sommes-nous</a></li><li><a href=\"/recrutement/\" style=\"font-family:Poppins,sans-serif;font-size:14px;font-weight:500;color:#3a4a52;text-decoration:none;padding-bottom:4px;\">Recrutement</a></li></ul></nav>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "hdr0006",
+          "elType": "column",
+          "settings": { "_column_size": 25, "content_position": "middle" },
+          "elements": [
+            {
+              "id": "hdr0007",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Nous contacter",
+                "link": { "url": "/nous-contacter/", "is_external": false },
+                "align": "right",
+                "background_color": "#2E6A8A",
+                "button_text_color": "#ffffff",
+                "hover_color": "#ffffff",
+                "button_hover_background_color": "#1E4F68",
+                "border_radius": { "unit": "px", "top": "9999", "right": "9999", "bottom": "9999", "left": "9999", "isLinked": true },
+                "padding": { "unit": "px", "top": "13", "right": "24", "bottom": "13", "left": "24", "isLinked": false },
+                "typography_font_family": "Poppins",
+                "typography_font_weight": "600",
+                "typography_font_size": { "unit": "px", "size": 14 }
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "hdr0010",
+      "elType": "section",
+      "_title": "Barre info urgence (mobile uniquement)",
+      "_note": "Masquer sur desktop via Avancé → Responsive → Masquer sur Desktop",
+      "settings": {
+        "layout": "full_width",
+        "padding": { "unit": "px", "top": "10", "right": "20", "bottom": "10", "left": "20", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#0F2F3E",
+        "hide_desktop": "yes"
+      },
+      "elements": [
+        {
+          "id": "hdr0011",
+          "elType": "column",
+          "settings": { "_column_size": 100, "content_position": "middle" },
+          "elements": [
+            {
+              "id": "hdr0012",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div style=\"text-align:center;\"><a href=\"tel:0240354343\" style=\"font-family:Poppins,sans-serif;font-size:13px;font-weight:700;color:#70E8C6;text-decoration:none;\">📞 02 40 35 43 43</a><span style=\"color:rgba(255,255,255,.5);margin:0 12px;\">|</span><span style=\"font-family:Hind,sans-serif;font-size:12px;color:rgba(255,255,255,.6);\">Lun–Ven 8h–18h</span></div>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {}
+}
