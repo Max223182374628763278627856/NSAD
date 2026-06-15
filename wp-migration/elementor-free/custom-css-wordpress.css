@@ -1,0 +1,416 @@
+/*
+ * ═══════════════════════════════════════════════════════════════
+ * NSAD — CSS COMPLET POUR WORDPRESS
+ * À coller dans : Apparence → Personnaliser → CSS Additionnel
+ * OU dans : Elementor → hamburger → Personnaliser → CSS Additionnel
+ *
+ * Ce fichier remplace la totalité du design du site.
+ * Ne rien supprimer sans contacter le développeur.
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/* ───────────────────────────────────────────────────────────────
+   POLICES GOOGLE FONTS — Poppins (titres) + Hind (corps)
+─────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind:wght@400;500;600&display=swap');
+
+/* ───────────────────────────────────────────────────────────────
+   VARIABLES — Couleurs, tailles, espacements
+   Pour changer une couleur : modifier la valeur ici,
+   elle s'applique automatiquement sur tout le site.
+─────────────────────────────────────────────────────────────── */
+:root {
+  /* Couleur principale */
+  --primary:       #2E6A8A;
+  --primary-dark:  #1E4F68;
+  --primary-50:    #EAF3F8;
+
+  /* Accents */
+  --mint:          #70E8C6;
+  --mint-50:       #EDFAF5;
+  --coral:         #FF8A75;
+  --coral-50:      #FFF1EE;
+  --lavender:      #7DA2FA;
+  --lavender-50:   #EDF1FE;
+
+  /* Fonds */
+  --bg-page:       #F5F8FA;
+  --bg-card:       #FFFFFF;
+  --bg-dark:       #0F2F3E;
+
+  /* Texte */
+  --text-h:        #122432;
+  --text-body:     #344852;
+  --text-muted:    #637D88;
+
+  /* Polices */
+  --font-title:    'Poppins', sans-serif;
+  --font-body:     'Hind', sans-serif;
+
+  /* Rayons */
+  --radius:        18px;
+  --radius-lg:     28px;
+  --radius-pill:   9999px;
+
+  /* Ombres */
+  --shadow-sm:     0 2px 6px rgba(14,40,60,.07);
+  --shadow-md:     0 4px 16px rgba(14,40,60,.09);
+  --shadow-lg:     0 8px 32px rgba(14,40,60,.11);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   BASE — Corps de page, typographie
+─────────────────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-body) !important;
+  font-size: 17px !important;
+  line-height: 1.85 !important;
+  color: var(--text-body) !important;
+  background: var(--bg-page) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.elementor-heading-title {
+  font-family: var(--font-title) !important;
+  color: var(--text-h) !important;
+  line-height: 1.2 !important;
+}
+
+p { color: var(--text-body); line-height: 1.85; }
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); }
+
+/* ───────────────────────────────────────────────────────────────
+   BOUTONS — Styles appliqués aux widgets Bouton d'Elementor
+   Ajouter la classe CSS dans le champ "Classes CSS" du widget
+─────────────────────────────────────────────────────────────── */
+
+/* Classe : nsad-btn-primary */
+.nsad-btn-primary .elementor-button,
+.nsad-btn-primary {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 16px 36px !important;
+  min-height: 52px !important;
+  font-family: var(--font-title) !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(46,106,138,.30) !important;
+  transition: all 260ms ease !important;
+  text-decoration: none !important;
+}
+.nsad-btn-primary .elementor-button:hover,
+.nsad-btn-primary:hover {
+  background: var(--primary-dark) !important;
+  box-shadow: 0 8px 36px rgba(46,106,138,.42) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Classe : nsad-btn-coral */
+.nsad-btn-coral .elementor-button,
+.nsad-btn-coral {
+  background: var(--coral) !important;
+  color: #fff !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 16px 36px !important;
+  min-height: 52px !important;
+  font-family: var(--font-title) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 20px rgba(255,138,117,.38) !important;
+  transition: all 260ms ease !important;
+}
+.nsad-btn-coral .elementor-button:hover,
+.nsad-btn-coral:hover {
+  background: #E86D59 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Classe : nsad-btn-outline */
+.nsad-btn-outline .elementor-button,
+.nsad-btn-outline {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: 2px solid var(--primary) !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 14px 34px !important;
+  min-height: 52px !important;
+  font-family: var(--font-title) !important;
+  font-weight: 600 !important;
+  transition: all 260ms ease !important;
+}
+.nsad-btn-outline .elementor-button:hover,
+.nsad-btn-outline:hover {
+  background: var(--primary-50) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   CARTES — Composants visuels des services et quartiers
+─────────────────────────────────────────────────────────────── */
+
+/* Classe : nsad-card */
+.nsad-card {
+  background: var(--bg-card) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: box-shadow 260ms ease, transform 260ms ease !important;
+  overflow: hidden;
+}
+.nsad-card:hover {
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* Classe : nsad-card-mint (accent menthe en haut) */
+.nsad-card-mint {
+  border-top: 3px solid var(--mint) !important;
+  background: var(--mint-50) !important;
+}
+/* Classe : nsad-card-coral */
+.nsad-card-coral {
+  border-top: 3px solid var(--coral) !important;
+  background: var(--coral-50) !important;
+}
+/* Classe : nsad-card-lavender */
+.nsad-card-lavender {
+  border-top: 3px solid var(--lavender) !important;
+  background: var(--lavender-50) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   SECTIONS — Fonds colorés appliqués aux sections Elementor
+   Ajouter la classe dans Avancé → Classes CSS de la section
+─────────────────────────────────────────────────────────────── */
+.nsad-section-primary  { background: var(--primary-50) !important; }
+.nsad-section-mint     { background: var(--mint-50) !important; }
+.nsad-section-coral    { background: var(--coral-50) !important; }
+.nsad-section-lavender { background: var(--lavender-50) !important; }
+.nsad-section-dark     { background: var(--bg-dark) !important; }
+.nsad-section-dark *   { color: rgba(255,255,255,.9) !important; }
+.nsad-section-white    { background: #fff !important; }
+
+/* ───────────────────────────────────────────────────────────────
+   HERO — Section d'entrée des pages
+─────────────────────────────────────────────────────────────── */
+.nsad-hero {
+  background: linear-gradient(135deg, #2E6A8A 0%, #1E4F68 60%, #0F2F3E 100%) !important;
+  color: #fff !important;
+  padding: 120px 0 80px !important;
+}
+.nsad-hero * { color: #fff !important; }
+.nsad-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  color: #fff !important;
+}
+.nsad-hero p {
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+  color: rgba(255,255,255,.85) !important;
+  max-width: 560px;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   FAQ / ACCORDION — Widget Accordion Elementor
+─────────────────────────────────────────────────────────────── */
+.elementor-accordion-item {
+  border: 1px solid rgba(14,40,60,.08) !important;
+  border-radius: var(--radius) !important;
+  margin-bottom: 12px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm) !important;
+}
+.elementor-accordion-title {
+  font-family: var(--font-title) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  color: var(--text-h) !important;
+  padding: 20px 24px !important;
+  background: #fff !important;
+}
+.elementor-active .elementor-accordion-title {
+  color: var(--primary) !important;
+  background: var(--primary-50) !important;
+}
+.elementor-accordion-content {
+  padding: 0 24px 20px !important;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  color: var(--text-body) !important;
+  background: #fff !important;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   FORMULAIRE CONTACT FORM 7
+─────────────────────────────────────────────────────────────── */
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form input[type="tel"],
+.wpcf7-form select,
+.wpcf7-form textarea {
+  width: 100% !important;
+  padding: 14px 18px !important;
+  border: 1.5px solid rgba(14,40,60,.14) !important;
+  border-radius: 12px !important;
+  font-family: var(--font-body) !important;
+  font-size: 16px !important;
+  color: var(--text-body) !important;
+  background: #fff !important;
+  transition: border-color 200ms ease, box-shadow 200ms ease !important;
+  margin-bottom: 16px !important;
+}
+.wpcf7-form input:focus,
+.wpcf7-form textarea:focus,
+.wpcf7-form select:focus {
+  outline: none !important;
+  border-color: var(--mint) !important;
+  box-shadow: 0 0 0 3px rgba(112,232,198,.25) !important;
+}
+.wpcf7-form input[type="submit"] {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 16px 40px !important;
+  min-height: 52px !important;
+  font-family: var(--font-title) !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 20px rgba(46,106,138,.30) !important;
+  transition: all 260ms ease !important;
+}
+.wpcf7-form input[type="submit"]:hover {
+  background: var(--primary-dark) !important;
+  transform: translateY(-2px) !important;
+}
+.wpcf7-form label {
+  font-family: var(--font-title) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: var(--text-h) !important;
+  display: block !important;
+  margin-bottom: 6px !important;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   BOUTON FLOTTANT TÉLÉPHONE (mobile)
+   Coller ce bloc dans le footer via un widget HTML Elementor
+─────────────────────────────────────────────────────────────── */
+.nsad-floating-call {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: var(--coral);
+  color: #fff !important;
+  border-radius: var(--radius-pill);
+  padding: 14px 22px;
+  min-height: 52px;
+  text-decoration: none !important;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 6px 24px rgba(255,138,117,.45);
+  transition: all 300ms ease;
+}
+.nsad-floating-call:hover {
+  background: #E86D59;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(255,138,117,.60);
+  color: #fff !important;
+}
+@media (max-width: 960px) {
+  .nsad-floating-call { display: flex; }
+}
+@media (max-width: 600px) {
+  .nsad-floating-call .fc-label { display: none; }
+  .nsad-floating-call {
+    border-radius: 50%;
+    padding: 14px 16px;
+    width: 54px;
+    height: 54px;
+    justify-content: center;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   NAVIGATION ACTIVE — Page courante soulignée
+   Appliqué automatiquement par WordPress sur le lien courant
+─────────────────────────────────────────────────────────────── */
+.nav-menu .current-menu-item > a,
+.nav-menu .current_page_item > a,
+.main-navigation .current-menu-item a {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   TÉMOIGNAGES — Widget Image Box ou Testimonial Elementor
+─────────────────────────────────────────────────────────────── */
+.nsad-temoignage {
+  background: var(--bg-card) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 32px !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-left: 4px solid var(--mint) !important;
+}
+.nsad-temoignage p {
+  font-size: 17px !important;
+  font-style: italic !important;
+  color: var(--text-body) !important;
+  line-height: 1.8 !important;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   BANDE CTA — Section d'appel à l'action
+─────────────────────────────────────────────────────────────── */
+.nsad-cta-band {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+  text-align: center !important;
+  padding: 64px 40px !important;
+  border-radius: var(--radius-lg) !important;
+}
+.nsad-cta-band h2,
+.nsad-cta-band p { color: #fff !important; }
+
+/* ───────────────────────────────────────────────────────────────
+   ACCESSIBILITÉ — Navigation au clavier (WCAG 2.2)
+─────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2.5px solid var(--mint) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px rgba(112,232,198,.18) !important;
+  border-radius: 4px !important;
+}
+:focus:not(:focus-visible) { outline: none !important; }
+
+/* ───────────────────────────────────────────────────────────────
+   RESPONSIVE GÉNÉRAL — Adaptations mobile
+─────────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .nsad-hero { padding: 100px 0 60px !important; }
+  .elementor-section { padding: 48px 20px !important; }
+}
+@media (max-width: 600px) {
+  .nsad-hero h1 { font-size: 2rem !important; }
+  body { font-size: 16px !important; }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   UTILITAIRES — Classes rapides pour Elementor (CSS Classes)
+─────────────────────────────────────────────────────────────── */
+.nsad-text-muted    { color: var(--text-muted) !important; }
+.nsad-text-primary  { color: var(--primary) !important; }
+.nsad-text-white    { color: #fff !important; }
+.nsad-text-center   { text-align: center !important; }
+.nsad-bold          { font-weight: 700 !important; }
+.nsad-inner         { max-width: 1140px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 60px); }
+.nsad-pill          { border-radius: var(--radius-pill) !important; }
+.nsad-shadow        { box-shadow: var(--shadow-md) !important; }
+.nsad-no-shadow     { box-shadow: none !important; }
