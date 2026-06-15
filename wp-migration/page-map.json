@@ -1,0 +1,348 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Mapping complet HTML statique → WordPress. 36 pages total.",
+    "note": "Les slugs WP doivent correspondre exactement aux slugs HTML (sans .html) pour préserver le SEO."
+  },
+
+  "pages": [
+    {
+      "html_file": "index.html",
+      "wp_slug": "/",
+      "wp_title": "Accueil — SSIAD NSAD Nantes",
+      "wp_template": "page-accueil",
+      "elementor_template": "Home — Full Width",
+      "type": "home",
+      "priority": 1,
+      "seo_note": "Page la plus importante. H1 = 'Soins à domicile à Nantes'. Slug = / (page d'accueil WP)."
+    },
+    {
+      "html_file": "nos-services.html",
+      "wp_slug": "nos-services",
+      "wp_title": "Nos Services de soins à domicile — NSAD Nantes",
+      "wp_template": "page-services",
+      "elementor_template": "Services — Full Width",
+      "type": "page",
+      "priority": 2
+    },
+    {
+      "html_file": "nos-quartiers.html",
+      "wp_slug": "nos-quartiers",
+      "wp_title": "Nos Quartiers — SSIAD NSAD Nantes",
+      "wp_template": "page-quartiers",
+      "elementor_template": "Quartiers — Full Width (carte SVG interactive)",
+      "type": "page",
+      "priority": 2,
+      "special": "Contient une carte SVG interactive — utiliser Widget HTML Elementor pour ce bloc"
+    },
+    {
+      "html_file": "qui-sommes-nous.html",
+      "wp_slug": "qui-sommes-nous",
+      "wp_title": "Qui sommes-nous — SSIAD NSAD Nantes",
+      "wp_template": "page-about",
+      "elementor_template": "À propos — Full Width",
+      "type": "page",
+      "priority": 2,
+      "special": "Timeline interactive scroll-driven — voir MIGRATION_GUIDE.md section 11"
+    },
+    {
+      "html_file": "nos-valeurs-engagements.html",
+      "wp_slug": "nos-valeurs-engagements",
+      "wp_title": "Nos Valeurs & Engagements — SSIAD NSAD",
+      "wp_template": "page-valeurs",
+      "elementor_template": "Valeurs — Full Width",
+      "type": "page",
+      "priority": 3
+    },
+    {
+      "html_file": "nous-contacter.html",
+      "wp_slug": "nous-contacter",
+      "wp_title": "Nous Contacter — SSIAD NSAD Nantes",
+      "wp_template": "page-contact",
+      "elementor_template": "Contact — Full Width",
+      "type": "contact",
+      "priority": 1,
+      "special": "Formulaire → remplacer par Elementor Form Pro. Activer WPForms ou Contact Form 7 en fallback. Exclure cette page du cache WP."
+    },
+    {
+      "html_file": "recrutement.html",
+      "wp_slug": "recrutement",
+      "wp_title": "Recrutement — Rejoindre l'équipe NSAD Nantes",
+      "wp_template": "page-recrutement",
+      "elementor_template": "Recrutement — Full Width",
+      "type": "page",
+      "priority": 2,
+      "special": "Stepper 3 étapes JS — reproduire avec Elementor Steps Widget ou code HTML custom"
+    },
+    {
+      "html_file": "faq.html",
+      "wp_slug": "faq",
+      "wp_title": "FAQ — Questions fréquentes SSIAD NSAD Nantes",
+      "wp_template": "page-faq",
+      "elementor_template": "FAQ — Full Width",
+      "type": "page",
+      "priority": 3,
+      "special": "Schema.org FAQPage JSON-LD — migrer via RankMath Pro > Schéma > FAQ"
+    },
+    {
+      "html_file": "nos-actualites.html",
+      "wp_slug": "nos-actualites",
+      "wp_title": "Actualités — SSIAD NSAD Nantes",
+      "wp_template": "archive-actualites",
+      "elementor_template": "Blog Archive — Full Width",
+      "type": "archive",
+      "priority": 3,
+      "special": "Dans WP, créer un Custom Post Type 'Actualités' ou utiliser les Articles natifs"
+    },
+    {
+      "html_file": "mag-expert.html",
+      "wp_slug": "mag-expert",
+      "wp_title": "Magazine Expert — Conseils soins à domicile NSAD",
+      "wp_template": "archive-mag",
+      "elementor_template": "Magazine — Full Width",
+      "type": "archive",
+      "priority": 3
+    },
+    {
+      "html_file": "nos-partenaires.html",
+      "wp_slug": "nos-partenaires",
+      "wp_title": "Nos Partenaires locaux — NSAD Nantes",
+      "wp_template": "page-partenaires",
+      "elementor_template": "Partenaires — Full Width",
+      "type": "page",
+      "priority": 3
+    },
+    {
+      "html_file": "hub-local.html",
+      "wp_slug": "hub-local",
+      "wp_title": "Hub Local Nantes — Ressources et Partenaires NSAD",
+      "wp_template": "page-hub",
+      "elementor_template": "Hub Local — Full Width",
+      "type": "page",
+      "priority": 3
+    },
+    {
+      "html_file": "guide-aidant-nantais.html",
+      "wp_slug": "guide-aidant-nantais",
+      "wp_title": "Guide de l'Aidant Nantais — NSAD",
+      "wp_template": "page-guide",
+      "elementor_template": "Guide — Full Width",
+      "type": "page",
+      "priority": 3
+    },
+    {
+      "html_file": "mentions-legales.html",
+      "wp_slug": "mentions-legales",
+      "wp_title": "Mentions Légales — SSIAD NSAD Nantes",
+      "wp_template": "page-legal",
+      "elementor_template": "Légal — Canvas (sans header/footer custom)",
+      "type": "legal",
+      "priority": 4
+    },
+
+    {
+      "_group": "Services spécialisés"
+    },
+    {
+      "html_file": "soins-infirmiers-nantes.html",
+      "wp_slug": "soins-infirmiers-nantes",
+      "wp_title": "Soins Infirmiers à Domicile Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 2
+    },
+    {
+      "html_file": "aide-a-domicile-nantes.html",
+      "wp_slug": "aide-a-domicile-nantes",
+      "wp_title": "Aide à Domicile Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 2
+    },
+    {
+      "html_file": "soin-hygiene-domicile-nantes.html",
+      "wp_slug": "soin-hygiene-domicile-nantes",
+      "wp_title": "Soins Hygiène Domicile Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 2
+    },
+    {
+      "html_file": "nursing-aide-soignant-nantes.html",
+      "wp_slug": "nursing-aide-soignant-nantes",
+      "wp_title": "Nursing & Aide-Soignant à Domicile Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 2
+    },
+    {
+      "html_file": "accompagnement-fin-de-vie-nantes.html",
+      "wp_slug": "accompagnement-fin-de-vie-nantes",
+      "wp_title": "Accompagnement Fin de Vie à Domicile Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 2
+    },
+    {
+      "html_file": "comprendre-alzheimer-parkinson-nantes.html",
+      "wp_slug": "comprendre-alzheimer-parkinson-nantes",
+      "wp_title": "Comprendre Alzheimer & Parkinson — NSAD Nantes",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 3
+    },
+    {
+      "html_file": "nutrition-repas-domicile-nantes.html",
+      "wp_slug": "nutrition-repas-domicile-nantes",
+      "wp_title": "Nutrition & Repas à Domicile Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 3
+    },
+    {
+      "html_file": "mobilite-vie-sociale-nantes.html",
+      "wp_slug": "mobilite-vie-sociale-nantes",
+      "wp_title": "Mobilité & Vie Sociale à Domicile Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 3
+    },
+    {
+      "html_file": "lien-famille-corps-medical-nantes.html",
+      "wp_slug": "lien-famille-corps-medical-nantes",
+      "wp_title": "Lien Famille & Corps Médical Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 3
+    },
+    {
+      "html_file": "dossiers-apa-pch-nantes.html",
+      "wp_slug": "dossiers-apa-pch-nantes",
+      "wp_title": "Dossiers APA & PCH Nantes — SSIAD NSAD",
+      "wp_template": "page-service",
+      "type": "service",
+      "priority": 3
+    },
+
+    {
+      "_group": "Pages Quartiers (template réutilisable)"
+    },
+    {
+      "html_file": "quartier-centre-ville.html",
+      "wp_slug": "quartier-centre-ville",
+      "wp_title": "Aide à Domicile Centre-ville Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 2
+    },
+    {
+      "html_file": "quartier-ile-de-nantes.html",
+      "wp_slug": "quartier-ile-de-nantes",
+      "wp_title": "Aide à Domicile Île de Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 2
+    },
+    {
+      "html_file": "quartier-bellevue-chantenay.html",
+      "wp_slug": "quartier-bellevue-chantenay",
+      "wp_title": "Aide à Domicile Bellevue-Chantenay Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 2
+    },
+    {
+      "html_file": "quartier-bellevue.html",
+      "wp_slug": "quartier-bellevue",
+      "wp_title": "Aide à Domicile Bellevue Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3
+    },
+    {
+      "html_file": "quartier-chantenay.html",
+      "wp_slug": "quartier-chantenay",
+      "wp_title": "Aide à Domicile Chantenay Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3
+    },
+    {
+      "html_file": "quartier-dervallières-zola.html",
+      "wp_slug": "quartier-dervallieres-zola",
+      "wp_title": "Aide à Domicile Dervallières-Zola Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3,
+      "seo_note": "Attention : slug sans accent. Redirect depuis quartier-dervallières-zola si nécessaire."
+    },
+    {
+      "html_file": "quartier-hauts-paves-saint-felix.html",
+      "wp_slug": "quartier-hauts-paves-saint-felix",
+      "wp_title": "Aide à Domicile Hauts-Pavés–Saint-Félix Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3
+    },
+    {
+      "html_file": "quartier-malakoff-saint-donatien.html",
+      "wp_slug": "quartier-malakoff-saint-donatien",
+      "wp_title": "Aide à Domicile Malakoff–Saint-Donatien Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3
+    },
+    {
+      "html_file": "quartier-breil-barbiere.html",
+      "wp_slug": "quartier-breil-barbiere",
+      "wp_title": "Aide à Domicile Breil-Barbière Nantes — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3
+    },
+    {
+      "html_file": "quartier-nantes-nord.html",
+      "wp_slug": "quartier-nantes-nord",
+      "wp_title": "Aide à Domicile Nantes Nord — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3
+    },
+    {
+      "html_file": "quartier-nantes-sud.html",
+      "wp_slug": "quartier-nantes-sud",
+      "wp_title": "Aide à Domicile Nantes Sud — SSIAD NSAD",
+      "wp_template": "page-quartier",
+      "type": "quartier",
+      "priority": 3
+    },
+
+    {
+      "_group": "Pages techniques (ne pas indexer en production)"
+    },
+    {
+      "html_file": "styleguide.html",
+      "wp_slug": "styleguide",
+      "wp_title": "Styleguide NSAD — Design System",
+      "wp_template": "page-blank",
+      "type": "internal",
+      "priority": 5,
+      "seo_note": "Mettre en noindex dans Yoast/RankMath. Protéger par mot de passe WP en production."
+    }
+  ],
+
+  "wp_settings": {
+    "permalinks": "/%postname%/",
+    "page_on_front": "index.html → page ID à définir",
+    "blog_slug": "nos-actualites",
+    "custom_post_types": ["actualite", "temoignage"],
+    "plugins_required": [
+      "Elementor Pro",
+      "Hello Elementor (thème de base)",
+      "RankMath Pro (SEO + Schema)",
+      "WP Rocket (cache)",
+      "OMGF (Google Fonts local)",
+      "Redirection (301 .html → slugs propres)"
+    ]
+  }
+}

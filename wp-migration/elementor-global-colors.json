@@ -1,0 +1,151 @@
+{
+  "_meta": {
+    "description": "Couleurs Globales NSAD pour Elementor. À saisir dans : Elementor → hamburger → Paramètres du site → Global Colors.",
+    "version": "2.0",
+    "note": "Elementor Pro ne permet pas d'importer les couleurs globales via JSON directement — saisir les valeurs ci-dessous manuellement dans l'interface."
+  },
+
+  "global_colors": [
+    {
+      "elementor_name": "Primaire",
+      "css_var": "--e-global-color-primary",
+      "hex": "#2E6A8A",
+      "usage": "Titres, boutons principaux, liens, accents forts"
+    },
+    {
+      "elementor_name": "Primaire Foncé",
+      "css_var": "--e-global-color-primary-dark",
+      "hex": "#1E4F68",
+      "usage": "Hover boutons, textes sombres sur fond clair"
+    },
+    {
+      "elementor_name": "Accent Menthe",
+      "css_var": "--e-global-color-accent",
+      "hex": "#70E8C6",
+      "usage": "Highlights, bordures d'accent, badges, fond sections alternatives"
+    },
+    {
+      "elementor_name": "Accent Corail",
+      "css_var": "--e-global-color-coral",
+      "hex": "#FF8A75",
+      "usage": "CTA urgents, bouton flottant téléphone, alertes douces"
+    },
+    {
+      "elementor_name": "Accent Lavande",
+      "css_var": "--e-global-color-lavender",
+      "hex": "#7DA2FA",
+      "usage": "Badges catégories, éléments décoratifs doux"
+    },
+    {
+      "elementor_name": "Fond Page",
+      "css_var": "--e-global-color-bg-page",
+      "hex": "#F5F8FA",
+      "usage": "Fond général du site (remplace le blanc pur)"
+    },
+    {
+      "elementor_name": "Fond Carte",
+      "css_var": "--e-global-color-bg-card",
+      "hex": "#FFFFFF",
+      "usage": "Fond des cartes, modals, zones de contenu"
+    },
+    {
+      "elementor_name": "Fond Sombre",
+      "css_var": "--e-global-color-bg-dark",
+      "hex": "#0F2F3E",
+      "usage": "Sections hero dark, footer, CTA band sombre"
+    },
+    {
+      "elementor_name": "Texte Titre",
+      "css_var": "--e-global-color-text-heading",
+      "hex": "#122432",
+      "usage": "H1, H2, H3 — contraste fort sur fond clair"
+    },
+    {
+      "elementor_name": "Texte Corps",
+      "css_var": "--e-global-color-text-body",
+      "hex": "#344852",
+      "usage": "Paragraphes, listes — principal texte de lecture"
+    },
+    {
+      "elementor_name": "Texte Secondaire",
+      "css_var": "--e-global-color-text-muted",
+      "hex": "#637D88",
+      "usage": "Descriptions secondaires, meta, dates, labels"
+    }
+  ],
+
+  "global_fonts": [
+    {
+      "elementor_name": "Titre Principal",
+      "family": "Poppins",
+      "source": "Google Fonts",
+      "weights": [700, 800],
+      "letter_spacing": "-0.01em",
+      "usage": "H1 hero, H2 sections principales",
+      "elementor_path": "Paramètres du site → Global Fonts → Titre Principal"
+    },
+    {
+      "elementor_name": "Titre Secondaire",
+      "family": "Poppins",
+      "source": "Google Fonts",
+      "weights": [600],
+      "letter_spacing": "0",
+      "usage": "H3, H4, sous-titres de cartes",
+      "elementor_path": "Paramètres du site → Global Fonts → Titre Secondaire"
+    },
+    {
+      "elementor_name": "Corps de Texte",
+      "family": "Hind",
+      "source": "Google Fonts",
+      "weights": [400, 500],
+      "size_min_px": 18,
+      "line_height": 1.85,
+      "usage": "Paragraphes, listes, descriptions — taille min 18px pour accessibilité senior",
+      "elementor_path": "Paramètres du site → Global Fonts → Corps de Texte"
+    }
+  ],
+
+  "buttons_global": {
+    "border_radius": "9999px",
+    "height_min": "52px",
+    "padding": "16px 36px",
+    "types": [
+      {
+        "name": "Bouton Primaire",
+        "bg": "#2E6A8A",
+        "bg_hover": "#1E4F68",
+        "text": "#FFFFFF",
+        "shadow": "0 4px 20px rgba(46,106,138,0.30)",
+        "shadow_hover": "0 8px 36px rgba(46,106,138,0.42)"
+      },
+      {
+        "name": "Bouton Corail (CTA urgent)",
+        "bg": "#FF8A75",
+        "bg_hover": "#E86D59",
+        "text": "#FFFFFF",
+        "shadow": "0 4px 20px rgba(255,138,117,0.38)"
+      },
+      {
+        "name": "Bouton Contour",
+        "bg": "transparent",
+        "border": "2px solid #2E6A8A",
+        "text": "#2E6A8A",
+        "bg_hover": "#EAF3F8"
+      },
+      {
+        "name": "Bouton Blanc (sur fond sombre)",
+        "bg": "#FFFFFF",
+        "text": "#2E6A8A",
+        "bg_hover": "#EAF3F8"
+      }
+    ]
+  },
+
+  "spacing_global": {
+    "section_padding_desktop": "80px",
+    "section_padding_mobile": "48px",
+    "container_max_width": "1140px",
+    "column_gap": "28px",
+    "elementor_path": "Paramètres du site → Mise en page → Largeur du contenu → 1140"
+  }
+}
