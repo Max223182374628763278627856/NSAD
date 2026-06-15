@@ -5,6 +5,9 @@
  * Design System v2.0
  */
 
+// Interface simplifiée pour les éditeurs non-techniques
+require_once get_stylesheet_directory() . '/admin-editeur.php';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. CHARGEMENT DES STYLES ET SCRIPTS
 // ─────────────────────────────────────────────────────────────────────────────
