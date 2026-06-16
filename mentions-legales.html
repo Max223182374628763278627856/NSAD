@@ -231,6 +231,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); }
 </head>
 <body>
 
+<!-- WP: Header / get_header() -->
 <nav id="main-nav" role="navigation" aria-label="Navigation principale">
   <a href="index.html" class="nav-logo" aria-label="Nantes Soins à Domicile – Accueil">
     <img src="logo.png" alt="Nantes Soins à Domicile" />
@@ -249,6 +250,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); }
     <span></span><span></span><span></span>
   </button>
 </nav>
+<!-- /WP: Header -->
 
 <div class="nav-mobile" id="nsad-mobile-nav" role="navigation" aria-label="Menu mobile">
   <a href="index.html">Accueil</a>
@@ -271,6 +273,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); }
 (function(){var p=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.nav-links a,.nav-mobile a').forEach(function(a){if((a.getAttribute('href')||'').split('/').pop()===p)a.classList.add('active');});})();
 </script>
 
+
+<!-- WP: Content Area / the_content() -->
 <!-- ══════════ HERO ══════════ -->
 <section class="page-hero" aria-labelledby="legal-title">
   <div class="hero-badge">Informations légales</div>
@@ -457,6 +461,8 @@ footer.nsad-ft a:hover{color:#8FF0D2;}
     <a href="tel:0240354343" class="ft-phone">02 40 35 43 43</a>
   </div>
 </div>
+<!-- /WP: Content Area -->
+<!-- WP: Footer / get_footer() -->
 <footer class="nsad-ft" role="contentinfo">
   <div class="ft-inner">
     <div class="ft-bottom">
@@ -469,6 +475,7 @@ footer.nsad-ft a:hover{color:#8FF0D2;}
     </div>
   </div>
 </footer>
+<!-- /WP: Footer -->
 
 <a href="tel:0240354343" class="nsad-floating-call" aria-label="Appeler Nantes Soins à Domicile">
   <span class="fc-icon">
