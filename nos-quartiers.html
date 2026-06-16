@@ -246,7 +246,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 }
 
 .intro-band{background:var(--bg-light);padding:72px 48px;}
-.intro-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.intro-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:center;}
 .intro-text h2{font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:20px;}
 .intro-text h2 em{color:var(--primary);font-style:normal;}
 .intro-text p{font-size:1rem;color:#4a5d66;line-height:1.8;margin-bottom:16px;}
@@ -254,11 +254,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .intro-text-below h2{font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:20px;}
 .intro-text-below h2 em{color:var(--primary);font-style:normal;}
 .intro-text-below p{font-size:1rem;color:#4a5d66;line-height:1.8;margin-bottom:16px;}
-.values-list{display:flex;flex-direction:column;gap:16px;}
-.value-item{display:flex;align-items:flex-start;gap:14px;background:#fff;border-radius:var(--radius-sm);padding:18px 20px;border:1px solid rgba(60,105,127,0.08);}
-.value-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
-.value-item strong{display:block;font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:700;color:var(--dark);}
-.value-item span{font-size:0.9rem;color:#4a5d66;line-height:1.7;}
+.values-list{display:flex;flex-direction:column;gap:12px;}
+.value-item{display:flex;align-items:center;gap:16px;background:#fff;border-radius:var(--radius-sm);padding:16px 20px;border:1px solid rgba(60,105,127,0.08);border-left:3px solid var(--mint);}
+.value-icon{flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--bg-light);border-radius:8px;}
+.value-item strong{display:block;font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.value-item span{font-size:0.88rem;color:#4a5d66;line-height:1.5;}
 
 .cta-band{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:72px 48px;text-align:center;}
 .cta-band h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;margin-bottom:16px;}
