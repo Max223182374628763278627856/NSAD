@@ -1,12 +1,38 @@
 /*
-Theme Name: NSAD — Nantes Soins à Domicile
+Theme Name: NSAD Theme
 Theme URI: https://nantes-soins-a-domicile.fr
+Description: Thème Nantes Soins à Domicile — enfant de Hello Elementor
 Author: NSAD
-Description: Thème officiel Nantes Soins à Domicile — conçu pour Elementor Pro.
-Version: 1.0
-Requires at least: 6.0
-Tested up to: 6.5
-Requires PHP: 8.0
-License: Propriétaire
-Text Domain: nsad
+Template: hello-elementor
+Version: 1.0.0
+Text Domain: nsad-theme
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&family=Hind:wght@400;500;600&display=swap');
+
+:root {
+    --nsad-primary: #3C697F;
+    --nsad-mint: #8FF0D2;
+    --nsad-dark: #1a2d36;
+    --nsad-text: #3a4a52;
+}
+
+body {
+    font-family: 'Hind', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--nsad-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+a {
+    color: var(--nsad-primary);
+}
+
+.elementor-widget-heading .elementor-heading-title {
+    font-family: 'Poppins', sans-serif;
+}
