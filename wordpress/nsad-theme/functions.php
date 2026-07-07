@@ -407,7 +407,7 @@ add_action('elementor/page_templates/canvas/after_content', function () {
                 <!-- Colonne 1 : Marque -->
                 <div class="ft-brand">
                     <h2>Nantes Aides et Soins à Domicile</h2>
-                    <p>Association loi 1901 · Agrément préfectoral<br>Partenaire du CHU de Nantes.</p>
+                    <p>Association à but non lucratif<br>Partenaire du CHU de Nantes.</p>
                     <address>
                         6 rue Bel Air – 44000 Nantes<br>
                         <a href="tel:0240354343">02 40 35 43 43</a>&nbsp;·&nbsp;<a href="mailto:contact@ssiadnsaid.fr">contact@ssiadnsaid.fr</a><br>
@@ -483,7 +483,7 @@ add_action('elementor/page_templates/canvas/after_content', function () {
             </div><!-- /.ft-grid -->
 
             <div class="ft-bottom">
-                <span>© 2026 Nantes Aides et Soins à Domicile – Association loi 1901 – Nantes (44000)</span>
+                <span>© 2026 Nantes Aides et Soins à Domicile – Nantes (44000)</span>
                 <span>
                     <a href="<?php echo esc_url($h . 'mentions-legales'); ?>">Mentions légales</a>
                 </span>
