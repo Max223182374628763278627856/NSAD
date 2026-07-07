@@ -926,6 +926,14 @@ add_action('wp_head', function() {
         echo '<script type="application/ld+json">' . wp_json_encode($bc, $flag) . '</script>' . "\n";
     }
 
+    // ── 2b. FAQPage — lecture depuis post meta sauvegardée ────────────
+    if (is_page()) {
+        $saved_faq = get_post_meta(get_the_ID(), '_nsad_schema_faqpage', true);
+        if ($saved_faq) {
+            echo '<script type="application/ld+json">' . $saved_faq . '</script>' . "\n";
+        }
+    }
+
     // ── 3. Article — lecture depuis post meta sauvegardée ─────────────
     if (is_single() && get_post_type() === 'post') {
         $saved_article = get_post_meta(get_the_ID(), '_nsad_schema_article', true);
